@@ -16,6 +16,11 @@
 
 package com.yamilab.animalsound;
 
+import android.content.Context;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
+import android.media.SoundPool;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,6 +29,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 
 
 /**
@@ -32,8 +38,8 @@ import android.widget.TextView;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
     private static final String TAG = "CustomAdapter";
 
-    private String[] mDataSet;
-
+    private ArrayList<Animal> mDataset;
+    Context context;
     // BEGIN_INCLUDE(recyclerViewSampleViewHolder)
     /**
      * Provide a reference to the type of views that you are using (custom ViewHolder)
@@ -41,6 +47,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textView;
         private final ImageView imageView;
+        private Context context;
+
 
         public ViewHolder(View v) {
             super(v);
@@ -50,10 +58,39 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                 @Override
                 public void onClick(View v) {
                     Log.d(TAG, "Element " + getAdapterPosition() + " clicked.");
+                    playSp(getAdapterPosition());
                 }
             });
             textView = (TextView) v.findViewById(R.id.textView);
             imageView = (ImageView) v.findViewById(R.id.imageView);
+        }
+
+        private void playSp(int adapterPosition) {
+            SoundPool sp;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
+                AudioAttributes audioAttrib = new AudioAttributes.Builder()
+                        .setUsage(AudioAttributes.USAGE_GAME)
+                        .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                        .build();
+                sp = new SoundPool.Builder().setAudioAttributes(audioAttrib).setMaxStreams(6).build();
+            }
+            else {
+
+                sp = new SoundPool(6, AudioManager.STREAM_MUSIC, 0);
+            }
+            int soundId = sp.load(context, R.raw.h0, 1);
+            sp.play(soundId, 1, 1, 0, 0, 1);
+            Log.d(TAG, "Element " + getAdapterPosition() + soundId+" played.");
+
+            sp.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener()
+            {
+                @Override
+                public void onLoadComplete(SoundPool soundPool, int sampleId,int status) {
+                    soundPool.play(sampleId,1,1,0,0,1);
+                }
+            });
+
         }
 
         public TextView getTextView() {
@@ -63,6 +100,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         public ImageView getImageView() {
             return imageView;
         }
+        public void setContext (Context context) {this.context=context;}
     }
     // END_INCLUDE(recyclerViewSampleViewHolder)
 
@@ -71,8 +109,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
      *
      * @param dataSet String[] containing the data to populate views to be used by RecyclerView.
      */
-    public CustomAdapter(String[] dataSet) {
-        mDataSet = dataSet;
+    public CustomAdapter(ArrayList<Animal> dataSet) {
+        mDataset = new ArrayList<>();
+        dataSet.size();
+
+
+        for (int i = 0; i < dataSet.size(); i++) {
+
+            mDataset.add(dataSet.get(i));
+        }
     }
 
     // BEGIN_INCLUDE(recyclerViewOnCreateViewHolder)
@@ -82,7 +127,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         // Create a new view.
         View v = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.animal_item, viewGroup, false);
-
+        context = viewGroup.getContext();
         return new ViewHolder(v);
     }
     // END_INCLUDE(recyclerViewOnCreateViewHolder)
@@ -95,14 +140,17 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
         // Get element from your dataset at this position and replace the contents of the view
         // with that element
-        viewHolder.getTextView().setText(mDataSet[position]);
-        viewHolder.getImageView().setBackgroundResource(R.drawable.ic_animal);
+        Animal data= new Animal();
+        data=mDataset.get(position);
+        viewHolder.setContext(context);
+        viewHolder.getTextView().setText(data.getName());
+        viewHolder.getImageView().setBackgroundResource(data.getImageSmall());
     }
     // END_INCLUDE(recyclerViewOnBindViewHolder)
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return mDataSet.length;
+        return mDataset.size();
     }
 }

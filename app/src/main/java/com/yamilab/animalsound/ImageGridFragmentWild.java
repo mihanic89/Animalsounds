@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
 /**
  * Created by Misha on 28.03.2017.
  */
@@ -18,7 +20,7 @@ public class ImageGridFragmentWild extends Fragment {
     private static final String TAG = "RecyclerViewFragment";
     private static final String KEY_LAYOUT_MANAGER = "layoutManager";
     private static final int SPAN_COUNT = 2;
-    private static final int DATASET_COUNT = 60;
+    private static final int DATASET_COUNT = 40;
 
     private enum LayoutManagerType {
         GRID_LAYOUT_MANAGER,
@@ -29,7 +31,7 @@ public class ImageGridFragmentWild extends Fragment {
     protected RecyclerView mRecyclerView;
     protected CustomAdapter mAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;
-    protected String[] mDataset;
+    protected ArrayList<Animal> mDataset;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -67,7 +69,7 @@ public class ImageGridFragmentWild extends Fragment {
         // END_INCLUDE(initializeRecyclerView)
 
 
-                setRecyclerViewLayoutManager(LayoutManagerType.GRID_LAYOUT_MANAGER);
+        setRecyclerViewLayoutManager(LayoutManagerType.GRID_LAYOUT_MANAGER);
 
 
         return rootView;
@@ -82,19 +84,9 @@ public class ImageGridFragmentWild extends Fragment {
                     .findFirstCompletelyVisibleItemPosition();
         }
 
-        switch (layoutManagerType) {
-            case GRID_LAYOUT_MANAGER:
+
                 mLayoutManager = new GridLayoutManager(getActivity(), SPAN_COUNT);
                 mCurrentLayoutManagerType = LayoutManagerType.GRID_LAYOUT_MANAGER;
-                break;
-            case LINEAR_LAYOUT_MANAGER:
-                mLayoutManager = new LinearLayoutManager(getActivity());
-                mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
-                break;
-            default:
-                mLayoutManager = new LinearLayoutManager(getActivity());
-                mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
-        }
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.scrollToPosition(scrollPosition);
@@ -112,9 +104,15 @@ public class ImageGridFragmentWild extends Fragment {
      * from a local content provider or remote server.
      */
     private void initDataset() {
-        mDataset = new String[DATASET_COUNT];
+        mDataset = new ArrayList<>();
+        Animal data = new Animal();
         for (int i = 0; i < DATASET_COUNT; i++) {
-            mDataset[i] = "This is element #" + i;
+
+            data.setName("Car");
+            data.setImageBig(R.mipmap.cat);
+            data.setImageSmall(R.mipmap.cat);
+            data.setSound(R.raw.h0);
+            mDataset.add(data);
         }
     }
 }
