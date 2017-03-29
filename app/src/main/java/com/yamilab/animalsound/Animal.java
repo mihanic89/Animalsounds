@@ -13,10 +13,10 @@ public class Animal implements Serializable {
     private Integer imageBig;
     private Integer sound;
 
-    public  Animal  (String name, Integer imageSmall, Integer imageBig, Integer sound){
+    public  Animal  (String name, Integer imageSmall, Integer sound){
         this.name= name;
         this.imageSmall = imageSmall;
-        this.imageBig = imageBig;
+
         this.sound = sound;
     }
 
@@ -40,13 +40,7 @@ public class Animal implements Serializable {
         this.imageSmall = imageSmall;
     }
 
-    public Integer getImageBig(){
-        return imageBig;
-    }
 
-    public void  setImageBig(Integer imageBig){
-        this.imageBig = imageBig;
-    }
 
     public Integer getSound(){
         return sound;

@@ -44,7 +44,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     /**
      * Provide a reference to the type of views that you are using (custom ViewHolder)
      */
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public  class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textView;
         private final ImageView imageView;
         private Context context;
@@ -73,13 +73,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                         .setUsage(AudioAttributes.USAGE_GAME)
                         .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
                         .build();
-                sp = new SoundPool.Builder().setAudioAttributes(audioAttrib).setMaxStreams(6).build();
+                sp = new SoundPool.Builder().setAudioAttributes(audioAttrib).setMaxStreams(1).build();
             }
             else {
 
-                sp = new SoundPool(6, AudioManager.STREAM_MUSIC, 0);
+                sp = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
             }
-            int soundId = sp.load(context, R.raw.h0, 1);
+
+            int soundId = sp.load(context, mDataset.get(adapterPosition).getSound(), 1);
             sp.play(soundId, 1, 1, 0, 0, 1);
             Log.d(TAG, "Element " + getAdapterPosition() + soundId+" played.");
 
@@ -144,7 +145,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         data=mDataset.get(position);
         viewHolder.setContext(context);
         viewHolder.getTextView().setText(data.getName());
-        viewHolder.getImageView().setBackgroundResource(data.getImageSmall());
+        viewHolder.getImageView().setImageResource(data.getImageSmall());
     }
     // END_INCLUDE(recyclerViewOnBindViewHolder)
 
