@@ -1,4 +1,4 @@
-package com.yamilab.animalsound;
+package com.yamilab.animalsounds;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.yamilab.animalsound", appContext.getPackageName());
+        assertEquals("com.yamilab.animalsounds", appContext.getPackageName());
     }
 }

@@ -1,4 +1,4 @@
-package com.yamilab.animalsound;
+package com.yamilab.animalsounds;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-import static com.yamilab.animalsound.R.id.recyclerView;
+import static com.yamilab.animalsounds.R.id.recyclerView;
 
 /**
  * Created by Misha on 28.03.2017.

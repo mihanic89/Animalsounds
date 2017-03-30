@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Animalsound</string>
+    <string name="app_name">Animalsounds</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
 
@@ -15,5 +15,69 @@
     <string name="donkey"> Donkey </string>
     <string name="turkey"> Turkey </string>
     <string name="cavy"> Cavy </string>
-            
+
+    <string name="bear"> Bear </string>
+    <string name="wolf"> Wolf </string>
+    <string name="leo"> Leo </string>
+    <string name="tiger"> Tiger </string>
+    <string name="monkey"> Monkey </string>
+    <string name="elephant"> Elephant </string>
+    <string name="camel"> Camel </string>
+    <string name="zebra"> Zebra </string>
+    <string name="jackal"> Jackal </string>
+    <string name="snake"> Snake </string>
+    <string name="fox"> Fox </string>
+    <string name="hare"> Hare </string>
+    <string name="rhino"> Rhino </string>
+    <string name="crocodile"> Crocodile </string>
+    <string name="koala"> Koala </string>
+    <string name="panda"> Panda </string>
+    <string name="kangoroo"> Kangaroo </string>
+    <string name="lemur"> Lemur </string>
+    <string name="lynx"> Lynx </string>
+    <string name="elk"> Elk </string>
+    <string name="racoon"> Raccoon </string>
+    <string name="squirrel"> Squirrel </string>
+    <string name="rat"> Rat </string>
+    <string name="mouse"> Mouse </string>
+    <string name="jaguar"> Jaguar </string>
+    <string name="hippopotamus"> Hippopotamus </string>
+    
+    <string name="goose"> Goose </string>
+    <string name="duck"> Duck </string>
+    <string name="crow"> Crow </string>
+    <string name="seagull"> Seagull </string>
+    <string name="dove"> Dove </string>
+    <string name="nightingale"> Nightingale </string>
+    <string name="eagle"> Eagle </string>
+    <string name="hawk"> Hawk </string>
+    <string name="woodpecker"> Woodpecker </string>
+    <string name="parrot"> Parrot </string>
+    <string name="owl"> Owl </string>
+    <string name="cuckoo"> Cuckoo </string>
+    <string name="pelican"> Pelican </string>
+    <string name="ostrich"> Ostrich </string>
+    <string name="flamingo"> Flamingo </string>
+    <string name="peacock"> Peacock </string>
+
+    <string name="dolphin"> Dolphin </string>
+    <string name="sealbark"> Seal Bark </string>
+    <string name="frog"> Frog </string>
+    <string name="penguin"> Penguin </string>
+    <string name="walrus"> Walrus </string>
+    <string name="sealion"> Sea lion </string>
+    <string name="whale"> Whale </string>
+    <string name="fish"> Fish </string>
+      
+    <string name="bees"> Bees </string>
+    <string name="flies"> Flies </string>
+    <string name="mosquito"> Mosquito </string>
+    <string name="grasshopper"> Grasshopper </string>
+    <string name="bumblebee"> Bumblebee </string>
+    <string name="cricket"> Сricket </string>
+    <string name="butterfly"> Butterfly </string>
+    <string name="dragonfly"> Dragonfly </string>
+    <string name="ants"> Ants </string>
+    <string name="mantis"> Mantis </string>
+
 </resources>

@@ -1,4 +1,4 @@
-package com.yamilab.animalsound;
+package com.yamilab.animalsounds;
 
 import java.io.Serializable;
 

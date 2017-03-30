@@ -1,10 +1,11 @@
-package com.yamilab.animalsound;
+package com.yamilab.animalsounds;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -119,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -136,11 +137,11 @@ public class MainActivity extends AppCompatActivity {
                 case 1:
                     return new ImageGridFragmentWild();
                 case 2:
-                    return new ImageGridFragmentWild();
+                    return new ImageGridFragmentBirds();
                 case 3:
-                    return new ImageGridFragmentWild();
+                    return new ImageGridFragmentAqua();
                 case 4:
-                    return new ImageGridFragmentWild();
+                    return new ImageGridFragmentInsects();
             }
             return new ImageGridFragmentWild();//PlaceholderFragment.newInstance(position + 1);
         }

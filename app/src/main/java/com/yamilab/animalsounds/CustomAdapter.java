@@ -14,7 +14,7 @@
 * limitations under the License.
 */
 
-package com.yamilab.animalsound;
+package com.yamilab.animalsounds;
 
 import android.content.Context;
 import android.media.AudioAttributes;

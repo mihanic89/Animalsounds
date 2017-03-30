@@ -1,4 +1,4 @@
-package com.yamilab.animalsound;
+package com.yamilab.animalsounds;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-import static com.yamilab.animalsound.R.id.recyclerView;
+import static com.yamilab.animalsounds.R.id.recyclerView;
 
 /**
  * Created by Misha on 28.03.2017.
@@ -77,31 +77,31 @@ public class ImageGridFragmentWild extends Fragment {
         mDataset = new ArrayList<>();
         Animal data = new Animal();
 
-        mDataset.add(new Animal(getString(R.string.dog),R.mipmap.w0hd,R.raw.w0));
-        mDataset.add(new Animal(getString(R.string.cat),R.mipmap.w1hd,R.raw.w1));
-        mDataset.add(new Animal(getString(R.string.pig),R.mipmap.w2hd,R.raw.w2));
-        mDataset.add(new Animal(getString(R.string.cock),R.mipmap.w3hd,R.raw.w3));
-        mDataset.add(new Animal(getString(R.string.chiken),R.mipmap.w4hd,R.raw.w4));
-        mDataset.add(new Animal(getString(R.string.cow),R.mipmap.w5hd,R.raw.w5));
-        mDataset.add(new Animal(getString(R.string.horse),R.mipmap.w6hd,R.raw.w6));
-        mDataset.add(new Animal(getString(R.string.sheep),R.mipmap.w7hd,R.raw.w7));
-        mDataset.add(new Animal(getString(R.string.goat),R.mipmap.w8hd,R.raw.w8));
-        mDataset.add(new Animal(getString(R.string.donkey),R.mipmap.w9hd,R.raw.w9));
-        mDataset.add(new Animal(getString(R.string.turkey),R.mipmap.w10hd,R.raw.w10));
-        mDataset.add(new Animal(getString(R.string.cavy),R.mipmap.w11hd,R.raw.w11));
-        mDataset.add(new Animal(getString(R.string.pig),R.mipmap.w12hd,R.raw.w12));
-        mDataset.add(new Animal(getString(R.string.cock),R.mipmap.w13hd,R.raw.w13));
-        mDataset.add(new Animal(getString(R.string.chiken),R.mipmap.w14hd,R.raw.w14));
-        mDataset.add(new Animal(getString(R.string.cow),R.mipmap.w15hd,R.raw.w15));
-        mDataset.add(new Animal(getString(R.string.horse),R.mipmap.w16hd,R.raw.w16));
-        mDataset.add(new Animal(getString(R.string.sheep),R.mipmap.w17hd,R.raw.w17));
-        mDataset.add(new Animal(getString(R.string.goat),R.mipmap.w18hd,R.raw.w18));
-        mDataset.add(new Animal(getString(R.string.donkey),R.mipmap.w19hd,R.raw.w19));
-        mDataset.add(new Animal(getString(R.string.turkey),R.mipmap.w20hd,R.raw.w20));
-        mDataset.add(new Animal(getString(R.string.cavy),R.mipmap.w21hd,R.raw.w21));
-        mDataset.add(new Animal(getString(R.string.pig),R.mipmap.w22hd,R.raw.w22));
-        mDataset.add(new Animal(getString(R.string.cock),R.mipmap.w23hd,R.raw.w23));
-        mDataset.add(new Animal(getString(R.string.chiken),R.mipmap.w24hd,R.raw.w24));
-        mDataset.add(new Animal(getString(R.string.cow),R.mipmap.w25hd,R.raw.w25));
+        mDataset.add(new Animal(getString(R.string.bear),R.mipmap.w0hd,R.raw.w0));
+        mDataset.add(new Animal(getString(R.string.wolf),R.mipmap.w1hd,R.raw.w1));
+        mDataset.add(new Animal(getString(R.string.leo),R.mipmap.w2hd,R.raw.w2));
+        mDataset.add(new Animal(getString(R.string.tiger),R.mipmap.w3hd,R.raw.w3));
+        mDataset.add(new Animal(getString(R.string.monkey),R.mipmap.w4hd,R.raw.w4));
+        mDataset.add(new Animal(getString(R.string.elephant),R.mipmap.w5hd,R.raw.w5));
+        mDataset.add(new Animal(getString(R.string.camel),R.mipmap.w6hd,R.raw.w6));
+        mDataset.add(new Animal(getString(R.string.zebra),R.mipmap.w7hd,R.raw.w7));
+        mDataset.add(new Animal(getString(R.string.jackal),R.mipmap.w8hd,R.raw.w8));
+        mDataset.add(new Animal(getString(R.string.snake),R.mipmap.w9hd,R.raw.w9));
+        mDataset.add(new Animal(getString(R.string.fox),R.mipmap.w10hd,R.raw.w10));
+        mDataset.add(new Animal(getString(R.string.hare),R.mipmap.w11hd,R.raw.w11));
+        mDataset.add(new Animal(getString(R.string.rhino),R.mipmap.w12hd,R.raw.w12));
+        mDataset.add(new Animal(getString(R.string.crocodile),R.mipmap.w13hd,R.raw.w13));
+        mDataset.add(new Animal(getString(R.string.koala),R.mipmap.w14hd,R.raw.w14));
+        mDataset.add(new Animal(getString(R.string.panda),R.mipmap.w15hd,R.raw.w15));
+        mDataset.add(new Animal(getString(R.string.kangoroo),R.mipmap.w16hd,R.raw.w16));
+        mDataset.add(new Animal(getString(R.string.lemur),R.mipmap.w17hd,R.raw.w17));
+        mDataset.add(new Animal(getString(R.string.lynx),R.mipmap.w18hd,R.raw.w18));
+        mDataset.add(new Animal(getString(R.string.elk),R.mipmap.w19hd,R.raw.w19));
+        mDataset.add(new Animal(getString(R.string.racoon),R.mipmap.w20hd,R.raw.w20));
+        mDataset.add(new Animal(getString(R.string.squirrel),R.mipmap.w21hd,R.raw.w21));
+        mDataset.add(new Animal(getString(R.string.rat),R.mipmap.w22hd,R.raw.w22));
+        mDataset.add(new Animal(getString(R.string.mouse),R.mipmap.w23hd,R.raw.w23));
+        mDataset.add(new Animal(getString(R.string.jaguar),R.mipmap.w24hd,R.raw.w24));
+        mDataset.add(new Animal(getString(R.string.hippopotamus),R.mipmap.w25hd,R.raw.w25));
     }
 }
