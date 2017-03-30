@@ -16,6 +16,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 public class MainActivity extends AppCompatActivity {
 
     /**
@@ -27,13 +30,13 @@ public class MainActivity extends AppCompatActivity {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
-
+    private int adCount=0;
     int[] resID={R.drawable.tab_home,R.drawable.tab_wild,R.drawable.tab_birds,R.drawable.tab_aqua,R.drawable.tab_insects};
     /**
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
-
+    private AdView mAdView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +58,10 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < tabLayout.getTabCount(); i++) {
             tabLayout.getTabAt(i).setIcon(resID[i]);
         }
+
+        mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
 
     }
@@ -130,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
+            adCount++;
             switch (position) {
 
                 case 0:
@@ -151,7 +159,26 @@ public class MainActivity extends AppCompatActivity {
             // Show 3 total pages.
             return 5;
         }
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Resume the AdView.
+        mAdView.resume();
+    }
 
+    @Override
+    public void onPause() {
+        // Pause the AdView.
+        mAdView.pause();
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        // Destroy the AdView.
+        mAdView.destroy();
+        super.onDestroy();
     }
 }
