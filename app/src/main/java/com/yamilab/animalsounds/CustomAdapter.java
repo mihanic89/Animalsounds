@@ -35,7 +35,7 @@ import java.util.ArrayList;
 /**
  * Provide views to RecyclerView with data from mDataSet.
  */
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
+public  class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
     private static final String TAG = "CustomAdapter";
 
     private ArrayList<Animal> mDataset;
@@ -44,14 +44,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     /**
      * Provide a reference to the type of views that you are using (custom ViewHolder)
      */
-    public  class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textView;
         private final ImageView imageView;
         private Context context;
-
+        private SoundPool sp;
 
         public ViewHolder(View v) {
             super(v);
+
 
             // Define click listener for the ViewHolder's View.
             v.setOnClickListener(new View.OnClickListener() {
@@ -65,32 +66,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             imageView = (ImageView) v.findViewById(R.id.imageView);
         }
 
+
         private void playSp(int adapterPosition) {
-            SoundPool sp;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 
-                AudioAttributes audioAttrib = new AudioAttributes.Builder()
-                        .setUsage(AudioAttributes.USAGE_GAME)
-                        .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                        .build();
-                sp = new SoundPool.Builder().setAudioAttributes(audioAttrib).setMaxStreams(1).build();
-            }
-            else {
-
-                sp = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
-            }
-
-            int soundId = sp.load(context, mDataset.get(adapterPosition).getSound(), 1);
-            sp.play(soundId, 1, 1, 0, 0, 1);
-            Log.d(TAG, "Element " + getAdapterPosition() + soundId+" played.");
-
-            sp.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener()
-            {
-                @Override
-                public void onLoadComplete(SoundPool soundPool, int sampleId,int status) {
-                    soundPool.play(sampleId,1,1,0,0,1);
-                }
-            });
+            SoundPlay.playSP(context, mDataset.get(adapterPosition).getSound());
 
         }
 
