@@ -31,7 +31,7 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             android:adjustViewBounds="true"
             android:gravity="center_horizontal"
             android:layout_width="match_parent"
