@@ -184,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
             adCount++;
-            if (adCount==15){loadInterstitial(); adCount=0;}
+            if (adCount>15){loadInterstitial(); adCount=0;}
             switch (position) {
 
                 case 0:
