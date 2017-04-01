@@ -17,6 +17,7 @@
 package com.yamilab.animalsounds;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.SoundPool;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -59,7 +60,21 @@ public  class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolde
                     playSp(getAdapterPosition());
                 }
             });
-            
+
+            v.setOnLongClickListener(new View.OnLongClickListener() {
+
+                public boolean onLongClick(View v) {
+                    Log.d(TAG, "Element " + getAdapterPosition() + " longclicked.");
+                    playSp(getAdapterPosition());
+                    Intent intent = new Intent(context, FullImageActivity.class);
+                    int image= mDataset.get(getAdapterPosition()).getImageSmall();
+                    int sound= mDataset.get(getAdapterPosition()).getSound();
+                    intent.putExtra("image", image);
+                    intent.putExtra("sound",sound);
+                    context.startActivity(intent);
+                    return false;
+                }
+            });
 
             textView = (TextView) v.findViewById(R.id.textView);
             imageView = (ImageView) v.findViewById(R.id.imageView);

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
+        android:gravity="center_horizontal"
+        android:id="@+id/fullImage" />
+
+
+    <ImageButton
+        android:id="@+id/action_back"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        ads:srcCompat="@drawable/ic_arrow_back_white_48dp"
+        android:tint="@color/colorAccent"
+        android:padding="16dp"
+        android:clickable="true"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        />
+
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ads:adSize="SMART_BANNER"
+        android:layout_gravity="center|bottom"
+        ads:adUnitId="ca-app-pub-2888343178529026/2421808594"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+    </com.google.android.gms.ads.AdView>
+</RelativeLayout>

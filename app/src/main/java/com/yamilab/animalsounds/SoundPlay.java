@@ -5,7 +5,6 @@ import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Build;
-import android.util.Log;
 
 /**
  * Created by Михаил on 31.03.2017.
@@ -48,5 +47,19 @@ public class SoundPlay {
                 soundPool.play(sampleId,1,1,0,0,1);
             }
         });
+    }
+
+    public void clearSP(){
+        if (sp!=null){
+            sp.release();
+            sp=null;
+        }
+    }
+
+    public static void clearSP(Context context) {
+        if (sp!=null){
+            sp.release();
+            sp=null;
+        }
     }
 }
