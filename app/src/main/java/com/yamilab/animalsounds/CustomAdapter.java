@@ -17,10 +17,7 @@
 package com.yamilab.animalsounds;
 
 import android.content.Context;
-import android.media.AudioAttributes;
-import android.media.AudioManager;
 import android.media.SoundPool;
-import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -62,6 +59,8 @@ public  class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolde
                     playSp(getAdapterPosition());
                 }
             });
+            
+
             textView = (TextView) v.findViewById(R.id.textView);
             imageView = (ImageView) v.findViewById(R.id.imageView);
         }
