@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 /**
  * Created by Misha on 01.04.2017.
@@ -21,10 +22,15 @@ public class FullImageActivity extends AppCompatActivity {
     Context context;
     Integer sound;
     Integer image;
+    private FirebaseAnalytics mFirebaseAnalytics;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_full_image);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        //Bundle params = new Bundle(); params.putString(FirebaseAnalytics.PARAM.ITEM_CATEGORY, "screen");
+        //params.putString(FirebaseAnalytics.PARAM.ITEM_NAME, "screen name");
+        //mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.VIEW_ITEM, params);
 
         ///findViewBYID
         imgFullImage = (ImageView) findViewById(R.id.fullImage);
@@ -32,6 +38,15 @@ public class FullImageActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         image = bundle.getInt("image");
         sound = bundle.getInt("sound");
+
+        String screenName = image + "-" + sound;
+
+        // [START set_current_screen]
+        mFirebaseAnalytics.setCurrentScreen(this, screenName, null /* class override */);
+        // [END set_current_screen]
+
+
+
         imgFullImage.setImageResource(image);
         context= imgFullImage.getContext();
         imgFullImage.setOnClickListener(new View.OnClickListener() {
