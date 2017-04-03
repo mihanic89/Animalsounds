@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 /**
@@ -28,6 +29,7 @@ public class FullImageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_full_image);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        MobileAds.initialize(getApplicationContext(), "ca-app-pub-2888343178529026/2421808594");
         //Bundle params = new Bundle(); params.putString(FirebaseAnalytics.PARAM.ITEM_CATEGORY, "screen");
         //params.putString(FirebaseAnalytics.PARAM.ITEM_NAME, "screen name");
         //mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.VIEW_ITEM, params);
