@@ -80,4 +80,18 @@
     <string name="wolf">Волк</string>
     <string name="woodpecker">Дятел</string>
     <string name="zebra">Зебра</string>
+    <string name="badger">Барсук</string>
+    <string name="beaver">Бобер</string>
+    <string name="catbird">Дрозд</string>
+    <string name="deer">Олень</string>
+    <string name="giraffe">Жираф</string>
+    <string name="hedgehog">Ёжик</string>
+    <string name="mole">Крот</string>
+    <string name="otter">Выдра</string>
+    <string name="rabbit">Кролик</string>
+    <string name="robin">Зарянка</string>
+    <string name="skunk">Скунс</string>
+    <string name="tit">Синица</string>
+    <string name="toucan">Тукан</string>
+    <string name="turtle">Черепаха</string>
 </resources>
