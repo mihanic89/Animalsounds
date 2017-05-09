@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        MobileAds.initialize(getApplicationContext(), "ca-app-pub-2888343178529026/7953669395");
+        MobileAds.initialize(getApplicationContext(), "ca-app-pub-2888343178529026~2046736590");
         //  Declare a new thread to do a preference check
         Thread t = new Thread(new Runnable() {
             @Override
@@ -113,8 +113,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         mAdView.loadAd(adRequest);
 
-        // Initialize the Mobile Ads SDK.
-        MobileAds.initialize(this, "ca-app-pub-2888343178529026/7953669395");
+
 
         // Create the InterstitialAd and set the adUnitId.
         mInterstitialAd = new InterstitialAd(this);
