@@ -89,5 +89,6 @@ public class ImageGridFragmentHome extends Fragment {
         mDataset.add(new Animal(getString(R.string.donkey),R.mipmap.h9hd,R.raw.h9));
         mDataset.add(new Animal(getString(R.string.turkey),R.mipmap.h10hd,R.raw.h10));
         mDataset.add(new Animal(getString(R.string.cavy),R.mipmap.h11hd,R.raw.h11));
+        mDataset.add(new Animal(getString(R.string.rabbit),R.mipmap.h12rabbit,R.raw.h12));
     }
 }

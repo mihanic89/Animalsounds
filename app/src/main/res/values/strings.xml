@@ -20,6 +20,7 @@
     <string name="donkey"> Donkey </string>
     <string name="turkey"> Turkey </string>
     <string name="cavy"> Cavy </string>
+    <string name="rabbit"> Rabbit </string>
 
     <string name="bear"> Bear </string>
     <string name="wolf"> Wolf </string>
@@ -47,6 +48,13 @@
     <string name="mouse"> Mouse </string>
     <string name="jaguar"> Jaguar </string>
     <string name="hippopotamus"> Hippopotamus </string>
+    <string name="badger"> Badger </string>
+    <string name="beaver"> Beaver </string>
+    <string name="deer"> Deer </string>
+    <string name="hedgehog"> Hedgehog </string>
+    <string name="giraffe"> Giraffe </string>
+    <string name="mole"> Mole </string>
+    <string name="skunk"> Skunk </string>
     
     <string name="goose"> Goose </string>
     <string name="duck"> Duck </string>
@@ -64,6 +72,10 @@
     <string name="ostrich"> Ostrich </string>
     <string name="flamingo"> Flamingo </string>
     <string name="peacock"> Peacock </string>
+    <string name="catbird"> Catbird </string>
+    <string name="tit"> Tit </string>
+    <string name="toucan"> Toucan </string>
+    <string name="robin"> Robin </string>
 
     <string name="dolphin"> Dolphin </string>
     <string name="sealbark"> Seal Bark </string>
@@ -73,7 +85,9 @@
     <string name="sealion"> Sea lion </string>
     <string name="whale"> Whale </string>
     <string name="fish"> Fish </string>
-      
+    <string name="turtle"> Turtle </string>
+    <string name="otter"> Otter </string>
+
     <string name="bees"> Bees </string>
     <string name="flies"> Flies </string>
     <string name="mosquito"> Mosquito </string>

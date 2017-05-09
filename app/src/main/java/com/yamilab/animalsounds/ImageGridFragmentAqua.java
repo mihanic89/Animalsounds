@@ -85,7 +85,8 @@ public class ImageGridFragmentAqua extends Fragment {
         mDataset.add(new Animal(getString(R.string.sealion),R.mipmap.a5hd,R.raw.a5));
         mDataset.add(new Animal(getString(R.string.whale),R.mipmap.a6hd,R.raw.a6));
         mDataset.add(new Animal(getString(R.string.fish),R.mipmap.a7hd,R.raw.a7));
-
+        mDataset.add(new Animal(getString(R.string.turtle),R.mipmap.a8turtle,R.raw.a8));
+        mDataset.add(new Animal(getString(R.string.otter),R.mipmap.a9otter,R.raw.a9));
 
     }
 }

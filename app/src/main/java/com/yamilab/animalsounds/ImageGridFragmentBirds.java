@@ -93,6 +93,9 @@ public class ImageGridFragmentBirds extends Fragment {
         mDataset.add(new Animal(getString(R.string.ostrich),R.mipmap.b13hd,R.raw.b13));
         mDataset.add(new Animal(getString(R.string.flamingo),R.mipmap.b14hd,R.raw.b14));
         mDataset.add(new Animal(getString(R.string.peacock),R.mipmap.b15hd,R.raw.b15));
-
+        mDataset.add(new Animal(getString(R.string.catbird),R.mipmap.b16catbird,R.raw.b16));
+        mDataset.add(new Animal(getString(R.string.tit),R.mipmap.b17tit,R.raw.b17));
+        mDataset.add(new Animal(getString(R.string.toucan),R.mipmap.b18toucan,R.raw.b18));
+        mDataset.add(new Animal(getString(R.string.robin),R.mipmap.b19robin,R.raw.b19));
     }
 }
