@@ -110,5 +110,7 @@ public class ImageGridFragmentWild extends Fragment {
         mDataset.add(new Animal(getString(R.string.giraffe),R.mipmap.w30giraffe, R.raw.w30));
         mDataset.add(new Animal(getString(R.string.mole),R.mipmap.w31mole, R.raw.w31));
         mDataset.add(new Animal(getString(R.string.skunk),R.mipmap.w32skunk, R.raw.w32));
+        mDataset.add(new Animal(getString(R.string.boar),R.mipmap.w33boar, R.raw.w33));
+        mDataset.add(new Animal(getString(R.string.bison),R.mipmap.w34bison, R.raw.w34));
     }
 }

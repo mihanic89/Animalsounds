@@ -33,7 +33,8 @@ public class MyIntro extends AppIntro2 {
         // OPTIONAL METHODS
 
         // SHOW or HIDE the statusbar
-        showStatusBar(true);
+        showSkipButton(false);
+        setProgressButtonEnabled(true);
 
         // Edit the color of the nav bar on Lollipop+ devices
         setNavBarColor(R.color.colorPrimary);//Color.parseColor("#3F51B5"));

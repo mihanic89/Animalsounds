@@ -94,4 +94,9 @@
     <string name="tit">Синица</string>
     <string name="toucan">Тукан</string>
     <string name="turtle">Черепаха</string>
+    <string name="bison">Зубр</string>
+    <string name="blackgrouse">Тетерев</string>
+    <string name="boar">Кабан</string>
+    <string name="hummingbird">Колибри</string>
+    <string name="lobster">Рак</string>
 </resources>

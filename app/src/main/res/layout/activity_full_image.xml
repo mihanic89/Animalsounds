@@ -11,7 +11,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="fitStart"
+        android:scaleType="fitCenter"
         android:adjustViewBounds="true"
         android:gravity="center_horizontal"
         android:id="@+id/fullImage" />
@@ -22,13 +22,12 @@
         android:layout_width="96dp"
         android:layout_height="96dp"
         android:adjustViewBounds="true"
-        android:scaleType="fitXY"
-        ads:srcCompat="@drawable/ic_arrow_back_white_48dp"
-        android:tint="@color/colorAccent"
-        android:padding="16dp"
-        android:clickable="true"
         android:background="?attr/selectableItemBackgroundBorderless"
-        />
+        android:clickable="true"
+        android:padding="16dp"
+        android:scaleType="fitXY"
+        android:tint="@color/colorAccent"
+        ads:srcCompat="@drawable/ic_forward_white_48dp" />
 
 
     <com.google.android.gms.ads.AdView

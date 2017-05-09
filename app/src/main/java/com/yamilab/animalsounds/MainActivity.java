@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
         // Create the InterstitialAd and set the adUnitId.
         mInterstitialAd = new InterstitialAd(this);
 
-        mInterstitialAd.setAdUnitId("ca-app-pub-2888343178529026/7953669395");
+        mInterstitialAd.setAdUnitId("ca-app-pub-2888343178529026/6970013790");
 
        // loadInterstitial();
 
@@ -141,7 +141,9 @@ public class MainActivity extends AppCompatActivity {
     private void loadInterstitial() {
         // Show the ad if it's ready. Otherwise toast and restart the game.
         if (!mInterstitialAd.isLoading() && !mInterstitialAd.isLoaded()) {
-            AdRequest adRequest = new AdRequest.Builder().build();
+            AdRequest adRequest = new AdRequest.Builder()
+                    .addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
+                    .build();
             mInterstitialAd.loadAd(adRequest);
         }
     }
@@ -225,7 +227,10 @@ public class MainActivity extends AppCompatActivity {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
             adCount++;
-            if (adCount>15){loadInterstitial(); adCount=0;}
+            if (adCount>5){
+                loadInterstitial();
+                //adCount=0;
+            }
             switch (position) {
 
                 case 0:

@@ -55,6 +55,8 @@
     <string name="giraffe"> Giraffe </string>
     <string name="mole"> Mole </string>
     <string name="skunk"> Skunk </string>
+    <string name="boar"> Boar </string>
+    <string name="bison"> Bison </string>
     
     <string name="goose"> Goose </string>
     <string name="duck"> Duck </string>
@@ -76,6 +78,8 @@
     <string name="tit"> Tit </string>
     <string name="toucan"> Toucan </string>
     <string name="robin"> Robin </string>
+    <string name="blackgrouse"> Black grouse </string>
+    <string name="hummingbird"> Hummingbird </string>
 
     <string name="dolphin"> Dolphin </string>
     <string name="sealbark"> Seal Bark </string>
@@ -87,6 +91,7 @@
     <string name="fish"> Fish </string>
     <string name="turtle"> Turtle </string>
     <string name="otter"> Otter </string>
+    <string name="lobster"> Lobster </string>
 
     <string name="bees"> Bees </string>
     <string name="flies"> Flies </string>
@@ -98,5 +103,6 @@
     <string name="dragonfly"> Dragonfly </string>
     <string name="ants"> Ants </string>
     <string name="mantis"> Mantis </string>
+
 
 </resources>
