@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private AdView mAdView;
     private InterstitialAd mInterstitialAd;
     private int adCount=0;
+    boolean showInterstitialAd = true;
     private FirebaseAnalytics mFirebaseAnalytics;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
                     //  Edit preference to make it false because we don't want this to run again
                     e.putBoolean("firstStart", false);
-
+                    showInterstitialAd = false;
                     //  Apply changes
                     e.apply();
                 }
@@ -85,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
 
         // Start the thread
         t.start();
+
+
 
         setContentView(R.layout.activity_main);
 
@@ -120,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
 
         mInterstitialAd.setAdUnitId("ca-app-pub-2888343178529026/6970013790");
 
-       // loadInterstitial();
+        loadInterstitial();
 
         mInterstitialAd.setAdListener(new AdListener() {
             @Override
@@ -130,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onAdLoaded(){
-                showInterstitial();
+               // showInterstitial();
             }
         });
     }
@@ -227,8 +230,9 @@ public class MainActivity extends AppCompatActivity {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
             adCount++;
-            if (adCount>5){
-                loadInterstitial();
+            if (adCount>5 && showInterstitialAd){
+                showInterstitial();
+                //loadInterstitial();
                 //adCount=0;
             }
             switch (position) {
