@@ -20,7 +20,11 @@ public class MyIntro extends AppIntro2 {
         //addSlide(fourth_fragment);
 
         // Instead of fragments, you can also use our default slide
-        // Just set a title, description, background and image. AppIntro will do the rest
+        // Just set a title, description, background and image. AppIntro will do the rest addSlide(AppIntroFragment.newInstance(getString(R.string.click),
+        addSlide(AppIntroFragment.newInstance(getString(R.string.tabs),
+                getString(R.string.category),
+                R.mipmap.intro0, Color.parseColor("#009688")));
+
         addSlide(AppIntroFragment.newInstance(getString(R.string.click),
                 getString(R.string.clickdesc),
                 R.mipmap.intro1, Color.parseColor("#009688")));
