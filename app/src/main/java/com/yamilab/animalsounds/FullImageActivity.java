@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
@@ -48,6 +50,9 @@ public class FullImageActivity extends AppCompatActivity {
         // [END set_current_screen]
 
 
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.myscale);
+        animation.setRepeatCount(Animation.INFINITE);
+        imgFullImage.startAnimation(animation);
 
         imgFullImage.setImageResource(image);
         context= imgFullImage.getContext();
