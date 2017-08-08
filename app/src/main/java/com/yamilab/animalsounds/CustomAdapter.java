@@ -48,7 +48,8 @@ public  class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolde
         private Context context;
         private SoundPool sp;
 
-        public ViewHolder(View v) {
+        public ViewHolder(View v)
+        {
             super(v);
 
 
