@@ -1,5 +1,6 @@
 package com.yamilab.animalsounds;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -28,7 +29,7 @@ public class ImageGridFragmentHome extends Fragment {
         LINEAR_LAYOUT_MANAGER
     }
     protected LayoutManagerType mCurrentLayoutManagerType;
-
+    private int gridCount = 2;
     protected RecyclerView mRecyclerView;
     protected CustomAdapter mAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;
@@ -54,7 +55,11 @@ public class ImageGridFragmentHome extends Fragment {
         // to the way ListView would layout elements. The RecyclerView.LayoutManager defines how
         // elements are laid out.
 
-        gaggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        int screenSize = getResources().getConfiguration().screenLayout &
+                Configuration.SCREENLAYOUT_SIZE_MASK;
+
+        if (screenSize>=Configuration.SCREENLAYOUT_SIZE_LARGE) gridCount=3;
+        gaggeredGridLayoutManager = new StaggeredGridLayoutManager(gridCount, StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(gaggeredGridLayoutManager);
 
 

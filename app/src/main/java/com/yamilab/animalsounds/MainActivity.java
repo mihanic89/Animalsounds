@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private InterstitialAd mInterstitialAd;
     private int adCount=0;
     boolean showInterstitialAd = true;
+    boolean notFirstStart = true;
     private FirebaseAnalytics mFirebaseAnalytics;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
                     //  Edit preference to make it false because we don't want this to run again
                     e.putBoolean("firstStart", false);
                     showInterstitialAd = false;
+                    notFirstStart = false;
                     //  Apply changes
                     e.apply();
                 }
@@ -103,16 +105,19 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-        for (int i = 0; i < tabLayout.getTabCount(); i++) {
-            tabLayout.getTabAt(i).setIcon(resID[i]);
+
+        tabLayout.getTabAt(0).setText("Ads");
+        for (int i = 1; i < tabLayout.getTabCount(); i++) {
+            tabLayout.getTabAt(i).setIcon(resID[i-1]);
         }
 
-
+        TabLayout.Tab tab = tabLayout.getTabAt(1);
+        tab.select();
 
 
         mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
+                //.addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
                 .build();
         mAdView.loadAd(adRequest);
 
@@ -238,14 +243,16 @@ public class MainActivity extends AppCompatActivity {
             switch (position) {
 
                 case 0:
-                    return new ImageGridFragmentHome();
+                    return new ImageGridFragmentAds();
                 case 1:
-                    return new ImageGridFragmentWild();
+                    return new ImageGridFragmentHome();
                 case 2:
-                    return new ImageGridFragmentBirds();
+                    return new ImageGridFragmentWild();
                 case 3:
-                    return new ImageGridFragmentAqua();
+                    return new ImageGridFragmentBirds();
                 case 4:
+                    return new ImageGridFragmentAqua();
+                case 5:
                     return new ImageGridFragmentInsects();
             }
             return new ImageGridFragmentWild();//PlaceholderFragment.newInstance(position + 1);
@@ -254,7 +261,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 5;
+            return 6;
         }
     }
 
