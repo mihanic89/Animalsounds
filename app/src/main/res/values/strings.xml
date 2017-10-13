@@ -106,6 +106,14 @@
     <string name="dragonfly"> Dragonfly </string>
     <string name="ants"> Ants </string>
     <string name="mantis"> Mantis </string>
+    
+    <string name="fromdottodot">Dot to dot drawing</string>
+    <string name="draw">Drawing</string>
+    <string name="lullaby">Lullaby</string>
+    <string name="recipe">Tracing for kids</string>
+    <string name="rebuses">Rebuses</string>
+    <string name="recipeabc">Tracing letters and numbers </string>
+
 
 
 </resources>

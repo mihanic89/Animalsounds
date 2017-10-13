@@ -102,4 +102,13 @@
     <string name="boar">Кабан</string>
     <string name="hummingbird">Колибри</string>
     <string name="lobster">Рак</string>
+
+
+    <string name="fromdottodot">Рисуем по точкам</string>
+    <string name="draw">Рисование</string>
+    <string name="lullaby">Колыбельные</string>
+    <string name="recipe">Прописи для детей</string>
+    <string name="rebuses">Ребусы</string>
+    <string name="recipeabc">Прописи буквы и цифры</string>
+
 </resources>

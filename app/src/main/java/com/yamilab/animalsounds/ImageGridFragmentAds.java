@@ -81,12 +81,35 @@ public class ImageGridFragmentAds extends Fragment {
 
         mDataset = new ArrayList<>();
 
-        mDataset.add(new LinkItem("колыьбельные",R.drawable.promodraw,"market://details?id=xyz.yapapa.fromdottodot"));
-        mDataset.add(new LinkItem("колыьбельные",R.drawable.promodraw,"ссылка"));
-        mDataset.add(new LinkItem("рисуем по точкам",R.mipmap.w0hd,"ссылка"));
-        mDataset.add(new LinkItem("прописи для детей",R.mipmap.w0hd,"ссылка"));
-        mDataset.add(new LinkItem("прописи для детей и не только",R.mipmap.w0hd,"ссылка"));
-        mDataset.add(new LinkItem("колыьбельные",R.mipmap.w0hd,"ссылка"));
+        mDataset.add(new LinkItem(
+                getString(R.string.fromdottodot),
+                R.drawable.fromdottodot,
+                "market://details?id=xyz.yapapa.fromdottodot"));
+
+        mDataset.add(new LinkItem(
+                getString(R.string.draw),
+                R.drawable.promodraw,
+                "market://details?id=xyz.yapapa.draw"));
+
+        mDataset.add(new LinkItem(
+                getString(R.string.lullaby),
+                R.drawable.lullababy,
+                "market://details?id=com.yamilab.lullababy"));
+
+        mDataset.add(new LinkItem(
+                getString(R.string.recipe),
+                R.drawable.recipe,
+                "market://details?id=xyz.yapapa.recipe"));
+
+        mDataset.add(new LinkItem(
+                getString(R.string.rebuses),
+                R.drawable.rebuses,
+                "market://details?id=xyz.yapapa.rebuses"));
+
+        mDataset.add(new LinkItem(
+                getString(R.string.recipeabc),
+                R.drawable.promoabc,
+                "market://details?id=xyz.yapapa.recipeabc"));
 
     }
 }
