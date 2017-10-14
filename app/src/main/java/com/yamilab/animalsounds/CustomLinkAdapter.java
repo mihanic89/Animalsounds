@@ -138,6 +138,10 @@ public  class CustomLinkAdapter extends RecyclerView.Adapter<CustomLinkAdapter.V
         return mDataset.size();
     }
 
+    public void logLink (String link){
+
+    }
+
     public void startLink (String link){
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setData(Uri.parse(link));

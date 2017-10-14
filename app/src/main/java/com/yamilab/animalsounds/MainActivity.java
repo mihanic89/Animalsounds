@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 
+import com.google.ads.mediation.admob.AdMobAdapter;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -115,8 +116,11 @@ public class MainActivity extends AppCompatActivity {
         tab.select();
 
 
+
         mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder()
+               // .addNetworkExtrasBundle(AdMobAdapter.class, extrasAdview)
+               .tagForChildDirectedTreatment(true)
                 //.addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
                 .build();
         mAdView.loadAd(adRequest);
@@ -150,7 +154,8 @@ public class MainActivity extends AppCompatActivity {
         // Show the ad if it's ready. Otherwise toast and restart the game.
         if (!mInterstitialAd.isLoading() && !mInterstitialAd.isLoaded()) {
             AdRequest adRequest = new AdRequest.Builder()
-                    .addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
+                    .tagForChildDirectedTreatment(true)
+                   // .addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
                     .build();
             mInterstitialAd.loadAd(adRequest);
         }
@@ -243,8 +248,11 @@ public class MainActivity extends AppCompatActivity {
             switch (position) {
 
                 case 0:
+
                     return new ImageGridFragmentAds();
+
                 case 1:
+
                     return new ImageGridFragmentHome();
                 case 2:
                     return new ImageGridFragmentWild();

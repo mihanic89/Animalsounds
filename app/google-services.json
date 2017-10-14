@@ -15,10 +15,130 @@
       },
       "oauth_client": [
         {
+          "client_id": "46315639973-400p2jissh9r1g4gmelaifb04eol3005.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yamilab.animalsounds",
+            "certificate_hash": "533e4ca73c003fe250cdfa67da8594ab9432b662"
+          }
+        },
+        {
+          "client_id": "46315639973-d51na13922ohhjfbs75lf0j1j8p68s7f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yamilab.animalsounds",
+            "certificate_hash": "33eb08520ab2285e74abd2b219ac84dc2b546fb8"
+          }
+        },
+        {
           "client_id": "46315639973-ggavir1vedavp88vticekbph3rhugetr.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.yamilab.animalsounds",
+            "certificate_hash": "4bf335741ab28cecfbc6b334cddffeb0c2fbfeb7"
+          }
+        },
+        {
+          "client_id": "46315639973-2pdu1hmo8bhrbcpdi1ubpj2gsv9sgcbs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlsDIUGqR7LW90CkuvAL5UjG_GUzUhgC0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "46315639973-2pdu1hmo8bhrbcpdi1ubpj2gsv9sgcbs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:46315639973:android:df70817b29b9c6e5",
+        "android_client_info": {
+          "package_name": "com.yamilab.soundsaround"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "46315639973-23be2e843q1jchgb8ar1nsbmft1hkgn4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yamilab.soundsaround",
+            "certificate_hash": "33eb08520ab2285e74abd2b219ac84dc2b546fb8"
+          }
+        },
+        {
+          "client_id": "46315639973-dfijo0cstg9n66v3thp5p0gc3erib33k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yamilab.soundsaround",
+            "certificate_hash": "4bf335741ab28cecfbc6b334cddffeb0c2fbfeb7"
+          }
+        },
+        {
+          "client_id": "46315639973-2pdu1hmo8bhrbcpdi1ubpj2gsv9sgcbs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlsDIUGqR7LW90CkuvAL5UjG_GUzUhgC0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "46315639973-2pdu1hmo8bhrbcpdi1ubpj2gsv9sgcbs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:46315639973:android:90a5d63e61e38e91",
+        "android_client_info": {
+          "package_name": "com.yamilab.animalsoundsnoads"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "46315639973-u3rjjh13agk85o8kgch2olahe853lp1u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yamilab.animalsoundsnoads",
+            "certificate_hash": "33eb08520ab2285e74abd2b219ac84dc2b546fb8"
+          }
+        },
+        {
+          "client_id": "46315639973-i8rhpqltuqoei9aoq369ecfaksqtmqs3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yamilab.animalsoundsnoads",
             "certificate_hash": "4bf335741ab28cecfbc6b334cddffeb0c2fbfeb7"
           }
         },
