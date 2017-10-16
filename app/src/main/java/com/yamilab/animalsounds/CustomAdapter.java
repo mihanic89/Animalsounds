@@ -71,7 +71,7 @@ public  class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolde
                     int image= mDataset.get(getAdapterPosition()).getImageSmall();
                     int sound= mDataset.get(getAdapterPosition()).getSound();
                     intent.putExtra("image", image);
-                    intent.putExtra("sound",sound);
+                    intent.putExtra("sound", sound);
                     context.startActivity(intent);
                     return false;
                 }
@@ -139,8 +139,17 @@ public  class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolde
         data=mDataset.get(position);
         viewHolder.setContext(context);
         viewHolder.getTextView().setText(data.getName());
-        viewHolder.getImageView().setImageResource(data.getImageSmall());
+        try {
+            viewHolder.getImageView().setImageResource(data.getImageSmall());
+        }
+        catch (Exception e)
+        {
+
+        }
+
+
     }
+
     // END_INCLUDE(recyclerViewOnBindViewHolder)
 
     // Return the size of your dataset (invoked by the layout manager)

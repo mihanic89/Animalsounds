@@ -92,6 +92,7 @@ public class ImageGridFragmentInsects extends Fragment {
         mDataset.add(new Animal(getString(R.string.dragonfly),R.mipmap.i7hd,R.raw.i7));
         mDataset.add(new Animal(getString(R.string.ants),R.mipmap.i8hd,R.raw.i8));
         mDataset.add(new Animal(getString(R.string.mantis),R.mipmap.i9hd,R.raw.i9));
+        mDataset.add(new Animal(getString(R.string.cicada), R.mipmap.i10hd,R.raw.i10));
 
     }
 }

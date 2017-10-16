@@ -9,6 +9,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import com.google.ads.mediation.admob.AdMobAdapter;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -73,9 +74,13 @@ public class FullImageActivity extends AppCompatActivity {
             }
         });
 
+        //Bundle extras = new Bundle();
+       // extras.putBoolean("is_designed_for_families", true);
+
         mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder()
-                .tagForChildDirectedTreatment(true)
+                //.addNetworkExtrasBundle(AdMobAdapter.class, extras)
+                //.tagForChildDirectedTreatment(true)
                 .build();
         mAdView.loadAd(adRequest);
     }

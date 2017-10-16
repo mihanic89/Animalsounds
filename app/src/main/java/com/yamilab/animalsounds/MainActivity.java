@@ -118,9 +118,14 @@ public class MainActivity extends AppCompatActivity {
 
 
         mAdView = (AdView) findViewById(R.id.adView);
+
+       // Bundle extras = new Bundle();
+       // extras.putBoolean("is_designed_for_families", true);
+
         AdRequest adRequest = new AdRequest.Builder()
                // .addNetworkExtrasBundle(AdMobAdapter.class, extrasAdview)
-               .tagForChildDirectedTreatment(true)
+               // .addNetworkExtrasBundle(AdMobAdapter.class, extras)
+               //.tagForChildDirectedTreatment(true)
                 //.addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
                 .build();
         mAdView.loadAd(adRequest);
@@ -154,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
         // Show the ad if it's ready. Otherwise toast and restart the game.
         if (!mInterstitialAd.isLoading() && !mInterstitialAd.isLoaded()) {
             AdRequest adRequest = new AdRequest.Builder()
-                    .tagForChildDirectedTreatment(true)
+                    //.tagForChildDirectedTreatment(true)
                    // .addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
                     .build();
             mInterstitialAd.loadAd(adRequest);
