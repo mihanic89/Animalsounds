@@ -74,6 +74,7 @@ public class ImageGridFragmentWild extends Fragment {
     }
 
 
+
     /**
      * Generates Strings for RecyclerView's adapter. This data would usually come
      * from a local content provider or remote server.

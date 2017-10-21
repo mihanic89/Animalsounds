@@ -18,16 +18,29 @@ package com.yamilab.animalsounds;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.SoundPool;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewDebug;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
+import static com.bumptech.glide.request.RequestOptions.centerCropTransform;
+
 import java.util.ArrayList;
+
+import static android.R.attr.fragment;
 
 
 /**
@@ -72,6 +85,7 @@ public  class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolde
                     int sound= mDataset.get(getAdapterPosition()).getSound();
                     intent.putExtra("image", image);
                     intent.putExtra("sound", sound);
+                    intent.putExtra("name", mDataset.get(getAdapterPosition()).getName() );
                     context.startActivity(intent);
                     return false;
                 }
@@ -139,16 +153,48 @@ public  class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolde
         data=mDataset.get(position);
         viewHolder.setContext(context);
         viewHolder.getTextView().setText(data.getName());
-        try {
-            viewHolder.getImageView().setImageResource(data.getImageSmall());
-        }
-        catch (Exception e)
-        {
 
+       // viewHolder.getImageView().setImageResource(data.getImageSmall());
+        viewHolder.getImageView().setImageBitmap(
+                decodeSampledBitmapFromResource(context.getResources(), data.getImageSmall()));
+
+        /*    Glide.with(context)
+
+                    .load(data.getImageSmall())
+                    .placeholder(new ColorDrawable(Color.BLACK))
+                    .apply( new RequestOptions().centerCrop())
+                    .into(viewHolder.getImageView());
+        */
         }
 
+    public  Bitmap decodeSampledBitmapFromResource(Resources res, int resId) {
+
+        // First decode with inJustDecodeBounds=true to check dimensions
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeResource(res, resId, options);
+
+
+        // Calculate inSampleSize
+        options.inSampleSize = 2;
+
+        // Decode bitmap with inSampleSize set
+        options.inJustDecodeBounds = false;
+        return BitmapFactory.decodeResource(res, resId, options);
 
     }
+
+    public static int calculateInSampleSize(
+            BitmapFactory.Options options, int reqWidth) {
+        // Raw height and width of image
+       // final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 3;
+
+
+        return inSampleSize;
+    }
+
 
     // END_INCLUDE(recyclerViewOnBindViewHolder)
 
