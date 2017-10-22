@@ -60,6 +60,8 @@
     <string name="boar"> Boar </string>
     <string name="bison"> Bison </string>
     <string name="chipmunk"> Chipmunk </string>
+    <string name="alpaca"> Alpaca </string>
+    <string name="hyena"> Hyena </string>
     
     <string name="goose"> Goose </string>
     <string name="duck"> Duck </string>
@@ -83,6 +85,15 @@
     <string name="robin"> Robin </string>
     <string name="blackgrouse"> Black grouse </string>
     <string name="hummingbird"> Hummingbird </string>
+    <string name="bullfinch"> Bullfinch </string>
+    <string name="stork"> Stork </string>
+    <string name="heron"> Heron </string>
+    <string name="canary"> Canary </string>
+    <string name="magpie"> Magpie </string>
+    <string name="bat"> Bat </string>
+    <string name="jay"> Jay </string>
+    <string name="starling"> Starling </string>
+
 
     <string name="dolphin"> Dolphin </string>
     <string name="sealbark"> Seal Bark </string>
