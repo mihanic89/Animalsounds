@@ -114,6 +114,7 @@ public class FullImageActivity extends AppCompatActivity {
     public void onPause() {
         // Pause the AdView.
         mAdView.pause();
+        imgFullImage.clearAnimation();
         SoundPlay.clearSP(context);
         super.onPause();
     }
@@ -123,6 +124,7 @@ public class FullImageActivity extends AppCompatActivity {
         // Destroy the AdView.
         SoundPlay.clearSP(context);
         mAdView.destroy();
+        imgFullImage.clearAnimation();
         super.onDestroy();
     }
 }
