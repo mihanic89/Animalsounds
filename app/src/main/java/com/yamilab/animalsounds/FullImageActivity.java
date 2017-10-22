@@ -1,6 +1,8 @@
 package com.yamilab.animalsounds;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -8,12 +10,16 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 
 import com.google.ads.mediation.admob.AdMobAdapter;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.analytics.FirebaseAnalytics;
+
+
 
 /**
  * Created by Misha on 01.04.2017.
@@ -22,10 +28,12 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 public class FullImageActivity extends AppCompatActivity {
     ImageView imgFullImage;
     ImageButton btnBack;
+    TextView name;
     private AdView mAdView;
     Context context;
     Integer sound;
     Integer image;
+
     private FirebaseAnalytics mFirebaseAnalytics;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +48,7 @@ public class FullImageActivity extends AppCompatActivity {
         ///findViewBYID
         imgFullImage = (ImageView) findViewById(R.id.fullImage);
         btnBack = (ImageButton) findViewById(R.id.action_back);
+        name = (TextView) findViewById(R.id.textName);
         Bundle bundle = getIntent().getExtras();
         image = bundle.getInt("image");
         sound = bundle.getInt("sound");
@@ -56,6 +65,9 @@ public class FullImageActivity extends AppCompatActivity {
         imgFullImage.startAnimation(animation);
 
         imgFullImage.setImageResource(image);
+
+
+
         context= imgFullImage.getContext();
         imgFullImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +88,8 @@ public class FullImageActivity extends AppCompatActivity {
 
         //Bundle extras = new Bundle();
        // extras.putBoolean("is_designed_for_families", true);
+
+        name.setText(bundle.getString("name"));
 
         mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder()
