@@ -91,8 +91,8 @@ public  class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolde
                 }
             });
 
-            textView = (TextView) v.findViewById(R.id.textView);
-            imageView = (ImageView) v.findViewById(R.id.imageView);
+            textView = v.findViewById(R.id.textView);
+            imageView = v.findViewById(R.id.imageView);
         }
 
 
@@ -155,16 +155,21 @@ public  class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolde
         viewHolder.getTextView().setText(data.getName());
 
        // viewHolder.getImageView().setImageResource(data.getImageSmall());
-        viewHolder.getImageView().setImageBitmap(
-                decodeSampledBitmapFromResource(context.getResources(), data.getImageSmall()));
+      //  viewHolder.getImageView().setImageBitmap(
+       //         decodeSampledBitmapFromResource(context.getResources(), data.getImageSmall()));
 
-        /*    Glide.with(context)
+        RequestOptions myOptions = new RequestOptions()
+                .fitCenter();
+
+
+            Glide.with(context)
 
                     .load(data.getImageSmall())
-                    .placeholder(new ColorDrawable(Color.BLACK))
-                    .apply( new RequestOptions().centerCrop())
+
+                   // .placeholder(new ColorDrawable(Color.BLACK))
+                    .apply( myOptions)
                     .into(viewHolder.getImageView());
-        */
+
         }
 
     public  Bitmap decodeSampledBitmapFromResource(Resources res, int resId) {
@@ -176,7 +181,7 @@ public  class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolde
 
 
         // Calculate inSampleSize
-        options.inSampleSize = 2;
+        options.inSampleSize = 3;
 
         // Decode bitmap with inSampleSize set
         options.inJustDecodeBounds = false;

@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.google.ads.mediation.admob.AdMobAdapter;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -26,8 +26,8 @@ import com.bumptech.glide.module.AppGlideModule;
  * Created by Misha on 01.04.2017.
  */
 
-public class FullImageActivity extends AppCompatActivity {
-    ImageView imgFullImage;
+public  class FullImageActivity extends AppCompatActivity {
+    public ImageView imgFullImage;
     ImageButton btnBack;
     TextView name;
     private AdView mAdView;
@@ -47,9 +47,9 @@ public class FullImageActivity extends AppCompatActivity {
         //mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.VIEW_ITEM, params);
 
         ///findViewBYID
-        imgFullImage = (ImageView) findViewById(R.id.fullImage);
-        btnBack = (ImageButton) findViewById(R.id.action_back);
-        name = (TextView) findViewById(R.id.textName);
+        imgFullImage = findViewById(R.id.fullImage);
+        btnBack = findViewById(R.id.action_back);
+        name = findViewById(R.id.textName);
         Bundle bundle = getIntent().getExtras();
         image = bundle.getInt("image");
         sound = bundle.getInt("sound");
@@ -67,9 +67,13 @@ public class FullImageActivity extends AppCompatActivity {
 
         //imgFullImage.setImageResource(image);
 
+        RequestOptions myOptions = new RequestOptions()
+                .fitCenter()
+                .override(imgFullImage.getWidth(), imgFullImage.getHeight());
+
         Glide.with(this)
                 .load(image)
-                
+                .apply(myOptions)
                 .into(imgFullImage);
 
         context= imgFullImage.getContext();
@@ -95,7 +99,7 @@ public class FullImageActivity extends AppCompatActivity {
 
         name.setText(bundle.getString("name"));
 
-        mAdView = (AdView) findViewById(R.id.adView);
+        mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder()
                 //.addNetworkExtrasBundle(AdMobAdapter.class, extras)
                 //.tagForChildDirectedTreatment(true)
@@ -117,6 +121,7 @@ public class FullImageActivity extends AppCompatActivity {
         imgFullImage.clearAnimation();
         SoundPlay.clearSP(context);
         super.onPause();
+
     }
 
     @Override
