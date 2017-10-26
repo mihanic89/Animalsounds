@@ -79,7 +79,7 @@ public class ImageGridFragmentAqua extends Fragment {
      */
     private void initDataset() {
         mDataset = new ArrayList<>();
-        Animal data = new Animal();
+        //Animal data = new Animal();
 
         mDataset.add(new Animal(getString(R.string.dolphin),R.mipmap.a0hd,R.raw.a0));
         mDataset.add(new Animal(getString(R.string.sealbark),R.mipmap.a1hd,R.raw.a1));

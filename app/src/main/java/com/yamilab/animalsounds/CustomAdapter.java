@@ -34,7 +34,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.Target;
 
 import static com.bumptech.glide.request.RequestOptions.centerCropTransform;
 
@@ -60,6 +62,7 @@ public  class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolde
         private final ImageView imageView;
         private Context context;
         private SoundPool sp;
+        public int gridWidth= 160;
 
         public ViewHolder(View v)
         {
@@ -119,7 +122,8 @@ public  class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolde
      * @param dataSet String[] containing the data to populate views to be used by RecyclerView.
      */
     public CustomAdapter(ArrayList<Animal> dataSet) {
-        mDataset = new ArrayList<>();
+        mDataset = dataSet;
+                /*new ArrayList<>();
         dataSet.size();
 
 
@@ -127,6 +131,7 @@ public  class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolde
 
             mDataset.add(dataSet.get(i));
         }
+        */
     }
 
     // BEGIN_INCLUDE(recyclerViewOnCreateViewHolder)
@@ -145,29 +150,36 @@ public  class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolde
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
-        Log.d(TAG, "Element " + position + " set.");
+        //Log.d(TAG, "Element " + position + " set.");
 
         // Get element from your dataset at this position and replace the contents of the view
         // with that element
-        Animal data= new Animal();
-        data=mDataset.get(position);
+        //Animal data= new Animal(context);
+        //data=mDataset.get(position);
         viewHolder.setContext(context);
-        viewHolder.getTextView().setText(data.getName());
+        viewHolder.getTextView().setText(mDataset.get(position).getName());
 
        // viewHolder.getImageView().setImageResource(data.getImageSmall());
       //  viewHolder.getImageView().setImageBitmap(
        //         decodeSampledBitmapFromResource(context.getResources(), data.getImageSmall()));
 
-        RequestOptions myOptions = new RequestOptions()
-                .fitCenter();
 
 
-            Glide.with(context)
 
-                    .load(data.getImageSmall())
+            GlideApp
+                    .with(context)
 
-                   // .placeholder(new ColorDrawable(Color.BLACK))
-                    .apply( myOptions)
+                    .load(mDataset.get(position).getImageSmall())
+                    //.load("http://barfik.com/wp-content/uploads/2015/08/Anomalno-bolshoy-medved-verh.jpg")
+                    //.diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    //.diskCacheStrategy(DiskCacheStrategy.NONE)
+                    //.thumbnail(0.05f)
+                   .override(200, Target.SIZE_ORIGINAL)
+                    .fitCenter()
+                    .placeholder(R.mipmap.placeholder) // can also be a drawable
+
+                    //.placeholder(new ColorDrawable(Color.BLACK))
+                   // .apply( myOptions)
                     .into(viewHolder.getImageView());
 
         }

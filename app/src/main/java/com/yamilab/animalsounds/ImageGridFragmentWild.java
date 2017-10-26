@@ -81,7 +81,7 @@ public class ImageGridFragmentWild extends Fragment {
      */
     private void initDataset() {
         mDataset = new ArrayList<>();
-        Animal data = new Animal();
+        //nimal data = new Animal();
 
         mDataset.add(new Animal(getString(R.string.bear),R.mipmap.w0hd,R.raw.w0));
         mDataset.add(new Animal(getString(R.string.wolf),R.mipmap.w1hd,R.raw.w1));

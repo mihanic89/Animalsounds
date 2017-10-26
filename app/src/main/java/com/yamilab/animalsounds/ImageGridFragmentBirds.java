@@ -79,7 +79,7 @@ public class ImageGridFragmentBirds extends Fragment {
      */
     private void initDataset() {
         mDataset = new ArrayList<>();
-        Animal data = new Animal();
+       // Animal data = new Animal();
 
         mDataset.add(new Animal(getString(R.string.goose),R.mipmap.b0hd,R.raw.b0));
         mDataset.add(new Animal(getString(R.string.duck),R.mipmap.b1hd,R.raw.b1));

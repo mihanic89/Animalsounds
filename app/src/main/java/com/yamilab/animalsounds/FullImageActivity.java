@@ -69,7 +69,8 @@ public  class FullImageActivity extends AppCompatActivity {
 
         RequestOptions myOptions = new RequestOptions()
                 .fitCenter()
-                .override(imgFullImage.getWidth(), imgFullImage.getHeight());
+                .override(imgFullImage.getWidth(), imgFullImage.getHeight())
+                ;
 
         Glide.with(this)
                 .load(image)

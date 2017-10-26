@@ -80,7 +80,7 @@ public class ImageGridFragmentHome extends Fragment {
      */
     private void initDataset() {
         mDataset = new ArrayList<>();
-        Animal data = new Animal();
+       // Animal data = new Animal();
 
         mDataset.add(new Animal(getString(R.string.dog),R.mipmap.h0hd,R.raw.h0));
         mDataset.add(new Animal(getString(R.string.cat),R.mipmap.h1hd,R.raw.h1));
