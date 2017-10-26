@@ -117,7 +117,7 @@ public  class FullImageActivity extends AppCompatActivity {
     @Override
     public void onPause() {
         // Pause the AdView.
-        mAdView.pause();
+        mAdView.destroy();
         imgFullImage.clearAnimation();
         SoundPlay.clearSP(context);
         super.onPause();

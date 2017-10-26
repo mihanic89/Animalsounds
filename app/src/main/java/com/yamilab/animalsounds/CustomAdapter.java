@@ -172,33 +172,8 @@ public  class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolde
 
         }
 
-    public  Bitmap decodeSampledBitmapFromResource(Resources res, int resId) {
-
-        // First decode with inJustDecodeBounds=true to check dimensions
-        final BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = true;
-        BitmapFactory.decodeResource(res, resId, options);
 
 
-        // Calculate inSampleSize
-        options.inSampleSize = 3;
-
-        // Decode bitmap with inSampleSize set
-        options.inJustDecodeBounds = false;
-        return BitmapFactory.decodeResource(res, resId, options);
-
-    }
-
-    public static int calculateInSampleSize(
-            BitmapFactory.Options options, int reqWidth) {
-        // Raw height and width of image
-       // final int height = options.outHeight;
-        final int width = options.outWidth;
-        int inSampleSize = 3;
-
-
-        return inSampleSize;
-    }
 
 
     // END_INCLUDE(recyclerViewOnBindViewHolder)
