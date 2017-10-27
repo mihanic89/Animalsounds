@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.ContactsContract;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -18,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ImageView;
 
 import com.google.ads.mediation.admob.AdMobAdapter;
 import com.google.android.gms.ads.AdListener;
@@ -50,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     boolean showInterstitialAd = true;
     boolean notFirstStart = true;
     private FirebaseAnalytics mFirebaseAnalytics;
+    private ImageView imageViewBackground;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,9 +117,15 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout.Tab tab = tabLayout.getTabAt(1);
         tab.select();
+        /*
+        imageViewBackground = findViewById(R.id.imageViewBackground);
 
-
-
+        GlideApp
+                .with(getApplicationContext())
+                .load(R.id.background)
+                .centerCrop()
+                .into(imageViewBackground);
+        */
         mAdView = findViewById(R.id.adView);
 
        // Bundle extras = new Bundle();
