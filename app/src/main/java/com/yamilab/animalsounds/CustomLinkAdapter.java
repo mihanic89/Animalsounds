@@ -69,8 +69,8 @@ public  class CustomLinkAdapter extends RecyclerView.Adapter<CustomLinkAdapter.V
 
 
 
-            textView = (TextView) v.findViewById(R.id.textView);
-            imageView = (ImageView) v.findViewById(R.id.imageView);
+            textView = v.findViewById(R.id.textView);
+            imageView = v.findViewById(R.id.imageView);
         }
 
 
@@ -147,6 +147,6 @@ public  class CustomLinkAdapter extends RecyclerView.Adapter<CustomLinkAdapter.V
         i.setData(Uri.parse(link));
 
         context.startActivity(i);
-    };
+    }
 
 }

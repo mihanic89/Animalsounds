@@ -1,5 +1,10 @@
 package com.yamilab.animalsounds;
 
+import android.content.Context;
+import android.graphics.Point;
+import android.view.Display;
+import android.view.WindowManager;
+
 import java.io.Serializable;
 
 /**
@@ -7,7 +12,7 @@ import java.io.Serializable;
  */
 
 public class Animal implements Serializable {
-
+    private Context context;
     private String name;
     private Integer imageSmall;
     private Integer imageBig;
@@ -20,8 +25,17 @@ public class Animal implements Serializable {
         this.sound = sound;
     }
 
-    public Animal() {
 
+    public  Animal  (String name, Integer imageSmall, Integer sound, Context context){
+        this.name= name;
+        this.imageSmall = imageSmall;
+
+        this.sound = sound;
+        this.context=context;
+    }
+
+    public Animal(Context context){
+        this.context=context;
     }
 
     public String getName(){
@@ -48,5 +62,14 @@ public class Animal implements Serializable {
 
     public void  setSound(Integer sound){
         this.sound = sound;
+    }
+
+    public int getWidth(){
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x %3;
+        return width;
     }
 }

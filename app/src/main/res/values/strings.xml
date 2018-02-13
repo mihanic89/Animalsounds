@@ -5,7 +5,7 @@
     <string name="click">Click</string>
     <string name="longclick">Long click</string>
     <string name="bigimage">Full screen image</string>
-    <string name="category">Change category of animal - clicl on tab</string>
+    <string name="category">Change category of animal - click on tab</string>
     <string name="clickdesc">When clicked, the sound is played </string>
     <string name="longclickdesc">When long clicked, the sound is played and full screen image opens </string>
     <string name="bigimagedesc">When clicked full screen image, the sound is played again</string>
@@ -60,6 +60,8 @@
     <string name="boar"> Boar </string>
     <string name="bison"> Bison </string>
     <string name="chipmunk"> Chipmunk </string>
+    <string name="alpaca"> Alpaca </string>
+    <string name="hyena"> Hyena </string>
     
     <string name="goose"> Goose </string>
     <string name="duck"> Duck </string>
@@ -83,6 +85,15 @@
     <string name="robin"> Robin </string>
     <string name="blackgrouse"> Black grouse </string>
     <string name="hummingbird"> Hummingbird </string>
+    <string name="bullfinch"> Bullfinch </string>
+    <string name="stork"> Stork </string>
+    <string name="heron"> Heron </string>
+    <string name="canary"> Canary </string>
+    <string name="magpie"> Magpie </string>
+    <string name="bat"> Bat </string>
+    <string name="jay"> Jay </string>
+    <string name="starling"> Starling </string>
+
 
     <string name="dolphin"> Dolphin </string>
     <string name="sealbark"> Seal Bark </string>

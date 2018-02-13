@@ -104,6 +104,18 @@
     <string name="lobster">Рак</string>
     <string name="cicada">Цикада</string>
 
+    <string name="bullfinch"> Снегирь </string>
+    <string name="stork"> Аист </string>
+    <string name="heron"> Цапля </string>
+    <string name="canary"> Канарейка </string>
+    <string name="magpie"> Сорока </string>
+    <string name="bat"> Летучая мышь </string>
+    <string name="jay"> Сойка </string>
+    <string name="starling"> Скворец </string>
+
+    <string name="alpaca"> Альпака </string>
+    <string name="hyena"> Гиена </string>
+
     <string name="fromdottodot">Рисуем по точкам</string>
     <string name="draw">Рисование</string>
     <string name="lullaby">Колыбельные</string>

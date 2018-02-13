@@ -49,7 +49,7 @@ public class ImageGridFragmentAqua extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         // BEGIN_INCLUDE(initializeRecyclerView)
-        mRecyclerView = (RecyclerView) rootView.findViewById(recyclerView);
+        mRecyclerView = rootView.findViewById(recyclerView);
 
         // LinearLayoutManager is used here, this will layout the elements in a similar fashion
         // to the way ListView would layout elements. The RecyclerView.LayoutManager defines how
@@ -79,7 +79,7 @@ public class ImageGridFragmentAqua extends Fragment {
      */
     private void initDataset() {
         mDataset = new ArrayList<>();
-        Animal data = new Animal();
+        //Animal data = new Animal();
 
         mDataset.add(new Animal(getString(R.string.dolphin),R.mipmap.a0hd,R.raw.a0));
         mDataset.add(new Animal(getString(R.string.sealbark),R.mipmap.a1hd,R.raw.a1));

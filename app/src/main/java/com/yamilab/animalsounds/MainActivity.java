@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.ContactsContract;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -18,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ImageView;
 
 import com.google.ads.mediation.admob.AdMobAdapter;
 import com.google.android.gms.ads.AdListener;
@@ -50,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     boolean showInterstitialAd = true;
     boolean notFirstStart = true;
     private FirebaseAnalytics mFirebaseAnalytics;
+    private ImageView imageViewBackground;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,17 +97,17 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
         tabLayout.getTabAt(0).setText("Ads");
@@ -114,10 +117,16 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout.Tab tab = tabLayout.getTabAt(1);
         tab.select();
+        /*
+        imageViewBackground = findViewById(R.id.imageViewBackground);
 
-
-
-        mAdView = (AdView) findViewById(R.id.adView);
+        GlideApp
+                .with(getApplicationContext())
+                .load(R.id.background)
+                .centerCrop()
+                .into(imageViewBackground);
+        */
+        mAdView = findViewById(R.id.adView);
 
        // Bundle extras = new Bundle();
        // extras.putBoolean("is_designed_for_families", true);
@@ -126,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
                // .addNetworkExtrasBundle(AdMobAdapter.class, extrasAdview)
                // .addNetworkExtrasBundle(AdMobAdapter.class, extras)
                //.tagForChildDirectedTreatment(true)
+                .addTestDevice("A4203BC89A24BEEC45D1111F16D2F0A3")
                 //.addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
                 .build();
         mAdView.loadAd(adRequest);

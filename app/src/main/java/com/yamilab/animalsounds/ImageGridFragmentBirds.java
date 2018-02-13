@@ -49,7 +49,7 @@ public class ImageGridFragmentBirds extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         // BEGIN_INCLUDE(initializeRecyclerView)
-        mRecyclerView = (RecyclerView) rootView.findViewById(recyclerView);
+        mRecyclerView = rootView.findViewById(recyclerView);
 
         // LinearLayoutManager is used here, this will layout the elements in a similar fashion
         // to the way ListView would layout elements. The RecyclerView.LayoutManager defines how
@@ -79,7 +79,7 @@ public class ImageGridFragmentBirds extends Fragment {
      */
     private void initDataset() {
         mDataset = new ArrayList<>();
-        Animal data = new Animal();
+       // Animal data = new Animal();
 
         mDataset.add(new Animal(getString(R.string.goose),R.mipmap.b0hd,R.raw.b0));
         mDataset.add(new Animal(getString(R.string.duck),R.mipmap.b1hd,R.raw.b1));
@@ -103,5 +103,15 @@ public class ImageGridFragmentBirds extends Fragment {
         mDataset.add(new Animal(getString(R.string.robin),R.mipmap.b19robin,R.raw.b19));
         mDataset.add(new Animal(getString(R.string.blackgrouse),R.mipmap.b20blackgrouse,R.raw.b20));
         mDataset.add(new Animal(getString(R.string.hummingbird),R.mipmap.b21hummingbird,R.raw.b21));
+
+        mDataset.add(new Animal(getString(R.string.bullfinch),R.mipmap.b23bullfinch,R.raw.b23));
+        mDataset.add(new Animal(getString(R.string.stork),R.mipmap.b24stork,R.raw.b24));
+        mDataset.add(new Animal(getString(R.string.heron),R.mipmap.b25heron,R.raw.b25));
+        mDataset.add(new Animal(getString(R.string.canary),R.mipmap.b26canary,R.raw.b26));
+        mDataset.add(new Animal(getString(R.string.magpie),R.mipmap.b27magpie,R.raw.b27));
+        mDataset.add(new Animal(getString(R.string.bat),R.mipmap.b28bat,R.raw.b28));
+        mDataset.add(new Animal(getString(R.string.jay),R.mipmap.b29jay,R.raw.b29));
+        mDataset.add(new Animal(getString(R.string.starling),R.mipmap.b30starling,R.raw.b30));
+
     }
 }

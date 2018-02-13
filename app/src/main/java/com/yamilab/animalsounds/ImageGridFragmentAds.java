@@ -50,7 +50,7 @@ public class ImageGridFragmentAds extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         // BEGIN_INCLUDE(initializeRecyclerView)
-        mRecyclerView = (RecyclerView) rootView.findViewById(recyclerView);
+        mRecyclerView = rootView.findViewById(recyclerView);
 
         // LinearLayoutManager is used here, this will layout the elements in a similar fashion
         // to the way ListView would layout elements. The RecyclerView.LayoutManager defines how

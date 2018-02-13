@@ -49,7 +49,7 @@ public class ImageGridFragmentWild extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         // BEGIN_INCLUDE(initializeRecyclerView)
-        mRecyclerView = (RecyclerView) rootView.findViewById(recyclerView);
+        mRecyclerView = rootView.findViewById(recyclerView);
 
         // LinearLayoutManager is used here, this will layout the elements in a similar fashion
         // to the way ListView would layout elements. The RecyclerView.LayoutManager defines how
@@ -74,13 +74,14 @@ public class ImageGridFragmentWild extends Fragment {
     }
 
 
+
     /**
      * Generates Strings for RecyclerView's adapter. This data would usually come
      * from a local content provider or remote server.
      */
     private void initDataset() {
         mDataset = new ArrayList<>();
-        Animal data = new Animal();
+        //nimal data = new Animal();
 
         mDataset.add(new Animal(getString(R.string.bear),R.mipmap.w0hd,R.raw.w0));
         mDataset.add(new Animal(getString(R.string.wolf),R.mipmap.w1hd,R.raw.w1));
@@ -118,5 +119,8 @@ public class ImageGridFragmentWild extends Fragment {
         mDataset.add(new Animal(getString(R.string.boar),R.mipmap.w33boar, R.raw.w33));
         mDataset.add(new Animal(getString(R.string.bison),R.mipmap.w34bison, R.raw.w34));
         mDataset.add(new Animal(getString(R.string.chipmunk),R.mipmap.w35chipmunk,R.raw.w35));
+        mDataset.add(new Animal(getString(R.string.alpaca),R.mipmap.w36alpaca,R.raw.w36));
+        mDataset.add(new Animal(getString(R.string.hyena),R.mipmap.w37hyena,R.raw.w37));
+
     }
 }
