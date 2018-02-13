@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
+import android.speech.tts.TextToSpeech;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -29,7 +30,9 @@ import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.Locale;
+
+public class MainActivity extends AppCompatActivity implements TTSListener,TextToSpeech.OnInitListener{
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -53,10 +56,16 @@ public class MainActivity extends AppCompatActivity {
     boolean notFirstStart = true;
     private FirebaseAnalytics mFirebaseAnalytics;
     private ImageView imageViewBackground;
+
+    private TextToSpeech tts;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        tts =new TextToSpeech(this, this);
+
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         MobileAds.initialize(getApplicationContext(), "ca-app-pub-2888343178529026~2046736590");
         //  Declare a new thread to do a preference check
@@ -206,6 +215,22 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onInit(int status) {
+        if (status == TextToSpeech.SUCCESS) {
+            int result = tts.setLanguage(new Locale("ru", ""));
+
+
+        } else {
+            // Toast.makeText(this, "Not Supported in your Device", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void speak(String text) {
+        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null,"id1");
+    }
+
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -306,6 +331,10 @@ public class MainActivity extends AppCompatActivity {
     public void onDestroy() {
         // Destroy the AdView.
         mAdView.destroy();
+        if (tts != null) {
+            tts.stop();
+            tts.shutdown();
+        }
         super.onDestroy();
     }
 }

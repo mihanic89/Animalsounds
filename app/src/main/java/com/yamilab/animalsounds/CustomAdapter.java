@@ -38,6 +38,7 @@ public  class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolde
 
     private ArrayList<Animal> mDataset;
     Context context;
+    private  TTSListener ttsListener;
     // BEGIN_INCLUDE(recyclerViewSampleViewHolder)
     /**
      * Provide a reference to the type of views that you are using (custom ViewHolder)
@@ -52,9 +53,10 @@ public  class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolde
         {
             super(v);
 
-
+            textView = (TextView) v.findViewById(R.id.textView);
+            imageView = (ImageView) v.findViewById(R.id.imageView);
             // Define click listener for the ViewHolder's View.
-            v.setOnClickListener(new View.OnClickListener() {
+            imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Log.d(TAG, "Element " + getAdapterPosition() + " clicked.");
@@ -62,7 +64,7 @@ public  class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolde
                 }
             });
 
-            v.setOnLongClickListener(new View.OnLongClickListener() {
+            imageView.setOnLongClickListener(new View.OnLongClickListener() {
 
                 public boolean onLongClick(View v) {
                     Log.d(TAG, "Element " + getAdapterPosition() + " longclicked.");
@@ -77,8 +79,14 @@ public  class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolde
                 }
             });
 
-            textView = (TextView) v.findViewById(R.id.textView);
-            imageView = (ImageView) v.findViewById(R.id.imageView);
+            textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //Log.d(TAG, "Element " + getAdapterPosition() + " clicked.");
+                    //playSp(getAdapterPosition());
+                    ttsListener.speak(mDataset.get(getAdapterPosition()).getName());
+                }
+            });
         }
 
 
@@ -123,6 +131,8 @@ public  class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolde
         View v = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.animal_item, viewGroup, false);
         context = viewGroup.getContext();
+        if (ttsListener==null){
+            ttsListener = (TTSListener)context;}
         return new ViewHolder(v);
     }
     // END_INCLUDE(recyclerViewOnCreateViewHolder)

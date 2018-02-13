@@ -25,7 +25,9 @@ public class Animal implements Serializable {
         this.sound = sound;
     }
 
+    public Animal() {
 
+    }
     public  Animal  (String name, Integer imageSmall, Integer sound, Context context){
         this.name= name;
         this.imageSmall = imageSmall;
