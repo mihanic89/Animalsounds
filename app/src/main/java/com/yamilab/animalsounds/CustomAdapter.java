@@ -18,16 +18,31 @@ package com.yamilab.animalsounds;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.SoundPool;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewDebug;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.Target;
+
+import static com.bumptech.glide.request.RequestOptions.centerCropTransform;
+
 import java.util.ArrayList;
+
+import static android.R.attr.fragment;
 
 
 /**
@@ -38,7 +53,6 @@ public  class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolde
 
     private ArrayList<Animal> mDataset;
     Context context;
-    private  TTSListener ttsListener;
     // BEGIN_INCLUDE(recyclerViewSampleViewHolder)
     /**
      * Provide a reference to the type of views that you are using (custom ViewHolder)
@@ -48,15 +62,15 @@ public  class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolde
         private final ImageView imageView;
         private Context context;
         private SoundPool sp;
+        public int gridWidth= 160;
 
         public ViewHolder(View v)
         {
             super(v);
 
-            textView = (TextView) v.findViewById(R.id.textView);
-            imageView = (ImageView) v.findViewById(R.id.imageView);
+
             // Define click listener for the ViewHolder's View.
-            imageView.setOnClickListener(new View.OnClickListener() {
+            v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Log.d(TAG, "Element " + getAdapterPosition() + " clicked.");
@@ -64,7 +78,7 @@ public  class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolde
                 }
             });
 
-            imageView.setOnLongClickListener(new View.OnLongClickListener() {
+            v.setOnLongClickListener(new View.OnLongClickListener() {
 
                 public boolean onLongClick(View v) {
                     Log.d(TAG, "Element " + getAdapterPosition() + " longclicked.");
@@ -74,19 +88,14 @@ public  class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolde
                     int sound= mDataset.get(getAdapterPosition()).getSound();
                     intent.putExtra("image", image);
                     intent.putExtra("sound", sound);
+                    intent.putExtra("name", mDataset.get(getAdapterPosition()).getName() );
                     context.startActivity(intent);
                     return false;
                 }
             });
 
-            textView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //Log.d(TAG, "Element " + getAdapterPosition() + " clicked.");
-                    //playSp(getAdapterPosition());
-                    ttsListener.speak(mDataset.get(getAdapterPosition()).getName());
-                }
-            });
+            textView = v.findViewById(R.id.textView);
+            imageView = v.findViewById(R.id.imageView);
         }
 
 
@@ -113,7 +122,8 @@ public  class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolde
      * @param dataSet String[] containing the data to populate views to be used by RecyclerView.
      */
     public CustomAdapter(ArrayList<Animal> dataSet) {
-        mDataset = new ArrayList<>();
+        mDataset = dataSet;
+                /*new ArrayList<>();
         dataSet.size();
 
 
@@ -121,6 +131,7 @@ public  class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolde
 
             mDataset.add(dataSet.get(i));
         }
+        */
     }
 
     // BEGIN_INCLUDE(recyclerViewOnCreateViewHolder)
@@ -131,8 +142,6 @@ public  class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolde
         View v = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.animal_item, viewGroup, false);
         context = viewGroup.getContext();
-        if (ttsListener==null){
-            ttsListener = (TTSListener)context;}
         return new ViewHolder(v);
     }
     // END_INCLUDE(recyclerViewOnCreateViewHolder)
@@ -141,23 +150,43 @@ public  class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolde
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
-        Log.d(TAG, "Element " + position + " set.");
+        //Log.d(TAG, "Element " + position + " set.");
 
-       
-        Animal data= new Animal();
-        data=mDataset.get(position);
+        // Get element from your dataset at this position and replace the contents of the view
+        // with that element
+        //Animal data= new Animal(context);
+        //data=mDataset.get(position);
         viewHolder.setContext(context);
-        viewHolder.getTextView().setText(data.getName());
-        try {
-            viewHolder.getImageView().setImageResource(data.getImageSmall());
-        }
-        catch (Exception e)
-        {
+        viewHolder.getTextView().setText(mDataset.get(position).getName());
+
+       // viewHolder.getImageView().setImageResource(data.getImageSmall());
+      //  viewHolder.getImageView().setImageBitmap(
+       //         decodeSampledBitmapFromResource(context.getResources(), data.getImageSmall()));
+
+
+
+
+            GlideApp
+                    .with(context)
+
+                    .load(mDataset.get(position).getImageSmall())
+                    //.load("http://barfik.com/wp-content/uploads/2015/08/Anomalno-bolshoy-medved-verh.jpg")
+                    //.diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    //.diskCacheStrategy(DiskCacheStrategy.NONE)
+                    //.thumbnail(0.05f)
+                   .override(200, Target.SIZE_ORIGINAL)
+                    .fitCenter()
+                    .placeholder(R.mipmap.placeholder) // can also be a drawable
+
+                    //.placeholder(new ColorDrawable(Color.BLACK))
+                   // .apply( myOptions)
+                    .into(viewHolder.getImageView());
 
         }
 
 
-    }
+
+
 
     // END_INCLUDE(recyclerViewOnBindViewHolder)
 
