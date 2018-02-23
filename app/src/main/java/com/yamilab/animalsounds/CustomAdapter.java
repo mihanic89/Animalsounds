@@ -179,7 +179,7 @@ public  class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolde
                     .placeholder(R.mipmap.placeholder) // can also be a drawable
 
                     //.placeholder(new ColorDrawable(Color.BLACK))
-                   // .apply( myOptions)
+                 
                     .into(viewHolder.getImageView());
 
         }
