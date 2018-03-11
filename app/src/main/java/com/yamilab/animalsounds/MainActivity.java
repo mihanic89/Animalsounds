@@ -2,6 +2,11 @@ package com.yamilab.animalsounds;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.graphics.Point;
+import android.graphics.drawable.ColorDrawable;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
@@ -13,6 +18,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,7 +28,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.ads.mediation.admob.AdMobAdapter;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -30,9 +40,12 @@ import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity implements TTSListener,TextToSpeech.OnInitListener{
+import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
+
+public class MainActivity extends AppCompatActivity implements TTSListener{
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -59,12 +72,25 @@ public class MainActivity extends AppCompatActivity implements TTSListener,TextT
 
     private TextToSpeech tts;
 
+    private ArrayList<Animal> wild, home, aqua, birds, insects;
+    private int screenWidth=800,screenHeight=1280;
+    private String language;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        tts =new TextToSpeech(this, this);
+
+
+
+
+        Point size = new Point();
+        getWindowManager().getDefaultDisplay().getSize(size);
+        screenWidth = size.x;
+        screenHeight = size.y;
+
+        language = makeLanguageList(Locale.getDefault().getLanguage());
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         MobileAds.initialize(getApplicationContext(), "ca-app-pub-2888343178529026~2046736590");
@@ -106,13 +132,33 @@ public class MainActivity extends AppCompatActivity implements TTSListener,TextT
 
         setContentView(R.layout.activity_main);
 
+        GlideApp.with(this)
+                // .asDrawable()
+                // .load(mStorageRef.child(mDataSet.get(position).getImage()))
+                .load(R.drawable.background)
+               // .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                .priority(Priority.LOW)
+                //.load(internetUrl)
+                //.skipMemoryCache(true)
+                .override((int)screenWidth/3, (int) screenHeight/3)
+                .fitCenter()
+                // .thumbnail()
+                //.error(R.mipmap.ic_launcher)
+                .placeholder(new ColorDrawable(getResources().getColor(R.color.colorBackground)))
+                //.placeholder(R.mipmap.placeholder)
+                .transition(withCrossFade(1000))
+                .into((ImageView) findViewById(R.id.imageViewBackground));
+
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
+
+        initData();
+
+
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-        // Set up the ViewPager with the sections adapter.
+
         mViewPager = findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
@@ -126,20 +172,10 @@ public class MainActivity extends AppCompatActivity implements TTSListener,TextT
 
         TabLayout.Tab tab = tabLayout.getTabAt(1);
         tab.select();
-        /*
-        imageViewBackground = findViewById(R.id.imageViewBackground);
 
-        GlideApp
-                .with(getApplicationContext())
-                .load(R.id.background)
-                .centerCrop()
-                .into(imageViewBackground);
-        */
+
+
         mAdView = findViewById(R.id.adView);
-
-       // Bundle extras = new Bundle();
-       // extras.putBoolean("is_designed_for_families", true);
-
         AdRequest adRequest = new AdRequest.Builder()
                // .addNetworkExtrasBundle(AdMobAdapter.class, extrasAdview)
                // .addNetworkExtrasBundle(AdMobAdapter.class, extras)
@@ -153,11 +189,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener,TextT
 
         // Create the InterstitialAd and set the adUnitId.
         mInterstitialAd = new InterstitialAd(this);
-
         mInterstitialAd.setAdUnitId("ca-app-pub-2888343178529026/6970013790");
-
         loadInterstitial();
-
         mInterstitialAd.setAdListener(new AdListener() {
             @Override
             public void onAdClosed() {
@@ -169,6 +202,14 @@ public class MainActivity extends AppCompatActivity implements TTSListener,TextT
                // showInterstitial();
             }
         });
+
+
+        try {
+            new TtsInit().execute();
+        }
+        catch (Exception e){
+
+        };
     }
 
 
@@ -193,65 +234,62 @@ public class MainActivity extends AppCompatActivity implements TTSListener,TextT
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+
+
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onInit(int status) {
-        if (status == TextToSpeech.SUCCESS) {
-            int result = tts.setLanguage(new Locale("ru", ""));
+    public void speak(String text,int sound) {
+        final String textapi=text;
 
 
-        } else {
-            // Toast.makeText(this, "Not Supported in your Device", Toast.LENGTH_SHORT).show();
-        }
-    }
 
-    @Override
-    public void speak(String text) {
-        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null,"id1");
+
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+
+                try {
+                    tts.speak(textapi, TextToSpeech.QUEUE_FLUSH, null);
+                }
+
+                catch (Exception e){
+                   // SoundPlay.playSP(this,sound);
+                }
+
+
+            } else {
+                try {
+                    tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
+                }
+                catch (Exception e){
+                    //SoundPlay.playSP(this,sound);
+                }
+
+            }
+
     }
 
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
 
-        public PlaceholderFragment() {
+
+
+
+
+    public static class ImageGridFragment extends Fragment{
+        RecyclerView recyclerView;
+        StaggeredGridLayoutManager staggeredGridLayoutManager;
+        AnimalAdapter animalAdapter;
+        GlideRequests glideRequests;
+
+        public ImageGridFragment(){
+
         }
 
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
+        public static ImageGridFragment newInstance (ArrayList array, int screenWidth) {
+            ImageGridFragment fragment = new ImageGridFragment();
             Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            args.putSerializable("key", array);
+            args.putInt("width", screenWidth);
             fragment.setArguments(args);
             return fragment;
         }
@@ -260,6 +298,30 @@ public class MainActivity extends AppCompatActivity implements TTSListener,TextT
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            // TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+            // textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+            glideRequests=GlideApp.with(rootView.getContext());
+            int spanCount = 2;
+
+            int screenSize = getResources().getConfiguration().screenLayout &
+                    Configuration.SCREENLAYOUT_SIZE_MASK;
+
+            if (screenSize>=Configuration.SCREENLAYOUT_SIZE_LARGE) spanCount=3;
+
+            recyclerView = rootView.findViewById(R.id.recyclerView);
+
+            staggeredGridLayoutManager = new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL);
+            recyclerView.setLayoutManager(staggeredGridLayoutManager);
+
+            animalAdapter = new AnimalAdapter((ArrayList<Animal>)getArguments().getSerializable("key"),
+                    (int) getArguments().getInt("width")/(spanCount+1),
+                    glideRequests);
+
+            recyclerView.setAdapter(animalAdapter);
+
+
+            recyclerView.getRecycledViewPool().setMaxRecycledViews(0,spanCount*3);
+            recyclerView.setItemViewCacheSize(0);
 
             return rootView;
         }
@@ -293,17 +355,18 @@ public class MainActivity extends AppCompatActivity implements TTSListener,TextT
 
                 case 1:
 
-                    return new ImageGridFragmentHome();
+                    return ImageGridFragment.newInstance(home,screenWidth);
+
                 case 2:
-                    return new ImageGridFragmentWild();
+                    return ImageGridFragment.newInstance(wild,screenWidth);
                 case 3:
-                    return new ImageGridFragmentBirds();
+                    return ImageGridFragment.newInstance(birds,screenWidth);
                 case 4:
-                    return new ImageGridFragmentAqua();
+                    return ImageGridFragment.newInstance(aqua,screenWidth);
                 case 5:
-                    return new ImageGridFragmentInsects();
+                    return ImageGridFragment.newInstance(insects,screenWidth);
             }
-            return new ImageGridFragmentWild();//PlaceholderFragment.newInstance(position + 1);
+            return ImageGridFragment.newInstance(home,screenWidth);//PlaceholderFragment.newInstance(position + 1);
         }
 
         @Override
@@ -336,5 +399,149 @@ public class MainActivity extends AppCompatActivity implements TTSListener,TextT
             tts.shutdown();
         }
         super.onDestroy();
+    }
+
+    public class TtsInit extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+                @Override
+                public void onInit(int status) {
+                    if (status==TextToSpeech.SUCCESS) {
+                        int result = tts.setLanguage(new Locale(language, ""));
+                    }
+                    else
+                    {
+
+                    }
+                }
+            });
+            return null;
+        }
+    }
+
+    private String makeLanguageList(String locale){
+        if (locale.equals("ru")){
+            return "ru";
+        }
+        else return "en";
+    }
+
+    private void initData() {
+        wild = new ArrayList<>();
+
+        wild.add(new Animal(getString(R.string.bear),R.mipmap.w0hd,R.raw.w0));
+        wild.add(new Animal(getString(R.string.wolf),R.mipmap.w1hd,R.raw.w1));
+        wild.add(new Animal(getString(R.string.leo),R.mipmap.w2hd,R.raw.w2));
+        wild.add(new Animal(getString(R.string.tiger),R.mipmap.w3hd,R.raw.w3));
+        wild.add(new Animal(getString(R.string.monkey),R.mipmap.w4hd,R.raw.w4));
+        wild.add(new Animal(getString(R.string.elephant),R.mipmap.w5hd,R.raw.w5));
+        wild.add(new Animal(getString(R.string.camel),R.mipmap.w6hd,R.raw.w6));
+        wild.add(new Animal(getString(R.string.zebra),R.mipmap.w7hd,R.raw.w7));
+        wild.add(new Animal(getString(R.string.jackal),R.mipmap.w8hd,R.raw.w8));
+        wild.add(new Animal(getString(R.string.snake),R.mipmap.w9hd,R.raw.w9));
+        wild.add(new Animal(getString(R.string.fox),R.mipmap.w10hd,R.raw.w10));
+        wild.add(new Animal(getString(R.string.hare),R.mipmap.w11hd,R.raw.w11));
+        wild.add(new Animal(getString(R.string.rhino),R.mipmap.w12hd,R.raw.w12));
+        wild.add(new Animal(getString(R.string.crocodile),R.mipmap.w13hd,R.raw.w13));
+        wild.add(new Animal(getString(R.string.koala),R.mipmap.w14hd,R.raw.w14));
+        wild.add(new Animal(getString(R.string.panda),R.mipmap.w15hd,R.raw.w15));
+        wild.add(new Animal(getString(R.string.kangoroo),R.mipmap.w16hd,R.raw.w16));
+        wild.add(new Animal(getString(R.string.lemur),R.mipmap.w17hd,R.raw.w17));
+        wild.add(new Animal(getString(R.string.lynx),R.mipmap.w18hd,R.raw.w18));
+        wild.add(new Animal(getString(R.string.elk),R.mipmap.w19hd,R.raw.w19));
+        wild.add(new Animal(getString(R.string.racoon),R.mipmap.w20hd,R.raw.w20));
+        wild.add(new Animal(getString(R.string.squirrel),R.mipmap.w21hd,R.raw.w21));
+        wild.add(new Animal(getString(R.string.rat),R.mipmap.w22hd,R.raw.w22));
+        wild.add(new Animal(getString(R.string.mouse),R.mipmap.w23hd,R.raw.w23));
+        wild.add(new Animal(getString(R.string.jaguar),R.mipmap.w24hd,R.raw.w24));
+        wild.add(new Animal(getString(R.string.hippopotamus),R.mipmap.w25hd,R.raw.w25));
+        wild.add(new Animal(getString(R.string.badger),R.mipmap.w26barsuk, R.raw.w26));
+        wild.add(new Animal(getString(R.string.beaver),R.mipmap.w27beaver, R.raw.w27));
+        wild.add(new Animal(getString(R.string.deer),R.mipmap.w28deer, R.raw.w28));
+        wild.add(new Animal(getString(R.string.hedgehog),R.mipmap.w29hedgehog, R.raw.w29));
+        wild.add(new Animal(getString(R.string.giraffe),R.mipmap.w30giraffe, R.raw.w30));
+        wild.add(new Animal(getString(R.string.mole),R.mipmap.w31mole, R.raw.w31));
+        wild.add(new Animal(getString(R.string.skunk),R.mipmap.w32skunk, R.raw.w32));
+        wild.add(new Animal(getString(R.string.boar),R.mipmap.w33boar, R.raw.w33));
+        wild.add(new Animal(getString(R.string.bison),R.mipmap.w34bison, R.raw.w34));
+        wild.add(new Animal(getString(R.string.chipmunk),R.mipmap.w35chipmunk,R.raw.w35));
+        wild.add(new Animal(getString(R.string.alpaca),R.mipmap.w36alpaca,R.raw.w36));
+        wild.add(new Animal(getString(R.string.hyena),R.mipmap.w37hyena,R.raw.w37));
+
+        home = new ArrayList<>();
+        home.add(new Animal(getString(R.string.dog),R.mipmap.h0hd,R.raw.h0));
+        home.add(new Animal(getString(R.string.cat),R.mipmap.h1hd,R.raw.h1));
+        home.add(new Animal(getString(R.string.pig),R.mipmap.h2hd,R.raw.h2));
+        home.add(new Animal(getString(R.string.cock),R.mipmap.h3hd,R.raw.h3));
+        home.add(new Animal(getString(R.string.chiken),R.mipmap.h4hd,R.raw.h4));
+        home.add(new Animal(getString(R.string.cow),R.mipmap.h5hd,R.raw.h5));
+        home.add(new Animal(getString(R.string.horse),R.mipmap.h6hd,R.raw.h6));
+        home.add(new Animal(getString(R.string.sheep),R.mipmap.h7hd,R.raw.h7));
+        home.add(new Animal(getString(R.string.goat),R.mipmap.h8hd,R.raw.h8));
+        home.add(new Animal(getString(R.string.donkey),R.mipmap.h9hd,R.raw.h9));
+        home.add(new Animal(getString(R.string.turkey),R.mipmap.h10hd,R.raw.h10));
+        home.add(new Animal(getString(R.string.cavy),R.mipmap.h11hd,R.raw.h11));
+        home.add(new Animal(getString(R.string.rabbit),R.mipmap.h12rabbit,R.raw.h12));
+
+        aqua = new ArrayList<>();
+        aqua.add(new Animal(getString(R.string.dolphin),R.mipmap.a0hd,R.raw.a0));
+        aqua.add(new Animal(getString(R.string.sealbark),R.mipmap.a1hd,R.raw.a1));
+        aqua.add(new Animal(getString(R.string.frog),R.mipmap.a2hd,R.raw.a2));
+        aqua.add(new Animal(getString(R.string.penguin),R.mipmap.a3hd,R.raw.a3));
+        aqua.add(new Animal(getString(R.string.walrus),R.mipmap.a4hd,R.raw.a4));
+        aqua.add(new Animal(getString(R.string.sealion),R.mipmap.a5hd,R.raw.a5));
+        aqua.add(new Animal(getString(R.string.whale),R.mipmap.a6hd,R.raw.a6));
+        aqua.add(new Animal(getString(R.string.fish),R.mipmap.a7hd,R.raw.a7));
+        aqua.add(new Animal(getString(R.string.turtle),R.mipmap.a8turtle,R.raw.a8));
+        aqua.add(new Animal(getString(R.string.otter),R.mipmap.a9otter,R.raw.a9));
+        aqua.add(new Animal(getString(R.string.lobster),R.mipmap.a10lobster,R.raw.a10));
+
+        birds = new ArrayList<>();
+        birds.add(new Animal(getString(R.string.goose),R.mipmap.b0hd,R.raw.b0));
+        birds.add(new Animal(getString(R.string.duck),R.mipmap.b1hd,R.raw.b1));
+        birds.add(new Animal(getString(R.string.crow),R.mipmap.b2hd,R.raw.b2));
+        birds.add(new Animal(getString(R.string.seagull),R.mipmap.b3hd,R.raw.b3));
+        birds.add(new Animal(getString(R.string.dove),R.mipmap.b4hd,R.raw.b4));
+        birds.add(new Animal(getString(R.string.nightingale),R.mipmap.b5hd,R.raw.b5));
+        birds.add(new Animal(getString(R.string.eagle),R.mipmap.b6hd,R.raw.b6));
+        birds.add(new Animal(getString(R.string.hawk),R.mipmap.b7hd,R.raw.b7));
+        birds.add(new Animal(getString(R.string.woodpecker),R.mipmap.b8hd,R.raw.b8));
+        birds.add(new Animal(getString(R.string.parrot),R.mipmap.b9hd,R.raw.b9));
+        birds.add(new Animal(getString(R.string.owl),R.mipmap.b10hd,R.raw.b10));
+        birds.add(new Animal(getString(R.string.cuckoo),R.mipmap.b11hd,R.raw.b11));
+        birds.add(new Animal(getString(R.string.pelican),R.mipmap.b12hd,R.raw.b12));
+        birds.add(new Animal(getString(R.string.ostrich),R.mipmap.b13hd,R.raw.b13));
+        birds.add(new Animal(getString(R.string.flamingo),R.mipmap.b14hd,R.raw.b14));
+        birds.add(new Animal(getString(R.string.peacock),R.mipmap.b15hd,R.raw.b15));
+        birds.add(new Animal(getString(R.string.catbird),R.mipmap.b16catbird,R.raw.b16));
+        birds.add(new Animal(getString(R.string.tit),R.mipmap.b17tit,R.raw.b17));
+        birds.add(new Animal(getString(R.string.toucan),R.mipmap.b18toucan,R.raw.b18));
+        birds.add(new Animal(getString(R.string.robin),R.mipmap.b19robin,R.raw.b19));
+        birds.add(new Animal(getString(R.string.blackgrouse),R.mipmap.b20blackgrouse,R.raw.b20));
+        birds.add(new Animal(getString(R.string.hummingbird),R.mipmap.b21hummingbird,R.raw.b21));
+        birds.add(new Animal(getString(R.string.bullfinch),R.mipmap.b23bullfinch,R.raw.b23));
+        birds.add(new Animal(getString(R.string.stork),R.mipmap.b24stork,R.raw.b24));
+        birds.add(new Animal(getString(R.string.heron),R.mipmap.b25heron,R.raw.b25));
+        birds.add(new Animal(getString(R.string.canary),R.mipmap.b26canary,R.raw.b26));
+        birds.add(new Animal(getString(R.string.magpie),R.mipmap.b27magpie,R.raw.b27));
+        birds.add(new Animal(getString(R.string.bat),R.mipmap.b28bat,R.raw.b28));
+        birds.add(new Animal(getString(R.string.jay),R.mipmap.b29jay,R.raw.b29));
+        birds.add(new Animal(getString(R.string.starling),R.mipmap.b30starling,R.raw.b30));
+
+        insects = new ArrayList<>();
+        insects.add(new Animal(getString(R.string.bees),R.mipmap.i0hd,R.raw.i0));
+        insects.add(new Animal(getString(R.string.flies),R.mipmap.i1hd,R.raw.i1));
+        insects.add(new Animal(getString(R.string.mosquito),R.mipmap.i2hd,R.raw.i2));
+        insects.add(new Animal(getString(R.string.grasshopper),R.mipmap.i3hd,R.raw.i3));
+        insects.add(new Animal(getString(R.string.bumblebee),R.mipmap.i4hd,R.raw.i4));
+        insects.add(new Animal(getString(R.string.cricket),R.mipmap.i5hd,R.raw.i5));
+        insects.add(new Animal(getString(R.string.butterfly),R.mipmap.i6hd,R.raw.i6));
+        insects.add(new Animal(getString(R.string.dragonfly),R.mipmap.i7hd,R.raw.i7));
+        insects.add(new Animal(getString(R.string.ants),R.mipmap.i8hd,R.raw.i8));
+        insects.add(new Animal(getString(R.string.mantis),R.mipmap.i9hd,R.raw.i9));
+        insects.add(new Animal(getString(R.string.cicada), R.mipmap.i10hd,R.raw.i10));
+
     }
 }
