@@ -1,8 +1,10 @@
 package com.yamilab.animalsounds;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -103,7 +105,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
         return mDataSet.size();
     }
 
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
 
         final Animal animal = mDataSet.get(position);
 
@@ -141,5 +143,24 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
                 ttsListener.speak(animal.getName(),animal.getSound());
             }
         });
+
+        holder.getImageView().setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                startAnotherActivity(position);
+                return true;
+            }
+        });
+    }
+
+    public void startAnotherActivity (int counter){
+        Intent intent = new Intent(context, TabbedActivity.class);
+        Bundle args = new Bundle();
+        args.putSerializable("key",mDataSet);
+        intent.putExtra("BUNDLE",args);
+
+       // context.startActivity(intent);
+
+        ((MainActivity) context).startActivityForResult(intent,1);
     }
 }

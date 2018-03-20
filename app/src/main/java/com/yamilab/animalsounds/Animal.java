@@ -18,11 +18,31 @@ public class Animal implements Serializable {
     private Integer imageBig;
     private Integer sound;
 
+    public boolean isGIF() {
+        return isGIF;
+    }
+
+    public int getGifHref() {
+        return gifHref;
+    }
+
+    private boolean isGIF=false;
+    private int gifHref;
+
     public  Animal  (String name, Integer imageSmall, Integer sound){
         this.name= name;
         this.imageSmall = imageSmall;
-
+        this.isGIF=false;
         this.sound = sound;
+        this.gifHref=0;
+    }
+
+    public Animal(String name, Integer imageSmall, Integer sound, boolean isGIF, int gifHref){
+        this.name= name;
+        this.imageSmall = imageSmall;
+        this.sound = sound;
+        this.isGIF= isGIF;
+        this.gifHref=gifHref;
     }
 
     public Animal() {
