@@ -82,6 +82,12 @@ public class ImageGridFragmentAds extends Fragment {
         mDataset = new ArrayList<>();
 
         mDataset.add(new LinkItem(
+                getString(R.string.phrasebook),
+                R.drawable.phrasebook,
+                "market://details?id=xyz.yapapa.phrasebook"
+        ));
+
+        mDataset.add(new LinkItem(
                 getString(R.string.fromdottodot),
                 R.drawable.fromdottodot,
                 "market://details?id=xyz.yapapa.fromdottodot"));

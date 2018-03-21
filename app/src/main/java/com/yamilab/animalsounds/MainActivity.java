@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener{
 
     private ArrayList<Animal> wild, home, aqua, birds, insects;
     private int screenWidth=800,screenHeight=1280;
-    private String language;
+    private String language="en";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener{
         screenWidth = size.x;
         screenHeight = size.y;
 
-        language = makeLanguageList(Locale.getDefault().getLanguage());
+        makeLanguageList(Locale.getDefault().getLanguage());
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         MobileAds.initialize(getApplicationContext(), "ca-app-pub-2888343178529026~2046736590");
@@ -175,15 +175,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener{
 
 
 
-        mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder()
-               // .addNetworkExtrasBundle(AdMobAdapter.class, extrasAdview)
-               // .addNetworkExtrasBundle(AdMobAdapter.class, extras)
-               //.tagForChildDirectedTreatment(true)
-                .addTestDevice("A4203BC89A24BEEC45D1111F16D2F0A3")
-                //.addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
-                .build();
-        mAdView.loadAd(adRequest);
+
+
 
 
 
@@ -210,6 +203,16 @@ public class MainActivity extends AppCompatActivity implements TTSListener{
         catch (Exception e){
 
         };
+
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder()
+                // .addNetworkExtrasBundle(AdMobAdapter.class, extrasAdview)
+                // .addNetworkExtrasBundle(AdMobAdapter.class, extras)
+                //.tagForChildDirectedTreatment(true)
+                .addTestDevice("A4203BC89A24BEEC45D1111F16D2F0A3")
+                //.addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
+                .build();
+        mAdView.loadAd(adRequest);
     }
 
 
@@ -421,99 +424,142 @@ public class MainActivity extends AppCompatActivity implements TTSListener{
         }
     }
 
-    private String makeLanguageList(String locale){
+    private void makeLanguageList(String locale){
         if (locale.equals("ru")){
-            return "ru";
+            language="ru";
         }
-        else return "en";
+        if (locale.equals("uk")){
+            language="uk";
+        }
+        if (locale.equals("be")){
+            language="be";
+        }
+        if (locale.equals("pt")){
+            language="pt";
+        }
+        if (locale.equals("hi")){
+            language="hi";
+        }
+        if (locale.equals("pl")){
+            language="pl";
+        }
+        if (locale.equals("it")){
+            language="it";
+        }
+        if (locale.equals("es")){
+            language="es";
+        }
+        if (locale.equals("pt")){
+            language="pt";
+        }
+        if (locale.equals("zh")){
+            language="zh";
+        }
+        if (locale.equals("fi")){
+            language="fi";
+        }
+        if (locale.equals("ko")){
+            language="ko";
+        }
+        if (locale.equals("fr")){
+            language="de";
+        }
+        if (locale.equals("tr")){
+            language="tr";
+        }
+        if (locale.equals("ja")){
+            language="ja";
+        }
+
+
     }
 
     private void initData() {
         wild = new ArrayList<>();
 
-        wild.add(new Animal(getString(R.string.bear),R.mipmap.w0hd,R.raw.w0));
-        wild.add(new Animal(getString(R.string.wolf),R.mipmap.w1hd,R.raw.w1));
-        wild.add(new Animal(getString(R.string.leo),R.mipmap.w2hd,R.raw.w2));
-        wild.add(new Animal(getString(R.string.tiger),R.mipmap.w3hd,R.raw.w3));
-        wild.add(new Animal(getString(R.string.monkey),R.mipmap.w4hd,R.raw.w4));
+        wild.add(new Animal(getString(R.string.bear),R.mipmap.w0hd,R.raw.w0,true,"w0.gif"));
+        wild.add(new Animal(getString(R.string.wolf),R.mipmap.w1hd,R.raw.w1,true,"w1.gif"));
+        wild.add(new Animal(getString(R.string.leo),R.mipmap.w2hd,R.raw.w2,true,"w2.gif"));
+        wild.add(new Animal(getString(R.string.tiger),R.mipmap.w3hd,R.raw.w3,true,"w3.gif"));
+        wild.add(new Animal(getString(R.string.monkey),R.mipmap.w4hd,R.raw.w4,true,"w4.gif"));
         wild.add(new Animal(getString(R.string.elephant),R.mipmap.w5hd,R.raw.w5));
         wild.add(new Animal(getString(R.string.camel),R.mipmap.w6hd,R.raw.w6));
         wild.add(new Animal(getString(R.string.zebra),R.mipmap.w7hd,R.raw.w7));
         wild.add(new Animal(getString(R.string.jackal),R.mipmap.w8hd,R.raw.w8));
         wild.add(new Animal(getString(R.string.snake),R.mipmap.w9hd,R.raw.w9));
-        wild.add(new Animal(getString(R.string.fox),R.mipmap.w10hd,R.raw.w10));
+        wild.add(new Animal(getString(R.string.fox),R.mipmap.w10hd,R.raw.w10,true,"w10.gif"));
         wild.add(new Animal(getString(R.string.hare),R.mipmap.w11hd,R.raw.w11));
         wild.add(new Animal(getString(R.string.rhino),R.mipmap.w12hd,R.raw.w12));
         wild.add(new Animal(getString(R.string.crocodile),R.mipmap.w13hd,R.raw.w13));
         wild.add(new Animal(getString(R.string.koala),R.mipmap.w14hd,R.raw.w14));
-        wild.add(new Animal(getString(R.string.panda),R.mipmap.w15hd,R.raw.w15));
+        wild.add(new Animal(getString(R.string.panda),R.mipmap.w15hd,R.raw.w15,true,"w15.gif"));
         wild.add(new Animal(getString(R.string.kangoroo),R.mipmap.w16hd,R.raw.w16));
-        wild.add(new Animal(getString(R.string.lemur),R.mipmap.w17hd,R.raw.w17));
+        wild.add(new Animal(getString(R.string.lemur),R.mipmap.w17hd,R.raw.w17,true,"w17.gif"));
         wild.add(new Animal(getString(R.string.lynx),R.mipmap.w18hd,R.raw.w18));
         wild.add(new Animal(getString(R.string.elk),R.mipmap.w19hd,R.raw.w19));
         wild.add(new Animal(getString(R.string.racoon),R.mipmap.w20hd,R.raw.w20));
         wild.add(new Animal(getString(R.string.squirrel),R.mipmap.w21hd,R.raw.w21));
-        wild.add(new Animal(getString(R.string.rat),R.mipmap.w22hd,R.raw.w22));
-        wild.add(new Animal(getString(R.string.mouse),R.mipmap.w23hd,R.raw.w23));
+        wild.add(new Animal(getString(R.string.rat),R.mipmap.w22hd,R.raw.w22,true,"w22.gif"));
+        wild.add(new Animal(getString(R.string.mouse),R.mipmap.w23hd,R.raw.w23,true,"w23.gif"));
         wild.add(new Animal(getString(R.string.jaguar),R.mipmap.w24hd,R.raw.w24));
         wild.add(new Animal(getString(R.string.hippopotamus),R.mipmap.w25hd,R.raw.w25));
         wild.add(new Animal(getString(R.string.badger),R.mipmap.w26barsuk, R.raw.w26));
         wild.add(new Animal(getString(R.string.beaver),R.mipmap.w27beaver, R.raw.w27));
         wild.add(new Animal(getString(R.string.deer),R.mipmap.w28deer, R.raw.w28));
-        wild.add(new Animal(getString(R.string.hedgehog),R.mipmap.w29hedgehog, R.raw.w29));
+        wild.add(new Animal(getString(R.string.hedgehog),R.mipmap.w29hedgehog, R.raw.w29,true,"w29.gif"));
         wild.add(new Animal(getString(R.string.giraffe),R.mipmap.w30giraffe, R.raw.w30));
         wild.add(new Animal(getString(R.string.mole),R.mipmap.w31mole, R.raw.w31));
         wild.add(new Animal(getString(R.string.skunk),R.mipmap.w32skunk, R.raw.w32));
         wild.add(new Animal(getString(R.string.boar),R.mipmap.w33boar, R.raw.w33));
         wild.add(new Animal(getString(R.string.bison),R.mipmap.w34bison, R.raw.w34));
         wild.add(new Animal(getString(R.string.chipmunk),R.mipmap.w35chipmunk,R.raw.w35));
-        wild.add(new Animal(getString(R.string.alpaca),R.mipmap.w36alpaca,R.raw.w36));
+        wild.add(new Animal(getString(R.string.alpaca),R.mipmap.w36alpaca,R.raw.w36,true,"w36.gif"));
         wild.add(new Animal(getString(R.string.hyena),R.mipmap.w37hyena,R.raw.w37));
 
         home = new ArrayList<>();
-        home.add(new Animal(getString(R.string.dog),R.mipmap.h0hd,R.raw.h0));
-        home.add(new Animal(getString(R.string.cat),R.mipmap.h1hd,R.raw.h1));
+        home.add(new Animal(getString(R.string.dog),R.mipmap.h0hd,R.raw.h0,true,"h0.gif"));
+        home.add(new Animal(getString(R.string.cat),R.mipmap.h1hd,R.raw.h1,true,"h1hd.gif"));
         home.add(new Animal(getString(R.string.pig),R.mipmap.h2hd,R.raw.h2));
         home.add(new Animal(getString(R.string.cock),R.mipmap.h3hd,R.raw.h3));
         home.add(new Animal(getString(R.string.chiken),R.mipmap.h4hd,R.raw.h4));
-        home.add(new Animal(getString(R.string.cow),R.mipmap.h5hd,R.raw.h5));
-        home.add(new Animal(getString(R.string.horse),R.mipmap.h6hd,R.raw.h6));
+        home.add(new Animal(getString(R.string.cow),R.mipmap.h5hd,R.raw.h5,true,"h5.gif"));
+        home.add(new Animal(getString(R.string.horse),R.mipmap.h6hd,R.raw.h6,true,"h6.gif"));
         home.add(new Animal(getString(R.string.sheep),R.mipmap.h7hd,R.raw.h7));
         home.add(new Animal(getString(R.string.goat),R.mipmap.h8hd,R.raw.h8));
         home.add(new Animal(getString(R.string.donkey),R.mipmap.h9hd,R.raw.h9));
         home.add(new Animal(getString(R.string.turkey),R.mipmap.h10hd,R.raw.h10));
-        home.add(new Animal(getString(R.string.cavy),R.mipmap.h11hd,R.raw.h11));
-        home.add(new Animal(getString(R.string.rabbit),R.mipmap.h12rabbit,R.raw.h12));
+        home.add(new Animal(getString(R.string.cavy),R.mipmap.h11hd,R.raw.h11,true,"h11.gif"));
+        home.add(new Animal(getString(R.string.rabbit),R.mipmap.h12rabbit,R.raw.h12,true,"h12.gif"));
 
         aqua = new ArrayList<>();
-        aqua.add(new Animal(getString(R.string.dolphin),R.mipmap.a0hd,R.raw.a0));
+        aqua.add(new Animal(getString(R.string.dolphin),R.mipmap.a0hd,R.raw.a0,true,"a0.gif"));
         aqua.add(new Animal(getString(R.string.sealbark),R.mipmap.a1hd,R.raw.a1));
         aqua.add(new Animal(getString(R.string.frog),R.mipmap.a2hd,R.raw.a2));
-        aqua.add(new Animal(getString(R.string.penguin),R.mipmap.a3hd,R.raw.a3));
+        aqua.add(new Animal(getString(R.string.penguin),R.mipmap.a3hd,R.raw.a3,true,"a3.gif"));
         aqua.add(new Animal(getString(R.string.walrus),R.mipmap.a4hd,R.raw.a4));
         aqua.add(new Animal(getString(R.string.sealion),R.mipmap.a5hd,R.raw.a5));
         aqua.add(new Animal(getString(R.string.whale),R.mipmap.a6hd,R.raw.a6));
         aqua.add(new Animal(getString(R.string.fish),R.mipmap.a7hd,R.raw.a7));
-        aqua.add(new Animal(getString(R.string.turtle),R.mipmap.a8turtle,R.raw.a8));
-        aqua.add(new Animal(getString(R.string.otter),R.mipmap.a9otter,R.raw.a9));
+        aqua.add(new Animal(getString(R.string.turtle),R.mipmap.a8turtle,R.raw.a8,true,"a8.gif"));
+        aqua.add(new Animal(getString(R.string.otter),R.mipmap.a9otter,R.raw.a9,true,"a9.gif"));
         aqua.add(new Animal(getString(R.string.lobster),R.mipmap.a10lobster,R.raw.a10));
 
         birds = new ArrayList<>();
-        birds.add(new Animal(getString(R.string.goose),R.mipmap.b0hd,R.raw.b0));
+        birds.add(new Animal(getString(R.string.goose),R.mipmap.b0hd,R.raw.b0,true,"b0.gif"));
         birds.add(new Animal(getString(R.string.duck),R.mipmap.b1hd,R.raw.b1));
         birds.add(new Animal(getString(R.string.crow),R.mipmap.b2hd,R.raw.b2));
         birds.add(new Animal(getString(R.string.seagull),R.mipmap.b3hd,R.raw.b3));
         birds.add(new Animal(getString(R.string.dove),R.mipmap.b4hd,R.raw.b4));
         birds.add(new Animal(getString(R.string.nightingale),R.mipmap.b5hd,R.raw.b5));
-        birds.add(new Animal(getString(R.string.eagle),R.mipmap.b6hd,R.raw.b6));
+        birds.add(new Animal(getString(R.string.eagle),R.mipmap.b6hd,R.raw.b6,true,"b6.gif"));
         birds.add(new Animal(getString(R.string.hawk),R.mipmap.b7hd,R.raw.b7));
-        birds.add(new Animal(getString(R.string.woodpecker),R.mipmap.b8hd,R.raw.b8));
-        birds.add(new Animal(getString(R.string.parrot),R.mipmap.b9hd,R.raw.b9));
-        birds.add(new Animal(getString(R.string.owl),R.mipmap.b10hd,R.raw.b10));
+        birds.add(new Animal(getString(R.string.woodpecker),R.mipmap.b8hd,R.raw.b8,true,"b8.gif"));
+        birds.add(new Animal(getString(R.string.parrot),R.mipmap.b9hd,R.raw.b9,true,"b9.gif"));
+        birds.add(new Animal(getString(R.string.owl),R.mipmap.b10hd,R.raw.b10,true,"b10.gif"));
         birds.add(new Animal(getString(R.string.cuckoo),R.mipmap.b11hd,R.raw.b11));
         birds.add(new Animal(getString(R.string.pelican),R.mipmap.b12hd,R.raw.b12));
         birds.add(new Animal(getString(R.string.ostrich),R.mipmap.b13hd,R.raw.b13));
-        birds.add(new Animal(getString(R.string.flamingo),R.mipmap.b14hd,R.raw.b14));
+        birds.add(new Animal(getString(R.string.flamingo),R.mipmap.b14hd,R.raw.b14,true,"b14.gif"));
         birds.add(new Animal(getString(R.string.peacock),R.mipmap.b15hd,R.raw.b15));
         birds.add(new Animal(getString(R.string.catbird),R.mipmap.b16catbird,R.raw.b16));
         birds.add(new Animal(getString(R.string.tit),R.mipmap.b17tit,R.raw.b17));
@@ -533,11 +579,11 @@ public class MainActivity extends AppCompatActivity implements TTSListener{
         insects = new ArrayList<>();
         insects.add(new Animal(getString(R.string.bees),R.mipmap.i0hd,R.raw.i0));
         insects.add(new Animal(getString(R.string.flies),R.mipmap.i1hd,R.raw.i1));
-        insects.add(new Animal(getString(R.string.mosquito),R.mipmap.i2hd,R.raw.i2));
+        insects.add(new Animal(getString(R.string.mosquito),R.mipmap.i2hd,R.raw.i2,true,"i2.gif"));
         insects.add(new Animal(getString(R.string.grasshopper),R.mipmap.i3hd,R.raw.i3));
         insects.add(new Animal(getString(R.string.bumblebee),R.mipmap.i4hd,R.raw.i4));
         insects.add(new Animal(getString(R.string.cricket),R.mipmap.i5hd,R.raw.i5));
-        insects.add(new Animal(getString(R.string.butterfly),R.mipmap.i6hd,R.raw.i6));
+        insects.add(new Animal(getString(R.string.butterfly),R.mipmap.i6hd,R.raw.i6,true,"i6.gif"));
         insects.add(new Animal(getString(R.string.dragonfly),R.mipmap.i7hd,R.raw.i7));
         insects.add(new Animal(getString(R.string.ants),R.mipmap.i8hd,R.raw.i8));
         insects.add(new Animal(getString(R.string.mantis),R.mipmap.i9hd,R.raw.i9));

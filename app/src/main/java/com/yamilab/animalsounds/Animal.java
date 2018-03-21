@@ -17,27 +17,28 @@ public class Animal implements Serializable {
     private Integer imageSmall;
     private Integer imageBig;
     private Integer sound;
+    private boolean isGIF=false;
+    private String gifHref;
 
     public boolean isGIF() {
         return isGIF;
     }
 
-    public int getGifHref() {
+    public String getGifHref() {
         return gifHref;
     }
 
-    private boolean isGIF=false;
-    private int gifHref;
+
 
     public  Animal  (String name, Integer imageSmall, Integer sound){
         this.name= name;
         this.imageSmall = imageSmall;
         this.isGIF=false;
         this.sound = sound;
-        this.gifHref=0;
+        this.gifHref="";
     }
 
-    public Animal(String name, Integer imageSmall, Integer sound, boolean isGIF, int gifHref){
+    public Animal(String name, Integer imageSmall, Integer sound, boolean isGIF, String gifHref){
         this.name= name;
         this.imageSmall = imageSmall;
         this.sound = sound;

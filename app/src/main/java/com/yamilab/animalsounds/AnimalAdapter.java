@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -32,6 +33,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
     private final int screenWidth;
     private Context context;
     private GlideRequests glideRequests;
+    private final StorageReference mStorageRef= FirebaseStorage.getInstance().getReferenceFromUrl("gs://animalsounds-a4395.appspot.com/");
 
     private  TTSListener ttsListener;
 
@@ -113,19 +115,39 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
 
         //GlideApp
         //        .with(context)
-        glideRequests
-                .load(mDataSet.get(position).getImageSmall())
-                .priority(Priority.LOW)
-                //.load(internetUrl)
-                //.skipMemoryCache(true)
-                .override((int)screenWidth)
-                .fitCenter()
-                // .thumbnail()
-                .error(R.mipmap.ic_launcher)
-                .placeholder(new ColorDrawable(context.getResources().getColor( R.color.colorBackground)))
-                //.placeholder(R.mipmap.placeholder)
-                .transition(withCrossFade(1000))
-                .into(holder.getImageView());
+        if (animal.isGIF()& Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
+
+            glideRequests
+                    .load(mStorageRef.child(animal.getGifHref()))
+                    .priority(Priority.LOW)
+                    //.load(internetUrl)
+                    //.skipMemoryCache(true)
+                    .override((int) screenWidth)
+                    .fitCenter()
+                    // .thumbnail()
+                    .error(animal.getImageSmall())
+                    .placeholder(new ColorDrawable(context.getResources().getColor(R.color.colorBackground)))
+                    //.placeholder(R.mipmap.placeholder)
+                    .transition(withCrossFade(1000))
+                    .into(holder.getImageView());
+
+
+        }
+        else {
+            glideRequests
+                    .load(mDataSet.get(position).getImageSmall())
+                    .priority(Priority.LOW)
+                    //.load(internetUrl)
+                    //.skipMemoryCache(true)
+                    .override((int) screenWidth)
+                    .fitCenter()
+                    // .thumbnail()
+                    .error(R.mipmap.ic_launcher)
+                    .placeholder(new ColorDrawable(context.getResources().getColor(R.color.colorBackground)))
+                    //.placeholder(R.mipmap.placeholder)
+                    .transition(withCrossFade(1000))
+                    .into(holder.getImageView());
+        }
 
         holder.getImageView().setOnClickListener(new View.OnClickListener() {
             @Override
