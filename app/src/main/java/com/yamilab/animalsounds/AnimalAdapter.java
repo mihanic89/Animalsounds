@@ -147,7 +147,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
         holder.getImageView().setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                startAnotherActivity(position);
+               // startAnotherActivity(position);
                 return true;
             }
         });
