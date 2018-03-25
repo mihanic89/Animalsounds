@@ -3,13 +3,16 @@
     <string name="app_name">Звуки животных</string>
     <string name="action_settings">Настройки</string>
     <string name="tabs">Вкладки</string>
-    <string name="click">Клик</string>
+    <string name="click">Клик по картинке</string>
+    <string name="clicktext">Клик по тексту</string>
     <string name="longclick">Долгий клик</string>
     <string name="bigimage">Большое изображение</string>
     <string name="category">Для смены звуков кликнуть на вкладку</string>
     <string name="clickdesc">При быстром клике проигрывается звук </string>
     <string name="longclickdesc">При долгом клике проигрывается звук и открывается большое изображение </string>
     <string name="bigimagedesc">При нажатии на большое изображение звук проигрывается снова</string>
+    <string name="clicktextdesc">При клике по тексту - название животного.</string>
+
     <string name="ants">Муравьи</string>
     <string name="bear">Медведь</string>
     <string name="bees">Пчелы</string>
