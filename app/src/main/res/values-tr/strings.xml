@@ -9,7 +9,7 @@
     <string name="bigimage">Büyük resim</string>
     <string name="category">Bir sekmeye tıklayın sesleri değiştirmek için</string>
     <string name="clickdesc">Resmin üzerine tıkladığınızda, hayvanın sesi çalınır.</string>
-    <string name="clicktextdesc">Metindeki clike'de ... ... bir hayvanın adı geliyor.</string>
+    <string name="clicktextdesc">Metindeki clike"'"de ... ... bir hayvanın adı geliyor.</string>
     <string name="longclickdesc">Uzun bir süre tıklayın ses kaybolur ve büyük görüntü açılır</string>
     <string name="bigimagedesc">Büyük resme basarak ses tekrar kaybolur</string>
     <string name="clicktext">Metni tıklayın</string>

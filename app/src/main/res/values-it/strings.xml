@@ -3,14 +3,14 @@
     <string name="app_name">Suoni di animali</string>
     <string name="action_settings">Impostazioni</string>
     <string name="tabs">Etichette</string>
-    <string name="click">Clicchi l'immagine</string>
+    <string name="click">Clicchi l"'"immagine</string>
     <string name="longclick">A lungo faccia clic</string>
     <string name="bigimage">Immagine grande</string>
-    <string name="category">Per cambiamento di suoni per cliccare un'etichetta</string>
-    <string name="clickdesc">Quando clicca il quadro, il suono dell'animale è giocato.</string>
+    <string name="category">Per cambiamento di suoni per cliccare un"'"etichetta</string>
+    <string name="clickdesc">Quando clicca il quadro, il suono dell"'"animale è giocato.</string>
     <string name="clicktextdesc">A cricca nel testo - il nome di un animale suona.</string>
-    <string name="longclickdesc">A clic lungo il suono è perso e l'immagine grande si apre</string>
-    <string name="bigimagedesc">Premendo l'immagine grande il suono è perso di nuovo</string>
+    <string name="longclickdesc">A clic lungo il suono è perso e l"'"immagine grande si apre</string>
+    <string name="bigimagedesc">Premendo l"'"immagine grande il suono è perso di nuovo</string>
     <string name="clicktext">Clicchi il testo</string>
    
 <string name="fromdottodot">Attingiamo punti</string>
