@@ -1,6 +1,7 @@
 package com.yamilab.animalsounds;
 
 import android.content.res.Configuration;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -43,6 +44,7 @@ public class ImageGridFragmentAds extends Fragment {
         // Initialize dataset, this data would usually come from a local content provider or
         // remote server.
         initDataset();
+
 }
 
     @Override
@@ -60,9 +62,12 @@ public class ImageGridFragmentAds extends Fragment {
         if (screenSize>=Configuration.SCREENLAYOUT_SIZE_LARGE) gridCount=3;
         gaggeredGridLayoutManager = new StaggeredGridLayoutManager(gridCount, StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(gaggeredGridLayoutManager);
+        Point size = new Point();
+        getActivity().getWindowManager().getDefaultDisplay().getSize(size);
+       int screenWidth = size.x;
 
 
-        mAdapter = new CustomLinkAdapter(mDataset);
+        mAdapter = new CustomLinkAdapter(mDataset, (int) screenWidth/3, GlideApp.with(rootView.getContext()));
         // Set CustomAdapter as the adapter for RecyclerView.
         mRecyclerView.setAdapter(mAdapter);
         // END_INCLUDE(initializeRecyclerView)
@@ -82,40 +87,37 @@ public class ImageGridFragmentAds extends Fragment {
         mDataset = new ArrayList<>();
 
         mDataset.add(new LinkItem(
-                getString(R.string.phrasebook),
-                R.drawable.phrasebook,
-                "market://details?id=xyz.yapapa.phrasebook"
+                "ads/ads01.gif",
+
+                "https://gf896.app.goo.gl/jdF1"
         ));
 
         mDataset.add(new LinkItem(
-                getString(R.string.fromdottodot),
-                R.drawable.fromdottodot,
-                "market://details?id=xyz.yapapa.fromdottodot"));
+                "ads/ads02.gif",
+
+                "https://gf896.app.goo.gl/GZGa"));
 
         mDataset.add(new LinkItem(
-                getString(R.string.draw),
-                R.drawable.promodraw,
-                "market://details?id=xyz.yapapa.draw"));
+                "ads/ads03.gif",
+
+                "https://gf896.app.goo.gl/TYCN"));
 
         mDataset.add(new LinkItem(
-                getString(R.string.lullaby),
-                R.drawable.lullababy,
-                "market://details?id=com.yamilab.lullababy"));
+                "ads/ads04.gif",
+
+                "https://gf896.app.goo.gl/EawQ"));
 
         mDataset.add(new LinkItem(
-                getString(R.string.recipe),
-                R.drawable.recipe,
-                "market://details?id=xyz.yapapa.recipe"));
+                "ads/ads05.gif",
+
+                "https://gf896.app.goo.gl/gs5e"));
 
         mDataset.add(new LinkItem(
-                getString(R.string.rebuses),
-                R.drawable.rebuses,
-                "market://details?id=xyz.yapapa.rebuses"));
+                "ads/ads06.gif",
 
-        mDataset.add(new LinkItem(
-                getString(R.string.recipeabc),
-                R.drawable.promoabc,
-                "market://details?id=xyz.yapapa.recipeabc"));
+                "https://gf896.app.goo.gl/wMv3"));
+
+
 
     }
 }

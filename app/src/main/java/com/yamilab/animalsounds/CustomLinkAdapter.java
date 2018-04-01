@@ -18,6 +18,7 @@ package com.yamilab.animalsounds;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.media.SoundPool;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
@@ -29,7 +30,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Priority;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 import java.util.ArrayList;
+
+import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
 
 /**
@@ -37,15 +44,18 @@ import java.util.ArrayList;
  */
 public  class CustomLinkAdapter extends RecyclerView.Adapter<CustomLinkAdapter.ViewHolder> {
     private static final String TAG = "CustomAdapter";
+    private final StorageReference mStorageRef= FirebaseStorage.getInstance().getReferenceFromUrl("gs://animalsounds-a4395.appspot.com/");
+    private  ArrayList<LinkItem> mDataSet;
+    private final int screenWidth;
+    private final GlideRequests glideRequests;
 
-    private ArrayList<LinkItem> mDataset;
     Context context;
     // BEGIN_INCLUDE(recyclerViewSampleViewHolder)
     /**
      * Provide a reference to the type of views that you are using (custom ViewHolder)
      */
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView textView;
+       // private final TextView textView;
         private final ImageView imageView;
         private Context context;
 
@@ -60,7 +70,7 @@ public  class CustomLinkAdapter extends RecyclerView.Adapter<CustomLinkAdapter.V
                 @Override
                 public void onClick(View v) {
                     Log.d(TAG, "Element " + getAdapterPosition() + " clicked.");
-                    String link = mDataset.get(getAdapterPosition()).getLink();
+                    String link = mDataSet.get(getAdapterPosition()).getLink();
 
                     startLink(link);
 
@@ -69,16 +79,17 @@ public  class CustomLinkAdapter extends RecyclerView.Adapter<CustomLinkAdapter.V
 
 
 
-            textView = v.findViewById(R.id.textView);
+            //textView = v.findViewById(R.id.textView);
             imageView = v.findViewById(R.id.imageView);
         }
 
 
 
-
+        /*
         public TextView getTextView() {
             return textView;
         }
+        */
 
         public ImageView getImageView() {
             return imageView;
@@ -92,15 +103,12 @@ public  class CustomLinkAdapter extends RecyclerView.Adapter<CustomLinkAdapter.V
      *
      * @param dataSet String[] containing the data to populate views to be used by RecyclerView.
      */
-    public CustomLinkAdapter(ArrayList<LinkItem> dataSet) {
-        mDataset = new ArrayList<>();
-        dataSet.size();
+    public CustomLinkAdapter(ArrayList<LinkItem> dataSet, int screenWidth, GlideRequests glideRequests) {
 
+        this.screenWidth = screenWidth;
+        this.mDataSet = dataSet;
+        this.glideRequests= glideRequests;
 
-        for (int i = 0; i < dataSet.size(); i++) {
-
-            mDataset.add(dataSet.get(i));
-        }
     }
 
     // BEGIN_INCLUDE(recyclerViewOnCreateViewHolder)
@@ -124,10 +132,24 @@ public  class CustomLinkAdapter extends RecyclerView.Adapter<CustomLinkAdapter.V
         // Get element from your dataset at this position and replace the contents of the view
         // with that element
         LinkItem data= new LinkItem();
-        data=mDataset.get(position);
+        data=mDataSet.get(position);
         viewHolder.setContext(context);
-        viewHolder.getTextView().setText(data.getName());
-        viewHolder.getImageView().setImageResource(data.getImage());
+       // viewHolder.getTextView().setText(data.getName());
+
+            glideRequests
+                .load(mStorageRef.child(data.getName()))
+                .priority(Priority.LOW)
+                //.load(internetUrl)
+                //.skipMemoryCache(true)
+                .override((int) screenWidth)
+                .fitCenter()
+                // .thumbnail()
+                .error(R.mipmap.ic_launcher)
+                .placeholder(new ColorDrawable(context.getResources().getColor(R.color.colorBackground)))
+                //.placeholder(R.mipmap.placeholder)
+                .transition(withCrossFade(1000))
+                .into(viewHolder.getImageView());
+        //viewHolder.getImageView().setImageResource(data.getImage());
 
     }
     // END_INCLUDE(recyclerViewOnBindViewHolder)
@@ -135,7 +157,7 @@ public  class CustomLinkAdapter extends RecyclerView.Adapter<CustomLinkAdapter.V
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return mDataset.size();
+        return mDataSet.size();
     }
 
     public void logLink (String link){

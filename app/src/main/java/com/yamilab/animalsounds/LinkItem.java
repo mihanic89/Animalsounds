@@ -13,9 +13,9 @@ public class LinkItem implements Serializable {
 
     private String link;
 
-    public LinkItem(String name, Integer image, String link){
+    public LinkItem(String name,  String link){
         this.name= name;
-        this.image = image;
+
 
         this.link = link;
     }

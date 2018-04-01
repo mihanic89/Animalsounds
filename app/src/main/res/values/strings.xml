@@ -127,8 +127,7 @@
     <string name="rebuses">Rebuses</string>
     <string name="recipeabc">Tracing letters and numbers </string>
     <string name="phrasebook">Phrasebook</string>
-    <string name="title_activity_tabbed">TabbedActivity</string>
-    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_tabbed" translatable="false">TabbedActivity</string>
 
 
 </resources>
