@@ -368,6 +368,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener{
                     return ImageGridFragment.newInstance(aqua,screenWidth);
                 case 5:
                     return ImageGridFragment.newInstance(insects,screenWidth);
+               
             }
             return ImageGridFragment.newInstance(home,screenWidth);//PlaceholderFragment.newInstance(position + 1);
         }

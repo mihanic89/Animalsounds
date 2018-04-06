@@ -24,7 +24,7 @@
             android:scaleType="centerCrop"
             android:adjustViewBounds="true"
             android:layout_below="@+id/textView"
-            android:layout_margin="2dp"
+
             />
 
         <TextView
