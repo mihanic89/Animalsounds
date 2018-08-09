@@ -46,7 +46,7 @@ public class MyIntro extends AppIntro2 {
         // OPTIONAL METHODS
 
         // SHOW or HIDE the statusbar
-        showSkipButton(false);
+        showSkipButton(true);
         setProgressButtonEnabled(true);
 
         // Edit the color of the nav bar on Lollipop+ devices
@@ -58,11 +58,11 @@ public class MyIntro extends AppIntro2 {
         //setVibrateIntensity(30);
 
         // Animations -- use only one of the below. Using both could cause errors.
-        setFadeAnimation(); // OR
+       // setFadeAnimation(); // OR
         //setZoomAnimation(); // OR
         //setFlowAnimation(); // OR
        // setSlideOverAnimation(); // OR
-       // setDepthAnimation(); // OR
+        setDepthAnimation(); // OR
         //setCustomTransformer(yourCustomTransformer);
 
 
