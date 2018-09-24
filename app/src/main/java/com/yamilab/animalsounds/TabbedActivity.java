@@ -19,6 +19,8 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import java.util.ArrayList;
 
 public class TabbedActivity extends AppCompatActivity {
@@ -39,10 +41,13 @@ public class TabbedActivity extends AppCompatActivity {
      */
     private ViewPager mViewPager;
 
+    private FirebaseAnalytics mFirebaseAnalytics;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabbed);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         Intent intent = getIntent();
         Bundle args = intent.getBundleExtra("BUNDLE");
         mAnimals = (ArrayList<Animal>)args.getSerializable("key");
