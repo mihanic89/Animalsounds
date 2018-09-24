@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener{
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
-    int[] resID={R.drawable.tab_home,R.drawable.tab_wild,R.drawable.tab_birds,R.drawable.tab_aqua,R.drawable.tab_insects};
+    int[] resID={R.drawable.tab_home,R.drawable.tab_wild,R.drawable.tab_birds,R.drawable.tab_aqua,R.drawable.tab_insects,R.drawable.tab_fairy};
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener{
 
     private TextToSpeech tts;
 
-    private ArrayList<Animal> wild, home, aqua, birds, insects;
+    private ArrayList<Animal> wild, home, aqua, birds, insects, fairy;
     private int screenWidth=800,screenHeight=1280;
     private String language="en";
 
@@ -368,6 +368,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener{
                     return ImageGridFragment.newInstance(aqua,screenWidth);
                 case 5:
                     return ImageGridFragment.newInstance(insects,screenWidth);
+                case 6:
+                    return ImageGridFragment.newInstance(fairy,screenWidth);
 
             }
             return ImageGridFragment.newInstance(home,screenWidth);//PlaceholderFragment.newInstance(position + 1);
@@ -376,7 +378,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener{
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 6;
+            return 7;
         }
     }
 
@@ -589,6 +591,18 @@ public class MainActivity extends AppCompatActivity implements TTSListener{
         insects.add(new Animal(getString(R.string.ants),R.mipmap.i8hd,R.raw.i8));
         insects.add(new Animal(getString(R.string.mantis),R.mipmap.i9hd,R.raw.i9));
         insects.add(new Animal(getString(R.string.cicada), R.mipmap.i10hd,R.raw.i10));
+
+        fairy = new ArrayList<>();
+        fairy.add(new Animal(getString(R.string.dragon), R.mipmap.f0hd,R.raw.f0));
+        fairy.add(new Animal(getString(R.string.unicorn), R.mipmap.f1hd,R.raw.f1));
+        fairy.add(new Animal(getString(R.string.pokemon), R.mipmap.f2hd,R.raw.f2));
+        fairy.add(new Animal(getString(R.string.buckbeak), R.mipmap.f3hd,R.raw.f3));
+        fairy.add(new Animal(getString(R.string.dinosaur), R.mipmap.f4hd,R.raw.f4));
+        fairy.add(new Animal(getString(R.string.pegasus), R.mipmap.f5hd,R.raw.f5));
+        fairy.add(new Animal(getString(R.string.centaur), R.mipmap.f6hd,R.raw.f6));
+        fairy.add(new Animal(getString(R.string.phoenix), R.mipmap.f7hd,R.raw.f7));
+        fairy.add(new Animal(getString(R.string.waternymph), R.mipmap.f8hd,R.raw.f8));
+        fairy.add(new Animal(getString(R.string.griffon), R.mipmap.f9hd,R.raw.f9));
 
     }
 
