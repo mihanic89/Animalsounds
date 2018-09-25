@@ -115,6 +115,11 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
 
         //GlideApp
         //        .with(context)
+
+
+
+
+
         if (animal.isGIF() & Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
 
             glideRequests
@@ -125,30 +130,37 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
                     .override((int) screenWidth)
                     .fitCenter()
                     // .thumbnail()
-                    .error(animal.getImageSmall())
+                    //.error(animal.getImageSmall())
+                    // .placeholder(new ColorDrawable(context.getResources().getColor(R.color.colorBackground)))
                     .placeholder(animal.getImageSmall())
                     //.placeholder(new ColorDrawable(context.getResources().getColor(R.color.colorBackground)))
                     //.placeholder(R.mipmap.placeholder)
-                    .transition(withCrossFade(1000))
-                    .into(holder.getImageView());
 
-
-        }
-        else {
-            glideRequests
-                    .load(mDataSet.get(position).getImageSmall())
-                    .priority(Priority.LOW)
-                    //.load(internetUrl)
-                    //.skipMemoryCache(true)
-                    .override((int) screenWidth)
-                    .fitCenter()
-                    // .thumbnail()
-                    .error(R.mipmap.ic_launcher)
-                    .placeholder(new ColorDrawable(context.getResources().getColor(R.color.colorBackground)))
-                    //.placeholder(R.mipmap.placeholder)
-                    .transition(withCrossFade(1000))
+                    //.transition(withCrossFade(1000))
                     .into(holder.getImageView());
         }
+
+
+            else {
+                glideRequests
+                        .load(mDataSet.get(position).getImageSmall())
+                        .priority(Priority.LOW)
+                        //.load(internetUrl)
+                        //.skipMemoryCache(true)
+                        .override((int) screenWidth)
+                        .fitCenter()
+                        // .thumbnail()
+                        .error(R.mipmap.ic_launcher)
+                        .placeholder(new ColorDrawable(context.getResources().getColor(R.color.colorBackground)))
+                        //.placeholder(R.mipmap.placeholder)
+                        .transition(withCrossFade(1000))
+                        .into(holder.getImageView());
+            }
+
+
+
+
+
 
         holder.getImageView().setOnClickListener(new View.OnClickListener() {
             @Override

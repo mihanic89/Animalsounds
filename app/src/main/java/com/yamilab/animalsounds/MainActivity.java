@@ -3,6 +3,7 @@ package com.yamilab.animalsounds;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
@@ -21,6 +22,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -43,9 +45,13 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import angtrim.com.fivestarslibrary.FiveStarsDialog;
+import angtrim.com.fivestarslibrary.NegativeReviewListener;
+import angtrim.com.fivestarslibrary.ReviewListener;
+
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
-public class MainActivity extends AppCompatActivity implements TTSListener{
+public class MainActivity extends AppCompatActivity implements TTSListener  {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -81,9 +87,17 @@ public class MainActivity extends AppCompatActivity implements TTSListener{
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-
-
-
+        /*
+        FiveStarsDialog fiveStarsDialog = new FiveStarsDialog(this,"contact@yapapa.xyz");
+        fiveStarsDialog
+                //.setRateText("Your custom text")
+                //.setTitle("Your custom title")
+                .setForceMode(true)
+                .setUpperBound(4) // Market opened if a rating >= 2 is selected
+                //.setNegativeReviewListener((NegativeReviewListener) this) // OVERRIDE mail intent for negative review
+                //.setReviewListener(this) // Used to listen for reviews (if you want to track them )
+                .showAfter(1);
+        */
 
         Point size = new Point();
         getWindowManager().getDefaultDisplay().getSize(size);
@@ -622,4 +636,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener{
        // tvName.setText("Your name is " + name);
         mViewPager.setCurrentItem(3);
     }
+
+
+
 }
