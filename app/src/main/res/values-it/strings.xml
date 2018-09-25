@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">Suoni di animali</string>
     <string name="action_settings">Impostazioni</string>
     <string name="tabs">Etichette</string>
@@ -12,19 +13,24 @@
     <string name="longclickdesc">A clic lungo il suono è perso e l"'"immagine grande si apre</string>
     <string name="bigimagedesc">Premendo l"'"immagine grande il suono è perso di nuovo</string>
     <string name="clicktext">Clicchi il testo</string>
-   
-<string name="fromdottodot">Attingiamo punti</string>
-<string name="draw">Disegno</string>
-<string name="lullaby">Ninnananne</string>
-<string name="recipe">Quaderni per bambini</string>
-<string name="rebuses">Rebus</string>
-<string name="recipeabc">Quaderni di una lettera e una cifra</string>
-<string name="phrasebook">Il vocabolarietto per bambini e adulti</string>
+
+
+
+
+    <string name="fromdottodot">Attingiamo punti</string>
+    <string name="draw">Disegno</string>
+    <string name="lullaby">Ninnananne</string>
+    <string name="recipe">Quaderni per bambini</string>
+    <string name="rebuses">Rebus</string>
+    <string name="recipeabc">Quaderni di una lettera e una cifra</string>
+    <string name="phrasebook">Il vocabolarietto per bambini e adulti</string>
+
+
 
     <string name="ants">Le formiche</string>
     <string name="bear">Orso</string>
     <string name="bees">Ape</string>
-    <string name="bumblebee">Bumblebee</string>
+    <string name="bumblebee">Bombo</string>
     <string name="butterfly">Farfalla</string>
     <string name="camel">Cammello</string>
     <string name="cat">Gatto</string>
@@ -42,7 +48,7 @@
     <string name="donkey">Asino</string>
     <string name="dove">Colomba</string>
     <string name="dragonfly">Libellula</string>
-    <string name="duck">Trama</string>
+    <string name="duck">Anatra</string>
     <string name="eagle">L"'"aquila</string>
     <string name="elephant">Elefante</string>
     <string name="elk">Alce</string>
@@ -59,12 +65,12 @@
     <string name="hippopotamus">Ippopotamo</string>
     <string name="horse">Cavallo</string>
     <string name="jackal">Lo sciacallo</string>
-    <string name="jaguar">Jaguar</string>
+    <string name="jaguar">Giaguaro</string>
     <string name="kangoroo">Canguro</string>
     <string name="koala">Koala</string>
     <string name="lemur">Lemure</string>
     <string name="leo">Leone</string>
-    <string name="lynx">Lynx</string>
+    <string name="lynx">Trotto</string>
     <string name="mantis">Mantide</string>
     <string name="monkey">Scimmia</string>
     <string name="mosquito">Zanzara</string>
@@ -94,7 +100,7 @@
     <string name="wolf">Lupo</string>
     <string name="woodpecker">Picchio</string>
     <string name="zebra">Zebra</string>
-    <string name="badger">Badger</string>
+    <string name="badger">Tasso</string>
     <string name="beaver">Il castoro</string>
     <string name="catbird">Merlo</string>
     <string name="deer">Cervo</string>
@@ -103,7 +109,7 @@
     <string name="mole">La talpa</string>
     <string name="otter">Lontra</string>
     <string name="rabbit">Coniglio</string>
-    <string name="robin">Il pettirosso si orienta perché</string>
+    <string name="robin">Il pettirosso</string>
     <string name="skunk">Puzzola</string>
     <string name="tit">Cincia</string>
     <string name="toucan">Tucano</string>
@@ -118,10 +124,20 @@
     <string name="stork">Cicogna</string>
     <string name="heron">Airone</string>
     <string name="canary">Canarino</string>
-    <string name="magpie">Quaranta</string>
+    <string name="magpie">Gazze</string>
     <string name="bat">Pipistrello</string>
     <string name="jay">Ghiandaia</string>
     <string name="starling">Storno</string>
     <string name="alpaca">Alpaca</string>
-    <string name="hyena">Iena</string>
+    <string name="hyena">iena</string>
+    <string name="dragon">Drago</string>
+    <string name="unicorn">Unicorno</string>
+    <string name="pokemon">Pokemon</string>
+    <string name="buckbeak">Fierobecco</string>
+    <string name="dinosaur">Dinosauro</string>
+    <string name="pegasus">Pegasus</string>
+    <string name="centaur">Centauro</string>
+    <string name="phoenix">Phoenix</string>
+    <string name="waternymph">Sirena</string>
+    <string name="griffon">Griffon</string>
 </resources>

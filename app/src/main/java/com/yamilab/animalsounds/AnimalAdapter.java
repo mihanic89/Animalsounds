@@ -115,7 +115,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
 
         //GlideApp
         //        .with(context)
-        if (animal.isGIF()& Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
+        if (animal.isGIF() & Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
 
             glideRequests
                     .load(mStorageRef.child(animal.getGifHref()))
@@ -126,7 +126,8 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
                     .fitCenter()
                     // .thumbnail()
                     .error(animal.getImageSmall())
-                    .placeholder(new ColorDrawable(context.getResources().getColor(R.color.colorBackground)))
+                    .placeholder(animal.getImageSmall())
+                    //.placeholder(new ColorDrawable(context.getResources().getColor(R.color.colorBackground)))
                     //.placeholder(R.mipmap.placeholder)
                     .transition(withCrossFade(1000))
                     .into(holder.getImageView());

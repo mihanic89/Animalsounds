@@ -14,16 +14,21 @@
     <string name="bigimagedesc">Durch das Drücken des großen Bildes wird der Ton wieder verloren</string>
     <string name="clicktext">Klicken Sie auf den Text</string>
 
-<string name="fromdottodot">Wir zeichnen nach den Punkten</string>
-<string name="draw">Das Zeichnen</string>
-<string name="lullaby">Wiegen-</string>
-<string name="recipe">Die Schreibvorlagen für die Kinder</string>
-<string name="rebuses">Die Rebusse</string>
-<string name="recipeabc">Die Schreibvorlagen des Buchstabens und der Zahl</string>
-<string name="phrasebook">Der Sprachführer für die Kinder und die Erwachsenen</string>
+
+
+
+    <string name="fromdottodot">Wir zeichnen nach den Punkten</string>
+    <string name="draw">Das Zeichnen</string>
+    <string name="lullaby">Wiegen-</string>
+    <string name="recipe">Die Schreibvorlagen für die Kinder</string>
+    <string name="rebuses">Die Rebusse</string>
+    <string name="recipeabc">Die Schreibvorlagen des Buchstabens und der Zahl</string>
+    <string name="phrasebook">Der Sprachführer für die Kinder und die Erwachsenen</string>
+
+
 
     <string name="ants">Ameise</string>
-    <string name="bear">Meister Petz</string>
+    <string name="bear">Bär</string>
     <string name="bees">Bienenvolk</string>
     <string name="bumblebee">Hummel</string>
     <string name="butterfly">Schmetterling</string>
@@ -39,7 +44,7 @@
     <string name="cuckoo">Kuckuck</string>
     <string name="chipmunk">Burunduk</string>
     <string name="dog">Hund</string>
-    <string name="dolphin">Delphinus</string>
+    <string name="dolphin">Delphin</string>
     <string name="donkey">Esel</string>
     <string name="dove">Taube</string>
     <string name="dragonfly">Libelle</string>
@@ -92,7 +97,7 @@
     <string name="turkey">Pute</string>
     <string name="walrus">Walroß</string>
     <string name="whale">Wal</string>
-    <string name="wolf">Isegrim</string>
+    <string name="wolf">Wolf</string>
     <string name="woodpecker">Specht</string>
     <string name="zebra">Zebra</string>
     <string name="badger">Dachs</string>
@@ -125,4 +130,14 @@
     <string name="starling">Star</string>
     <string name="alpaca">Alpaka</string>
     <string name="hyena">Hyäne</string>
+    <string name="dragon">Drachen</string>
+    <string name="unicorn">Einhorn</string>
+    <string name="pokemon">Pokemon</string>
+    <string name="buckbeak">Buckschnabel</string>
+    <string name="dinosaur">Dinosaurier</string>
+    <string name="pegasus">Pegasus</string>
+    <string name="centaur">Centaur</string>
+    <string name="phoenix">Phoenix</string>
+    <string name="waternymph">Meerjungfrau</string>
+    <string name="griffon">Griffon</string>
 </resources>

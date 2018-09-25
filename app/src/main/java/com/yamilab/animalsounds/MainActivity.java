@@ -434,11 +434,28 @@ public class MainActivity extends AppCompatActivity implements TTSListener{
         if (locale.equals("uk")){
             language="uk";
         }
-        if (locale.equals("be")){
-            language="be";
+
+        if (locale.equals("it")){
+            language="it";
         }
+        if (locale.equals("es")){
+            language="es";
+        }
+
+        if (locale.equals("fr")){
+            language="fr";
+        }
+        if (locale.equals("de")){
+            language="de";
+        }
+
         if (locale.equals("pt")){
             language="pt";
+        }
+
+        /*
+        if (locale.equals("be")){
+            language="be";
         }
         if (locale.equals("hi")){
             language="hi";
@@ -446,15 +463,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener{
         if (locale.equals("pl")){
             language="pl";
         }
-        if (locale.equals("it")){
-            language="it";
-        }
-        if (locale.equals("es")){
-            language="es";
-        }
-        if (locale.equals("pt")){
-            language="pt";
-        }
+
+
         if (locale.equals("zh")){
             language="zh";
         }
@@ -464,16 +474,15 @@ public class MainActivity extends AppCompatActivity implements TTSListener{
         if (locale.equals("ko")){
             language="ko";
         }
-        if (locale.equals("fr")){
-            language="de";
-        }
+
+
         if (locale.equals("tr")){
             language="tr";
         }
         if (locale.equals("ja")){
             language="ja";
         }
-
+        */
 
     }
 
@@ -595,12 +604,12 @@ public class MainActivity extends AppCompatActivity implements TTSListener{
         fairy = new ArrayList<>();
         fairy.add(new Animal(getString(R.string.dragon), R.mipmap.f0hd,R.raw.f0));
         fairy.add(new Animal(getString(R.string.unicorn), R.mipmap.f1hd,R.raw.f1));
-        fairy.add(new Animal(getString(R.string.pokemon), R.mipmap.f2hd,R.raw.f2));
+        fairy.add(new Animal(getString(R.string.pokemon), R.mipmap.f2hd,R.raw.f2,true, "f2.gif"));
         fairy.add(new Animal(getString(R.string.buckbeak), R.mipmap.f3hd,R.raw.f3));
         fairy.add(new Animal(getString(R.string.dinosaur), R.mipmap.f4hd,R.raw.f4));
         fairy.add(new Animal(getString(R.string.pegasus), R.mipmap.f5hd,R.raw.f5));
         fairy.add(new Animal(getString(R.string.centaur), R.mipmap.f6hd,R.raw.f6));
-        fairy.add(new Animal(getString(R.string.phoenix), R.mipmap.f7hd,R.raw.f7));
+        fairy.add(new Animal(getString(R.string.phoenix), R.mipmap.f7hd,R.raw.f7,true, "f7.gif"));
         fairy.add(new Animal(getString(R.string.waternymph), R.mipmap.f8hd,R.raw.f8));
         fairy.add(new Animal(getString(R.string.griffon), R.mipmap.f9hd,R.raw.f9));
 

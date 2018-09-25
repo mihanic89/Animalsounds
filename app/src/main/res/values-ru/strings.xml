@@ -123,13 +123,13 @@
     <string name="dragon"> Дракон </string>
     <string name="unicorn"> Единорог </string>
     <string name="pokemon"> Покемон </string>
-    <string name="buckbeak"> Клювокрал </string>
+    <string name="buckbeak"> Клювокрыл </string>
     <string name="dinosaur"> Динозавр </string>
     <string name="pegasus"> Пегас </string>
     <string name="centaur"> Кентавр </string>
     <string name="phoenix"> Феникс </string>
     <string name="waternymph"> Русалка </string>
-    <string name="sphinx"> Сфинкс </string>
+
     <string name="griffon"> Гриффон </string>
 
     <string name="fromdottodot">Рисуем по точкам</string>

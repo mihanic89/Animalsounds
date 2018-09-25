@@ -11,10 +11,10 @@ android {
     buildToolsVersion "28.0.2"
     defaultConfig {
         applicationId "com.yamilab.animalsounds"
-        minSdkVersion 20
+        minSdkVersion 19
         targetSdkVersion 28
         versionCode 64
-        versionName "2.5"
+        versionName "3.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

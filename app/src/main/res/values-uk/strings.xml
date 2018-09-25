@@ -13,13 +13,18 @@
     <string name="bigimagedesc">При натисканні на велике зображення звук знову програв</string>
     <string name="clicktext">Натисніть на текст</string>
 
-<string name="fromdottodot">Окуляри в малюнки</string>
-<string name="draw">Фарба.</string>
-<string name="lullaby">Колискова</string>
-<string name="recipe">Для дітей рецепти</string>
-<string name="rebuses">Головоломка</string>
-<string name="recipeabc">Рецепти, букви і цифри</string>
-<string name="phrasebook">Дорослих і дітей</string>
+
+
+
+    <string name="fromdottodot">Окуляри в малюнки</string>
+    <string name="draw">Фарба.</string>
+    <string name="lullaby">Колискова</string>
+    <string name="recipe">Для дітей рецепти</string>
+    <string name="rebuses">Головоломка</string>
+    <string name="recipeabc">Рецепти, букви і цифри</string>
+    <string name="phrasebook">Дорослих і дітей</string>
+
+
 
     <string name="ants">Мурахи</string>
     <string name="bear">Ведмідь</string>
@@ -124,4 +129,14 @@
     <string name="starling">Шпак</string>
     <string name="alpaca">Альпака</string>
     <string name="hyena">Гієна</string>
+    <string name="dragon">Дракон</string>
+    <string name="unicorn">Єдиноріг</string>
+    <string name="pokemon">Покемон</string>
+    <string name="buckbeak">Бакдзьоба</string>
+    <string name="dinosaur">Динозавр</string>
+    <string name="pegasus">Пегас</string>
+    <string name="centaur">Кентавр</string>
+    <string name="phoenix">Фенікс</string>
+    <string name="waternymph">Русалка</string>
+    <string name="griffon">Гріффон</string>
 </resources>
