@@ -107,7 +107,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
                 .inflate(R.layout.animal_item, parent, false);
        //context = parent.getContext();
         if (ttsListener==null){
-            ttsListener = (TTSListener)parent.getContext();}
+            ttsListener = (TTSListener)v.getContext();}
 
         return new ViewHolder(v);
 

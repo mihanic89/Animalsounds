@@ -39,7 +39,7 @@ public class SoundPlay {
 
         try {
             int soundId = sp.load(context, sound, 1);
-            sp.play(soundId, 1, 1, 0, 0, 1);
+            //sp.play(soundId, 1, 1, 0, 0, 1);
         }
         catch (Exception e)
         {
