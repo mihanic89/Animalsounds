@@ -13,7 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.MemoryCategory;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.request.target.Target;
 import com.google.firebase.storage.FirebaseStorage;
@@ -31,7 +33,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
 
     private ArrayList<Animal> mDataSet;
     private final int screenWidth;
-    private Context context;
+    //private Context context;
     private GlideRequests glideRequests;
     private final StorageReference mStorageRef= FirebaseStorage.getInstance().getReferenceFromUrl("gs://animalsounds-a4395.appspot.com/");
 
@@ -42,7 +44,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
         public final ImageView imageView;
 
 
-        public Context context;
+        //public Context context;
 
 
         public ViewHolder(View itemView) {
@@ -61,9 +63,9 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
         public ImageView getImageView() {
             return imageView;
         }
-        public void setContext (Context context) {
-            this.context=context;
-        }
+        //public void setContext (Context context) {
+        //    this.context=context;
+        //}
 
     }
 
@@ -71,7 +73,16 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
 
         this.screenWidth = screenWidth;
         mDataSet = dataSet;
+
         this.glideRequests= glideRequests;
+
+    }
+
+    public AnimalAdapter( ArrayList<Animal> dataSet, int screenWidth) {
+
+        this.screenWidth = screenWidth;
+        mDataSet = dataSet;
+
 
     }
 
@@ -83,9 +94,9 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
         holder.getImageView().setImageBitmap(null);
 
         super.onViewRecycled(holder);
-        // Toast toast = Toast.makeText(context,
+       //  Toast toast = Toast.makeText(context,
         //          "очищен" + holder.getImageView(), Toast.LENGTH_SHORT);
-        //  toast.show();
+       //   toast.show();
     }
 
     @Override
@@ -94,9 +105,9 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
 
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.animal_item, parent, false);
-        context = parent.getContext();
+       //context = parent.getContext();
         if (ttsListener==null){
-            ttsListener = (TTSListener)context;}
+            ttsListener = (TTSListener)parent.getContext();}
 
         return new ViewHolder(v);
 
@@ -107,10 +118,9 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
         return mDataSet.size();
     }
 
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
 
         final Animal animal = mDataSet.get(position);
-
         holder.getTextView().setText(mDataSet.get(position).getName());
 
         //GlideApp
@@ -125,6 +135,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
             glideRequests
                     .load(mStorageRef.child(animal.getGifHref()))
                     .priority(Priority.LOW)
+
                     //.load(internetUrl)
                     //.skipMemoryCache(true)
                     .override((int) screenWidth)
@@ -151,7 +162,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
                         .fitCenter()
                         // .thumbnail()
                         .error(R.mipmap.ic_launcher)
-                        .placeholder(new ColorDrawable(context.getResources().getColor(R.color.colorBackground)))
+                        .placeholder(new ColorDrawable(holder.itemView.getContext().getResources().getColor(R.color.colorBackground)))
                         //.placeholder(R.mipmap.placeholder)
                         .transition(withCrossFade(1000))
                         .into(holder.getImageView());
@@ -166,7 +177,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
             @Override
             public void onClick(View v) {
 
-                SoundPlay.playSP(context, animal.getSound());
+                SoundPlay.playSP(holder.itemView.getContext(), animal.getSound());
             }
         });
 
@@ -189,13 +200,13 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
     }
 
     public void startAnotherActivity (int counter){
-        Intent intent = new Intent(context, TabbedActivity.class);
-        Bundle args = new Bundle();
-        args.putSerializable("key",mDataSet);
-        intent.putExtra("BUNDLE",args);
+     //   Intent intent = new Intent(context, TabbedActivity.class);
+     //   Bundle args = new Bundle();
+     //   args.putSerializable("key",mDataSet);
+     //   intent.putExtra("BUNDLE",args);
 
        // context.startActivity(intent);
 
-        ((MainActivity) context).startActivityForResult(intent,1);
+      //  ((MainActivity) context).startActivityForResult(intent,1);
     }
 }

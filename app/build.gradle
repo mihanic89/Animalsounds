@@ -13,8 +13,8 @@ android {
         applicationId "com.yamilab.animalsounds"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 64
-        versionName "3.0"
+        versionCode 66
+        versionName "3.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -44,5 +44,6 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
     implementation 'com.github.Angtrim:Android-Five-Stars-Library:v3.1'
+
 }
 apply plugin: 'com.google.gms.google-services'

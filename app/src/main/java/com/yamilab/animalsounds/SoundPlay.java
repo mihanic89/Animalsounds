@@ -5,6 +5,7 @@ import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Build;
+import android.widget.Toast;
 
 /**
  * Created by Михаил on 31.03.2017.
@@ -36,9 +37,16 @@ public class SoundPlay {
             sp = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
         }
 
-        int soundId = sp.load(context, sound, 1);
-        sp.play(soundId, 1, 1, 0, 0, 1);
-
+        try {
+            int soundId = sp.load(context, sound, 1);
+            sp.play(soundId, 1, 1, 0, 0, 1);
+        }
+        catch (Exception e)
+        {
+            Toast toast = Toast.makeText(context,
+                    "error", Toast.LENGTH_SHORT);
+            toast.show();
+        }
 //
         sp.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener()
         {

@@ -32,6 +32,7 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.MemoryCategory;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.ads.mediation.admob.AdMobAdapter;
@@ -42,6 +43,7 @@ import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -63,7 +65,6 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
-    int[] resID={R.drawable.tab_home,R.drawable.tab_wild,R.drawable.tab_birds,R.drawable.tab_aqua,R.drawable.tab_insects,R.drawable.tab_fairy};
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -106,8 +107,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
         makeLanguageList(Locale.getDefault().getLanguage());
 
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        MobileAds.initialize(getApplicationContext(), "ca-app-pub-2888343178529026~2046736590");
+
         //  Declare a new thread to do a preference check
         Thread t = new Thread(new Runnable() {
             @Override
@@ -146,22 +146,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
         setContentView(R.layout.activity_main);
 
-        GlideApp.with(this)
-                // .asDrawable()
-                // .load(mStorageRef.child(mDataSet.get(position).getImage()))
-                .load(R.drawable.background)
-               // .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                .priority(Priority.LOW)
-                //.load(internetUrl)
-                //.skipMemoryCache(true)
-                .override((int)screenWidth/3, (int) screenHeight/3)
-                .fitCenter()
-                // .thumbnail()
-                //.error(R.mipmap.ic_launcher)
-                .placeholder(new ColorDrawable(getResources().getColor(R.color.colorBackground)))
-                //.placeholder(R.mipmap.placeholder)
-                .transition(withCrossFade(1000))
-                .into((ImageView) findViewById(R.id.imageViewBackground));
+
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -175,10 +160,19 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
         mViewPager = findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        //mViewPager.setOffscreenPageLimit(1);
 
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
+
+        int[] resID={
+                R.drawable.tab_home,
+                R.drawable.tab_wild,
+                R.drawable.tab_birds,
+                R.drawable.tab_aqua,
+                R.drawable.tab_insects,
+                R.drawable.tab_fairy};
         tabLayout.getTabAt(0).setText("Ads");
         for (int i = 1; i < tabLayout.getTabCount(); i++) {
             tabLayout.getTabAt(i).setIcon(resID[i-1]);
@@ -195,20 +189,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
 
         // Create the InterstitialAd and set the adUnitId.
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-2888343178529026/6970013790");
-        loadInterstitial();
-        mInterstitialAd.setAdListener(new AdListener() {
-            @Override
-            public void onAdClosed() {
 
-            }
-
-            @Override
-            public void onAdLoaded(){
-               // showInterstitial();
-            }
-        });
 
 
         try {
@@ -218,15 +199,52 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
         };
 
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        MobileAds.initialize(getApplicationContext(), "ca-app-pub-2888343178529026~2046736590");
+
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder()
                 // .addNetworkExtrasBundle(AdMobAdapter.class, extrasAdview)
                 // .addNetworkExtrasBundle(AdMobAdapter.class, extras)
                 //.tagForChildDirectedTreatment(true)
-                .addTestDevice("A4203BC89A24BEEC45D1111F16D2F0A3")
+                //.addTestDevice("A4203BC89A24BEEC45D1111F16D2F0A3")
                 //.addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
                 .build();
         mAdView.loadAd(adRequest);
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-2888343178529026/6970013790");
+
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+
+            }
+
+            @Override
+            public void onAdLoaded(){
+                // showInterstitial();
+            }
+        });
+
+        GlideApp.with(this)
+                // .asDrawable()
+                // .load(mStorageRef.child(mDataSet.get(position).getImage()))
+                .load(R.drawable.background)
+                // .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                .priority(Priority.LOW)
+                //.load(internetUrl)
+                //.skipMemoryCache(true)
+                .override((int)screenWidth/3, (int) screenHeight/3)
+                .fitCenter()
+                // .thumbnail()
+                //.error(R.mipmap.ic_launcher)
+                .placeholder(new ColorDrawable(getResources().getColor(R.color.colorBackground)))
+                //.placeholder(R.mipmap.placeholder)
+                .transition(withCrossFade(1000))
+                .into((ImageView) findViewById(R.id.imageViewBackground));
+
+        loadInterstitial();
     }
 
 
@@ -237,7 +255,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         if (!mInterstitialAd.isLoading() && !mInterstitialAd.isLoaded()) {
             AdRequest adRequest = new AdRequest.Builder()
                     //.tagForChildDirectedTreatment(true)
-                   // .addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
+                    .addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
                     .build();
             mInterstitialAd.loadAd(adRequest);
         }
@@ -290,19 +308,21 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
 
 
+    public static class ImageGridFragment extends Fragment {
 
 
-    public static class ImageGridFragment extends Fragment{
         RecyclerView recyclerView;
         StaggeredGridLayoutManager staggeredGridLayoutManager;
         AnimalAdapter animalAdapter;
         GlideRequests glideRequests;
 
-        public ImageGridFragment(){
+        public ImageGridFragment() {
 
         }
 
-        public static ImageGridFragment newInstance (ArrayList array, int screenWidth) {
+        public static  ImageGridFragment newInstance(ArrayList array, int screenWidth) {
+
+
             ImageGridFragment fragment = new ImageGridFragment();
             Bundle args = new Bundle();
             args.putSerializable("key", array);
@@ -311,44 +331,85 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
             return fragment;
         }
 
+
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             // TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            // textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            glideRequests=GlideApp.with(rootView.getContext());
+            // textView.setText(getStrng(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+            //glideRequests = GlideApp.with(this);
+            glideRequests = GlideApp.with(rootView.getContext());
+            //glideRequests=GlideApp.with(getActivity().getApplicationContext());
             int spanCount = 2;
 
             int screenSize = getResources().getConfiguration().screenLayout &
                     Configuration.SCREENLAYOUT_SIZE_MASK;
 
-            if (screenSize>=Configuration.SCREENLAYOUT_SIZE_LARGE) spanCount=3;
+            if (screenSize >= Configuration.SCREENLAYOUT_SIZE_LARGE) spanCount = 3;
 
             recyclerView = rootView.findViewById(R.id.recyclerView);
 
             staggeredGridLayoutManager = new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL);
             recyclerView.setLayoutManager(staggeredGridLayoutManager);
 
-            animalAdapter = new AnimalAdapter((ArrayList<Animal>)getArguments().getSerializable("key"),
-                    (int) getArguments().getInt("width")/(spanCount+1),
-                    glideRequests);
+            animalAdapter = new AnimalAdapter((ArrayList<Animal>) getArguments().getSerializable("key"),
+                    (int) getArguments().getInt("width") / (spanCount + 1)
+            ,glideRequests);
 
             recyclerView.setAdapter(animalAdapter);
 
 
-            recyclerView.getRecycledViewPool().setMaxRecycledViews(0,spanCount*3);
+            recyclerView.getRecycledViewPool().setMaxRecycledViews(0, spanCount * 3);
             recyclerView.setItemViewCacheSize(0);
 
             return rootView;
         }
     }
 
+
+
+
+        /*
+        @Override
+        public void onStart() {
+            Toast toast = Toast.makeText(getActivity().getApplicationContext(),
+                    "onStart", Toast.LENGTH_SHORT);
+            toast.show();
+            super.onStart();
+        }
+
+        @Override
+        public void onPause() {
+            Toast toast = Toast.makeText(getActivity().getApplicationContext(),
+                    "onStart", Toast.LENGTH_SHORT);
+            toast.show();
+            super.onPause();
+        }
+
+        @Override
+        public void onStop() {
+            Toast toast = Toast.makeText(getActivity().getApplicationContext(),
+                    "onStart", Toast.LENGTH_SHORT);
+            toast.show();
+            super.onStop();
+        }
+
+        @Override
+        public void onDestroy() {
+            Toast toast = Toast.makeText(getActivity().getApplicationContext(),
+                    "onStart", Toast.LENGTH_SHORT);
+            toast.show();
+            super.onDestroy();
+        }
+        */
+
+
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
-    public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
+    public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -372,16 +433,16 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
                 case 1:
 
-                    return ImageGridFragment.newInstance(home,screenWidth);
+                    return ImageGridFragment.newInstance( home,screenWidth);
 
                 case 2:
-                    return ImageGridFragment.newInstance(wild,screenWidth);
+                    return ImageGridFragment.newInstance( wild,screenWidth);
                 case 3:
-                    return ImageGridFragment.newInstance(birds,screenWidth);
+                    return ImageGridFragment.newInstance( birds,screenWidth);
                 case 4:
-                    return ImageGridFragment.newInstance(aqua,screenWidth);
+                    return ImageGridFragment.newInstance( aqua,screenWidth);
                 case 5:
-                    return ImageGridFragment.newInstance(insects,screenWidth);
+                    return ImageGridFragment.newInstance( insects,screenWidth);
                 case 6:
                     return ImageGridFragment.newInstance(fairy,screenWidth);
 
@@ -394,6 +455,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
             // Show 3 total pages.
             return 7;
         }
+
+
     }
 
     @Override
@@ -509,10 +572,10 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         wild.add(new Animal(getString(R.string.tiger),R.mipmap.w3hd,R.raw.w3,true,"w3.gif"));
         wild.add(new Animal(getString(R.string.monkey),R.mipmap.w4hd,R.raw.w4,true,"w4.gif"));
         wild.add(new Animal(getString(R.string.elephant),R.mipmap.w5hd,R.raw.w5));
-        wild.add(new Animal(getString(R.string.camel),R.mipmap.w6hd,R.raw.w6));
-        wild.add(new Animal(getString(R.string.zebra),R.mipmap.w7hd,R.raw.w7));
-        wild.add(new Animal(getString(R.string.jackal),R.mipmap.w8hd,R.raw.w8));
-        wild.add(new Animal(getString(R.string.snake),R.mipmap.w9hd,R.raw.w9));
+        wild.add(new Animal(getString(R.string.camel),R.mipmap.w6hd,R.raw.w06));
+        wild.add(new Animal(getString(R.string.zebra),R.mipmap.w7hd,R.raw.w07));
+        wild.add(new Animal(getString(R.string.jackal),R.mipmap.w8hd,R.raw.w08));
+        wild.add(new Animal(getString(R.string.snake),R.mipmap.w9hd,R.raw.w09));
         wild.add(new Animal(getString(R.string.fox),R.mipmap.w10hd,R.raw.w10,true,"w10.gif"));
         wild.add(new Animal(getString(R.string.hare),R.mipmap.w11hd,R.raw.w11));
         wild.add(new Animal(getString(R.string.rhino),R.mipmap.w12hd,R.raw.w12));
@@ -603,9 +666,9 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         birds.add(new Animal(getString(R.string.starling),R.mipmap.b30starling,R.raw.b30));
 
         insects = new ArrayList<>();
-        insects.add(new Animal(getString(R.string.bees),R.mipmap.i0hd,R.raw.i0));
-        insects.add(new Animal(getString(R.string.flies),R.mipmap.i1hd,R.raw.i1));
-        insects.add(new Animal(getString(R.string.mosquito),R.mipmap.i2hd,R.raw.i2,true,"i2.gif"));
+        insects.add(new Animal(getString(R.string.bees),R.mipmap.i0hd,R.raw.i00));
+        insects.add(new Animal(getString(R.string.flies),R.mipmap.i1hd,R.raw.i01));
+        insects.add(new Animal(getString(R.string.mosquito),R.mipmap.i2hd,R.raw.i02,true,"i2.gif"));
         insects.add(new Animal(getString(R.string.grasshopper),R.mipmap.i3hd,R.raw.i3));
         insects.add(new Animal(getString(R.string.bumblebee),R.mipmap.i4hd,R.raw.i4));
         insects.add(new Animal(getString(R.string.cricket),R.mipmap.i5hd,R.raw.i5));
