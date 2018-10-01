@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Debug;
 import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
 import android.support.design.widget.TabLayout;
@@ -26,7 +27,9 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 
+import com.bumptech.glide.MemoryCategory;
 import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -71,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Debug.startMethodTracing("sample");
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
@@ -86,12 +90,9 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                 .showAfter(1);
         */
 
-        Point size = new Point();
-        getWindowManager().getDefaultDisplay().getSize(size);
-        screenWidth = size.x;
-        screenHeight = size.y;
 
-        makeLanguageList(Locale.getDefault().getLanguage());
+
+
 
 
         //  Declare a new thread to do a preference check
@@ -134,6 +135,11 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
 
 
+        Point size = new Point();
+        getWindowManager().getDefaultDisplay().getSize(size);
+        screenWidth = size.x;
+        screenHeight = size.y;
+
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -146,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
         mViewPager = findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-        //mViewPager.setOffscreenPageLimit(1);
+        mViewPager.setOffscreenPageLimit(2);
 
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
@@ -176,7 +182,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
         // Create the InterstitialAd and set the adUnitId.
 
-
+        makeLanguageList(Locale.getDefault().getLanguage());
 
         try {
             new TtsInit().execute();
@@ -185,7 +191,9 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
         };
 
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        //mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
+
         MobileAds.initialize(getApplicationContext(), "ca-app-pub-2888343178529026~2046736590");
 
         mAdView = findViewById(R.id.adView);
@@ -193,8 +201,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                 // .addNetworkExtrasBundle(AdMobAdapter.class, extrasAdview)
                 // .addNetworkExtrasBundle(AdMobAdapter.class, extras)
                 //.tagForChildDirectedTreatment(true)
-                //.addTestDevice("A4203BC89A24BEEC45D1111F16D2F0A3")
-                //.addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
+                .addTestDevice("A4203BC89A24BEEC45D1111F16D2F0A3")
+                .addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
                 .build();
         mAdView.loadAd(adRequest);
 
@@ -213,6 +221,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
             }
         });
 
+
         GlideApp.with(this)
                 // .asDrawable()
                 // .load(mStorageRef.child(mDataSet.get(position).getImage()))
@@ -221,6 +230,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                 .priority(Priority.LOW)
                 //.load(internetUrl)
                 //.skipMemoryCache(true)
+                //.diskCacheStrategy(DiskCacheStrategy.ALL)
                 .override((int)screenWidth/3, (int) screenHeight/3)
                 .fitCenter()
                 // .thumbnail()
@@ -231,6 +241,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                 .into((ImageView) findViewById(R.id.imageViewBackground));
 
         loadInterstitial();
+
+       // Debug.stopMethodTracing();
     }
 
 
@@ -325,7 +337,9 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
             // TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             // textView.setText(getStrng(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             //glideRequests = GlideApp.with(this);
-            glideRequests = GlideApp.with(rootView.getContext());
+            //glideRequests = GlideApp.with(rootView.getContext());
+            glideRequests = GlideApp.with((ImageGridFragment)this);
+            GlideApp.get(rootView.getContext()).setMemoryCategory(MemoryCategory.LOW);
             //glideRequests=GlideApp.with(getActivity().getApplicationContext());
             int spanCount = 2;
 

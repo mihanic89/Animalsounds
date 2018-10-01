@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.MemoryCategory;
 import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.Target;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -34,7 +35,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
     private ArrayList<Animal> mDataSet;
     private final int screenWidth;
     //private Context context;
-    private GlideRequests glideRequests;
+    private final GlideRequests glideRequests;
     private final StorageReference mStorageRef= FirebaseStorage.getInstance().getReferenceFromUrl("gs://animalsounds-a4395.appspot.com/");
 
     private  TTSListener ttsListener;
@@ -78,21 +79,15 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
 
     }
 
-    public AnimalAdapter( ArrayList<Animal> dataSet, int screenWidth) {
 
-        this.screenWidth = screenWidth;
-        mDataSet = dataSet;
-
-
-    }
 
     @Override
     public void onViewRecycled (ViewHolder holder){
 
-
-        glideRequests.clear(holder.getImageView());
         holder.getImageView().setImageBitmap(null);
-
+        glideRequests.clear(holder.getImageView());
+        holder.getImageView().setOnClickListener(null);
+        holder.getTextView().setOnClickListener(null);
         super.onViewRecycled(holder);
        //  Toast toast = Toast.makeText(context,
         //          "очищен" + holder.getImageView(), Toast.LENGTH_SHORT);
@@ -107,7 +102,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
                 .inflate(R.layout.animal_item, parent, false);
        //context = parent.getContext();
         if (ttsListener==null){
-            ttsListener = (TTSListener)v.getContext();}
+          ttsListener = (TTSListener)v.getContext();}
 
         return new ViewHolder(v);
 
@@ -126,19 +121,20 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
         //GlideApp
         //        .with(context)
 
-
-
+       // glideRequests.clear(holder.getImageView());
+        //GlideApp.get(holder.itemView.getContext()).setMemoryCategory(MemoryCategory.LOW);
 
 
         if (animal.isGIF() & Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
 
             glideRequests
                     .load(mStorageRef.child(animal.getGifHref()))
-                    .priority(Priority.LOW)
+                    //.priority(Priority.LOW)
 
                     //.load(internetUrl)
-                    //.skipMemoryCache(true)
-                    .override((int) screenWidth)
+                    // .skipMemoryCache(true)
+                   // .diskCacheStrategy(DiskCacheStrategy.ALL)
+                   // .override((int) screenWidth)
                     .fitCenter()
                     // .thumbnail()
                     //.error(animal.getImageSmall())
@@ -155,13 +151,15 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
             else {
                 glideRequests
                         .load(mDataSet.get(position).getImageSmall())
-                        .priority(Priority.LOW)
+                       // .priority(Priority.LOW)
                         //.load(internetUrl)
-                        //.skipMemoryCache(true)
-                        .override((int) screenWidth)
+
+                         //.skipMemoryCache(true)
+                        //.diskCacheStrategy(DiskCacheStrategy.NONE)
+                        //.override((int) screenWidth)
                         .fitCenter()
                         // .thumbnail()
-                        .error(R.mipmap.ic_launcher)
+                        //.error(R.mipmap.ic_launcher)
                         .placeholder(new ColorDrawable(holder.itemView.getContext().getResources().getColor(R.color.colorBackground)))
                         //.placeholder(R.mipmap.placeholder)
                         .transition(withCrossFade(1000))
@@ -190,6 +188,8 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
             }
         });
 
+
+        /*
         holder.getImageView().setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -197,6 +197,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
                 return true;
             }
         });
+        */
     }
 
     public void startAnotherActivity (int counter){
