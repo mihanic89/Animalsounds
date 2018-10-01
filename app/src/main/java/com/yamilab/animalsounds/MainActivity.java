@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
         mViewPager = findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-        mViewPager.setOffscreenPageLimit(2);
+        mViewPager.setOffscreenPageLimit(1);
 
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
@@ -338,8 +338,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
             // textView.setText(getStrng(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             //glideRequests = GlideApp.with(this);
             //glideRequests = GlideApp.with(rootView.getContext());
-            glideRequests = GlideApp.with((ImageGridFragment)this);
-            GlideApp.get(rootView.getContext()).setMemoryCategory(MemoryCategory.LOW);
+            //glideRequests = GlideApp.with((ImageGridFragment)this);
+            //GlideApp.get(rootView.getContext()).setMemoryCategory(MemoryCategory.LOW);
             //glideRequests=GlideApp.with(getActivity().getApplicationContext());
             int spanCount = 2;
 
@@ -355,7 +355,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
             animalAdapter = new AnimalAdapter((ArrayList<Animal>) getArguments().getSerializable("key"),
                     (int) getArguments().getInt("width") / (spanCount + 1)
-            ,glideRequests);
+            //,glideRequests
+            );
 
             recyclerView.setAdapter(animalAdapter);
 
@@ -419,6 +420,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
+
             adCount++;
             if (adCount>5 && showInterstitialAd){
                 showInterstitial();

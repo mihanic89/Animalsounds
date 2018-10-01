@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.MemoryCategory;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -35,7 +36,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
     private ArrayList<Animal> mDataSet;
     private final int screenWidth;
     //private Context context;
-    private final GlideRequests glideRequests;
+    //private final GlideRequests glideRequests;
     private final StorageReference mStorageRef= FirebaseStorage.getInstance().getReferenceFromUrl("gs://animalsounds-a4395.appspot.com/");
 
     private  TTSListener ttsListener;
@@ -75,17 +76,24 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
         this.screenWidth = screenWidth;
         mDataSet = dataSet;
 
-        this.glideRequests= glideRequests;
+        //this.glideRequests= glideRequests;
 
     }
 
+    public AnimalAdapter( ArrayList<Animal> dataSet, int screenWidth) {
 
+        this.screenWidth = screenWidth;
+        mDataSet = dataSet;
+
+        //this.glideRequests= glideRequests;
+
+    }
 
     @Override
     public void onViewRecycled (ViewHolder holder){
 
         holder.getImageView().setImageBitmap(null);
-        glideRequests.clear(holder.getImageView());
+        GlideApp.with(holder.getImageView().getContext()).clear(holder.getImageView());
         holder.getImageView().setOnClickListener(null);
         holder.getTextView().setOnClickListener(null);
         super.onViewRecycled(holder);
@@ -127,7 +135,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
 
         if (animal.isGIF() & Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
 
-            glideRequests
+            GlideApp.with(holder.getImageView().getContext())
                     .load(mStorageRef.child(animal.getGifHref()))
                     //.priority(Priority.LOW)
 
@@ -149,13 +157,13 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
 
 
             else {
-                glideRequests
+            GlideApp.with(holder.getImageView().getContext())
                         .load(mDataSet.get(position).getImageSmall())
                        // .priority(Priority.LOW)
                         //.load(internetUrl)
 
-                         //.skipMemoryCache(true)
-                        //.diskCacheStrategy(DiskCacheStrategy.NONE)
+                         .skipMemoryCache(true)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
                         //.override((int) screenWidth)
                         .fitCenter()
                         // .thumbnail()
