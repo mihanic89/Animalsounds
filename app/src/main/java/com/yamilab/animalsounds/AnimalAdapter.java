@@ -26,6 +26,7 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
+import static java.security.AccessController.getContext;
 
 /**
  * Created by Misha on 25.02.2018.
@@ -39,11 +40,11 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
     //private final GlideRequests glideRequests;
     private final StorageReference mStorageRef= FirebaseStorage.getInstance().getReferenceFromUrl("gs://animalsounds-a4395.appspot.com/");
 
-    private  TTSListener ttsListener;
+    private TTSListener ttsListener;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView textView;
-        public final ImageView imageView;
+        private  TextView textView;
+        public ImageView imageView;
 
 
         //public Context context;
@@ -77,6 +78,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
         mDataSet = dataSet;
 
         //this.glideRequests= glideRequests;
+        //glideRequests.
 
     }
 
@@ -85,7 +87,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
         this.screenWidth = screenWidth;
         mDataSet = dataSet;
 
-        //this.glideRequests= glideRequests;
+       // glideRequests= null;
 
     }
 
@@ -93,9 +95,11 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
     public void onViewRecycled (ViewHolder holder){
 
         holder.getImageView().setImageBitmap(null);
+        holder.getTextView().setText(null);
         GlideApp.with(holder.getImageView().getContext()).clear(holder.getImageView());
         holder.getImageView().setOnClickListener(null);
         holder.getTextView().setOnClickListener(null);
+
         super.onViewRecycled(holder);
        //  Toast toast = Toast.makeText(context,
         //          "очищен" + holder.getImageView(), Toast.LENGTH_SHORT);
@@ -109,8 +113,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.animal_item, parent, false);
        //context = parent.getContext();
-        if (ttsListener==null){
-          ttsListener = (TTSListener)v.getContext();}
+
 
         return new ViewHolder(v);
 
@@ -122,6 +125,9 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
     }
 
     public void onBindViewHolder(final ViewHolder holder, final int position) {
+
+        if (ttsListener==null){
+            ttsListener = (TTSListener)holder.getImageView().getContext();}
 
         final Animal animal = mDataSet.get(position);
         holder.getTextView().setText(mDataSet.get(position).getName());
@@ -136,12 +142,14 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
         if (animal.isGIF() & Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
 
             GlideApp.with(holder.getImageView().getContext())
+          //  glideRequests
+
                     .load(mStorageRef.child(animal.getGifHref()))
-                    //.priority(Priority.LOW)
+                    .priority(Priority.LOW)
 
                     //.load(internetUrl)
-                    // .skipMemoryCache(true)
-                   // .diskCacheStrategy(DiskCacheStrategy.ALL)
+                     .skipMemoryCache(true)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                    // .override((int) screenWidth)
                     .fitCenter()
                     // .thumbnail()
@@ -157,9 +165,17 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
 
 
             else {
-            GlideApp.with(holder.getImageView().getContext())
+
+                /*
+              holder.getImageView().setImageDrawable(holder.getImageView().
+                      getContext().
+                      getResources().
+                      getDrawable(mDataSet.get(position).getImageSmall()));
+              */
+               GlideApp.with(holder.getImageView().getContext())
+            //glideRequests
                         .load(mDataSet.get(position).getImageSmall())
-                       // .priority(Priority.LOW)
+                        .priority(Priority.LOW)
                         //.load(internetUrl)
 
                          .skipMemoryCache(true)
@@ -172,6 +188,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
                         //.placeholder(R.mipmap.placeholder)
                         .transition(withCrossFade(1000))
                         .into(holder.getImageView());
+
             }
 
 
