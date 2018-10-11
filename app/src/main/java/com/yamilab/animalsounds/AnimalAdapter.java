@@ -91,6 +91,17 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
 
     }
 
+    public AnimalAdapter( ArrayList<Animal> dataSet, int screenWidth, Context context) {
+
+        this.screenWidth = screenWidth;
+        mDataSet = dataSet;
+
+        if (ttsListener==null){
+            ttsListener = (TTSListener)context;}
+        // glideRequests= null;
+
+    }
+
     @Override
     public void onViewRecycled (ViewHolder holder){
 
@@ -126,8 +137,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
 
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
-        if (ttsListener==null){
-            ttsListener = (TTSListener)holder.getImageView().getContext();}
+
 
         final Animal animal = mDataSet.get(position);
         holder.getTextView().setText(mDataSet.get(position).getName());

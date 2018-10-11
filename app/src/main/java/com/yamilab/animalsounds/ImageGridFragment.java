@@ -71,6 +71,7 @@ public class ImageGridFragment extends Fragment {
 
         animalAdapter = new AnimalAdapter((ArrayList<Animal>) getArguments().getSerializable("key"),
                 (int) getArguments().getInt("width") / (spanCount + 1)
+                ,rootView.getContext()
         //        ,  glideRequests
         );
 
