@@ -38,7 +38,8 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
     private final int screenWidth;
     //private Context context;
     //private final GlideRequests glideRequests;
-    private final StorageReference mStorageRef= FirebaseStorage.getInstance().getReferenceFromUrl("gs://animalsounds-a4395.appspot.com/");
+    private final StorageReference
+            mStorageRef= FirebaseStorage.getInstance().getReferenceFromUrl("gs://animalsounds-a4395.appspot.com/");
 
     private TTSListener ttsListener;
 
@@ -151,27 +152,36 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
 
         if (animal.isGIF() & Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
 
-            GlideApp.with(holder.getImageView().getContext())
-          //  glideRequests
+            try {
+                GlideApp.with(holder.getImageView().getContext())
+                        //  glideRequests
 
-                    .load(mStorageRef.child(animal.getGifHref()))
-                    .priority(Priority.LOW)
+                        .load(mStorageRef.child(animal.getGifHref()))
+                        .priority(Priority.LOW)
 
-                    //.load(internetUrl)
-                     .skipMemoryCache(true)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                   // .override((int) screenWidth)
-                    .fitCenter()
-                    // .thumbnail()
-                    //.error(animal.getImageSmall())
-                    // .placeholder(new ColorDrawable(context.getResources().getColor(R.color.colorBackground)))
-                    .placeholder(animal.getImageSmall())
-                    //.placeholder(new ColorDrawable(context.getResources().getColor(R.color.colorBackground)))
-                    //.placeholder(R.mipmap.placeholder)
+                        //.load(internetUrl)
+                        .skipMemoryCache(true)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        // .override((int) screenWidth)
+                        .fitCenter()
+                        // .thumbnail()
+                        //.error(animal.getImageSmall())
+                        // .placeholder(new ColorDrawable(context.getResources().getColor(R.color.colorBackground)))
+                        .placeholder(animal.getImageSmall())
+                        //.placeholder(new ColorDrawable(context.getResources().getColor(R.color.colorBackground)))
+                        //.placeholder(R.mipmap.placeholder)
 
-                    //.transition(withCrossFade(1000))
-                    .into(holder.getImageView());
+                        //.transition(withCrossFade(1000))
+                        .into(holder.getImageView());
+            }
+            catch (Exception e){
+                holder.getImageView().setImageDrawable(holder.getImageView().
+                        getContext().
+                        getResources().
+                        getDrawable(mDataSet.get(position).getImageSmall()));
+            }
         }
+
 
 
             else {
@@ -182,6 +192,8 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
                       getResources().
                       getDrawable(mDataSet.get(position).getImageSmall()));
               */
+
+            try {
                GlideApp.with(holder.getImageView().getContext())
             //glideRequests
                         .load(mDataSet.get(position).getImageSmall())
@@ -198,6 +210,14 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
                         //.placeholder(R.mipmap.placeholder)
                         .transition(withCrossFade(1000))
                         .into(holder.getImageView());
+
+        }
+            catch (Exception e){
+            holder.getImageView().setImageDrawable(holder.getImageView().
+                    getContext().
+                    getResources().
+                    getDrawable(mDataSet.get(position).getImageSmall()));
+        }
 
             }
 

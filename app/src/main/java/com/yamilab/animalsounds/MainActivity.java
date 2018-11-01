@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         // Start the thread
         t.start();
 
-        //mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         setContentView(R.layout.activity_main);
 
@@ -195,8 +195,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                 // .addNetworkExtrasBundle(AdMobAdapter.class, extrasAdview)
                 // .addNetworkExtrasBundle(AdMobAdapter.class, extras)
                 //.tagForChildDirectedTreatment(true)
-                .addTestDevice("A4203BC89A24BEEC45D1111F16D2F0A3")
-                .addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
+                //.addTestDevice("A4203BC89A24BEEC45D1111F16D2F0A3")
+                //.addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
                 .build();
         mAdView.loadAd(adRequest);
 
