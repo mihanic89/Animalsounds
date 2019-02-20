@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     private String language="en";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         //Debug.startMethodTracing("sample");
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -195,7 +196,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                 // .addNetworkExtrasBundle(AdMobAdapter.class, extrasAdview)
                 // .addNetworkExtrasBundle(AdMobAdapter.class, extras)
                 //.tagForChildDirectedTreatment(true)
-                //.addTestDevice("A4203BC89A24BEEC45D1111F16D2F0A3")
+                .addTestDevice("A4203BC89A24BEEC45D1111F16D2F0A3")
                 //.addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
                 .build();
         mAdView.loadAd(adRequest);
