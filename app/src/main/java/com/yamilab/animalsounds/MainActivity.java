@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         tabLayout.getTabAt(1).setText("Ads");
 
         for (int i = 2; i < tabLayout.getTabCount(); i++) {
-            tabLayout.getTabAt(i).setIcon(resID[i-1]);
+            tabLayout.getTabAt(i).setIcon(resID[i-2]);
         }
 
         TabLayout.Tab tab = tabLayout.getTabAt(2);
@@ -400,7 +400,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 7;
+            return 8;
         }
 
 
