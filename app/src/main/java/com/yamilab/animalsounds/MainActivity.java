@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
     private TextToSpeech tts;
 
-    private ArrayList<Animal> wild, home, aqua, birds, insects, fairy;
+    private ArrayList<Animal> wild, home, aqua, birds, insects, fairy,animals;
     private int screenWidth=800,screenHeight=1280;
     private String language="en";
 
@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-
+        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
 
         int[] resID={
                 R.drawable.tab_home,
@@ -157,14 +157,14 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                 R.drawable.tab_insects,
                 R.drawable.tab_fairy};
 
+        tabLayout.getTabAt(0).setIcon( R.drawable.tab_game);
+        tabLayout.getTabAt(1).setText("Ads");
 
-        tabLayout.getTabAt(0).setText("Ads");
-
-        for (int i = 1; i < tabLayout.getTabCount(); i++) {
+        for (int i = 2; i < tabLayout.getTabCount(); i++) {
             tabLayout.getTabAt(i).setIcon(resID[i-1]);
         }
 
-        TabLayout.Tab tab = tabLayout.getTabAt(1);
+        TabLayout.Tab tab = tabLayout.getTabAt(2);
         tab.select();
 
 
@@ -365,26 +365,31 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
                 case 0:
 
-                    return new ImageGridFragmentAds();
+                    return ImageGridFragmentGame.newInstance(animals,screenWidth);
 
 
                 case 1:
 
-                    return ImageGridFragment.newInstance( home,screenWidth);
+                    return new ImageGridFragmentAds();
+
 
                 case 2:
 
-                    return ImageGridFragment.newInstance( wild,screenWidth);
+                    return ImageGridFragment.newInstance( home,screenWidth);
+
                 case 3:
 
-                    return ImageGridFragment.newInstance( birds,screenWidth);
+                    return ImageGridFragment.newInstance( wild,screenWidth);
                 case 4:
 
-                    return ImageGridFragment.newInstance( aqua,screenWidth);
+                    return ImageGridFragment.newInstance( birds,screenWidth);
                 case 5:
 
-                    return ImageGridFragment.newInstance( insects,screenWidth);
+                    return ImageGridFragment.newInstance( aqua,screenWidth);
                 case 6:
+
+                    return ImageGridFragment.newInstance( insects,screenWidth);
+                case 7:
 
                     return ImageGridFragment.newInstance(fairy,screenWidth);
 
@@ -631,6 +636,15 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         fairy.add(new Animal(getString(R.string.phoenix), R.drawable.f7hd,R.raw.f7,true, "f7.gif"));
         fairy.add(new Animal(getString(R.string.waternymph), R.drawable.f8hd,R.raw.f8));
         fairy.add(new Animal(getString(R.string.griffon), R.drawable.f9hd,R.raw.f9));
+
+
+        animals =new ArrayList<Animal>();
+        animals.addAll(home);
+        animals.addAll(wild);
+        animals.addAll(birds);
+        animals.addAll(aqua);
+        animals.addAll(insects);
+        animals.addAll(fairy);
 
     }
 

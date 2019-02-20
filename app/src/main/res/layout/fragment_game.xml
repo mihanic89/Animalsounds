@@ -1,0 +1,84 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    >
+
+
+    <ImageButton
+        android:id="@+id/imageGame0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:background="@null"/>
+
+    <ImageButton
+        android:id="@+id/imageGame1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:background="@null"
+         />
+
+    <ImageButton
+        android:id="@+id/imageGame2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_above="@+id/buttonSound"
+
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        />
+
+
+    <ImageButton
+        android:id="@+id/imageGame3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_above="@+id/buttonNext"
+        android:layout_alignParentEnd="true"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:id="@+id/buttonSound"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="16dp"
+
+        android:background="@drawable/oval_shape"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/baseline_pets_black_18dp" />
+
+    <ImageButton
+        android:id="@+id/buttonNext"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="16dp"
+
+        android:background="@drawable/oval_shape"
+        android:scaleType="fitCenter"
+        app:srcCompat="@android:drawable/ic_media_next" />
+
+
+
+</RelativeLayout>
