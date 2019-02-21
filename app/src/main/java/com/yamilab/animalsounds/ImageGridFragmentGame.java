@@ -16,9 +16,11 @@ import android.widget.ImageButton;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import static com.yamilab.animalsounds.R.id.buttonNext;
 import static com.yamilab.animalsounds.R.id.buttonSound;
+import static com.yamilab.animalsounds.R.id.imageFull;
 import static com.yamilab.animalsounds.R.id.imageGame0;
 import static com.yamilab.animalsounds.R.id.imageGame1;
 import static com.yamilab.animalsounds.R.id.imageGame2;
@@ -69,6 +71,7 @@ public class ImageGridFragmentGame extends Fragment {
     ImageButton image1;
     ImageButton image2;
     ImageButton image3;
+    ImageButton full;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -101,14 +104,16 @@ public class ImageGridFragmentGame extends Fragment {
         image1= (ImageButton) rootView.findViewById(imageGame1);
         image2= (ImageButton) rootView.findViewById(imageGame2);
         image3= (ImageButton) rootView.findViewById(imageGame3);
+        full = (ImageButton) rootView.findViewById(imageFull);
 
         ImageButton sound = (ImageButton) rootView.findViewById(buttonSound);
         ImageButton next = (ImageButton) rootView.findViewById(buttonNext);
 
         try
         {
-            generateWrong();
-            setImages();
+           // generateWrong();
+            //setImages();
+            newRound();
         }
         catch (Exception e){
 
@@ -156,6 +161,7 @@ public class ImageGridFragmentGame extends Fragment {
             @Override
             public void onClick(View v) {
                 checkAnswer(0);
+
             }
         });
 
@@ -177,6 +183,13 @@ public class ImageGridFragmentGame extends Fragment {
             @Override
             public void onClick(View v) {
                 checkAnswer(3);
+            }
+        });
+
+        full.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                newRound();
             }
         });
 
@@ -205,6 +218,15 @@ public class ImageGridFragmentGame extends Fragment {
     }
 
     private void setImages(){
+
+
+        image0.setVisibility(View.VISIBLE);
+        image1.setVisibility(View.VISIBLE);
+        image2.setVisibility(View.VISIBLE);
+        image3.setVisibility(View.VISIBLE);
+
+
+        full.setVisibility(View.INVISIBLE);
         correctCard = new Random().nextInt(3);
 
         if (correctCard==0){
@@ -239,40 +261,56 @@ public class ImageGridFragmentGame extends Fragment {
     }
 
     private void checkAnswer (int answer){
-        if (answer==correctCard){
 
+
+
+        if (correctCard==answer){
+
+
+            setFull(correctAnswer);
+            setAllInvisible();
+            SoundPlay.playSP(getContext(), R.raw.correct);
+            //delay(500);
+            ttsListener.speak(animals.get(correctAnswer).getName(),animals.get(correctAnswer).getSound());
+
+
+
+            /*
             //звук, название животного, смена карт
             try {
+
+
                 //SoundPlay.playSP(getContext(), R.raw.correct);
                 Thread.sleep(500);     //1000-задержка  на 1000 миллисекунду = 1 секунда
                 ttsListener.speak(animals.get(correctAnswer).getName(),animals.get(correctAnswer).getSound());
-            } catch (InterruptedException e) {
+           } catch (InterruptedException e) {
 
             }
 
             try {
 
-                Thread.sleep(1500);     //1000-задержка  на 1000 миллисекунду = 1 секунда
+                Thread.sleep(3500);     //1000-задержка  на 1000 миллисекунду = 1 секунда
                 newRound();
             } catch (InterruptedException e) {
 
             }
+            */
         }
         else
         {
             //звук ошибки
             SoundPlay.playSP(getContext(), R.raw.error);
             if (answer==0){
-                image0.setImageResource(android.R.color.holo_red_light);
+                image0.setVisibility(View.INVISIBLE);
             }
             if (answer==1){
-                image1.setImageResource(android.R.color.holo_red_light);
+                image1.setVisibility(View.INVISIBLE);
             }
              if (answer==2){
-                image2.setImageResource(android.R.color.holo_red_light);
+                 image2.setVisibility(View.INVISIBLE);
             }
             if (answer==3){
-            image3.setImageResource(android.R.color.holo_red_light);
+                image3.setVisibility(View.INVISIBLE);
         }
 
         }
@@ -285,7 +323,34 @@ public class ImageGridFragmentGame extends Fragment {
         SoundPlay.playSP(getContext(), animals.get(correctAnswer).getSound());
     }
 
+    private void setAllInvisible(){
+        image0.setVisibility(View.INVISIBLE);
+        image1.setVisibility(View.INVISIBLE);
+        image2.setVisibility(View.INVISIBLE);
+        image3.setVisibility(View.INVISIBLE);
+    }
 
+    private void setFull (int num){
+        full.setVisibility(View.VISIBLE);
+        full.setImageResource(animals.get(num).getImageSmall());
+    }
+
+    private void delay (int seconds){
+        try {
+            // Using Thread.sleep() we can add delay in our
+            // application in a millisecond time. For the example
+            // below the program will take a deep breath for one
+            // second before continue to print the next value of
+            // the loop.
+            Thread.sleep(seconds);
+
+            // The Thread.sleep() need to be executed inside a
+            // try-catch block and we need to catch the
+            // InterruptedException.
+        } catch (InterruptedException ie) {
+            ie.printStackTrace();
+        }
+    }
     /**
      * Generates Strings for RecyclerView's adapter. This data would usually come
      * from a local content provider or remote server.
