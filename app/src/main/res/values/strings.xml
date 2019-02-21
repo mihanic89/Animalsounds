@@ -11,6 +11,8 @@
     <string name="longclickdesc">When long clicked, the sound is played and full screen image opens </string>
     <string name="bigimagedesc">When clicked full screen image, the sound is played again</string>
     <string name="clicktextdesc">At click in the text - the name of an animal sounds.</string>
+    <string name="game">Game</string>
+    <string name="gametext">Guess the animals by sound</string>
     <string name="dog"> Dog </string>
     <string name="cat"> Cat </string>
     <string name="pig"> Pig </string>

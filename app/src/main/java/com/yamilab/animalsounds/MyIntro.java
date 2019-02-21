@@ -37,12 +37,12 @@ public class MyIntro extends AppIntro2 {
         addSlide(AppIntroFragment.newInstance(getString(R.string.clicktext),
                 getString(R.string.clicktextdesc),
                 R.mipmap.intro2, Color.parseColor("#009688")));
-       /*
-        addSlide(AppIntroFragment.newInstance(getString(R.string.bigimage),
-                getString(R.string.bigimagedesc),
+
+        addSlide(AppIntroFragment.newInstance(getString(R.string.game),
+                getString(R.string.gametext),
                 R.mipmap.intro3, Color.parseColor("#009688")));
 
-         */
+
         // OPTIONAL METHODS
 
         // SHOW or HIDE the statusbar

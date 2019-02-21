@@ -13,8 +13,8 @@
     <string name="longclickdesc">Am langen Klick wird der Ton verloren, und das große Bild öffnet sich</string>
     <string name="bigimagedesc">Durch das Drücken des großen Bildes wird der Ton wieder verloren</string>
     <string name="clicktext">Klicken Sie auf den Text</string>
-
-
+    <string name="game">Spiel</string>
+    <string name="gametext">Erraten Sie die Tiere durch Klang</string>
 
 
     <string name="fromdottodot">Wir zeichnen nach den Punkten</string>
