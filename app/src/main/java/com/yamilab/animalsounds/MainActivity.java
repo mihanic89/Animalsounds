@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
+    private int firstTab = 2;
+
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -99,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
                 //  If the activity has never started before...
                 if (isFirstStart) {
-
+                    firstTab=0;
                     //  Launch app intro
                     Intent i = new Intent(MainActivity.this, MyIntro.class);
                     startActivity(i);
@@ -164,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
             tabLayout.getTabAt(i).setIcon(resID[i-2]);
         }
 
-        TabLayout.Tab tab = tabLayout.getTabAt(2);
+        TabLayout.Tab tab = tabLayout.getTabAt(firstTab);
         tab.select();
 
 
@@ -196,6 +198,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                 // .addNetworkExtrasBundle(AdMobAdapter.class, extrasAdview)
                 // .addNetworkExtrasBundle(AdMobAdapter.class, extras)
                 //.tagForChildDirectedTreatment(true)
+                .addTestDevice("634EE6DF579E0E01020981609CDA857D")
                 .addTestDevice("A4203BC89A24BEEC45D1111F16D2F0A3")
                 //.addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
                 .build();
@@ -263,29 +266,30 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
 
 
+    public void playSilence (int mseconds){
+
+                tts.playSilentUtterance(mseconds, TextToSpeech.QUEUE_FLUSH, "id2");
+
+
+     }
+
 
 
     @Override
     public void speak(String text,int sound) {
-        final String textapi=text;
-
-
 
 
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-
                 try {
-                    tts.speak(textapi, TextToSpeech.QUEUE_FLUSH, null);
+                    tts.speak(text, TextToSpeech.QUEUE_ADD, null);
                 }
-
                 catch (Exception e){
                    // SoundPlay.playSP(this,sound);
                 }
 
-
             } else {
                 try {
-                    tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
+                    tts.speak(text, TextToSpeech.QUEUE_ADD, null, "id1");
                 }
                 catch (Exception e){
                     //SoundPlay.playSP(this,sound);

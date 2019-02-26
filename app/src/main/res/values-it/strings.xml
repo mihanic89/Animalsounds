@@ -140,4 +140,6 @@
     <string name="phoenix">Phoenix</string>
     <string name="waternymph">Sirena</string>
     <string name="griffon">Griffon</string>
+    <string name="gametext">Indovinate gli animali per suono</string>
+    <string name="game">Gioco</string>
 </resources>

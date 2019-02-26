@@ -20,7 +20,7 @@ android {
         versionCode 66
         versionName "3.0.1"
         multiDexEnabled true
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+       // testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -52,7 +52,7 @@ dependencies {
     implementation ('com.crashlytics.sdk.android:crashlytics:2.9.9@aar') {
         transitive = true;
    }
-    testImplementation 'junit:junit:4.12'
+//    testImplementation 'junit:junit:4.12'
     implementation 'com.github.apl-devs:appintro:v4.2.3'
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'

@@ -92,7 +92,7 @@ public class Animal implements Serializable {
         Display display = wm.getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        int width = size.x %3;
-        return width;
+        //int width = size.x %3;
+        return size.x %3;
     }
 }

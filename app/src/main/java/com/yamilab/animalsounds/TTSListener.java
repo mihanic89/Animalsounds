@@ -6,5 +6,6 @@ package com.yamilab.animalsounds;
 
 interface TTSListener {
     void speak(String text, int sound);
+    void playSilence(int mseconds);
 
 }

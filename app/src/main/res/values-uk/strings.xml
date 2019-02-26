@@ -139,4 +139,6 @@
     <string name="phoenix">Фенікс</string>
     <string name="waternymph">Русалка</string>
     <string name="griffon">Гріффон</string>
+    <string name="game">Гра</string>
+    <string name="gametext">Вгадайте тварин по звуку</string>
 </resources>

@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -73,6 +74,9 @@ public class ImageGridFragmentGame extends Fragment {
     ImageButton image3;
     ImageButton full;
 
+    Button buttonAnswer;
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,7 +91,7 @@ public class ImageGridFragmentGame extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_game, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_game2, container, false);
 
         animals = new ArrayList<Animal>();
 
@@ -105,6 +109,9 @@ public class ImageGridFragmentGame extends Fragment {
         image2= (ImageButton) rootView.findViewById(imageGame2);
         image3= (ImageButton) rootView.findViewById(imageGame3);
         full = (ImageButton) rootView.findViewById(imageFull);
+
+        //textAnswer = (TextView) rootView.findViewById(R.id.textAnswer);
+        buttonAnswer = (Button) rootView.findViewById(R.id.buttonAnswer);
 
         ImageButton sound = (ImageButton) rootView.findViewById(buttonSound);
         ImageButton next = (ImageButton) rootView.findViewById(buttonNext);
@@ -189,7 +196,16 @@ public class ImageGridFragmentGame extends Fragment {
         full.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                newRound();
+                //newRound();
+                generateWrong();
+                setImages();
+            }
+        });
+
+        buttonAnswer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ttsListener.speak(animals.get(correctAnswer).getName(),animals.get(correctAnswer).getSound());
             }
         });
 
@@ -224,6 +240,7 @@ public class ImageGridFragmentGame extends Fragment {
         image1.setVisibility(View.VISIBLE);
         image2.setVisibility(View.VISIBLE);
         image3.setVisibility(View.VISIBLE);
+        buttonAnswer.setVisibility(View.INVISIBLE);
 
 
         full.setVisibility(View.INVISIBLE);
@@ -267,12 +284,17 @@ public class ImageGridFragmentGame extends Fragment {
         if (correctCard==answer){
 
 
-            setFull(correctAnswer);
-            setAllInvisible();
+
+
             SoundPlay.playSP(getContext(), R.raw.correct);
             //delay(500);
-            ttsListener.speak(animals.get(correctAnswer).getName(),animals.get(correctAnswer).getSound());
+            setAllInvisible();
+            setFull(correctAnswer);
+            buttonAnswer.setVisibility(View.VISIBLE);
+            buttonAnswer.setText(animals.get(correctAnswer).getName());
 
+            ttsListener.playSilence(750);
+            ttsListener.speak(animals.get(correctAnswer).getName(),animals.get(correctAnswer).getSound());
 
 
             /*
