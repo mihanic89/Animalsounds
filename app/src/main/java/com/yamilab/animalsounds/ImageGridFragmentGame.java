@@ -118,9 +118,9 @@ public class ImageGridFragmentGame extends Fragment {
 
         try
         {
-           // generateWrong();
-            //setImages();
-            newRound();
+            generateWrong();
+            setImages();
+           // newRound();
         }
         catch (Exception e){
 
@@ -196,9 +196,9 @@ public class ImageGridFragmentGame extends Fragment {
         full.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //newRound();
-                generateWrong();
-                setImages();
+                newRound();
+               // generateWrong();
+               // setImages();
             }
         });
 
