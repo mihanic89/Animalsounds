@@ -13,7 +13,7 @@
     <string name="bigimagedesc">При нажатии на большое изображение звук проигрывается снова</string>
     <string name="clicktextdesc">При клике по тексту - название животного</string>
     <string name="game">Игра</string>
-    <string name="gametext">Угадайте животные по звуку</string>
+    <string name="gametext">Угадайте животное по звуку</string>
 
     <string name="ants">Муравьи</string>
     <string name="bear">Медведь</string>

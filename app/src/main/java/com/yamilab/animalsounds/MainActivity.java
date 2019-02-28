@@ -198,8 +198,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                 // .addNetworkExtrasBundle(AdMobAdapter.class, extrasAdview)
                 // .addNetworkExtrasBundle(AdMobAdapter.class, extras)
                 //.tagForChildDirectedTreatment(true)
-                .addTestDevice("634EE6DF579E0E01020981609CDA857D")
-                .addTestDevice("A4203BC89A24BEEC45D1111F16D2F0A3")
+               // .addTestDevice("634EE6DF579E0E01020981609CDA857D")
+               // .addTestDevice("A4203BC89A24BEEC45D1111F16D2F0A3")
                 //.addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
                 .build();
         mAdView.loadAd(adRequest);
@@ -251,7 +251,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         if (!mInterstitialAd.isLoading() && !mInterstitialAd.isLoaded()) {
             AdRequest adRequest = new AdRequest.Builder()
                     //.tagForChildDirectedTreatment(true)
-                    .addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
+                  //  .addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
                     .build();
             mInterstitialAd.loadAd(adRequest);
         }
@@ -268,9 +268,27 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
     public void playSilence (int mseconds){
 
+
+
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            try {
+            }
+            catch (Exception e){
+                // SoundPlay.playSP(this,sound);
+                tts.playSilence(mseconds,TextToSpeech.QUEUE_FLUSH,null);
+                //tts.playSilentUtterance(mseconds, TextToSpeech.QUEUE_FLUSH, null);
+            }
+
+        } else {
+            try {
                 tts.playSilentUtterance(mseconds, TextToSpeech.QUEUE_FLUSH, "id2");
+            }
+            catch (Exception e){
+                //SoundPlay.playSP(this,sound);
+            }
 
-
+        }
      }
 
 

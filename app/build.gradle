@@ -17,7 +17,7 @@ android {
         applicationId "com.yamilab.animalsounds"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 67
+        versionCode 68
         versionName "3.0.2"
         multiDexEnabled true
        // testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
