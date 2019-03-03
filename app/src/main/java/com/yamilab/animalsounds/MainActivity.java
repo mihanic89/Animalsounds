@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     boolean showInterstitialAd = true;
     boolean notFirstStart = true;
     private FirebaseAnalytics mFirebaseAnalytics;
-    private ImageView imageViewBackground;
+    //private ImageView imageViewBackground;
 
     private TextToSpeech tts;
 
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         //Debug.startMethodTracing("sample");
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        GlideApp.get(this).setMemoryCategory(MemoryCategory.LOW);
+        //GlideApp.get(this).setMemoryCategory(MemoryCategory.LOW);
 
         /*
         FiveStarsDialog fiveStarsDialog = new FiveStarsDialog(this,"contact@yapapa.xyz");
@@ -275,10 +275,12 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             try {
+
+                tts.playSilence(mseconds,TextToSpeech.QUEUE_FLUSH,null);
             }
             catch (Exception e){
                 // SoundPlay.playSP(this,sound);
-                tts.playSilence(mseconds,TextToSpeech.QUEUE_FLUSH,null);
+
                 //tts.playSilentUtterance(mseconds, TextToSpeech.QUEUE_FLUSH, null);
             }
 
@@ -319,9 +321,6 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
 
 
 
