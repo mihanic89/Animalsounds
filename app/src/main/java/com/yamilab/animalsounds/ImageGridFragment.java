@@ -68,7 +68,7 @@ public class ImageGridFragment extends Fragment {
 
         staggeredGridLayoutManager = new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(staggeredGridLayoutManager);
-
+        recyclerView.setHasFixedSize(true);
         animalAdapter = new AnimalAdapter((ArrayList<Animal>) getArguments().getSerializable("key"),
                 (int) getArguments().getInt("width") / (spanCount + 1)
                 ,rootView.getContext()

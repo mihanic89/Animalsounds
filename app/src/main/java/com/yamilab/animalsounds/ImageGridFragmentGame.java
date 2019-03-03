@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -247,34 +248,66 @@ public class ImageGridFragmentGame extends Fragment {
         correctCard = new Random().nextInt(3);
 
         if (correctCard==0){
+            /*
             image0.setImageResource(animals.get(correctAnswer).getImageSmall());
             image1.setImageResource(animals.get(wrong1).getImageSmall());
             image2.setImageResource(animals.get(wrong2).getImageSmall());
             image3.setImageResource(animals.get(wrong3).getImageSmall());
+            */
+            setImageGlide(image0,animals.get(correctAnswer).getImageSmall());
+            setImageGlide(image1,animals.get(wrong1).getImageSmall());
+            setImageGlide(image2,animals.get(wrong2).getImageSmall());
+            setImageGlide(image3,animals.get(wrong3).getImageSmall());
         }
 
         else if (correctCard==1){
+            /*
             image1.setImageResource(animals.get(correctAnswer).getImageSmall());
             image0.setImageResource(animals.get(wrong1).getImageSmall());
             image2.setImageResource(animals.get(wrong2).getImageSmall());
             image3.setImageResource(animals.get(wrong3).getImageSmall());
+            */
+            setImageGlide(image0,animals.get(wrong1).getImageSmall());
+            setImageGlide(image1,animals.get(correctAnswer).getImageSmall());
+            setImageGlide(image2,animals.get(wrong2).getImageSmall());
+            setImageGlide(image3,animals.get(wrong3).getImageSmall());
+
         }
 
         else if (correctCard==2){
+            /*
             image0.setImageResource(animals.get(wrong1).getImageSmall());
             image1.setImageResource(animals.get(wrong2).getImageSmall());
             image2.setImageResource(animals.get(correctAnswer).getImageSmall());
             image3.setImageResource(animals.get(wrong3).getImageSmall());
+             */
+            setImageGlide(image0,animals.get(wrong1).getImageSmall());
+            setImageGlide(image1,animals.get(wrong2).getImageSmall());
+            setImageGlide(image2,animals.get(correctAnswer).getImageSmall());
+            setImageGlide(image3,animals.get(wrong3).getImageSmall());
         }
         else {
+            /*
             image0.setImageResource(animals.get(wrong1).getImageSmall());
             image1.setImageResource(animals.get(wrong2).getImageSmall());
             image2.setImageResource(animals.get(wrong3).getImageSmall());
             image3.setImageResource(animals.get(correctAnswer).getImageSmall());
+             */
+            setImageGlide(image0,animals.get(wrong1).getImageSmall());
+            setImageGlide(image1,animals.get(wrong2).getImageSmall());
+            setImageGlide(image2,animals.get(wrong3).getImageSmall());
+            setImageGlide(image3,animals.get(correctAnswer).getImageSmall());
         }
 
        // SoundPlay.playSP(getContext(), animals.get(correctAnswer).getSound());
 
+    }
+
+    private void setImageGlide (ImageView imageView, int image){
+        GlideApp.with(imageView.getContext())
+                .load(image)
+                .fitCenter()
+                .into(imageView);
     }
 
     private void checkAnswer (int answer){

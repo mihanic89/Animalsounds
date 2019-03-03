@@ -20,6 +20,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Window;
 import android.widget.ImageView;
 
+import com.bumptech.glide.MemoryCategory;
 import com.bumptech.glide.Priority;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -70,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         //Debug.startMethodTracing("sample");
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        GlideApp.get(this).setMemoryCategory(MemoryCategory.LOW);
 
         /*
         FiveStarsDialog fiveStarsDialog = new FiveStarsDialog(this,"contact@yapapa.xyz");
@@ -198,8 +200,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                 // .addNetworkExtrasBundle(AdMobAdapter.class, extrasAdview)
                 // .addNetworkExtrasBundle(AdMobAdapter.class, extras)
                 //.tagForChildDirectedTreatment(true)
-               // .addTestDevice("634EE6DF579E0E01020981609CDA857D")
-               // .addTestDevice("A4203BC89A24BEEC45D1111F16D2F0A3")
+                  .addTestDevice("634EE6DF579E0E01020981609CDA857D")
+                .addTestDevice("A4203BC89A24BEEC45D1111F16D2F0A3")
                 //.addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
                 .build();
         mAdView.loadAd(adRequest);

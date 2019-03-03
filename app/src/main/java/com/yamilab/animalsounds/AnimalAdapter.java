@@ -44,8 +44,8 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
     private TTSListener ttsListener;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private  TextView textView;
-        public ImageView imageView;
+        private final TextView textView;
+        private final ImageView imageView;
 
 
         //public Context context;
@@ -103,21 +103,25 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
 
     }
 
+    /*
     @Override
     public void onViewRecycled (ViewHolder holder){
 
         holder.getImageView().setImageBitmap(null);
+
         holder.getTextView().setText(null);
         GlideApp.with(holder.getImageView().getContext()).clear(holder.getImageView());
         holder.getImageView().setOnClickListener(null);
         holder.getTextView().setOnClickListener(null);
+        /*
+        Toast toast = Toast.makeText(holder.getImageView().getContext(),
+                  "очищен" + holder.getImageView(), Toast.LENGTH_SHORT);
+            toast.show();
 
         super.onViewRecycled(holder);
-       //  Toast toast = Toast.makeText(context,
-        //          "очищен" + holder.getImageView(), Toast.LENGTH_SHORT);
-       //   toast.show();
-    }
 
+    }
+*/
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -202,7 +206,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
 
                          .skipMemoryCache(true)
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
-                        //.override((int) screenWidth)
+                        .override((int) screenWidth, Target.SIZE_ORIGINAL)
                         .fitCenter()
                         // .thumbnail()
                         //.error(R.mipmap.ic_launcher)
