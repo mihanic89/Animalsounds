@@ -49,7 +49,7 @@ public class ImageGridFragment extends Fragment {
 
 
 
-       // glideRequests = GlideApp.with(this);
+        glideRequests = GlideApp.with(this);
         //glideRequests = GlideApp.with(rootView.getContext());
         //glideRequests = GlideApp.with((ImageGridFragment)this);
         //GlideApp.get(rootView.getContext()).setMemoryCategory(MemoryCategory.LOW);
@@ -73,16 +73,16 @@ public class ImageGridFragment extends Fragment {
         animalAdapter = new AnimalAdapter((ArrayList<Animal>) getArguments().getSerializable("key"),
                 (int) getArguments().getInt("width") / (spanCount + 1)
                 ,getActivity()
-                //,this
-        //        ,  glideRequests
+                //,GlideApp.with(this)
+                ,  glideRequests
         );}
         else
 
             animalAdapter = new AnimalAdapter((ArrayList<Animal>) getArguments().getSerializable("key"),
                     (int) getArguments().getInt("width") / (spanCount + 1)
                     ,rootView.getContext()
-                    //,this
-                    //        ,  glideRequests
+                  //  ,GlideApp.with(this)
+                  ,  glideRequests
             );
 
         recyclerView.setAdapter(animalAdapter);

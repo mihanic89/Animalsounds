@@ -304,10 +304,19 @@ public class ImageGridFragmentGame extends Fragment {
     }
 
     private void setImageGlide (ImageView imageView, int image){
-        GlideApp.with(imageView.getContext())
-                .load(image)
-                .fitCenter()
-                .into(imageView);
+        if (this!=null) {
+            GlideApp.with(this)
+                    .load(image)
+                    .fitCenter()
+                    .into(imageView);
+        }
+        else
+        {
+            GlideApp.with(imageView.getContext())
+                    .load(image)
+                    .fitCenter()
+                    .into(imageView);
+        }
     }
 
     private void checkAnswer (int answer){
