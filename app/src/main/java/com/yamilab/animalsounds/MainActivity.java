@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         //Debug.startMethodTracing("sample");
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        //GlideApp.get(this).setMemoryCategory(MemoryCategory.LOW);
+        GlideApp.get(this).setMemoryCategory(MemoryCategory.LOW);
 
         /*
         FiveStarsDialog fiveStarsDialog = new FiveStarsDialog(this,"contact@yapapa.xyz");

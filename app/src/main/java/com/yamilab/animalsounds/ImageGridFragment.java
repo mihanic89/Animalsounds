@@ -69,11 +69,21 @@ public class ImageGridFragment extends Fragment {
         staggeredGridLayoutManager = new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(staggeredGridLayoutManager);
         recyclerView.setHasFixedSize(true);
+        if (getActivity()!=null){
         animalAdapter = new AnimalAdapter((ArrayList<Animal>) getArguments().getSerializable("key"),
                 (int) getArguments().getInt("width") / (spanCount + 1)
-                ,rootView.getContext()
+                ,getActivity()
+                //,this
         //        ,  glideRequests
-        );
+        );}
+        else
+
+            animalAdapter = new AnimalAdapter((ArrayList<Animal>) getArguments().getSerializable("key"),
+                    (int) getArguments().getInt("width") / (spanCount + 1)
+                    ,rootView.getContext()
+                    //,this
+                    //        ,  glideRequests
+            );
 
         recyclerView.setAdapter(animalAdapter);
 

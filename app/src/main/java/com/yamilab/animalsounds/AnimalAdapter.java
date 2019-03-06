@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -36,7 +37,8 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
 
     private ArrayList<Animal> mDataSet;
     private final int screenWidth;
-    //private Context context;
+    private Context context;
+    //private Fragment fr;
     //private final GlideRequests glideRequests;
     private final StorageReference
             mStorageRef= FirebaseStorage.getInstance().getReferenceFromUrl("gs://animalsounds-a4395.appspot.com/");
@@ -96,10 +98,24 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
 
         this.screenWidth = screenWidth;
         mDataSet = dataSet;
-
+        this.context = context;
         if (ttsListener==null){
-            ttsListener = (TTSListener)context;}
+            ttsListener = (TTSListener)this.context;}
         // glideRequests= null;
+
+    }
+
+    public AnimalAdapter(ArrayList<Animal> dataSet, int screenWidth, Context context, Fragment fragment) {
+
+        this.screenWidth = screenWidth;
+        mDataSet = dataSet;
+        this.context = context;
+        if (ttsListener==null){
+            ttsListener = (TTSListener)this.context;}
+
+       // if (fr==null) {fr=fragment;};
+        // glideRequests= null;
+       // GlideApp.get(context).setMemoryCategory(MemoryCategory.LOW);
 
     }
 
@@ -140,7 +156,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
         return mDataSet.size();
     }
 
-    public void onBindViewHolder(final ViewHolder holder, final int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
 
 
 
@@ -152,12 +168,12 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
 
        // glideRequests.clear(holder.getImageView());
         //GlideApp.get(holder.itemView.getContext()).setMemoryCategory(MemoryCategory.LOW);
-
+        //GlideApp.ц
 
         if (animal.isGIF() & Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
 
             try {
-                GlideApp.with(holder.getImageView().getContext())
+                GlideApp.with(context)
                         //  glideRequests
 
                         .load(mStorageRef.child(animal.getGifHref()))
@@ -198,7 +214,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
               */
 
             try {
-               GlideApp.with(holder.getImageView().getContext())
+               GlideApp.with(context)
             //glideRequests
                         .load(mDataSet.get(position).getImageSmall())
                         .priority(Priority.LOW)
@@ -234,7 +250,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
             @Override
             public void onClick(View v) {
 
-                SoundPlay.playSP(holder.itemView.getContext(), animal.getSound());
+                SoundPlay.playSP(context, animal.getSound());
             }
         });
 
