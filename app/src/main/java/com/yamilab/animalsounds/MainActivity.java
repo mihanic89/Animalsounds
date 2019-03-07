@@ -451,7 +451,9 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
             tts.stop();
             tts.shutdown();
         }
+
         super.onDestroy();
+        GlideApp.get(this).clearMemory();
     }
 
     public class TtsInit extends AsyncTask<Void, Void, Void> {
@@ -475,30 +477,53 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     }
 
     private void makeLanguageList(String locale){
+        if (locale.equals("cs")){
+            language="cs";
+        }
+        if (locale.equals("de")){
+            language="de";
+        }
+        if (locale.equals("es")){
+            language="es";
+        }
+        if (locale.equals("fi")){
+            language="fi";
+        }
+        if (locale.equals("fr")){
+            language="fr";
+        }
+        if (locale.equals("it")){
+            language="it";
+        }
+        if (locale.equals("ja")){
+            language="ja";
+        }
+        if (locale.equals("ko")){
+            language="ko";
+        }
+        if (locale.equals("pl")){
+            language="pl";
+        }
+        if (locale.equals("pt")){
+            language="pt";
+        }
         if (locale.equals("ru")){
             language="ru";
+        }
+        if (locale.equals("tr")){
+            language="tr";
         }
         if (locale.equals("uk")){
             language="uk";
         }
 
-        if (locale.equals("it")){
-            language="it";
-        }
-        if (locale.equals("es")){
-            language="es";
-        }
 
-        if (locale.equals("fr")){
-            language="fr";
-        }
-        if (locale.equals("de")){
-            language="de";
-        }
 
-        if (locale.equals("pt")){
-            language="pt";
-        }
+
+
+
+
+
 
         /*
         if (locale.equals("be")){
