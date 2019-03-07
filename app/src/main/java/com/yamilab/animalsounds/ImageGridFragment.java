@@ -71,7 +71,7 @@ public class ImageGridFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         if (getActivity()!=null){
         animalAdapter = new AnimalAdapter((ArrayList<Animal>) getArguments().getSerializable("key"),
-                (int) getArguments().getInt("width") / (spanCount + 1)
+                getArguments().getInt("width") / (spanCount + 1)
                 ,getActivity()
                 //,GlideApp.with(this)
                 ,  glideRequests
@@ -79,7 +79,7 @@ public class ImageGridFragment extends Fragment {
         else
 
             animalAdapter = new AnimalAdapter((ArrayList<Animal>) getArguments().getSerializable("key"),
-                    (int) getArguments().getInt("width") / (spanCount + 1)
+                    getArguments().getInt("width") / (spanCount + 1)
                     ,rootView.getContext()
                   //  ,GlideApp.with(this)
                   ,  glideRequests

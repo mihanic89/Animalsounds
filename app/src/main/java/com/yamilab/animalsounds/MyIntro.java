@@ -68,19 +68,4 @@ public class MyIntro extends AppIntro2 {
 
     }
 
-    @Override
-    public void onNextPressed() {
-        // Do something when users tap on Next button.
-    }
-
-    @Override
-    public void onDonePressed() {
-        // Do something when users tap on Done button.
-        finish();
-    }
-
-    @Override
-    public void onSlideChanged() {
-        // Do something when slide is changed
-    }
 }

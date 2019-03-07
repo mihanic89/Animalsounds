@@ -14,6 +14,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -188,9 +189,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         }
         catch (Exception e){
 
-        };
-
-
+        }
 
 
         MobileAds.initialize(getApplicationContext(), "ca-app-pub-2888343178529026~2046736590");
@@ -231,7 +230,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                 //.load(internetUrl)
                 //.skipMemoryCache(true)
                 //.diskCacheStrategy(DiskCacheStrategy.ALL)
-                .override((int)screenWidth/3, (int) screenHeight/3)
+                .override(screenWidth /3, screenHeight /3)
                 .fitCenter()
                 // .thumbnail()
                 //.error(R.mipmap.ic_launcher)
@@ -367,7 +366,11 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
-    public class SectionsPagerAdapter extends SmartFragmentStatePagerAdapter {
+
+
+
+
+    public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);

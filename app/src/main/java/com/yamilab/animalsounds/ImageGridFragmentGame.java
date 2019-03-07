@@ -1,24 +1,19 @@
 package com.yamilab.animalsounds;
 
-import android.content.res.Configuration;
-import android.graphics.Color;
-import android.graphics.Point;
-import android.os.Build;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
+
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 import static com.yamilab.animalsounds.R.id.buttonNext;
 import static com.yamilab.animalsounds.R.id.buttonSound;
@@ -27,7 +22,6 @@ import static com.yamilab.animalsounds.R.id.imageGame0;
 import static com.yamilab.animalsounds.R.id.imageGame1;
 import static com.yamilab.animalsounds.R.id.imageGame2;
 import static com.yamilab.animalsounds.R.id.imageGame3;
-import static com.yamilab.animalsounds.R.id.recyclerView;
 
 /**
  * Created by Misha on 28.03.2017.
@@ -40,6 +34,9 @@ public class ImageGridFragmentGame extends Fragment {
     private static final int SPAN_COUNT = 2;
     private static final int DATASET_COUNT = 40;
     private TTSListener ttsListener;
+    private FirebaseAnalytics mFirebaseAnalytics;
+// ...
+// Obtain the FirebaseAnalytics instance.
 
     public ImageGridFragmentGame (){
 
@@ -85,8 +82,17 @@ public class ImageGridFragmentGame extends Fragment {
         // Initialize dataset, this data would usually come from a local content provider or
         // remote server.
 
+        Context context;
+        if (getActivity()!=null){
+            context=getActivity();
+        }
+        else
+        {
+            context = getContext();
+        }
         if (ttsListener==null){
-            ttsListener = (TTSListener)getContext();}
+            ttsListener = (TTSListener)context;}
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
 }
 
     @Override
@@ -105,17 +111,17 @@ public class ImageGridFragmentGame extends Fragment {
 
 
 
-        image0= (ImageButton) rootView.findViewById(imageGame0);
-        image1= (ImageButton) rootView.findViewById(imageGame1);
-        image2= (ImageButton) rootView.findViewById(imageGame2);
-        image3= (ImageButton) rootView.findViewById(imageGame3);
-        full = (ImageButton) rootView.findViewById(imageFull);
+        image0= rootView.findViewById(imageGame0);
+        image1= rootView.findViewById(imageGame1);
+        image2= rootView.findViewById(imageGame2);
+        image3= rootView.findViewById(imageGame3);
+        full = rootView.findViewById(imageFull);
 
         //textAnswer = (TextView) rootView.findViewById(R.id.textAnswer);
-        buttonAnswer = (Button) rootView.findViewById(R.id.buttonAnswer);
+        buttonAnswer = rootView.findViewById(R.id.buttonAnswer);
 
-        ImageButton sound = (ImageButton) rootView.findViewById(buttonSound);
-        ImageButton next = (ImageButton) rootView.findViewById(buttonNext);
+        ImageButton sound = rootView.findViewById(buttonSound);
+        ImageButton next = rootView.findViewById(buttonNext);
 
         try
         {
@@ -385,6 +391,9 @@ public class ImageGridFragmentGame extends Fragment {
         generateWrong();
         setImages();
         SoundPlay.playSP(getContext(), animals.get(correctAnswer).getSound());
+        Bundle params = new Bundle();
+        params.putString("new_round", "New round start");
+        mFirebaseAnalytics.logEvent("new_round", params);
     }
 
     private void setAllInvisible(){

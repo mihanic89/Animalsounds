@@ -19,16 +19,13 @@ package com.yamilab.animalsounds;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
-import android.media.SoundPool;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Priority;
 import com.google.firebase.storage.FirebaseStorage;
@@ -141,7 +138,7 @@ public  class CustomLinkAdapter extends RecyclerView.Adapter<CustomLinkAdapter.V
                 .priority(Priority.LOW)
                 //.load(internetUrl)
                 //.skipMemoryCache(true)
-                .override((int) screenWidth)
+                .override(screenWidth)
                 .fitCenter()
                 // .thumbnail()
                 .error(R.mipmap.ic_launcher)

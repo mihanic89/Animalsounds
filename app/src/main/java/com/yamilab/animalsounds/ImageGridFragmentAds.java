@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-import static android.R.attr.screenSize;
 import static com.yamilab.animalsounds.R.id.recyclerView;
 
 /**
@@ -67,7 +66,7 @@ public class ImageGridFragmentAds extends Fragment {
        int screenWidth = size.x;
 
 
-        mAdapter = new CustomLinkAdapter(mDataset, (int) screenWidth/3, GlideApp.with(rootView.getContext()));
+        mAdapter = new CustomLinkAdapter(mDataset, screenWidth /3, GlideApp.with(rootView.getContext()));
         // Set CustomAdapter as the adapter for RecyclerView.
         mRecyclerView.setAdapter(mAdapter);
         // END_INCLUDE(initializeRecyclerView)
