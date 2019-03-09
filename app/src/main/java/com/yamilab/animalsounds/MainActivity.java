@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                         .getDefaultSharedPreferences(getBaseContext());
 
                 //  Create a new boolean and preference and set it to true
-                boolean isFirstStart = getPrefs.getBoolean("firstStart", true);
+                boolean isFirstStart = getPrefs.getBoolean("firstStart4", true);
 
                 //  If the activity has never started before...
                 if (isFirstStart) {
@@ -213,7 +213,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         mInterstitialAd.setAdListener(new AdListener() {
             @Override
             public void onAdClosed() {
-
+                loadInterstitial();
             }
 
             @Override
@@ -249,18 +249,22 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
 
 
-    private void loadInterstitial() {
+    public void loadInterstitial() {
         // Show the ad if it's ready. Otherwise toast and restart the game.
         if (!mInterstitialAd.isLoading() && !mInterstitialAd.isLoaded()) {
             AdRequest adRequest = new AdRequest.Builder()
                     //.tagForChildDirectedTreatment(true)
+                    .addTestDevice("634EE6DF579E0E01020981609CDA857D")
+                    .addTestDevice("A4203BC89A24BEEC45D1111F16D2F0A3")
                   //  .addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
                     .build();
             mInterstitialAd.loadAd(adRequest);
         }
     }
 
-    private void showInterstitial() {
+
+
+    public void showInterstitial() {
         // Show the ad if it's ready. Otherwise toast and restart the game.
         if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
             mInterstitialAd.show();

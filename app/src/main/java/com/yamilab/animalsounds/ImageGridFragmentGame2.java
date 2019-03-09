@@ -36,6 +36,7 @@ public class ImageGridFragmentGame2 extends Fragment {
     private static final String KEY_LAYOUT_MANAGER = "layoutManager";
     private static final int SPAN_COUNT = 2;
     private static final int DATASET_COUNT = 40;
+    private int adCounter=0;
     private TTSListener ttsListener;
     private FirebaseAnalytics mFirebaseAnalytics;
 // ...
@@ -132,6 +133,7 @@ public class ImageGridFragmentGame2 extends Fragment {
             setImages();
             buttonAnswer.setText(animals.get(correctAnswer).getName());
            // newRound();
+            adCounter=0;
         }
         catch (Exception e){
 
@@ -403,11 +405,26 @@ public class ImageGridFragmentGame2 extends Fragment {
 
 
     private void newRound (){
-        generateWrong();
-        setImages();
-        buttonAnswer.setText(animals.get(correctAnswer).getName());
+        adCounter++;
+
         //SoundPlay.playSP(getContext(), animals.get(correctAnswer).getSound());
-        ttsListener.speak(animals.get(correctAnswer).getName(),animals.get(correctAnswer).getSound());
+
+
+        if (adCounter>15) {
+            ((MainActivity) getActivity()).showInterstitial();
+            adCounter=0;
+            generateWrong();
+            setImages();
+            buttonAnswer.setText(animals.get(correctAnswer).getName());
+        }
+
+        else{
+            generateWrong();
+            setImages();
+            buttonAnswer.setText(animals.get(correctAnswer).getName());
+            ttsListener.speak(animals.get(correctAnswer).getName(),animals.get(correctAnswer).getSound());
+        }
+
         Bundle params = new Bundle();
         params.putString("new_round2", "New round start 2");
         mFirebaseAnalytics.logEvent("new_round_2", params);
