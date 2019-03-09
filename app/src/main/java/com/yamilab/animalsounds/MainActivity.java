@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
                 //  If the activity has never started before...
                 if (isFirstStart) {
-                    firstTab=0;
+                    //firstTab=0;
                     //  Launch app intro
                     Intent i = new Intent(MainActivity.this, MyIntro.class);
                     startActivity(i);
@@ -163,6 +163,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                 R.drawable.tab_fairy};
 
         tabLayout.getTabAt(0).setIcon( R.drawable.tab_game);
+      //  tabLayout.getTabAt(0).setText("1");
         tabLayout.getTabAt(1).setText("Ads");
 
         for (int i = 2; i < tabLayout.getTabCount(); i++) {

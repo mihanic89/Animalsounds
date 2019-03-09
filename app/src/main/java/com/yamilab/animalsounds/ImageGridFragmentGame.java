@@ -10,11 +10,14 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
 import java.util.Random;
 
+import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 import static com.yamilab.animalsounds.R.id.buttonNext;
 import static com.yamilab.animalsounds.R.id.buttonSound;
 import static com.yamilab.animalsounds.R.id.imageFull;
@@ -98,7 +101,7 @@ public class ImageGridFragmentGame extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_game2, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_game, container, false);
 
         animals = new ArrayList<Animal>();
 
@@ -314,6 +317,10 @@ public class ImageGridFragmentGame extends Fragment {
             GlideApp.with(this)
                     .load(image)
                     .fitCenter()
+                    .transition(withCrossFade(1000))
+                    .priority(Priority.LOW)
+                    .skipMemoryCache(true)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(imageView);
         }
         else
@@ -321,6 +328,10 @@ public class ImageGridFragmentGame extends Fragment {
             GlideApp.with(imageView.getContext())
                     .load(image)
                     .fitCenter()
+                    .transition(withCrossFade(1000))
+                    .priority(Priority.LOW)
+                    .skipMemoryCache(true)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(imageView);
         }
     }
