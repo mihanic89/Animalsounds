@@ -2,9 +2,12 @@ package com.yamilab.animalsounds;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 
 import com.github.paolorotolo.appintro.AppIntro2;
 import com.github.paolorotolo.appintro.AppIntroFragment;
+import com.github.paolorotolo.appintro.model.SliderPage;
 
 public class MyIntro extends AppIntro2 {
 
@@ -21,10 +24,18 @@ public class MyIntro extends AppIntro2 {
 
         // Instead of fragments, you can also use our default slide
         // Just set a title, description, background and image. AppIntro will do the rest addSlide(AppIntroFragment.newInstance(getString(R.string.click),
+        SliderPage sliderPage = new SliderPage();
+        sliderPage.setTitle(getString(R.string.tabs));
+        sliderPage.setDescription(getString(R.string.category));
+        sliderPage.setImageDrawable(R.mipmap.intro0);
+        sliderPage.setBgColor(Color.parseColor("#009688"));
+
+        addSlide(AppIntroFragment.newInstance(sliderPage));
+        /*
         addSlide(AppIntroFragment.newInstance(getString(R.string.tabs),
                 getString(R.string.category),
                 R.mipmap.intro0, Color.parseColor("#009688")));
-
+        */
         addSlide(AppIntroFragment.newInstance(getString(R.string.click),
                 getString(R.string.clickdesc),
                 R.mipmap.intro1, Color.parseColor("#009688")));
@@ -58,34 +69,38 @@ public class MyIntro extends AppIntro2 {
         //setVibrateIntensity(30);
 
         // Animations -- use only one of the below. Using both could cause errors.
-       // setFadeAnimation(); // OR
+        setFadeAnimation(); // OR
         //setZoomAnimation(); // OR
         //setFlowAnimation(); // OR
        // setSlideOverAnimation(); // OR
-        setDepthAnimation(); // OR
+       // setDepthAnimation(); // OR
         //setCustomTransformer(yourCustomTransformer);
 
 
     }
 
     @Override
-    public void onNextPressed() {
-        // Do something when users tap on Next button.
+    public void onSkipPressed(Fragment currentFragment) {
+        super.onSkipPressed(currentFragment);
+        // Do something when users tap on Skip button.
+        finish();
     }
 
+
     @Override
-    public void onDonePressed() {
+    public void onDonePressed(Fragment currentFragment) {
+        super.onDonePressed(currentFragment);
         // Do something when users tap on Done button.
         finish();
     }
 
-    @Override
-    public void onSlideChanged() {
-        // Do something when slide is changed
-    }
 
     @Override
-    public void onSkipPressed(){
-        finish();
+    public void onSlideChanged(@Nullable Fragment oldFragment, @Nullable Fragment newFragment) {
+        super.onSlideChanged(oldFragment, newFragment);
+        // Do something when the slide changes.
     }
+
+
+
 }
