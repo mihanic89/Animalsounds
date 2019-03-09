@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
-    private int firstTab = 2;
+    private int firstTab = 3;
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -162,12 +162,13 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                 R.drawable.tab_insects,
                 R.drawable.tab_fairy};
 
-        tabLayout.getTabAt(0).setIcon( R.drawable.tab_game);
+        tabLayout.getTabAt(0).setIcon( R.drawable.tab_game2);
+        tabLayout.getTabAt(1).setIcon( R.drawable.tab_game);
       //  tabLayout.getTabAt(0).setText("1");
-        tabLayout.getTabAt(1).setText("Ads");
+        tabLayout.getTabAt(2).setText("Ads");
 
-        for (int i = 2; i < tabLayout.getTabCount(); i++) {
-            tabLayout.getTabAt(i).setIcon(resID[i-2]);
+        for (int i = 3; i < tabLayout.getTabCount(); i++) {
+            tabLayout.getTabAt(i).setIcon(resID[i-3]);
         }
 
         TabLayout.Tab tab = tabLayout.getTabAt(firstTab);
@@ -392,31 +393,34 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
                 case 0:
 
-                    return ImageGridFragmentGame.newInstance(animals,screenWidth);
-
+                    return ImageGridFragmentGame2.newInstance(animals,screenWidth);
 
                 case 1:
+
+                    return ImageGridFragmentGame.newInstance(animals,screenWidth);
+
+                case 2:
 
                     return new ImageGridFragmentAds();
 
 
-                case 2:
+                case 3:
 
                     return ImageGridFragment.newInstance( home,screenWidth);
 
-                case 3:
-
-                    return ImageGridFragment.newInstance( wild,screenWidth);
                 case 4:
 
-                    return ImageGridFragment.newInstance( birds,screenWidth);
+                    return ImageGridFragment.newInstance( wild,screenWidth);
                 case 5:
 
-                    return ImageGridFragment.newInstance( aqua,screenWidth);
+                    return ImageGridFragment.newInstance( birds,screenWidth);
                 case 6:
 
-                    return ImageGridFragment.newInstance( insects,screenWidth);
+                    return ImageGridFragment.newInstance( aqua,screenWidth);
                 case 7:
+
+                    return ImageGridFragment.newInstance( insects,screenWidth);
+                case 8:
 
                     return ImageGridFragment.newInstance(fairy,screenWidth);
 
@@ -427,7 +431,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 8;
+            return 9;
         }
 
 
@@ -705,7 +709,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
        // if (data == null) {return;}
        // String name = data.getStringExtra("name");
        // tvName.setText("Your name is " + name);
-        mViewPager.setCurrentItem(3);
+        mViewPager.setCurrentItem(4);
     }
 
 
