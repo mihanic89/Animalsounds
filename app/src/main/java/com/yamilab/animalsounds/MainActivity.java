@@ -18,6 +18,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 
@@ -114,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
                     //  Edit preference to make it false because we don't want this to run again
                     e.putBoolean("firstStart", false);
-                    showInterstitialAd = false;
+                   // showInterstitialAd = false;
                     notFirstStart = false;
                     //  Apply changes
                     e.apply();
@@ -162,15 +163,71 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                 R.drawable.tab_insects,
                 R.drawable.tab_fairy};
 
-        tabLayout.getTabAt(0).setIcon( R.drawable.tab_game2);
-        tabLayout.getTabAt(1).setIcon( R.drawable.tab_game);
-      //  tabLayout.getTabAt(0).setText("1");
+
+        View view0 = getLayoutInflater().inflate(R.layout.customtab, null);
+        ImageView imageViewTab0 = view0.findViewById(R.id.icon);
+        imageViewTab0.setImageResource(R.drawable.tab_game2);
+        tabLayout.getTabAt(0).setCustomView(view0);
+
+        View view1 = getLayoutInflater().inflate(R.layout.customtab, null);
+        ImageView imageViewTab1 = view1.findViewById(R.id.icon);
+        imageViewTab1.setImageResource(R.drawable.tab_game);
+        tabLayout.getTabAt(1).setCustomView(view1);
+
+
+
+
+        /*
+        view1.findViewById(R.id.icon).setBackgroundResource(R.drawable.tab_game);
+        tabLayout.addTab(tabLayout.newTab().setCustomView(view1));
+        */
+       // tabLayout.getTabAt(0).setIcon( R.drawable.tab_game2);
+       //tabLayout.getTabAt(1).setIcon( R.drawable.tab_game);
         tabLayout.getTabAt(2).setText("Ads");
 
-        for (int i = 3; i < tabLayout.getTabCount(); i++) {
-            tabLayout.getTabAt(i).setIcon(resID[i-3]);
-        }
+        View view3 = getLayoutInflater().inflate(R.layout.customtab, null);
+        ImageView imageViewTab3 = view3.findViewById(R.id.icon);
+        imageViewTab3.setImageResource(R.drawable.tab_home);
+        tabLayout.getTabAt(3).setCustomView(view3);
 
+        View view4 = getLayoutInflater().inflate(R.layout.customtab, null);
+        ImageView imageViewTab4 = view4.findViewById(R.id.icon);
+        imageViewTab4.setImageResource(R.drawable.tab_wild);
+        tabLayout.getTabAt(4).setCustomView(view4);
+
+        View view5 = getLayoutInflater().inflate(R.layout.customtab, null);
+        ImageView imageViewTab5 = view5.findViewById(R.id.icon);
+        imageViewTab5.setImageResource(R.drawable.tab_birds);
+        tabLayout.getTabAt(5).setCustomView(view5);
+
+        View view6 = getLayoutInflater().inflate(R.layout.customtab, null);
+        ImageView imageViewTab6 = view6.findViewById(R.id.icon);
+        imageViewTab6.setImageResource(R.drawable.tab_aqua);
+        tabLayout.getTabAt(6).setCustomView(view6);
+
+        View view7 = getLayoutInflater().inflate(R.layout.customtab, null);
+        ImageView imageViewTab7 = view7.findViewById(R.id.icon);
+        imageViewTab7.setImageResource(R.drawable.tab_insects);
+        tabLayout.getTabAt(7).setCustomView(view7);
+
+        View view8 = getLayoutInflater().inflate(R.layout.customtab, null);
+        ImageView imageViewTab8 = view8.findViewById(R.id.icon);
+        imageViewTab8.setImageResource(R.drawable.tab_fairy);
+        tabLayout.getTabAt(8).setCustomView(view8);
+
+        /*
+        for (int i = 3; i < tabLayout.getTabCount(); i++) {
+            try {
+                //tabLayout.getTabAt(i).setIcon(resID[i - 3]);
+
+
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+        */
         TabLayout.Tab tab = tabLayout.getTabAt(firstTab);
         tab.select();
 
@@ -388,10 +445,10 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
             // Return a PlaceholderFragment (defined as a static inner class below).
 
             adCount++;
-            if (adCount>6 && showInterstitialAd){
+            if (adCount>13){
                 showInterstitial();
                 //loadInterstitial();
-                //adCount=0;
+                adCount=0;
             }
             switch (position) {
 
@@ -503,6 +560,9 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         }
         if (locale.equals("fr")){
             language="fr";
+        }
+        if (locale.equals("hi")){
+            language="hi";
         }
         if (locale.equals("it")){
             language="it";

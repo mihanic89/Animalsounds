@@ -19,7 +19,6 @@ import java.util.Random;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 import static com.yamilab.animalsounds.R.id.buttonNext;
-import static com.yamilab.animalsounds.R.id.buttonSound;
 import static com.yamilab.animalsounds.R.id.imageFull;
 import static com.yamilab.animalsounds.R.id.imageGame0;
 import static com.yamilab.animalsounds.R.id.imageGame1;
@@ -442,25 +441,6 @@ public class ImageGridFragmentGame2 extends Fragment {
         full.setImageResource(animals.get(num).getImageSmall());
     }
 
-    private void delay (int seconds){
-        try {
-            // Using Thread.sleep() we can add delay in our
-            // application in a millisecond time. For the example
-            // below the program will take a deep breath for one
-            // second before continue to print the next value of
-            // the loop.
-            Thread.sleep(seconds);
 
-            // The Thread.sleep() need to be executed inside a
-            // try-catch block and we need to catch the
-            // InterruptedException.
-        } catch (InterruptedException ie) {
-            ie.printStackTrace();
-        }
-    }
-    /**
-     * Generates Strings for RecyclerView's adapter. This data would usually come
-     * from a local content provider or remote server.
-     */
 
 }

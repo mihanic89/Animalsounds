@@ -1,6 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="8dp">
@@ -13,14 +14,15 @@
         android:gravity="center"
         android:weightSum="2"
         android:layout_alignParentTop="true"
-        android:layout_above="@+id/down">
+        android:layout_above="@+id/down"
+         >
 
         <ImageButton
             android:id="@+id/imageGame0"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_margin="16dp"
+            android:layout_margin="@dimen/image_margin"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             android:background="@null"
@@ -32,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
 
-            android:layout_margin="16dp"
+            android:layout_margin="@dimen/image_margin"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             android:background="@null"
@@ -58,7 +60,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_margin="16dp"
+            android:layout_margin="@dimen/image_margin"
             android:adjustViewBounds="true"
             android:scaleType="fitXY"
             android:background="@null"
@@ -72,7 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
 
-            android:layout_margin="16dp"
+            android:layout_margin="@dimen/image_margin"
             android:adjustViewBounds="true"
             android:background="@null"
             android:scaleType="fitCenter"
@@ -93,16 +95,16 @@
             android:layout_width="wrap_content"
             android:layout_weight="5"
             android:layout_height="60dp"
-            android:layout_alignBottom="@+id/down"
-            android:layout_centerHorizontal="true"
+
             android:background="@drawable/oval_shape"
             android:elevation="5dp"
             android:scaleType="fitCenter"
             android:textSize="25sp"
             android:textColor="#ffffff"
-            android:inputType="textMultiLine"
-            android:padding="3dp"
+
+            android:padding="6dp"
             android:layout_margin="16dp"
+            app:autoSizeTextType="uniform"
             tools:text="Animal" />
 
 
