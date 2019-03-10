@@ -8,8 +8,8 @@
     <string name="bigimage">Gambaran besar</string>
     <string name="game">Permainan</string>
     <string name="category">Untuk mengubah suara, klik pada tab</string>
-    <string name="clickdesc">Mengklik pada gambar memainkan suara binatang.</string>
-    <string name="clicktextdesc">Ketika kau klik teks-nama suara binatang.</string>
+    <string name="clickdesc">Mengklik pada gambar memainkan suara binatang</string>
+    <string name="clicktextdesc">Ketika kau klik teks-nama suara binatang</string>
     <string name="longclickdesc">Dengan klik yang panjang, suara dimainkan dan gambar besar dibuka</string>
     <string name="bigimagedesc">Ketika Anda klik pada gambar besar, suara dimainkan lagi</string>
     <string name="clicktext">Klik pada teks</string>
