@@ -24,7 +24,7 @@
     <string name="goat"> Goat </string>
     <string name="donkey"> Donkey </string>
     <string name="turkey"> Turkey </string>
-    <string name="cavy"> Cavy </string>
+    <string name="cavy"> Guinea pig </string>
     <string name="rabbit"> Rabbit </string>
 
     <string name="bear"> Bear </string>
@@ -99,7 +99,7 @@
 
 
     <string name="dolphin"> Dolphin </string>
-    <string name="sealbark"> Seal Bark </string>
+    <string name="sealbark"> Fur seal </string>
     <string name="frog"> Frog </string>
     <string name="penguin"> Penguin </string>
     <string name="walrus"> Walrus </string>
@@ -108,7 +108,7 @@
     <string name="fish"> Fish </string>
     <string name="turtle"> Turtle </string>
     <string name="otter"> Otter </string>
-    <string name="lobster"> Lobster </string>
+    <string name="lobster"> Crayfish </string>
 
     <string name="bees"> Bees </string>
     <string name="flies"> Flies </string>
