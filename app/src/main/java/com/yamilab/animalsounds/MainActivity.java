@@ -529,18 +529,22 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
-                @Override
-                public void onInit(int status) {
-                    if (status==TextToSpeech.SUCCESS) {
-                        int result = tts.setLanguage(new Locale(language, ""));
-                    }
-                    else
-                    {
+            try {
+                tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+                    @Override
+                    public void onInit(int status) {
+                        if (status == TextToSpeech.SUCCESS) {
+                            int result = tts.setLanguage(new Locale(language, ""));
+                        } else {
 
+                        }
                     }
-                }
-            });
+                });
+
+            }
+            catch (Exception e){
+
+            }
             return null;
         }
     }
