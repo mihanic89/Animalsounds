@@ -20,6 +20,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.bumptech.glide.MemoryCategory;
@@ -67,6 +69,11 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     private ArrayList<Animal> wild, home, aqua, birds, insects, fairy,animals;
     private int screenWidth=800,screenHeight=1280;
     private String language="en";
+
+
+
+
+    private Animation mScaleAnimation1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -163,10 +170,12 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                 R.drawable.tab_insects,
                 R.drawable.tab_fairy};
 
+        mScaleAnimation1 = AnimationUtils.loadAnimation(this,R.anim.myscale);
 
         View view0 = getLayoutInflater().inflate(R.layout.customtab, null);
         ImageView imageViewTab0 = view0.findViewById(R.id.icon);
         imageViewTab0.setImageResource(R.drawable.tab_game2);
+        //imageViewTab0.startAnimation(mScaleAnimation1);
         tabLayout.getTabAt(0).setCustomView(view0);
 
         View view1 = getLayoutInflater().inflate(R.layout.customtab, null);
