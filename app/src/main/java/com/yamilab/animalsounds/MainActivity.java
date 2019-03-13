@@ -474,39 +474,43 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                 //loadInterstitial();
                 adCount=0;
             }
+            Bundle params = new Bundle();
+            params.putString("new_tab", "New tab start");
             switch (position) {
 
                 case 0:
-
+                    mFirebaseAnalytics.logEvent("tab_game2", params);
                     return ImageGridFragmentGame2.newInstance(animals,screenWidth);
 
-                case 1:
 
+
+                case 1:
+                    mFirebaseAnalytics.logEvent("tab_game1", params);
                     return ImageGridFragmentGame.newInstance(animals,screenWidth);
 
                 case 2:
-
+                    mFirebaseAnalytics.logEvent("tab_ads", params);
                     return new ImageGridFragmentAds();
 
 
                 case 3:
-
+                    mFirebaseAnalytics.logEvent("tab_home", params);
                     return ImageGridFragment.newInstance( home,screenWidth);
 
                 case 4:
-
+                    mFirebaseAnalytics.logEvent("tab_wild", params);
                     return ImageGridFragment.newInstance( wild,screenWidth);
                 case 5:
-
+                    mFirebaseAnalytics.logEvent("tab_birds", params);
                     return ImageGridFragment.newInstance( birds,screenWidth);
                 case 6:
-
+                    mFirebaseAnalytics.logEvent("tab_aqua", params);
                     return ImageGridFragment.newInstance( aqua,screenWidth);
                 case 7:
-
+                    mFirebaseAnalytics.logEvent("tab_insects", params);
                     return ImageGridFragment.newInstance( insects,screenWidth);
                 case 8:
-
+                    mFirebaseAnalytics.logEvent("tab_fairy", params);
                     return ImageGridFragment.newInstance(fairy,screenWidth);
 
             }
