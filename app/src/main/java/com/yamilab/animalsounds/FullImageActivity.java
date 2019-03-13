@@ -50,7 +50,7 @@ public class FullImageActivity extends AppCompatActivity {
         // [END set_current_screen]
 
 
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.myscale);
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.myscale0);
         animation.setRepeatCount(Animation.INFINITE);
         imgFullImage.startAnimation(animation);
 

@@ -73,7 +73,11 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
 
 
-    private Animation mScaleAnimation1;
+    private Animation mScaleAnimation0,
+            mScaleAnimation1,
+            mScaleAnimation2,
+            mScaleAnimation3,
+            mScaleAnimation4;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -170,17 +174,22 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                 R.drawable.tab_insects,
                 R.drawable.tab_fairy};
 
-        mScaleAnimation1 = AnimationUtils.loadAnimation(this,R.anim.myscale);
+        mScaleAnimation0 = AnimationUtils.loadAnimation(this,R.anim.myscale0);
+        mScaleAnimation1 = AnimationUtils.loadAnimation(this,R.anim.myscale1);
+        mScaleAnimation2 = AnimationUtils.loadAnimation(this,R.anim.myscale2);
+        mScaleAnimation3 = AnimationUtils.loadAnimation(this,R.anim.myscale3);
+        mScaleAnimation4 = AnimationUtils.loadAnimation(this,R.anim.myscale4);
 
         View view0 = getLayoutInflater().inflate(R.layout.customtab, null);
         ImageView imageViewTab0 = view0.findViewById(R.id.icon);
         imageViewTab0.setImageResource(R.drawable.tab_game2);
-        //imageViewTab0.startAnimation(mScaleAnimation1);
+        imageViewTab0.startAnimation(mScaleAnimation0);
         tabLayout.getTabAt(0).setCustomView(view0);
 
         View view1 = getLayoutInflater().inflate(R.layout.customtab, null);
         ImageView imageViewTab1 = view1.findViewById(R.id.icon);
         imageViewTab1.setImageResource(R.drawable.tab_game);
+        imageViewTab1.startAnimation(mScaleAnimation2);
         tabLayout.getTabAt(1).setCustomView(view1);
 
 
@@ -197,31 +206,37 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         View view3 = getLayoutInflater().inflate(R.layout.customtab, null);
         ImageView imageViewTab3 = view3.findViewById(R.id.icon);
         imageViewTab3.setImageResource(R.drawable.tab_home);
+        imageViewTab3.startAnimation(mScaleAnimation4);
         tabLayout.getTabAt(3).setCustomView(view3);
 
         View view4 = getLayoutInflater().inflate(R.layout.customtab, null);
         ImageView imageViewTab4 = view4.findViewById(R.id.icon);
         imageViewTab4.setImageResource(R.drawable.tab_wild);
+        imageViewTab4.startAnimation(mScaleAnimation1);
         tabLayout.getTabAt(4).setCustomView(view4);
 
         View view5 = getLayoutInflater().inflate(R.layout.customtab, null);
         ImageView imageViewTab5 = view5.findViewById(R.id.icon);
         imageViewTab5.setImageResource(R.drawable.tab_birds);
+        imageViewTab5.startAnimation(mScaleAnimation3);
         tabLayout.getTabAt(5).setCustomView(view5);
 
         View view6 = getLayoutInflater().inflate(R.layout.customtab, null);
         ImageView imageViewTab6 = view6.findViewById(R.id.icon);
         imageViewTab6.setImageResource(R.drawable.tab_aqua);
+        imageViewTab6.startAnimation(mScaleAnimation0);
         tabLayout.getTabAt(6).setCustomView(view6);
 
         View view7 = getLayoutInflater().inflate(R.layout.customtab, null);
         ImageView imageViewTab7 = view7.findViewById(R.id.icon);
         imageViewTab7.setImageResource(R.drawable.tab_insects);
+        imageViewTab7.startAnimation(mScaleAnimation2);
         tabLayout.getTabAt(7).setCustomView(view7);
 
         View view8 = getLayoutInflater().inflate(R.layout.customtab, null);
         ImageView imageViewTab8 = view8.findViewById(R.id.icon);
         imageViewTab8.setImageResource(R.drawable.tab_fairy);
+        imageViewTab8.startAnimation(mScaleAnimation4);
         tabLayout.getTabAt(8).setCustomView(view8);
 
         /*
