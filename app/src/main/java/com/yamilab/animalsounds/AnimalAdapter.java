@@ -110,7 +110,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
 
     }
 
-    /*
+
     @Override
     public void onViewRecycled (ViewHolder holder){
 
@@ -120,15 +120,15 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
         GlideApp.with(holder.getImageView().getContext()).clear(holder.getImageView());
         holder.getImageView().setOnClickListener(null);
         holder.getTextView().setOnClickListener(null);
-        /*
-        Toast toast = Toast.makeText(holder.getImageView().getContext(),
-                  "очищен" + holder.getImageView(), Toast.LENGTH_SHORT);
-            toast.show();
+
+        //Toast toast = Toast.makeText(holder.getImageView().getContext(),
+        //          "очищен" + holder.getImageView(), Toast.LENGTH_SHORT);
+        //    toast.show();
 
         super.onViewRecycled(holder);
 
     }
-*/
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -183,7 +183,9 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
                         //.placeholder(R.mipmap.placeholder)
 
                         //.transition(withCrossFade(1000))
-                        .into(holder.getImageView());
+                        .into(holder.getImageView())
+                          .clearOnDetach();
+
             }
             catch (Exception e){
                 holder.getImageView().setImageDrawable(holder.getImageView().
