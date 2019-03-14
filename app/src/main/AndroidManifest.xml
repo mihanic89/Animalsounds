@@ -35,15 +35,7 @@
         <activity
             android:name=".MyIntro"
             android:label="@string/app_name" />
-        <activity
-            android:name=".TabbedActivity"
-            android:label="@string/title_activity_tabbed"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.yamilab.animalsounds.MainActivity" />
-        </activity>
+
 
 
     </application>
