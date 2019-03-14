@@ -482,8 +482,6 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                     mFirebaseAnalytics.logEvent("tab_game2", params);
                     return ImageGridFragmentGame2.newInstance(animals,screenWidth);
 
-
-
                 case 1:
                     mFirebaseAnalytics.logEvent("tab_game1", params);
                     return ImageGridFragmentGame.newInstance(animals,screenWidth);
@@ -491,7 +489,6 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                 case 2:
                     mFirebaseAnalytics.logEvent("tab_ads", params);
                     return new ImageGridFragmentAds();
-
 
                 case 3:
                     mFirebaseAnalytics.logEvent("tab_home", params);
