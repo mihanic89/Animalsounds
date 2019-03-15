@@ -568,8 +568,20 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
             }
             catch (Exception e){
+                tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+                    @Override
+                    public void onInit(int status) {
+                        if (status == TextToSpeech.SUCCESS) {
+                            int result = tts.setLanguage(new Locale("en", ""));
+                        } else {
+
+                        }
+                    }
+                });
 
             }
+
+            
             return null;
         }
     }
@@ -586,6 +598,9 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         }
         if (locale.equals("fi")){
             language="fi";
+        }
+        if (locale.equals("fil")){
+            language="fil";
         }
         if (locale.equals("fr")){
             language="fr";
@@ -605,14 +620,14 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         if (locale.equals("ko")){
             language="ko";
         }
-        if (locale.equals("phi")){
-            language="phi";
-        }
         if (locale.equals("pl")){
             language="pl";
         }
         if (locale.equals("pt")){
             language="pt";
+        }
+        if (locale.equals("ro")){
+            language="ro";
         }
         if (locale.equals("ru")){
             language="ru";
