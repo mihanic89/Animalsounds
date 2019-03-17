@@ -415,6 +415,8 @@ public class ImageGridFragmentGame2 extends Fragment {
             generateWrong();
             setImages();
             buttonAnswer.setText(animals.get(correctAnswer).getName());
+
+            mFirebaseAnalytics.logEvent("game2_ad", null);
         }
 
         else{

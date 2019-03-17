@@ -474,40 +474,39 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                 //loadInterstitial();
                 adCount=0;
             }
-            Bundle params = new Bundle();
-            params.putString("new_tab", "New tab start");
+
             switch (position) {
 
                 case 0:
-                    mFirebaseAnalytics.logEvent("tab_game2", params);
+                    mFirebaseAnalytics.logEvent("tab_game2", null);
                     return ImageGridFragmentGame2.newInstance(animals,screenWidth);
 
                 case 1:
-                    mFirebaseAnalytics.logEvent("tab_game1", params);
+                    mFirebaseAnalytics.logEvent("tab_game1", null);
                     return ImageGridFragmentGame.newInstance(animals,screenWidth);
 
                 case 2:
-                    mFirebaseAnalytics.logEvent("tab_ads", params);
+                    mFirebaseAnalytics.logEvent("tab_ads", null);
                     return new ImageGridFragmentAds();
 
                 case 3:
-                    mFirebaseAnalytics.logEvent("tab_home", params);
+                    mFirebaseAnalytics.logEvent("tab_home", null);
                     return ImageGridFragment.newInstance( home,screenWidth);
 
                 case 4:
-                    mFirebaseAnalytics.logEvent("tab_wild", params);
+                    mFirebaseAnalytics.logEvent("tab_wild", null);
                     return ImageGridFragment.newInstance( wild,screenWidth);
                 case 5:
-                    mFirebaseAnalytics.logEvent("tab_birds", params);
+                    mFirebaseAnalytics.logEvent("tab_birds", null);
                     return ImageGridFragment.newInstance( birds,screenWidth);
                 case 6:
-                    mFirebaseAnalytics.logEvent("tab_aqua", params);
+                    mFirebaseAnalytics.logEvent("tab_aqua", null);
                     return ImageGridFragment.newInstance( aqua,screenWidth);
                 case 7:
-                    mFirebaseAnalytics.logEvent("tab_insects", params);
+                    mFirebaseAnalytics.logEvent("tab_insects", null);
                     return ImageGridFragment.newInstance( insects,screenWidth);
                 case 8:
-                    mFirebaseAnalytics.logEvent("tab_fairy", params);
+                    mFirebaseAnalytics.logEvent("tab_fairy", null);
                     return ImageGridFragment.newInstance(fairy,screenWidth);
 
             }
@@ -581,7 +580,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
             }
 
-            
+
             return null;
         }
     }

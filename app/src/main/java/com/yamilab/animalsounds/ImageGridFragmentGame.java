@@ -409,6 +409,8 @@ public class ImageGridFragmentGame extends Fragment {
             adCounter=0;
             generateWrong();
             setImages();
+
+            mFirebaseAnalytics.logEvent("game_ad", null);
         }
         else{
             generateWrong();
