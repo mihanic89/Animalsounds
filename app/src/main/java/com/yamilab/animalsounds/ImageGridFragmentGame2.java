@@ -409,7 +409,7 @@ public class ImageGridFragmentGame2 extends Fragment {
         //SoundPlay.playSP(getContext(), animals.get(correctAnswer).getSound());
 
 
-        if (adCounter>15) {
+        if (adCounter>13) {
             ((MainActivity) getActivity()).showInterstitial();
             adCounter=0;
             generateWrong();
