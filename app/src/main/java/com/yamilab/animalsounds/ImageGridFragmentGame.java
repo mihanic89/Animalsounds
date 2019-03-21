@@ -102,7 +102,7 @@ public class ImageGridFragmentGame extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_game, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_game_rebuild, container, false);
 
         animals = new ArrayList<Animal>();
 
