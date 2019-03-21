@@ -105,11 +105,11 @@
 
         <Button
             android:id="@+id/buttonAnswer"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_margin="16dp"
 
-            android:layout_weight="5"
+            android:layout_weight="7"
             android:background="@drawable/oval_shape"
             android:clickable="true"
             android:elevation="5dp"
@@ -125,7 +125,7 @@
 
         <ImageButton
             android:id="@+id/buttonNext"
-            android:layout_width="60dp"
+            android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_margin="16dp"
             android:layout_weight="2"
