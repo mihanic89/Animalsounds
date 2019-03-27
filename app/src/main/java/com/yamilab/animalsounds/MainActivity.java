@@ -592,6 +592,9 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         if (locale.equals("de")){
             language="de";
         }
+        if (locale.equals("el")){
+            language="el";
+        }
         if (locale.equals("es")){
             language="es";
         }
