@@ -284,6 +284,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                 //.tagForChildDirectedTreatment(true)
                   .addTestDevice("634EE6DF579E0E01020981609CDA857D")
                 .addTestDevice("A4203BC89A24BEEC45D1111F16D2F0A3")
+                .addTestDevice("4174C23AC2A2DAFD78A7C0F0DFB39F3E") //Samsung A50
                 //.addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
                 .build();
         mAdView.loadAd(adRequest);
@@ -337,6 +338,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                     //.tagForChildDirectedTreatment(true)
                     .addTestDevice("634EE6DF579E0E01020981609CDA857D")
                     .addTestDevice("A4203BC89A24BEEC45D1111F16D2F0A3")
+                    .addTestDevice("4174C23AC2A2DAFD78A7C0F0DFB39F3E") //Samsung A50
                   //  .addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
                     .build();
             mInterstitialAd.loadAd(adRequest);
