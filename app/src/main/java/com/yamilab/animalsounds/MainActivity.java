@@ -736,7 +736,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         wild.add(new Animal(getString(R.string.hyena),R.drawable.w37hyena,R.raw.w37));
         wild.add(new Animal(getString(R.string.bat),R.drawable.b28bat,R.raw.b28));
 
-        
+
         home = new ArrayList<>();
         home.add(new Animal(getString(R.string.dog),R.drawable.h0hd,R.raw.h0,true,"h0.gif"));
         home.add(new Animal(getString(R.string.cat),R.drawable.h1hd,R.raw.h1,true,"h1hd.gif"));
