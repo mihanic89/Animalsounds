@@ -734,6 +734,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         wild.add(new Animal(getString(R.string.chipmunk),R.drawable.w35chipmunk,R.raw.w35));
         wild.add(new Animal(getString(R.string.alpaca),R.drawable.w36alpaca,R.raw.w36,true,"w36.gif"));
         wild.add(new Animal(getString(R.string.hyena),R.drawable.w37hyena,R.raw.w37));
+        wild.add(new Animal(getString(R.string.bat),R.drawable.b28bat,R.raw.b28));
 
         home = new ArrayList<>();
         home.add(new Animal(getString(R.string.dog),R.drawable.h0hd,R.raw.h0,true,"h0.gif"));
@@ -791,7 +792,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         birds.add(new Animal(getString(R.string.heron),R.drawable.b25heron,R.raw.b25));
         birds.add(new Animal(getString(R.string.canary),R.drawable.b26canary,R.raw.b26));
         birds.add(new Animal(getString(R.string.magpie),R.drawable.b27magpie,R.raw.b27));
-        birds.add(new Animal(getString(R.string.bat),R.drawable.b28bat,R.raw.b28));
+
         birds.add(new Animal(getString(R.string.jay),R.drawable.b29jay,R.raw.b29));
         birds.add(new Animal(getString(R.string.starling),R.drawable.b30starling,R.raw.b30));
 
