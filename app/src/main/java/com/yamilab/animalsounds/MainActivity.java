@@ -778,6 +778,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
         aqua = new ArrayList<>();
         aqua.add(new Animal(getString(R.string.dolphin),R.drawable.a0hd,R.raw.a0,true,"a0.gif"));
+        aqua.add(new Animal(getString(R.string.shark),R.drawable.a11hd,R.raw.a11));
         aqua.add(new Animal(getString(R.string.sealbark),R.drawable.a1hd,R.raw.a1));
         aqua.add(new Animal(getString(R.string.frog),R.drawable.a2hd,R.raw.a2));
         aqua.add(new Animal(getString(R.string.penguin),R.drawable.a3hd,R.raw.a3,true,"a3.gif"));

@@ -134,6 +134,8 @@
 
     <string name="griffon"> Грифон </string>
 
+    <string name="shark"> Акула </string>
+
     <string name="fromdottodot">Рисуем по точкам</string>
     <string name="draw">Рисование</string>
     <string name="lullaby">Колыбельные</string>
