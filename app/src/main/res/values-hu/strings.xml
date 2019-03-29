@@ -136,4 +136,6 @@
 <string name="phoenix">Főnix</string>
 <string name="waternymph">Sellő</string>
 <string name="griffon">Griff</string>
+
+    <string name="shark"> Cápa </string>
 </resources>

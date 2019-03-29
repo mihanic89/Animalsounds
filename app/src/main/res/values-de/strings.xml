@@ -140,4 +140,6 @@
     <string name="phoenix">der Phönix</string>
     <string name="waternymph">die Meerjungfrau</string>
     <string name="griffon">der Greif</string>
+
+    <string name="shark"> Hai </string>
 </resources>
