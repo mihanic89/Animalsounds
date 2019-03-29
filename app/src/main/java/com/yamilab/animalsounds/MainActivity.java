@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -23,6 +24,7 @@ import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.MemoryCategory;
 import com.bumptech.glide.Priority;
@@ -31,7 +33,11 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -49,6 +55,11 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
+
+    private static final String ADS_DISABLE_KEY = "ads_disable_enabled";
+    private FirebaseRemoteConfig mFirebaseRemoteConfig;
+
+    public boolean ADS_DISABLE_BUTTON=false;
 
     private int firstTab = 3;
 
@@ -324,6 +335,19 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                 .into((ImageView) findViewById(R.id.imageViewBackground));
 
         loadInterstitial();
+
+
+
+        //удаленная конфигурация
+        mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
+                .setDeveloperModeEnabled(BuildConfig.DEBUG)
+                .build();
+        mFirebaseRemoteConfig.setConfigSettings(configSettings);
+        mFirebaseRemoteConfig.setDefaults(R.xml.remote_config_defaults);
+
+
+        fetch();
 
        // Debug.stopMethodTracing();
     }
@@ -841,6 +865,55 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         mViewPager.setCurrentItem(4);
     }
 
+    private void fetch() {
 
+
+        long cacheExpiration = 3600; // 1 hour in seconds.
+        // If your app is using developer mode, cacheExpiration is set to 0, so each fetch will
+        // retrieve values from the service.
+        if (mFirebaseRemoteConfig.getInfo().getConfigSettings().isDeveloperModeEnabled()) {
+            cacheExpiration = 0;
+        }
+
+        // [START fetch_config_with_callback]
+        // cacheExpirationSeconds is set to cacheExpiration here, indicating the next fetch request
+        // will use fetch data from the Remote Config service, rather than cached parameter values,
+        // if cached parameter values are more than cacheExpiration seconds old.
+        // See Best Practices in the README for more information.
+        mFirebaseRemoteConfig.fetch(cacheExpiration)
+                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            //Toast.makeText(MainActivity.this, "Fetch Succeeded",
+                            //        Toast.LENGTH_SHORT).show();
+
+                            // After config data is successfully fetched, it must be activated before newly fetched
+                            // values are returned.
+                            mFirebaseRemoteConfig.activateFetched();
+                        } else {
+                           // Toast.makeText(MainActivity.this, "Fetch Failed",
+                           //         Toast.LENGTH_SHORT).show();
+                        }
+                        displayWelcomeMessage();
+                    }
+                });
+        // [END fetch_config_with_callback]
+    }
+
+    private void displayWelcomeMessage() {
+        // [START get_config_values]
+
+        if (mFirebaseRemoteConfig.getBoolean(ADS_DISABLE_KEY)) {
+            //Toast.makeText(MainActivity.this, "Fetch TRUE",
+           //         Toast.LENGTH_SHORT).show();
+            ADS_DISABLE_BUTTON=true;
+        }
+        else {
+           // Toast.makeText(MainActivity.this, "Fetch FALSE",
+           //         Toast.LENGTH_SHORT).show();
+        }
+
+    }
 
 }

@@ -9,10 +9,13 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import java.util.ArrayList;
 
+import static com.yamilab.animalsounds.R.id.buttonDisableAds;
 import static com.yamilab.animalsounds.R.id.recyclerView;
+import static com.yamilab.animalsounds.R.id.wrap_content;
 
 /**
  * Created by Misha on 28.03.2017.
@@ -36,6 +39,7 @@ public class ImageGridFragmentAds extends Fragment {
     protected RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<LinkItem> mDataset;
     private StaggeredGridLayoutManager gaggeredGridLayoutManager;
+    private Button disableAds;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,10 +53,10 @@ public class ImageGridFragmentAds extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_ads, container, false);
         // BEGIN_INCLUDE(initializeRecyclerView)
         mRecyclerView = rootView.findViewById(recyclerView);
-
+        disableAds = rootView.findViewById(buttonDisableAds);
         // LinearLayoutManager is used here, this will layout the elements in a similar fashion
         // to the way ListView would layout elements. The RecyclerView.LayoutManager defines how
         // elements are laid out.
@@ -72,7 +76,21 @@ public class ImageGridFragmentAds extends Fragment {
         // END_INCLUDE(initializeRecyclerView)
 
 
+        if (((MainActivity) getActivity()).ADS_DISABLE_BUTTON) {
 
+            //disableAds.setVisibility(View.VISIBLE);
+            //disableAds.setHeight(60dp);
+            disableAds.setText("$ Убрать рекламу $");
+            disableAds.setEnabled(true);
+        }
+        else
+        {
+            disableAds.setText("$ Скоро $");
+            disableAds.setEnabled(false);
+           // disableAds.setVisibility(View.INVISIBLE);
+           // disableAds.setHeight(wrap_content);
+          //  disableAds.setHeight(0);
+        }
         return rootView;
     }
 
