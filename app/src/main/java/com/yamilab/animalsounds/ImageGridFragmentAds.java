@@ -76,6 +76,7 @@ public class ImageGridFragmentAds extends Fragment {
         // END_INCLUDE(initializeRecyclerView)
 
 
+        /*
         if (((MainActivity) getActivity()).ADS_DISABLE_BUTTON) {
 
             //disableAds.setVisibility(View.VISIBLE);
@@ -91,6 +92,7 @@ public class ImageGridFragmentAds extends Fragment {
            // disableAds.setHeight(wrap_content);
           //  disableAds.setHeight(0);
         }
+        */
         return rootView;
     }
 

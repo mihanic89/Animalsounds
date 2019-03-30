@@ -90,6 +90,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
             mScaleAnimation3,
             mScaleAnimation4;
 
+    private boolean ads_disabled=false;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         //Debug.startMethodTracing("sample");
@@ -109,7 +111,11 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                 .showAfter(1);
         */
 
+        SharedPreferences getPrefs = PreferenceManager
+                .getDefaultSharedPreferences(getBaseContext());
 
+        //  Create a new boolean and preference and set it to true
+        ads_disabled = getPrefs.getBoolean("ads_disabled_key", false);
 
 
 

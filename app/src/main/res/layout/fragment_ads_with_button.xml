@@ -1,0 +1,37 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+
+    >
+
+    <Button
+        android:id="@+id/buttonDisableAds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/oval_shape"
+        android:clickable="true"
+        android:elevation="5dp"
+        android:focusable="auto"
+
+        android:padding="6dp"
+        android:textColor="#ffffff"
+        android:textSize="25sp"
+        app:autoSizeTextType="uniform"
+        tools:text="$ Disable ads $"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@+id/buttonDisableAds"
+        android:id="@+id/recyclerView"
+        android:saveEnabled="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical" />
+
+</RelativeLayout>
