@@ -53,7 +53,14 @@ public class ImageGridFragmentAds extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_ads, container, false);
+        View rootView;
+        if (((MainActivity) getActivity()).ads_disable_button && !((MainActivity) getActivity()).ads_disabled) {
+            rootView = inflater.inflate(R.layout.fragment_ads_with_button, container, false);
+        }
+        else
+        {
+            rootView = inflater.inflate(R.layout.fragment_ads, container, false);
+        }
         // BEGIN_INCLUDE(initializeRecyclerView)
         mRecyclerView = rootView.findViewById(recyclerView);
         disableAds = rootView.findViewById(buttonDisableAds);
@@ -76,14 +83,29 @@ public class ImageGridFragmentAds extends Fragment {
         // END_INCLUDE(initializeRecyclerView)
 
 
-        /*
-        if (((MainActivity) getActivity()).ADS_DISABLE_BUTTON) {
+
+        if (((MainActivity) getActivity()).ads_disable_button && !((MainActivity) getActivity()).ads_disabled) {
 
             //disableAds.setVisibility(View.VISIBLE);
             //disableAds.setHeight(60dp);
             disableAds.setText("$ Убрать рекламу $");
-            disableAds.setEnabled(true);
+
+            disableAds.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (((MainActivity) getActivity()).ads_disabled){
+                        allReadyDisabled();
+                    }
+                    else
+                    {
+                        //запустить покупку
+                        ((MainActivity) getActivity()).launchBilling();
+                        ((MainActivity) getActivity()).ads_disabled=true;
+                    }
+                }
+            });
         }
+        /*
         else
         {
             disableAds.setText("$ Скоро $");
@@ -94,6 +116,9 @@ public class ImageGridFragmentAds extends Fragment {
         }
         */
         return rootView;
+    }
+
+    private void allReadyDisabled() {
     }
 
 

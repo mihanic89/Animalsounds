@@ -20,6 +20,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -54,12 +55,17 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
      * may be best to switch to a
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
+
+    //если тру то отключены, фолс включены
+    private final boolean ads_default = false;
+
+
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
     private static final String ADS_DISABLE_KEY = "ads_disable_enabled";
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
 
-    public boolean ADS_DISABLE_BUTTON=false;
+    public boolean ads_disable_button=false;
 
     private int firstTab = 3;
 
@@ -90,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
             mScaleAnimation3,
             mScaleAnimation4;
 
-    private boolean ads_disabled=false;
+    public boolean ads_disabled=false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -115,8 +121,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                 .getDefaultSharedPreferences(getBaseContext());
 
         //  Create a new boolean and preference and set it to true
-        ads_disabled = getPrefs.getBoolean("ads_disabled_key", false);
-
+        ads_disabled = getPrefs.getBoolean("ads_disabled_key", ads_default);
+        ads_disable_button = getPrefs.getBoolean("ads_disable_button_key",false);
 
 
 
@@ -156,8 +162,14 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
-        setContentView(R.layout.activity_main);
 
+        if (!ads_disabled) {
+            setContentView(R.layout.activity_main);
+        }
+        else
+        {
+            setContentView(R.layout.activity_main_noads);
+        }
 
 
         Point size = new Point();
@@ -294,17 +306,20 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
         MobileAds.initialize(getApplicationContext(), "ca-app-pub-2888343178529026~2046736590");
 
-        mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder()
-                // .addNetworkExtrasBundle(AdMobAdapter.class, extrasAdview)
-                // .addNetworkExtrasBundle(AdMobAdapter.class, extras)
-                //.tagForChildDirectedTreatment(true)
-                  .addTestDevice("634EE6DF579E0E01020981609CDA857D")
-                .addTestDevice("A4203BC89A24BEEC45D1111F16D2F0A3")
-                .addTestDevice("4174C23AC2A2DAFD78A7C0F0DFB39F3E") //Samsung A50
-                //.addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
-                .build();
-        mAdView.loadAd(adRequest);
+        if (!ads_disabled) {
+
+            mAdView = findViewById(R.id.adView);
+            AdRequest adRequest = new AdRequest.Builder()
+                    // .addNetworkExtrasBundle(AdMobAdapter.class, extrasAdview)
+                    // .addNetworkExtrasBundle(AdMobAdapter.class, extras)
+                    //.tagForChildDirectedTreatment(true)
+                    .addTestDevice("634EE6DF579E0E01020981609CDA857D")
+                    .addTestDevice("A4203BC89A24BEEC45D1111F16D2F0A3")
+                    .addTestDevice("4174C23AC2A2DAFD78A7C0F0DFB39F3E") //Samsung A50
+                    //.addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
+                    .build();
+            mAdView.loadAd(adRequest);
+        }
 
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId("ca-app-pub-2888343178529026/6970013790");
@@ -363,7 +378,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
     public void loadInterstitial() {
         // Show the ad if it's ready. Otherwise toast and restart the game.
-        if (!mInterstitialAd.isLoading() && !mInterstitialAd.isLoaded()) {
+        //если не грузится, не загружено и не запрещено, то загрузить
+        if (!mInterstitialAd.isLoading() && !mInterstitialAd.isLoaded() && !ads_disabled) {
             AdRequest adRequest = new AdRequest.Builder()
                     //.tagForChildDirectedTreatment(true)
                     .addTestDevice("634EE6DF579E0E01020981609CDA857D")
@@ -379,7 +395,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
     public void showInterstitial() {
         // Show the ad if it's ready. Otherwise toast and restart the game.
-        if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
+        //если баннер создан
+        if (mInterstitialAd != null && mInterstitialAd.isLoaded() && !ads_disabled) {
             mInterstitialAd.show();
         }
     }
@@ -437,6 +454,31 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
             }
 
+    }
+
+    public void launchBilling() {
+        /*
+        mAdView.setEnabled(false);
+        mAdView.destroy();
+        mAdView.setVisibility(View.INVISIBLE);
+        */
+        //View view = getWindow().getDecorView();
+        removeAd();
+
+
+    }
+
+    private void removeAd() {
+        if (mAdView != null) {
+            ViewGroup parent = (ViewGroup) mAdView.getParent();
+            try {
+                parent.removeView(mAdView);
+            }
+            catch (Exception e){
+                
+            }
+            parent.invalidate();
+        }
     }
 
 
@@ -558,20 +600,41 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     public void onResume() {
         super.onResume();
         // Resume the AdView.
-        mAdView.resume();
+        if (!ads_disabled) {
+            try {
+                mAdView.resume();
+            }
+            catch (Exception e){
+
+            }
+        }
     }
 
     @Override
     public void onPause() {
         // Pause the AdView.
-        mAdView.pause();
+        if (!ads_disabled) {
+            try {
+            mAdView.pause();
+            }
+            catch (Exception e){
+
+            }
+        }
         super.onPause();
     }
 
     @Override
     public void onDestroy() {
         // Destroy the AdView.
-        mAdView.destroy();
+        if (!ads_disabled) {
+            try {
+            mAdView.destroy();
+            }
+            catch (Exception e){
+
+            }
+        }
         if (tts != null) {
             tts.stop();
             tts.shutdown();
@@ -914,7 +977,17 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         if (mFirebaseRemoteConfig.getBoolean(ADS_DISABLE_KEY)) {
             //Toast.makeText(MainActivity.this, "Fetch TRUE",
            //         Toast.LENGTH_SHORT).show();
-            ADS_DISABLE_BUTTON=true;
+           // ADS_DISABLE_BUTTON=true;
+            ads_disable_button=true;
+            SharedPreferences getPrefs = PreferenceManager
+                    .getDefaultSharedPreferences(getBaseContext());
+            SharedPreferences.Editor e = getPrefs.edit();
+
+            //  Edit preference to make it false because we don't want this to run again
+            e.putBoolean("ads_disable_button_key", true);
+            // showInterstitialAd = false;
+            //  Apply changes
+            e.apply();
         }
         else {
            // Toast.makeText(MainActivity.this, "Fetch FALSE",
