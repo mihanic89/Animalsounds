@@ -1097,45 +1097,39 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            //Toast.makeText(MainActivity.this, "Fetch Succeeded",
-                            //        Toast.LENGTH_SHORT).show();
+
 
                             // After config data is successfully fetched, it must be activated before newly fetched
                             // values are returned.
                             mFirebaseRemoteConfig.activateFetched();
+
+                            SharedPreferences getPrefs = PreferenceManager
+                                    .getDefaultSharedPreferences(getBaseContext());
+                            SharedPreferences.Editor e = getPrefs.edit();
+
+                            if (mFirebaseRemoteConfig.getBoolean(ADS_DISABLE_KEY)) {
+                                ads_disable_button=true;
+                            }
+                            else {
+                                ads_disable_button=false;
+                            }
+
+
+                            e.putBoolean("ads_disable_button_key", ads_disable_button);
+                            e.apply();
+
+
+
                         } else {
                            // Toast.makeText(MainActivity.this, "Fetch Failed",
                            //         Toast.LENGTH_SHORT).show();
                         }
-                        displayWelcomeMessage();
+
                     }
                 });
         // [END fetch_config_with_callback]
     }
 
-    private void displayWelcomeMessage() {
-        // [START get_config_values]
 
-        if (mFirebaseRemoteConfig.getBoolean(ADS_DISABLE_KEY)) {
-            //Toast.makeText(MainActivity.this, "Fetch TRUE",
-           //         Toast.LENGTH_SHORT).show();
-           // ADS_DISABLE_BUTTON=true;
-            ads_disable_button=true;
-            SharedPreferences getPrefs = PreferenceManager
-                    .getDefaultSharedPreferences(getBaseContext());
-            SharedPreferences.Editor e = getPrefs.edit();
-
-            //  Edit preference to make it false because we don't want this to run again
-            e.putBoolean("ads_disable_button_key", true);
-            // showInterstitialAd = false;
-            //  Apply changes
-            e.apply();
-        }
-        else {
-           // Toast.makeText(MainActivity.this, "Fetch FALSE",
-           //         Toast.LENGTH_SHORT).show();
-        }
-
-    }
 
 }
