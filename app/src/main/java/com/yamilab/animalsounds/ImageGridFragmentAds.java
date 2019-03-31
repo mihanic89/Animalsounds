@@ -100,7 +100,7 @@ public class ImageGridFragmentAds extends Fragment {
                     {
                         //запустить покупку
                         ((MainActivity) getActivity()).launchBilling();
-                        ((MainActivity) getActivity()).ads_disabled=true;
+                       // ((MainActivity) getActivity()).ads_disabled=true;
                     }
                 }
             });

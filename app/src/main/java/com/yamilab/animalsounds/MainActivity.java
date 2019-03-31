@@ -19,6 +19,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -27,6 +28,14 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.android.billingclient.api.BillingClient;
+import com.android.billingclient.api.BillingClientStateListener;
+import com.android.billingclient.api.BillingFlowParams;
+import com.android.billingclient.api.Purchase;
+import com.android.billingclient.api.PurchasesUpdatedListener;
+import com.android.billingclient.api.SkuDetails;
+import com.android.billingclient.api.SkuDetailsParams;
+import com.android.billingclient.api.SkuDetailsResponseListener;
 import com.bumptech.glide.MemoryCategory;
 import com.bumptech.glide.Priority;
 import com.google.android.gms.ads.AdListener;
@@ -41,7 +50,10 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
@@ -98,6 +110,14 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
     public boolean ads_disabled=false;
 
+
+    //по покупкам
+    private BillingClient mBillingClient;
+    private Map<String, SkuDetails> mSkuDetailsMap = new HashMap<>();
+    private String mSkuId = "disable_ads";
+    private List<String> skuList = new ArrayList<>();
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         //Debug.startMethodTracing("sample");
@@ -124,7 +144,44 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         ads_disabled = getPrefs.getBoolean("ads_disabled_key", ads_default);
         ads_disable_button = getPrefs.getBoolean("ads_disable_button_key",false);
 
+        mBillingClient = BillingClient.newBuilder(this).setListener(new PurchasesUpdatedListener() {
+            @Override
+            public void onPurchasesUpdated(int responseCode, @Nullable List<Purchase> purchases) {
+                if (responseCode == BillingClient.BillingResponse.OK && purchases != null) {
+                    //сюда мы попадем когда будет осуществлена покупка
+                    payComplete();
+                }
+            }
+        }).build();
+        mBillingClient.startConnection(new BillingClientStateListener() {
+            @Override
+            public void onBillingSetupFinished(@BillingClient.BillingResponse int billingResponseCode) {
+                if (billingResponseCode == BillingClient.BillingResponse.OK) {
+                    //здесь мы можем запросить информацию о товарах и покупках
 
+                    querySkuDetails();
+
+                    List<Purchase> purchasesList = queryPurchases(); //запрос о покупках
+                    boolean pay=false;
+                    for (int i = 0; i < purchasesList.size(); i++) {
+                        String purchaseId = purchasesList.get(i).getSku();
+                        if(TextUtils.equals(mSkuId, purchaseId)) {
+                            payComplete();
+                            pay=true;
+                        }
+                    }
+
+                    if (!pay){
+                        payUnComplete();
+                    }
+                }
+            }
+
+            @Override
+            public void onBillingServiceDisconnected() {
+                //сюда мы попадем если что-то пойдет не так
+            }
+        });
 
         //  Declare a new thread to do a preference check
         Thread t = new Thread(new Runnable() {
@@ -362,7 +419,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         //удаленная конфигурация
         mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
-                .setDeveloperModeEnabled(BuildConfig.DEBUG)
+                //.setDeveloperModeEnabled(BuildConfig.DEBUG)
                 .build();
         mFirebaseRemoteConfig.setConfigSettings(configSettings);
         mFirebaseRemoteConfig.setDefaults(R.xml.remote_config_defaults);
@@ -371,10 +428,92 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         fetch();
 
        // Debug.stopMethodTracing();
+
+
     }
 
 
+    private void querySkuDetails() {
+        SkuDetailsParams.Builder params = SkuDetailsParams.newBuilder();
+        skuList.add("disable_ads");
+        params.setSkusList(skuList).setType(BillingClient.SkuType.SUBS);
 
+        mBillingClient.querySkuDetailsAsync(params.build(), new SkuDetailsResponseListener() {
+            @Override
+            public void onSkuDetailsResponse(int responseCode, List<SkuDetails> skuDetailsList) {
+                if (responseCode == 0) {
+                    /*
+                    Toast toast = Toast.makeText(getApplication(),
+                            "ответ получен " + skuDetailsList.size(), Toast.LENGTH_SHORT);
+                    toast.show();
+                    */
+                    for (SkuDetails skuDetails : skuDetailsList) {
+                        mSkuDetailsMap.put(skuDetails.getSku(), skuDetails);
+                    }
+                }
+            }
+        });
+
+    }
+
+    private List<Purchase> queryPurchases() {
+        Purchase.PurchasesResult purchasesResult=null;
+        if (areSubscriptionsSupported()) {
+             purchasesResult = mBillingClient.queryPurchases(BillingClient.SkuType.SUBS);
+        }
+
+
+
+        return purchasesResult.getPurchasesList();
+    }
+
+    public boolean areSubscriptionsSupported() {
+        int responseCode = mBillingClient.isFeatureSupported(BillingClient.FeatureType.SUBSCRIPTIONS);
+        return responseCode == BillingClient.BillingResponse.OK;
+    }
+    public void launchBilling(String skuId) {
+
+
+
+        BillingFlowParams billingFlowParams = BillingFlowParams.newBuilder()
+                .setSkuDetails(mSkuDetailsMap.get(mSkuId))
+                .build();
+        mBillingClient.launchBillingFlow(this, billingFlowParams);
+    }
+
+    public void payComplete(){
+
+        Toast toast = Toast.makeText(this,
+                "payComplete()", Toast.LENGTH_SHORT);
+        toast.show();
+
+        removeAd();
+        writeBoolean(true);
+    }
+
+    public void payUnComplete(){
+
+        Toast toast = Toast.makeText(this,
+                "payUnComplete()", Toast.LENGTH_SHORT);
+        toast.show();
+
+        //removeAd();
+        writeBoolean(false);
+        loadInterstitial();
+      //  ProcessPhoenix.triggerRebirth(this);
+
+    }
+
+
+    public void writeBoolean (boolean enabled){
+        SharedPreferences getPrefs = PreferenceManager
+                .getDefaultSharedPreferences(getBaseContext());
+        SharedPreferences.Editor e = getPrefs.edit();
+        e.putBoolean("ads_disabled_key", enabled);
+        e.apply();
+        ads_disabled=enabled;
+
+    }
 
     public void loadInterstitial() {
         // Show the ad if it's ready. Otherwise toast and restart the game.
@@ -463,19 +602,19 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         mAdView.setVisibility(View.INVISIBLE);
         */
         //View view = getWindow().getDecorView();
-        removeAd();
-
+       // removeAd();
+        launchBilling(mSkuId);
 
     }
 
     private void removeAd() {
-        if (mAdView != null) {
+        if (mAdView != null && !ads_disabled) {
             ViewGroup parent = (ViewGroup) mAdView.getParent();
             try {
                 parent.removeView(mAdView);
             }
             catch (Exception e){
-                
+
             }
             parent.invalidate();
         }
@@ -937,8 +1076,11 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
     private void fetch() {
 
+        long cacheExpiration = 180;
+        if (!notFirstStart) {
+            cacheExpiration = 1; // 1 hour in seconds.
+        }
 
-        long cacheExpiration = 3600; // 1 hour in seconds.
         // If your app is using developer mode, cacheExpiration is set to 0, so each fetch will
         // retrieve values from the service.
         if (mFirebaseRemoteConfig.getInfo().getConfigSettings().isDeveloperModeEnabled()) {
