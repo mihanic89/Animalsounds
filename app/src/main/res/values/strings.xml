@@ -13,6 +13,8 @@
     <string name="clicktextdesc">At click in the text - the name of an animal sounds.</string>
     <string name="game">Game</string>
     <string name="gametext">Guess the animals by sound</string>
+    <string name="buy_ads_disable">Remove ads</string>
+
     <string name="dog"> Dog </string>
     <string name="cat"> Cat </string>
     <string name="pig"> Pig </string>

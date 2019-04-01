@@ -14,6 +14,7 @@
     <string name="clicktextdesc">При клике по тексту - название животного</string>
     <string name="game">Игра</string>
     <string name="gametext">Угадывайте животных в играх</string>
+    <string name="buy_ads_disable">Убрать рекламу</string>
 
     <string name="ants">Муравьи</string>
     <string name="bear">Медведь</string>

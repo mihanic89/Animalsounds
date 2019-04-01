@@ -14,6 +14,7 @@
     <string name="bigimagedesc">大きいイメージを押すことによって、音は再び失われます</string>
     <string name="clicktext">テキストのクリック</string>
     <string name="gametext">音で動物を推測する</string>
+    <string name="buy_ads_disable">広告を削除</string>
 
 <string name="fromdottodot">我々は、点に頼ります</string>
 <string name="draw">スケッチ</string>

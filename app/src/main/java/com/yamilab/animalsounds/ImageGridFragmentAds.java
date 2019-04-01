@@ -88,7 +88,7 @@ public class ImageGridFragmentAds extends Fragment {
 
             //disableAds.setVisibility(View.VISIBLE);
             //disableAds.setHeight(60dp);
-            disableAds.setText("$ Убрать рекламу $");
+            disableAds.setText("$ " + getString(R.string.buy_ads_disable)+" $");
 
             disableAds.setOnClickListener(new View.OnClickListener() {
                 @Override

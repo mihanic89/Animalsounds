@@ -14,6 +14,8 @@
     <string name="bigimagedesc">Büyük resme basarak ses tekrar kaybolur</string>
     <string name="clicktext">Metni tıklayın</string>
     <string name="gametext">Sesleri hayvanlarla tahmin et</string>
+    <string name="buy_ads_disable">Reklamları kaldırmak</string>
+
 
 <string name="fromdottodot">Bu drawables puan</string>
 <string name="draw">Boya.</string>

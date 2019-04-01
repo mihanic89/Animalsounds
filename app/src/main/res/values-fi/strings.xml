@@ -14,6 +14,7 @@
     <string name="bigimagedesc">Painamalla iso kuva, ääni katoaa jälleen</string>
     <string name="clicktext">Valitse teksti</string>
     <string name="gametext">Arvaa eläimet äänellä</string>
+    <string name="buy_ads_disable">Poista mainokset</string>
 
 <string name="fromdottodot">Maalaamasi pisteistä</string>
 <string name="draw">Sormivärimaalauksista</string>

@@ -14,6 +14,8 @@
     <string name="bigimagedesc">A nagy kép megnyomásával a hang ismét eltűnik</string>
     <string name="clicktext">Kattintson a szövegre</string>
     <string name="gametext">Találd meg az állatok</string>
+    <string name="buy_ads_disable">Hirdetések eltávolítása</string>
+
 
 <string name="fromdottodot">Pontokat húzunk.</string>
 <string name="draw">Rajz</string>

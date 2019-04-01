@@ -14,6 +14,8 @@
     <string name="bigimagedesc">När du klickar på den stora bilden spelas ljudet igen</string>
     <string name="clicktext">Klicka på texten</string>
     <string name="gametext">Gissa djuren med ljud</string>
+    <string name="buy_ads_disable">Ta bort annonser</string>
+
 
 <string name="fromdottodot">Rita på poäng</string>
 <string name="draw">Ritning</string>
