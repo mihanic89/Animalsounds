@@ -384,7 +384,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         mInterstitialAd.setAdListener(new AdListener() {
             @Override
             public void onAdClosed() {
-                loadInterstitial();
+               // loadInterstitial();
+                adCount=0;
             }
 
             @Override
@@ -483,9 +484,9 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
     public void payComplete(){
 
-        Toast toast = Toast.makeText(this,
-                "payComplete()", Toast.LENGTH_SHORT);
-        toast.show();
+     //   Toast toast = Toast.makeText(this,
+      //          "payComplete()", Toast.LENGTH_SHORT);
+     //   toast.show();
 
         removeAd();
         writeBoolean(true);
@@ -493,9 +494,9 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
     public void payUnComplete(){
 
-        Toast toast = Toast.makeText(this,
-                "payUnComplete()", Toast.LENGTH_SHORT);
-        toast.show();
+       // Toast toast = Toast.makeText(this,
+      //          "payUnComplete()", Toast.LENGTH_SHORT);
+      //  toast.show();
 
         //removeAd();
         writeBoolean(false);
@@ -681,11 +682,12 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
 
-            adCount++;
+            //adCount++;
+            incAdCounter();
             if (adCount>13){
                 showInterstitial();
                 //loadInterstitial();
-                adCount=0;
+                //adCount=0;
             }
 
             switch (position) {
@@ -1133,6 +1135,18 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         // [END fetch_config_with_callback]
     }
 
+    public void incAdCounter(){
+        adCount++;
+        if (adCount>12) loadInterstitial();
+    }
+
+    public int getAdCounter(){
+        return adCount;
+    }
+
+    public void zeroAdCounter(){
+       // adCount=0;
+    }
 
 
 }

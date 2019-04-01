@@ -38,7 +38,7 @@ public class ImageGridFragmentGame extends Fragment {
     private static final int DATASET_COUNT = 40;
     private TTSListener ttsListener;
     private FirebaseAnalytics mFirebaseAnalytics;
-    private int adCounter=0;
+    //private int adCounter=0;
 // ...
 // Obtain the FirebaseAnalytics instance.
 
@@ -132,7 +132,7 @@ public class ImageGridFragmentGame extends Fragment {
             generateWrong();
             setImages();
            // newRound();
-            adCounter=0;
+           // adCounter=0;
         }
         catch (Exception e){
 
@@ -401,12 +401,14 @@ public class ImageGridFragmentGame extends Fragment {
 
 
     private void newRound (){
-        adCounter++;
+        //adCounter++;
+        ((MainActivity) getActivity()).incAdCounter();
 
-
-        if (adCounter>13) {
+        //if (adCounter>13) {
+        if (((MainActivity) getActivity()).getAdCounter()>13) {
             ((MainActivity) getActivity()).showInterstitial();
-            adCounter=0;
+            //adCounter=0;
+           // ((MainActivity) getActivity()).zeroAdCounter();
             generateWrong();
             setImages();
 

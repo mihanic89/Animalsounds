@@ -117,6 +117,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
         //holder.getImageView().setImageBitmap(null);
 
         holder.getTextView().setText(null);
+        holder.getImageView().setImageBitmap(null);
         GlideApp.with(holder.getImageView().getContext()).clear(holder.getImageView());
         holder.getImageView().setOnClickListener(null);
         holder.getTextView().setOnClickListener(null);
