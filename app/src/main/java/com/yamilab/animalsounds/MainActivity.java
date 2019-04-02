@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -26,7 +27,6 @@ import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingClientStateListener;
@@ -38,6 +38,7 @@ import com.android.billingclient.api.SkuDetailsParams;
 import com.android.billingclient.api.SkuDetailsResponseListener;
 import com.bumptech.glide.MemoryCategory;
 import com.bumptech.glide.Priority;
+import com.codemybrainsout.ratingdialog.RatingDialog;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -80,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     public boolean ads_disable_button=false;
 
     private int firstTab = 3;
+    private int ratingCounter=0;
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -386,6 +388,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
             public void onAdClosed() {
                // loadInterstitial();
                 adCount=0;
+                ratingCounter++;
             }
 
             @Override
@@ -432,6 +435,11 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
 
     }
+
+
+
+
+
 
 
     private void querySkuDetails() {
@@ -536,8 +544,36 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     public void showInterstitial() {
         // Show the ad if it's ready. Otherwise toast and restart the game.
         //если баннер создан
-        if (mInterstitialAd != null && mInterstitialAd.isLoaded() && !ads_disabled) {
-            mInterstitialAd.show();
+        //ratingCounter++;
+
+        if (ratingCounter>3){
+            final RatingDialog ratingDialog = new RatingDialog.Builder(this)
+                    .threshold(5)
+                    //.session(7)
+                    .onRatingBarFormSumbit(new RatingDialog.Builder.RatingDialogFormListener() {
+                        @Override
+                        public void onFormSubmitted(String feedback) {
+                            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                                    "mailto","contact@yapapa.xyz", null));
+                            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Feedback");
+                            emailIntent.putExtra(Intent.EXTRA_TEXT, feedback);
+                            try {
+                                startActivity(Intent.createChooser(emailIntent, "Send email..."));
+                            }
+                            catch (Exception e){
+
+                            }
+                            }
+                    }).build();
+
+            ratingDialog.show();
+            ratingCounter=0;
+            adCount=0;
+        }
+        else {
+            if (mInterstitialAd != null && mInterstitialAd.isLoaded() && !ads_disabled) {
+                mInterstitialAd.show();
+            }
         }
     }
 

@@ -61,7 +61,7 @@ dependencies {
 
     implementation 'com.android.billingclient:billing:1.2.2'
 
-
+    implementation 'com.codemybrainsout.rating:ratingdialog:1.0.8'
 
 
 }
