@@ -567,6 +567,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                     }).build();
 
             ratingDialog.show();
+            mFirebaseAnalytics.logEvent("rating_dialog", null);
             ratingCounter=0;
             adCount=0;
         }
