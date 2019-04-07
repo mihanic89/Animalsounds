@@ -61,10 +61,20 @@ public class ImageGridFragment extends Fragment {
 
         int spanCount = 2;
 
+        try {
+            if (((MainActivity) getActivity()).getGrid()) {
+                spanCount = 1;
+            }
+        }
+        catch (Exception e){
+
+        }
+
+
         int screenSize = getResources().getConfiguration().screenLayout &
                 Configuration.SCREENLAYOUT_SIZE_MASK;
 
-        if (screenSize >= Configuration.SCREENLAYOUT_SIZE_LARGE) spanCount = 3;
+        if (screenSize >= Configuration.SCREENLAYOUT_SIZE_LARGE) spanCount ++;
 
         recyclerView = rootView.findViewById(R.id.recyclerView);
 

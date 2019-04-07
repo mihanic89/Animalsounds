@@ -57,6 +57,8 @@ import java.util.Locale;
 import java.util.Map;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
+import static java.lang.StrictMath.toIntExact;
+
 
 public class MainActivity extends AppCompatActivity implements TTSListener  {
 
@@ -76,7 +78,10 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
     private static final String ADS_DISABLE_KEY = "ads_disable_enabled";
+    private static final String GRID_MINIMIZATION_KEY = "grid_minimization";
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
+
+    public boolean grid = false;
 
     public boolean ads_disable_button=false;
 
@@ -145,6 +150,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         //  Create a new boolean and preference and set it to true
         ads_disabled = getPrefs.getBoolean("ads_disabled_key", ads_default);
         ads_disable_button = getPrefs.getBoolean("ads_disable_button_key",false);
+        grid=getPrefs.getBoolean(GRID_MINIMIZATION_KEY,false);
 
         mBillingClient = BillingClient.newBuilder(this).setListener(new PurchasesUpdatedListener() {
             @Override
@@ -423,7 +429,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         //удаленная конфигурация
         mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
-                //.setDeveloperModeEnabled(BuildConfig.DEBUG)
+                .setDeveloperModeEnabled(BuildConfig.DEBUG)
                 .build();
         mFirebaseRemoteConfig.setConfigSettings(configSettings);
         mFirebaseRemoteConfig.setDefaults(R.xml.remote_config_defaults);
@@ -1157,6 +1163,16 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                             }
 
 
+                            if (mFirebaseRemoteConfig.getBoolean(GRID_MINIMIZATION_KEY)){
+                                grid=true;
+
+                            }
+                            else {
+                                grid=false;
+
+                            }
+
+                            e.putBoolean(GRID_MINIMIZATION_KEY,grid);
                             e.putBoolean("ads_disable_button_key", ads_disable_button);
                             e.apply();
 
@@ -1183,6 +1199,10 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
     public void zeroAdCounter(){
        // adCount=0;
+    }
+
+    public boolean getGrid (){
+        return grid;
     }
 
 

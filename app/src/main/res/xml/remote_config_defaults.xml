@@ -5,6 +5,10 @@
         <key>ads_disable_enabled</key>
         <value>false</value>
     </entry>
+    <entry>
+        <key>grid_minimization</key>
+        <value>2</value>
+    </entry>
 
 </defaultsMap>
     <!-- END xml_defaults -->
