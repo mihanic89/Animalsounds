@@ -59,7 +59,7 @@ public class ImageGridFragment extends Fragment {
 
 
 
-        int spanCount = 2;
+        int spanCount = 1;
 
         try {
             if (((MainActivity) getActivity()).getGrid()) {
