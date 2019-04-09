@@ -57,7 +57,6 @@ import java.util.Locale;
 import java.util.Map;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
-import static java.lang.StrictMath.toIntExact;
 
 
 public class MainActivity extends AppCompatActivity implements TTSListener  {
@@ -73,12 +72,16 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
     //если тру то отключены, фолс включены
     private final boolean ads_default = false;
-
+    private boolean backPressedToExitOnce;
+    private boolean ratingDialogWasShown;
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
     private static final String ADS_DISABLE_KEY = "ads_disable_enabled";
     private static final String GRID_MINIMIZATION_KEY = "grid_minimization";
+    private static final String SHOW_RATING_DIALOG_KEY="show_rating_dialog";
+    private static final String RATING_DIALOG_WAS_SHOWN_KEY="rating_dialog_was_shown";
+
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
 
     public boolean grid = false;
@@ -151,6 +154,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         ads_disabled = getPrefs.getBoolean("ads_disabled_key", ads_default);
         ads_disable_button = getPrefs.getBoolean("ads_disable_button_key",false);
         grid=getPrefs.getBoolean(GRID_MINIMIZATION_KEY,false);
+        backPressedToExitOnce = getPrefs.getBoolean(SHOW_RATING_DIALOG_KEY,false);
+        ratingDialogWasShown =  getPrefs.getBoolean(RATING_DIALOG_WAS_SHOWN_KEY,false);
 
         mBillingClient = BillingClient.newBuilder(this).setListener(new PurchasesUpdatedListener() {
             @Override
@@ -429,7 +434,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         //удаленная конфигурация
         mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
-                .setDeveloperModeEnabled(BuildConfig.DEBUG)
+                //.setDeveloperModeEnabled(BuildConfig.DEBUG)
                 .build();
         mFirebaseRemoteConfig.setConfigSettings(configSettings);
         mFirebaseRemoteConfig.setDefaults(R.xml.remote_config_defaults);
@@ -552,28 +557,14 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         //если баннер создан
         //ratingCounter++;
 
-        if (ratingCounter>3){
-            final RatingDialog ratingDialog = new RatingDialog.Builder(this)
-                    .threshold(5)
-                    //.session(7)
-                    .onRatingBarFormSumbit(new RatingDialog.Builder.RatingDialogFormListener() {
-                        @Override
-                        public void onFormSubmitted(String feedback) {
-                            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                                    "mailto","contact@yapapa.xyz", null));
-                            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Feedback");
-                            emailIntent.putExtra(Intent.EXTRA_TEXT, feedback);
-                            try {
-                                startActivity(Intent.createChooser(emailIntent, "Send email..."));
-                            }
-                            catch (Exception e){
-
-                            }
-                            }
-                    }).build();
-
-            ratingDialog.show();
-            mFirebaseAnalytics.logEvent("rating_dialog", null);
+        if (ratingCounter>3 && !ratingDialogWasShown){
+            showRatingDialog();
+            ratingDialogWasShown=true;
+            SharedPreferences getPrefs = PreferenceManager
+                    .getDefaultSharedPreferences(getBaseContext());
+            SharedPreferences.Editor e = getPrefs.edit();
+            e.putBoolean(RATING_DIALOG_WAS_SHOWN_KEY,true);
+            e.apply();
             ratingCounter=0;
             adCount=0;
         }
@@ -584,6 +575,31 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         }
     }
 
+
+    public void showRatingDialog (){
+        final RatingDialog ratingDialog = new RatingDialog.Builder(this)
+                .threshold(5)
+                //.session(7)
+                .onRatingBarFormSumbit(new RatingDialog.Builder.RatingDialogFormListener() {
+                    @Override
+                    public void onFormSubmitted(String feedback) {
+                        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                                "mailto","contact@yapapa.xyz", null));
+                        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Feedback");
+                        emailIntent.putExtra(Intent.EXTRA_TEXT, feedback);
+                        try {
+                            startActivity(Intent.createChooser(emailIntent, "Send email..."));
+                        }
+                        catch (Exception e){
+
+                        }
+                    }
+                }).build();
+
+        ratingDialog.show();
+        mFirebaseAnalytics.logEvent("rating_dialog", null);
+
+    }
 
 
     public void playSilence (int mseconds){
@@ -1205,5 +1221,22 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         return grid;
     }
 
+    @Override
+    public void onBackPressed() {
+        if (backPressedToExitOnce) {
+            super.onBackPressed();
+            return;
+        }
+        else {
+            showRatingDialog();
+            backPressedToExitOnce=true;
+            SharedPreferences getPrefs = PreferenceManager
+                    .getDefaultSharedPreferences(getBaseContext());
+            SharedPreferences.Editor e = getPrefs.edit();
+            e.putBoolean(SHOW_RATING_DIALOG_KEY,true);
+            e.apply();
+        }
+
+    }
 
 }

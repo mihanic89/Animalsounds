@@ -15,7 +15,6 @@ import java.util.ArrayList;
 
 import static com.yamilab.animalsounds.R.id.buttonDisableAds;
 import static com.yamilab.animalsounds.R.id.recyclerView;
-import static com.yamilab.animalsounds.R.id.wrap_content;
 
 /**
  * Created by Misha on 28.03.2017.
