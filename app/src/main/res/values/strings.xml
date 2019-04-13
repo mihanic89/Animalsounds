@@ -14,6 +14,13 @@
     <string name="game">Game</string>
     <string name="gametext">Guess the animals by sound</string>
     <string name="buy_ads_disable">Remove ads</string>
+    <string name="rd_title" translatable="false">How was your experience with us?</string>
+    <string name="rd_positiveButtonText" translatable="false">Maybe later</string>
+    <string name="rd_negativeButtonText" translatable="false">Never</string>
+    <string name="rd_formTitle" translatable="false">Submit Feedback</string>
+    <string name="rd_formHint" translatable="false">Tell us where we can improve</string>
+    <string name="rd_formSubmitText" translatable="false">Submit</string>
+    <string name="rd_formCancelText" translatable="false">Cancel</string>
 
     <string name="dog"> Dog </string>
     <string name="cat"> Cat </string>

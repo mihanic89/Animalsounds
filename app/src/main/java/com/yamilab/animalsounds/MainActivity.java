@@ -576,9 +576,21 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     }
 
 
+    
+
     public void showRatingDialog (){
         final RatingDialog ratingDialog = new RatingDialog.Builder(this)
                 .threshold(5)
+
+                .title("How was your experience with us?")
+                .positiveButtonText("Not Now")
+                .negativeButtonText("Never")
+
+                .formTitle("Submit Feedback")
+                .formHint("Tell us where we can improve")
+                .formSubmitText("Submit")
+                .formCancelText("Cancel")
+
                 //.session(7)
                 .onRatingBarFormSumbit(new RatingDialog.Builder.RatingDialogFormListener() {
                     @Override
@@ -1224,6 +1236,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     @Override
     public void onBackPressed() {
         if (backPressedToExitOnce) {
+        //if (false){
             super.onBackPressed();
             return;
         }
