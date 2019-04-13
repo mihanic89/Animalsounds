@@ -1,5 +1,6 @@
 package com.yamilab.animalsounds;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Point;
@@ -27,6 +28,7 @@ import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingClientStateListener;
@@ -576,25 +578,43 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     }
 
 
-    
+
 
     public void showRatingDialog (){
         final RatingDialog ratingDialog = new RatingDialog.Builder(this)
                 .threshold(5)
 
-                .title("How was your experience with us?")
-                .positiveButtonText("Not Now")
-                .negativeButtonText("Never")
+                .title(getString(R.string.rd_title))
+                .positiveButtonText(getString(R.string.rd_positiveButtonText))
+                .negativeButtonText(getString(R.string.rd_negativeButtonText))
 
-                .formTitle("Submit Feedback")
-                .formHint("Tell us where we can improve")
-                .formSubmitText("Submit")
-                .formCancelText("Cancel")
-
+                .formTitle(getString(R.string.rd_formTitle))
+                .formHint(getString(R.string.rd_formHint))
+                .formSubmitText(getString(R.string.rd_formSubmitText))
+                .formCancelText(getString(R.string.rd_formCancelText))
+                .onThresholdCleared(new RatingDialog.Builder.RatingThresholdClearedListener() {
+                    @Override
+                    public void onThresholdCleared(RatingDialog ratingDialog, float rating, boolean thresholdCleared) {
+                        //do something
+                        openPlaystore(MainActivity.this);
+                        mFirebaseAnalytics.logEvent("rating_dialog_5star", null);
+                        SharedPreferences getPrefs = PreferenceManager
+                                .getDefaultSharedPreferences(getBaseContext());
+                        SharedPreferences.Editor e = getPrefs.edit();
+                        e.putBoolean(SHOW_RATING_DIALOG_KEY,true);
+                        e.apply();
+                        ratingDialog.dismiss();
+                    }
+                })
                 //.session(7)
                 .onRatingBarFormSumbit(new RatingDialog.Builder.RatingDialogFormListener() {
                     @Override
                     public void onFormSubmitted(String feedback) {
+                        SharedPreferences getPrefs = PreferenceManager
+                                .getDefaultSharedPreferences(getBaseContext());
+                        SharedPreferences.Editor e = getPrefs.edit();
+                        e.putBoolean(SHOW_RATING_DIALOG_KEY,true);
+                        e.apply();
                         Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                                 "mailto","contact@yapapa.xyz", null));
                         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Feedback");
@@ -602,7 +622,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                         try {
                             startActivity(Intent.createChooser(emailIntent, "Send email..."));
                         }
-                        catch (Exception e){
+                        catch (Exception ex){
 
                         }
                     }
@@ -1243,13 +1263,18 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         else {
             showRatingDialog();
             backPressedToExitOnce=true;
-            SharedPreferences getPrefs = PreferenceManager
-                    .getDefaultSharedPreferences(getBaseContext());
-            SharedPreferences.Editor e = getPrefs.edit();
-            e.putBoolean(SHOW_RATING_DIALOG_KEY,true);
-            e.apply();
+
         }
 
+    }
+
+    private void openPlaystore(Context context) {
+        final Uri marketUri = Uri.parse("market://details?id=com.yamilab.animalsounds");
+        try {
+            context.startActivity(new Intent(Intent.ACTION_VIEW, marketUri));
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(context, "Couldn't find PlayStore on this device", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }
