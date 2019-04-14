@@ -188,17 +188,22 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
 
                     if (purchasesList!=null) {
-                        boolean pay=false;
-                        for (int i = 0; i < purchasesList.size(); i++) {
-                            String purchaseId = purchasesList.get(i).getSku();
-                            if (TextUtils.equals(mSkuId, purchaseId)) {
-                                payComplete();
-                                pay = true;
+                        try {
+                            boolean pay = false;
+                            for (int i = 0; i < purchasesList.size(); i++) {
+                                String purchaseId = purchasesList.get(i).getSku();
+                                if (TextUtils.equals(mSkuId, purchaseId)) {
+                                    payComplete();
+                                    pay = true;
+                                }
+                            }
+
+                            if (!pay) {
+                                payUnComplete();
                             }
                         }
+                        catch (Exception ex){
 
-                        if (!pay) {
-                            payUnComplete();
                         }
                     }
                 }
