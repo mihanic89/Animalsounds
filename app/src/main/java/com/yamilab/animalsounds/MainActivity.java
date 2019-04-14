@@ -594,7 +594,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
     public void showRatingDialog (){
 
-        if (!dontShowRatingDialog) {
+        if (!dontShowRatingDialog && !ads_disabled) {
 
             final RatingDialog ratingDialog = new RatingDialog.Builder(this)
                     .threshold(5)
