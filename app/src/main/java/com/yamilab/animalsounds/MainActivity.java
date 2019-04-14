@@ -83,12 +83,14 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     private static final String GRID_MINIMIZATION_KEY = "grid_minimization";
     private static final String SHOW_RATING_DIALOG_KEY="show_rating_dialog";
     private static final String RATING_DIALOG_WAS_SHOWN_KEY="rating_dialog_was_shown";
+    private static final String NUMBER_OF_RATING_START_KEY="number_of_rating_start";
 
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
 
     public boolean grid = false;
 
     public boolean ads_disable_button=false;
+    private int numRatingDialog=0;
 
     private int firstTab = 3;
     private int ratingCounter=0;
@@ -128,6 +130,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     private Map<String, SkuDetails> mSkuDetailsMap = new HashMap<>();
     private String mSkuId = "disable_ads";
     private List<String> skuList = new ArrayList<>();
+    private SharedPreferences getPrefs;
 
 
     @Override
@@ -149,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                 .showAfter(1);
         */
 
-        SharedPreferences getPrefs = PreferenceManager
+       getPrefs = PreferenceManager
                 .getDefaultSharedPreferences(getBaseContext());
 
         //  Create a new boolean and preference and set it to true
@@ -158,6 +161,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         grid=getPrefs.getBoolean(GRID_MINIMIZATION_KEY,false);
         backPressedToExitOnce = getPrefs.getBoolean(SHOW_RATING_DIALOG_KEY,false);
         ratingDialogWasShown =  getPrefs.getBoolean(RATING_DIALOG_WAS_SHOWN_KEY,false);
+        numRatingDialog = getPrefs.getInt(NUMBER_OF_RATING_START_KEY,0);
 
         mBillingClient = BillingClient.newBuilder(this).setListener(new PurchasesUpdatedListener() {
             @Override
@@ -629,6 +633,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                 }).build();
 
         ratingDialog.show();
+        incrementRating();
         mFirebaseAnalytics.logEvent("rating_dialog", null);
 
     }
@@ -1268,6 +1273,22 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
     }
 
+    public void incrementRating(){
+        numRatingDialog++;
+        saveInt(NUMBER_OF_RATING_START_KEY,numRatingDialog);
+        if (numRatingDialog>2){
+            backPressedToExitOnce=true;
+            saveBoolean(SHOW_RATING_DIALOG_KEY,true);
+            //Toast.makeText(this, "True", Toast.LENGTH_SHORT).show();
+        }
+        if (numRatingDialog==13){
+            backPressedToExitOnce=false;
+            //saveBoolean(SHOW_RATING_DIALOG_KEY,true);
+            //Toast.makeText(this, "True", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
     private void openPlaystore(Context context) {
         final Uri marketUri = Uri.parse("market://details?id=com.yamilab.animalsounds");
         try {
@@ -1275,6 +1296,22 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         } catch (android.content.ActivityNotFoundException ex) {
             Toast.makeText(context, "Couldn't find PlayStore on this device", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void saveBoolean(String key, boolean value){
+        SharedPreferences getPrefs1 = PreferenceManager
+                .getDefaultSharedPreferences(getBaseContext());
+        SharedPreferences.Editor editor = getPrefs1.edit();
+        editor.putBoolean(key, value);
+        editor.commit();
+    }
+
+    public void saveInt(String key, int value){
+        SharedPreferences getPrefs1 = PreferenceManager
+                .getDefaultSharedPreferences(getBaseContext());
+        SharedPreferences.Editor editor = getPrefs1.edit();
+        editor.putInt(key, value);
+        editor.commit();
     }
 
 }

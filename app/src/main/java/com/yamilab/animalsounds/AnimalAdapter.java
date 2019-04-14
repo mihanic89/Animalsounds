@@ -178,8 +178,8 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
                         .fitCenter()
                         // .thumbnail()
                         //.error(animal.getImageSmall())
-                        // .placeholder(new ColorDrawable(context.getResources().getColor(R.color.colorBackground)))
-                        .placeholder(animal.getImageSmall())
+                        //.placeholder(new ColorDrawable(context.getResources().getColor(R.color.colorBackground)))
+                       .placeholder(animal.getImageSmall())
                         //.placeholder(new ColorDrawable(context.getResources().getColor(R.color.colorBackground)))
                         //.placeholder(R.mipmap.placeholder)
 
