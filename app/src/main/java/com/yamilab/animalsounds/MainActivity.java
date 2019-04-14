@@ -81,15 +81,17 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
     private static final String ADS_DISABLE_KEY = "ads_disable_enabled";
     private static final String GRID_MINIMIZATION_KEY = "grid_minimization";
-    private static final String SHOW_RATING_DIALOG_KEY="show_rating_dialog";
+    private static final String PRESSED_BACK_ONCE_KEY ="show_rating_dialog";
     private static final String RATING_DIALOG_WAS_SHOWN_KEY="rating_dialog_was_shown";
     private static final String NUMBER_OF_RATING_START_KEY="number_of_rating_start";
+    private static final  String DONT_SHOW_RATING_DIALOF_KEY="dont_show_rating_dialog";
 
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
 
     public boolean grid = false;
 
     public boolean ads_disable_button=false;
+    private boolean dontShowRatingDialog=true;
     private int numRatingDialog=0;
 
     private int firstTab = 3;
@@ -159,8 +161,10 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         ads_disabled = getPrefs.getBoolean("ads_disabled_key", ads_default);
         ads_disable_button = getPrefs.getBoolean("ads_disable_button_key",false);
         grid=getPrefs.getBoolean(GRID_MINIMIZATION_KEY,false);
-        backPressedToExitOnce = getPrefs.getBoolean(SHOW_RATING_DIALOG_KEY,false);
+        backPressedToExitOnce = getPrefs.getBoolean(PRESSED_BACK_ONCE_KEY,false);
         ratingDialogWasShown =  getPrefs.getBoolean(RATING_DIALOG_WAS_SHOWN_KEY,false);
+        dontShowRatingDialog = getPrefs.getBoolean(DONT_SHOW_RATING_DIALOF_KEY,false);
+
         numRatingDialog = getPrefs.getInt(NUMBER_OF_RATING_START_KEY,0);
 
         mBillingClient = BillingClient.newBuilder(this).setListener(new PurchasesUpdatedListener() {
@@ -181,17 +185,21 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                     querySkuDetails();
 
                     List<Purchase> purchasesList = queryPurchases(); //запрос о покупках
-                    boolean pay=false;
-                    for (int i = 0; i < purchasesList.size(); i++) {
-                        String purchaseId = purchasesList.get(i).getSku();
-                        if(TextUtils.equals(mSkuId, purchaseId)) {
-                            payComplete();
-                            pay=true;
-                        }
-                    }
 
-                    if (!pay){
-                        payUnComplete();
+
+                    if (purchasesList!=null) {
+                        boolean pay=false;
+                        for (int i = 0; i < purchasesList.size(); i++) {
+                            String purchaseId = purchasesList.get(i).getSku();
+                            if (TextUtils.equals(mSkuId, purchaseId)) {
+                                payComplete();
+                                pay = true;
+                            }
+                        }
+
+                        if (!pay) {
+                            payUnComplete();
+                        }
                     }
                 }
             }
@@ -585,56 +593,62 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
 
     public void showRatingDialog (){
-        final RatingDialog ratingDialog = new RatingDialog.Builder(this)
-                .threshold(5)
 
-                .title(getString(R.string.rd_title))
-                .positiveButtonText(getString(R.string.rd_positiveButtonText))
-                .negativeButtonText(getString(R.string.rd_negativeButtonText))
+        if (!dontShowRatingDialog) {
 
-                .formTitle(getString(R.string.rd_formTitle))
-                .formHint(getString(R.string.rd_formHint))
-                .formSubmitText(getString(R.string.rd_formSubmitText))
-                .formCancelText(getString(R.string.rd_formCancelText))
-                .onThresholdCleared(new RatingDialog.Builder.RatingThresholdClearedListener() {
-                    @Override
-                    public void onThresholdCleared(RatingDialog ratingDialog, float rating, boolean thresholdCleared) {
-                        //do something
-                        openPlaystore(MainActivity.this);
-                        mFirebaseAnalytics.logEvent("rating_dialog_5star", null);
-                        SharedPreferences getPrefs = PreferenceManager
-                                .getDefaultSharedPreferences(getBaseContext());
-                        SharedPreferences.Editor e = getPrefs.edit();
-                        e.putBoolean(SHOW_RATING_DIALOG_KEY,true);
-                        e.apply();
-                        ratingDialog.dismiss();
-                    }
-                })
-                //.session(7)
-                .onRatingBarFormSumbit(new RatingDialog.Builder.RatingDialogFormListener() {
-                    @Override
-                    public void onFormSubmitted(String feedback) {
-                        SharedPreferences getPrefs = PreferenceManager
-                                .getDefaultSharedPreferences(getBaseContext());
-                        SharedPreferences.Editor e = getPrefs.edit();
-                        e.putBoolean(SHOW_RATING_DIALOG_KEY,true);
-                        e.apply();
-                        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                                "mailto","contact@yapapa.xyz", null));
-                        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Feedback");
-                        emailIntent.putExtra(Intent.EXTRA_TEXT, feedback);
-                        try {
-                            startActivity(Intent.createChooser(emailIntent, "Send email..."));
+            final RatingDialog ratingDialog = new RatingDialog.Builder(this)
+                    .threshold(5)
+
+                    .title(getString(R.string.rd_title))
+                    .positiveButtonText(getString(R.string.rd_positiveButtonText))
+                    .negativeButtonText(getString(R.string.rd_negativeButtonText))
+
+                    .formTitle(getString(R.string.rd_formTitle))
+                    .formHint(getString(R.string.rd_formHint))
+                    .formSubmitText(getString(R.string.rd_formSubmitText))
+                    .formCancelText(getString(R.string.rd_formCancelText))
+                    .onThresholdCleared(new RatingDialog.Builder.RatingThresholdClearedListener() {
+                        @Override
+                        public void onThresholdCleared(RatingDialog ratingDialog, float rating, boolean thresholdCleared) {
+                            //do something
+                            openPlaystore(MainActivity.this);
+                            mFirebaseAnalytics.logEvent("rating_dialog_5star", null);
+                            SharedPreferences getPrefs = PreferenceManager
+                                    .getDefaultSharedPreferences(getBaseContext());
+                            SharedPreferences.Editor e = getPrefs.edit();
+                            dontShowRatingDialog=true;
+                            e.putBoolean(DONT_SHOW_RATING_DIALOF_KEY, true);
+                            e.apply();
+                            ratingDialog.dismiss();
                         }
-                        catch (Exception ex){
+                    })
+                    //.session(7)
+                    .onRatingBarFormSumbit(new RatingDialog.Builder.RatingDialogFormListener() {
+                        @Override
+                        public void onFormSubmitted(String feedback) {
+                            SharedPreferences getPrefs = PreferenceManager
+                                    .getDefaultSharedPreferences(getBaseContext());
+                            SharedPreferences.Editor e = getPrefs.edit();
+                            dontShowRatingDialog=true;
+                            e.putBoolean(DONT_SHOW_RATING_DIALOF_KEY, true);
+                            e.apply();
+                            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                                    "mailto", "contact@yapapa.xyz", null));
+                            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Feedback");
+                            emailIntent.putExtra(Intent.EXTRA_TEXT, feedback);
+                            try {
+                                startActivity(Intent.createChooser(emailIntent, "Send email..."));
+                            } catch (Exception ex) {
 
+                            }
                         }
-                    }
-                }).build();
+                    }).build();
 
-        ratingDialog.show();
-        incrementRating();
-        mFirebaseAnalytics.logEvent("rating_dialog", null);
+            ratingDialog.show();
+            // incrementRating();
+            mFirebaseAnalytics.logEvent("rating_dialog", null);
+        }
+
 
     }
 
@@ -1260,6 +1274,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
     @Override
     public void onBackPressed() {
+        incrementRating();
         if (backPressedToExitOnce) {
         //if (false){
             super.onBackPressed();
@@ -1276,14 +1291,14 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     public void incrementRating(){
         numRatingDialog++;
         saveInt(NUMBER_OF_RATING_START_KEY,numRatingDialog);
-        if (numRatingDialog>2){
+        if (numRatingDialog>4){
             backPressedToExitOnce=true;
-            saveBoolean(SHOW_RATING_DIALOG_KEY,true);
+            saveBoolean(PRESSED_BACK_ONCE_KEY,true);
             //Toast.makeText(this, "True", Toast.LENGTH_SHORT).show();
         }
-        if (numRatingDialog==13){
+        if (numRatingDialog==10||numRatingDialog==20||numRatingDialog==30||numRatingDialog==40||numRatingDialog==50){
             backPressedToExitOnce=false;
-            //saveBoolean(SHOW_RATING_DIALOG_KEY,true);
+            saveBoolean(PRESSED_BACK_ONCE_KEY,false);
             //Toast.makeText(this, "True", Toast.LENGTH_SHORT).show();
         }
 
