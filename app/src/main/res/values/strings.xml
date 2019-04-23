@@ -154,5 +154,19 @@
     <string name="phrasebook">Phrasebook</string>
     <string name="title_activity_tabbed" translatable="false">TabbedActivity</string>
 
+    <string name="sparrow">sparrow</string>
+    <string name="pony">pony</string>
+    <string name="spider">spider</string>
+    <string name="armadillo">Armadillo</string>
+    <string name="wombat">wombat</string>
+    <string name="capybara">capybara</string>
+    <string name="meerkat">meerkat</string>
+    <string name="quokka">Quokka</string>
+    <string name="sloth">Sloth</string>
+    <string name="monitorlizard">monitor lizard</string>
+    <string name="anteater">anteater</string>
+    <string name="ferret">Ferret</string>
+    <string name="lizard">lizard</string>
+
 
 </resources>

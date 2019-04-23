@@ -145,4 +145,19 @@
     <string name="recipeabc">Прописи буквы и цифры</string>
     <string name="phrasebook">Разговорник для детей и взрослых</string>
 
+
+    <string name="sparrow">Воробей</string>
+    <string name="pony">Пони</string>
+    <string name="spider">Паук</string>
+    <string name="armadillo">Броненосец</string>
+    <string name="wombat">Вомбат</string>
+    <string name="capybara">Капибара</string>
+    <string name="meerkat">Сурикат</string>
+    <string name="quokka">Квокка</string>
+    <string name="sloth">Ленивец</string>
+    <string name="monitorlizard">Варан</string>
+    <string name="anteater">Муравьед</string>
+    <string name="ferret">Хорек</string>
+    <string name="lizard">Ящерица</string>
+
 </resources>
