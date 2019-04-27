@@ -26,7 +26,7 @@
         tools:text="$ Disable ads $"
         />
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_below="@+id/buttonDisableAds"
         android:id="@+id/recyclerView"
         android:saveEnabled="false"

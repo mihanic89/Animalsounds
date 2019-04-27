@@ -11,16 +11,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +38,7 @@ import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
@@ -58,18 +49,29 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
 
 public class MainActivity extends AppCompatActivity implements TTSListener  {
 
     /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
+     * The {@link PagerAdapter} that will provide
      * fragments for each of the sections. We use a
      * {@link FragmentPagerAdapter} derivative, which will keep every
      * loaded fragment in memory. If this becomes too memory intensive, it
      * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
+     * {@link FragmentStatePagerAdapter}.
      */
 
     //если тру то отключены, фолс включены
@@ -280,6 +282,9 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         mViewPager.setAdapter(mSectionsPagerAdapter);
 //        mViewPager.setOffscreenPageLimit(3);
 
+
+
+
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
@@ -405,6 +410,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                     .addTestDevice("634EE6DF579E0E01020981609CDA857D")
                     .addTestDevice("A4203BC89A24BEEC45D1111F16D2F0A3")
                     .addTestDevice("4174C23AC2A2DAFD78A7C0F0DFB39F3E") //Samsung A50
+                    .addTestDevice("D96AA369D18B1F795F0B248BAF0363C6") //Nexus
                     //.addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
                     .build();
             mAdView.loadAd(adRequest);
@@ -565,6 +571,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                     .addTestDevice("634EE6DF579E0E01020981609CDA857D")
                     .addTestDevice("A4203BC89A24BEEC45D1111F16D2F0A3")
                     .addTestDevice("4174C23AC2A2DAFD78A7C0F0DFB39F3E") //Samsung A50
+                    .addTestDevice("D96AA369D18B1F795F0B248BAF0363C6") //Nexus
                   //  .addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
                     .build();
             mInterstitialAd.loadAd(adRequest);
