@@ -503,7 +503,9 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
 
 
-        return purchasesResult.getPurchasesList();
+        if (purchasesResult.getPurchasesList()!=null){
+        return purchasesResult.getPurchasesList();}
+        else return null;
     }
 
     public boolean areSubscriptionsSupported() {
