@@ -16,6 +16,14 @@
     <string name="gametext">Arvaa eläimet äänellä</string>
     <string name="buy_ads_disable">Poista mainokset</string>
 
+    <string name="rd_title">Piditkö sovelluksesta?</string>
+    <string name="rd_positiveButtonText">Myöhemmin</string>
+    <string name="rd_negativeButtonText">ei koskaan</string>
+    <string name="rd_formTitle">Lähetä palautetta</string>
+    <string name="rd_formHint">Kerro meille, mitä voidaan parantaa.</string>
+    <string name="rd_formSubmitText">Lähetä</string>
+    <string name="rd_formCancelText">peruutus</string>
+
 <string name="fromdottodot">Maalaamasi pisteistä</string>
 <string name="draw">Sormivärimaalauksista</string>
 <string name="lullaby">Tuutulauluja</string>

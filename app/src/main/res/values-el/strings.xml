@@ -16,6 +16,14 @@
     <string name="gametext">Μαντέψτε τα ζώα με ήχο</string>
     <string name="buy_ads_disable">Κατάργηση διαφημίσεων</string>
 
+    <string name="rd_title">Μας άρεσε η εφαρμογή;</string>
+    <string name="rd_positiveButtonText">Αργότερα</string>
+    <string name="rd_negativeButtonText">Ποτέ</string>
+    <string name="rd_formTitle">Αποστολή σχολίων</string>
+    <string name="rd_formHint">Πείτε μας τι μπορεί να βελτιωθεί.</string>
+    <string name="rd_formSubmitText">Για αποστολή</string>
+    <string name="rd_formCancelText">Ακύρωση</string>
+
 <string name="fromdottodot">Σχέδιο στα σημεία</string>
 <string name="draw">Σχέδιο</string>
 <string name="lullaby">Νανουρίσματα</string>

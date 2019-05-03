@@ -16,6 +16,14 @@
     <string name="gametext">Sesleri hayvanlarla tahmin et</string>
     <string name="buy_ads_disable">Reklamları kaldırmak</string>
 
+    <string name="rd_title">Uygulamayı beğendiniz mi?</string>
+    <string name="rd_positiveButtonText">Daha sonra</string>
+    <string name="rd_negativeButtonText">asla</string>
+    <string name="rd_formTitle">Geri bildirim gönder</string>
+    <string name="rd_formHint">Bize neler geliştirilebileceğini söyle.</string>
+    <string name="rd_formSubmitText">Göndermek için</string>
+    <string name="rd_formCancelText">iptal</string>
+
 
 <string name="fromdottodot">Bu drawables puan</string>
 <string name="draw">Boya.</string>

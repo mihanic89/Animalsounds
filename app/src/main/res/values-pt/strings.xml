@@ -16,6 +16,14 @@
     <string name="gametext">Adivinhe os animais pelo som</string>
     <string name="buy_ads_disable">Remover anúncios</string>
 
+    <string name="rd_title">Você gostou do aplicativo?</string>
+    <string name="rd_positiveButtonText">Mais tarde</string>
+    <string name="rd_negativeButtonText">Nunca</string>
+    <string name="rd_formTitle">Enviar feedback</string>
+    <string name="rd_formHint">Diga-nos o que pode ser melhorado.</string>
+    <string name="rd_formSubmitText">Para enviar</string>
+    <string name="rd_formCancelText">Cancelar</string>
+
 <string name="fromdottodot">Nós desenhamos pontos</string>
 <string name="draw">Desenhando</string>
 <string name="lullaby">Canções de ninar</string>

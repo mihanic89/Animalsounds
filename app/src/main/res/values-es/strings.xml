@@ -16,6 +16,13 @@
     <string name="game">Juego</string>
     <string name="buy_ads_disable">Eliminar anuncios</string>
 
+    <string name="rd_title">Te gustó la aplicación?</string>
+    <string name="rd_positiveButtonText">Mas tarde</string>
+    <string name="rd_negativeButtonText">Nunca</string>
+    <string name="rd_formTitle">Enviar comentarios</string>
+    <string name="rd_formHint">Díganos qué se puede mejorar.</string>
+    <string name="rd_formSubmitText">Para enviar</string>
+    <string name="rd_formCancelText">Cancelar</string>
 
     <string name="fromdottodot">Dibujamos por los puntos</string>
     <string name="draw">El dibujo</string>

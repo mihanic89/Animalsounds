@@ -1314,7 +1314,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     public void incrementRating(){
         numRatingDialog++;
         saveInt(NUMBER_OF_RATING_START_KEY,numRatingDialog);
-        if (numRatingDialog>4){
+        if (numRatingDialog>3){
             backPressedToExitOnce=true;
             saveBoolean(PRESSED_BACK_ONCE_KEY,true);
             //Toast.makeText(this, "True", Toast.LENGTH_SHORT).show();

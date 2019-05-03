@@ -16,6 +16,14 @@
     <string name="gametext">Ghici animale</string>
     <string name="buy_ads_disable">Eliminați anunțurile</string>
 
+    <string name="rd_title">Ți-a plăcut aplicația?</string>
+    <string name="rd_positiveButtonText">Mai târziu</string>
+    <string name="rd_negativeButtonText">niciodată</string>
+    <string name="rd_formTitle">Trimiteți feedback</string>
+    <string name="rd_formHint">Spuneți-ne ce poate fi îmbunătățit.</string>
+    <string name="rd_formSubmitText">Pentru a trimite</string>
+    <string name="rd_formCancelText">anulare</string>
+
 
     <string name="fromdottodot">Ne bazăm pe puncte</string>
     <string name="draw">Desen</string>

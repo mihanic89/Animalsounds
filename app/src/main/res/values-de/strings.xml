@@ -17,6 +17,14 @@
     <string name="gametext">Erraten Sie die Tiere durch Klang</string>
     <string name="buy_ads_disable">Anzeigen entfernen</string>
 
+    <string name="rd_title">Hat dir die App gefallen?</string>
+    <string name="rd_positiveButtonText">Später</string>
+    <string name="rd_negativeButtonText">Niemals</string>
+    <string name="rd_formTitle">Feedback senden</string>
+    <string name="rd_formHint">Sagen Sie uns, was verbessert werden kann.</string>
+    <string name="rd_formSubmitText">Zu senden</string>
+    <string name="rd_formCancelText">Abbrechen</string>
+
     <string name="fromdottodot">Wir zeichnen nach den Punkten</string>
     <string name="draw">Das Zeichnen</string>
     <string name="lullaby">Wiegen-</string>

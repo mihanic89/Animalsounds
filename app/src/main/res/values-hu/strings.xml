@@ -16,6 +16,14 @@
     <string name="gametext">Találd meg az állatok</string>
     <string name="buy_ads_disable">Hirdetések eltávolítása</string>
 
+    <string name="rd_title">Tetszett az alkalmazás?</string>
+    <string name="rd_positiveButtonText">Később</string>
+    <string name="rd_negativeButtonText">soha</string>
+    <string name="rd_formTitle">Visszajelzés küldése</string>
+    <string name="rd_formHint">Mondja el, mit lehet javítani.</string>
+    <string name="rd_formSubmitText">Küldéshez</string>
+    <string name="rd_formCancelText">törlés</string>
+
 
 <string name="fromdottodot">Pontokat húzunk.</string>
 <string name="draw">Rajz</string>

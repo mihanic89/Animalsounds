@@ -16,6 +16,14 @@
     <string name="gametext">Tebak Hewan dengan suara</string>
     <string name="buy_ads_disable">Hapus iklan</string>
 
+    <string name="rd_title">Apakah Anda menyukai aplikasi ini?</string>
+    <string name="rd_positiveButtonText">Nanti</string>
+    <string name="rd_negativeButtonText">Tidak pernah</string>
+    <string name="rd_formTitle">Kirim umpan balik</string>
+    <string name="rd_formHint">Beri tahu kami apa yang bisa diperbaiki.</string>
+    <string name="rd_formSubmitText">Untuk mengirim</string>
+    <string name="rd_formCancelText">Batalkan</string>
+
 
     <string name="fromdottodot">Gambar pada poin</string>
     <string name="draw">Gambar</string>

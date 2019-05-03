@@ -16,6 +16,14 @@
     <string name="gametext">Угадывай на животните по звук</string>
     <string name="buy_ads_disable">Изтрий реклама</string>
 
+    <string name="rd_title">Хареса ли ви приложението?</string>
+    <string name="rd_positiveButtonText">По-късно</string>
+    <string name="rd_negativeButtonText">никога</string>
+    <string name="rd_formTitle">Изпратете отзиви</string>
+    <string name="rd_formHint">Кажете ни какво може да се подобри.</string>
+    <string name="rd_formSubmitText">За изпращане</string>
+    <string name="rd_formCancelText">анулиране</string>
+
 
 <string name="fromdottodot">Рисуваме по точки</string>
 <string name="draw">Рисуване</string>

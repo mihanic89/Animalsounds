@@ -16,6 +16,14 @@
     <string name="gametext">Hulaan ang hayop ng tunog</string>
     <string name="buy_ads_disable">Alisin ang mga ad</string>
 
+    <string name="rd_title">Ibig mo ba ang app?</string>
+    <string name="rd_positiveButtonText">Mamaya</string>
+    <string name="rd_negativeButtonText">Huwag kailanman</string>
+    <string name="rd_formTitle">Magpadala ng feedback</string>
+    <string name="rd_formHint">Sabihin sa amin kung ano ang maaaring mapabuti.</string>
+    <string name="rd_formSubmitText">Upang magpadala</string>
+    <string name="rd_formCancelText">Kanselahin</string>
+
 <string name="fromdottodot">Gumuhit tayo sa punto</string>
 <string name="draw">Pagdodrowing</string>
 <string name="lullaby">Lullabies</string>

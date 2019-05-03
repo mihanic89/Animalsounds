@@ -17,6 +17,14 @@
     <string name="game">Gioco</string>
     <string name="buy_ads_disable">Rimuovi annunci</string>
 
+    <string name="rd_title">Ti è piaciuta l"'"app?</string>
+    <string name="rd_positiveButtonText">Più tardi</string>
+    <string name="rd_negativeButtonText">mai</string>
+    <string name="rd_formTitle">Invia feedback</string>
+    <string name="rd_formHint">Dicci cosa può essere migliorato.</string>
+    <string name="rd_formSubmitText">Per inviare</string>
+    <string name="rd_formCancelText">cancellazione</string>
+
 
     <string name="fromdottodot">Attingiamo punti</string>
     <string name="draw">Disegno</string>
