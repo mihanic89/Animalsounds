@@ -575,6 +575,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                   //  .addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
                     .build();
             mInterstitialAd.loadAd(adRequest);
+            mFirebaseAnalytics.logEvent("interstitial_load", null);
         }
     }
 
@@ -599,6 +600,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         else {
             if (mInterstitialAd != null && mInterstitialAd.isLoaded() && !ads_disabled) {
                 mInterstitialAd.show();
+                mFirebaseAnalytics.logEvent("interstitial_show", null);
             }
         }
     }
@@ -919,8 +921,6 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                     public void onInit(int status) {
                         if (status == TextToSpeech.SUCCESS) {
                             int result = tts.setLanguage(new Locale(language, ""));
-                        } else {
-
                         }
                     }
                 });
@@ -932,8 +932,6 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                     public void onInit(int status) {
                         if (status == TextToSpeech.SUCCESS) {
                             int result = tts.setLanguage(new Locale("en", ""));
-                        } else {
-
                         }
                     }
                 });
@@ -1268,10 +1266,11 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
 
 
-                        } else {
+                        }
+                        //else {
                            // Toast.makeText(MainActivity.this, "Fetch Failed",
                            //         Toast.LENGTH_SHORT).show();
-                        }
+                        //}
 
                     }
                 });
@@ -1280,7 +1279,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
     public void incAdCounter(){
         adCount++;
-        if (adCount>12) loadInterstitial();
+        if (adCount==11) loadInterstitial();
     }
 
     public int getAdCounter(){
