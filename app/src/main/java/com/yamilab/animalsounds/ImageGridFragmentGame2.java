@@ -15,7 +15,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
@@ -236,7 +235,7 @@ public class ImageGridFragmentGame2 extends Fragment {
 
         correctAnswer = new Random().nextInt(size);
 
-     
+
 
         wrong1=new Random().nextInt(size);
         while (wrong1==correctAnswer){

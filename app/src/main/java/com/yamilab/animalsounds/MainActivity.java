@@ -587,6 +587,10 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         //если баннер создан
         //ratingCounter++;
 
+        if (!mInterstitialAd.isLoading() && !mInterstitialAd.isLoaded() && !ads_disabled) {
+        loadInterstitial();
+        }
+
         if (ratingCounter>3 && !ratingDialogWasShown){
             showRatingDialog();
             ratingDialogWasShown=true;
@@ -1107,6 +1111,10 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         wild.add(new Animal(getString(R.string.meerkat),R.drawable.w41,R.raw.w41));
         wild.add(new Animal(getString(R.string.quokka),R.drawable.w42,R.raw.w42));
         wild.add(new Animal(getString(R.string.sloth),R.drawable.w43,R.raw.w43));
+        wild.add(new Animal(getString(R.string.monitorlizard),R.drawable.w44,R.raw.w44));
+        wild.add(new Animal(getString(R.string.anteater),R.drawable.w45,R.raw.w45));
+        wild.add(new Animal(getString(R.string.ferret),R.drawable.w46,R.raw.w46));
+        wild.add(new Animal(getString(R.string.lizard),R.drawable.w47,R.raw.w47));
 
         home = new ArrayList<>();
         home.add(new Animal(getString(R.string.dog),R.drawable.h0hd,R.raw.h0,true,"h0.gif"));

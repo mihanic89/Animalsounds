@@ -175,13 +175,15 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
 
                         //.load(internetUrl)
                         .skipMemoryCache(true)
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        //.diskCacheStrategy(DiskCacheStrategy.ALL)
                         // .override((int) screenWidth)
                         .fitCenter()
-                        // .thumbnail()
+                         .thumbnail(
+                                 glideRequests.
+                         load(animal.getImageSmall()))
                         //.error(animal.getImageSmall())
-                        //.placeholder(new ColorDrawable(context.getResources().getColor(R.color.colorBackground)))
-                          .placeholder(animal.getImageSmall())
+                        //.placeholder(new ColorDrawable(context.getResources().getColor(R.color.colorBackground))
+                        // .placeholder(animal.getImageSmall())
                         //.placeholder(new ColorDrawable(context.getResources().getColor(R.color.colorBackground)))
                         //.placeholder(R.mipmap.placeholder)
 
