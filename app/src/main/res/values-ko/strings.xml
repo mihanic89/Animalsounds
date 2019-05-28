@@ -146,4 +146,17 @@
 <string name="waternymph">인어</string>
 <string name="griffon">그리핀</string>
     <string name="shark"> 상어 </string>
+    <string name="sparrow">참새</string>
+    <string name="pony">조랑말</string>
+    <string name="spider">거미</string>
+    <string name="armadillo">아르마딜로</string>
+    <string name="wombat">웜뱃</string>
+    <string name="capybara">카피바라</string>
+    <string name="meerkat">미어캣</string>
+    <string name="quokka">쿼카</string>
+    <string name="sloth">나무늘보</string>
+    <string name="monitorlizard">나일왕도마뱀</string>
+    <string name="anteater">개미핥기</string>
+    <string name="ferret">족제비</string>
+    <string name="lizard">도마뱀</string>
 </resources>

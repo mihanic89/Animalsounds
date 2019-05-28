@@ -146,4 +146,18 @@
 <string name="waternymph">Sereia</string>
 <string name="griffon">Grifo</string>
     <string name="shark"> Tubarão </string>
+
+    <string name="sparrow">Pardal</string>
+    <string name="pony">Pônei</string>
+    <string name="spider">Aranha</string>
+    <string name="armadillo">tatu</string>
+    <string name="wombat">Wombat</string>
+    <string name="capybara">Capivara</string>
+    <string name="meerkat">Suricata</string>
+    <string name="quokka">quokka</string>
+    <string name="sloth">Preguiça</string>
+    <string name="monitorlizard">varano</string>
+    <string name="anteater">Tamanduá</string>
+    <string name="ferret">Furão</string>
+    <string name="lizard">Lagarto</string>
 </resources>

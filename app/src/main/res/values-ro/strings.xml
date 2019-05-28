@@ -149,4 +149,18 @@
     <string name="waternymph">Sirenă</string>
     <string name="griffon">Grifon</string>
     <string name="shark"> Rechin </string>
+
+    <string name="sparrow">vrabie</string>
+    <string name="pony">ponei</string>
+    <string name="spider">păianjen</string>
+    <string name="armadillo">tatu</string>
+    <string name="wombat">wombat</string>
+    <string name="capybara">Capibara</string>
+    <string name="meerkat">Suricată</string>
+    <string name="quokka">Quokka</string>
+    <string name="sloth">leneș</string>
+    <string name="monitorlizard">Varan</string>
+    <string name="anteater">Urs furnicar</string>
+    <string name="ferret">dihor</string>
+    <string name="lizard">Șopârlă</string>
 </resources>

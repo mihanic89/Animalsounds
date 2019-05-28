@@ -150,4 +150,18 @@
     <string name="griffon">der Greif</string>
 
     <string name="shark"> Hai </string>
+
+    <string name="sparrow">Sperling</string>
+    <string name="pony">Pony</string>
+    <string name="spider">Spinne</string>
+    <string name="armadillo">Gürteltier</string>
+    <string name="wombat">Wombat</string>
+    <string name="capybara">Wasserschwein</string>
+    <string name="meerkat">Erdmännchen</string>
+    <string name="quokka">Quokka</string>
+    <string name="sloth">Faultier</string>
+    <string name="monitorlizard">Waran</string>
+    <string name="anteater">Ameisenbär</string>
+    <string name="ferret">Frettchen</string>
+    <string name="lizard">Eidechse</string>
 </resources>

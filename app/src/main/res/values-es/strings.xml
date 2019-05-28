@@ -148,5 +148,17 @@
     <string name="waternymph">Sirena</string>
     <string name="griffon">Grifo</string>
     <string name="shark"> Tiburón </string>
-
+    <string name="sparrow">Gorrión</string>
+    <string name="pony">Pony</string>
+    <string name="spider">Araña</string>
+    <string name="armadillo">armadillo</string>
+    <string name="wombat">Wombat</string>
+    <string name="capybara">capibara</string>
+    <string name="meerkat">Suricata</string>
+    <string name="quokka">Quokka</string>
+    <string name="sloth">Perezoso</string>
+    <string name="monitorlizard">Varano</string>
+    <string name="anteater">Oso hormiguero</string>
+    <string name="ferret">Hurón</string>
+    <string name="lizard">Lagarto</string>
 </resources>

@@ -146,4 +146,17 @@
     <string name="waternymph">人魚</string>
     <string name="griffon">グリフォン</string>
     <string name="shark"> 鮫 </string>
+    <string name="sparrow">スズメ</string>
+    <string name="pony">ポニー</string>
+    <string name="spider">クモ</string>
+    <string name="armadillo">アルマジロ</string>
+    <string name="wombat">ウォンバット</string>
+    <string name="capybara">カピバラ</string>
+    <string name="meerkat">ミーアキャット</string>
+    <string name="quokka">クアッカワラビー</string>
+    <string name="sloth">ナマケモノ</string>
+    <string name="monitorlizard">オオトカゲ</string>
+    <string name="anteater">アリクイ</string>
+    <string name="ferret">フェレット</string>
+    <string name="lizard">トカゲ</string>
 </resources>

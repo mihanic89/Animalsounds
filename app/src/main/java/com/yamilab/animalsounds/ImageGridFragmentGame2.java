@@ -15,6 +15,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
@@ -38,6 +39,7 @@ public class ImageGridFragmentGame2 extends Fragment {
     //private int adCounter=0;
     private TTSListener ttsListener;
     private FirebaseAnalytics mFirebaseAnalytics;
+
 // ...
 // Obtain the FirebaseAnalytics instance.
 
@@ -234,6 +236,8 @@ public class ImageGridFragmentGame2 extends Fragment {
 
         correctAnswer = new Random().nextInt(size);
 
+     
+
         wrong1=new Random().nextInt(size);
         while (wrong1==correctAnswer){
             wrong1=new Random().nextInt(size);
@@ -247,6 +251,8 @@ public class ImageGridFragmentGame2 extends Fragment {
             wrong3=new Random().nextInt(size);
         }
     }
+
+
 
     private void setImages(){
 

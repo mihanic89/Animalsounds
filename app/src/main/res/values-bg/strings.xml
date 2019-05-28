@@ -148,4 +148,18 @@
 <string name="waternymph">Русалка</string>
 <string name="griffon">Грифин</string>
 <string name="shark">Акула</string>
+    <string name="sparrow">Врабче</string>
+    <string name="pony">Пони</string>
+    <string name="spider">Паяк</string>
+    <string name="armadillo">Боен кораб</string>
+    <string name="wombat">Wombat</string>
+    <string name="capybara">Капибарата</string>
+    <string name="meerkat">Сурикат</string>
+    <string name="quokka">куока</string>
+    <string name="sloth">Ленивец</string>
+    <string name="monitorlizard">Варан</string>
+    <string name="anteater">Мравояд</string>
+    <string name="ferret">Пор</string>
+    <string name="lizard">Гущер</string>
+
 </resources>

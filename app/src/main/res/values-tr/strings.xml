@@ -147,4 +147,18 @@
 <string name="waternymph">Denizkızı</string>
 <string name="griffon">Griffon</string>
     <string name="shark">Köpek balığı</string>
+
+    <string name="sparrow">serçe</string>
+    <string name="pony">Midilli</string>
+    <string name="spider">örümcek</string>
+    <string name="armadillo">armadillo</string>
+    <string name="wombat">Vombat</string>
+    <string name="capybara">Kapibara</string>
+    <string name="meerkat">mirket</string>
+    <string name="quokka">Kısakuyruklu kanguru</string>
+    <string name="sloth">Tembel hayvan</string>
+    <string name="monitorlizard">Komodo ejderi</string>
+    <string name="anteater">karıncayiyen</string>
+    <string name="ferret">Dağ gelinciği</string>
+    <string name="lizard">Kertenkele</string>
 </resources>

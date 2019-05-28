@@ -150,4 +150,17 @@
     <string name="griffon">Griffin</string>
 
     <string name="shark"> Hiu </string>
+    <string name="sparrow">Burung gereja</string>
+    <string name="pony">Kuda sandel</string>
+    <string name="spider">Laba-laba</string>
+    <string name="armadillo">Armadillo</string>
+    <string name="wombat">Wombat</string>
+    <string name="capybara">Kapibara</string>
+    <string name="meerkat">Meerkat</string>
+    <string name="quokka">quokka</string>
+    <string name="sloth">kukang</string>
+    <string name="monitorlizard">Biawak</string>
+    <string name="anteater">Trenggiling</string>
+    <string name="ferret">Musang</string>
+    <string name="lizard">Kadal</string>
 </resources>

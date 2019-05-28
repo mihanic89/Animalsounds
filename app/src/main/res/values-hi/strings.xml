@@ -151,4 +151,18 @@
 
     <string name="shark"> शार्क मछली </string>
 
+    <string name="sparrow">गौरैया</string>
+    <string name="pony">एक टट्टू</string>
+    <string name="spider">मकड़ी</string>
+    <string name="armadillo">वर्मी</string>
+    <string name="wombat">वोमब्रेट</string>
+    <string name="capybara">कैपीबारा</string>
+    <string name="meerkat">द मीरकैट्स</string>
+    <string name="quokka">क्वोका</string>
+    <string name="sloth">आलस</string>
+    <string name="monitorlizard">वारन</string>
+    <string name="anteater">चींटी ईटर</string>
+    <string name="ferret">भगाना</string>
+    <string name="lizard">छिपकली</string>
+
 </resources>

@@ -148,5 +148,18 @@
 <string name="griffon">Griffon</string>
 
     <string name="shark"> Requin </string>
+    <string name="sparrow">Moineau</string>
+    <string name="pony">Poney</string>
+    <string name="spider">Araignée</string>
+    <string name="armadillo">Tatou</string>
+    <string name="wombat">Wombat</string>
+    <string name="capybara">Capybara</string>
+    <string name="meerkat">Suricate</string>
+    <string name="quokka">Quokka</string>
+    <string name="sloth">Paresseux</string>
+    <string name="monitorlizard">Varan</string>
+    <string name="anteater">Fourmilier</string>
+    <string name="ferret">Furet</string>
+    <string name="lizard">Lézard</string>
 
 </resources>

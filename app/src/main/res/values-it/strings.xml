@@ -151,5 +151,18 @@
     <string name="griffon">Grifone</string>
 
     <string name="shark"> Squalo </string>
+    <string name="sparrow">Passero</string>
+    <string name="pony">Pony</string>
+    <string name="spider">Ragno</string>
+    <string name="armadillo"> Armadillo</string>
+    <string name="wombat">Wombat</string>
+    <string name="capybara">Capibara</string>
+    <string name="meerkat">Suricato</string>
+    <string name="quokka">Quokka</string>
+    <string name="sloth">Bradipo</string>
+    <string name="monitorlizard">Varanus</string>
+    <string name="anteater">Formichiere</string>
+    <string name="ferret">Furetto</string>
+    <string name="lizard">Lucertola</string>
 
 </resources>

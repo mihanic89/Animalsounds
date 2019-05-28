@@ -146,4 +146,18 @@
 <string name="waternymph">Zeemeermin</string>
 <string name="griffon">Griffioen</string>
     <string name="shark"> Haai </string>
+
+    <string name="sparrow">Huismus</string>
+    <string name="pony">pony</string>
+    <string name="spider">Kobbe</string>
+    <string name="armadillo">gordeldier</string>
+    <string name="wombat">wombat</string>
+    <string name="capybara">Capibaraa</string>
+    <string name="meerkat">Stokstaartje</string>
+    <string name="quokka">Quokka</string>
+    <string name="sloth">luiaard</string>
+    <string name="monitorlizard">varaan </string>
+    <string name="anteater">miereneter</string>
+    <string name="ferret">fret</string>
+    <string name="lizard">hagedis</string>
 </resources>

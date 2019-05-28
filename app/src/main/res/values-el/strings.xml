@@ -147,4 +147,18 @@
 <string name="griffon">Γρύπας</string>
 
     <string name="shark"> Καρχαρίας </string>
+
+    <string name="sparrow">σπουργίτης</string>
+    <string name="pony">αλογάκι</string>
+    <string name="spider">αράχνη</string>
+    <string name="armadillo">αρμαντίλλο</string>
+    <string name="wombat">φασκωλόμυς</string>
+    <string name="capybara">καπιμπάρα</string>
+    <string name="meerkat">σουρικάτα</string>
+    <string name="quokka">Κουόκα</string>
+    <string name="sloth">βραδύπους</string>
+    <string name="monitorlizard">Δράκος του Κομόντο</string>
+    <string name="anteater">Μυρμηγκοφάγος</string>
+    <string name="ferret">βρωμοκούναβο</string>
+    <string name="lizard">σαύρα</string>
 </resources>

@@ -147,4 +147,18 @@
 <string name="waternymph">Sjöjungfru</string>
 <string name="griffon">Grip</string>
     <string name="shark">Haj</string>
+
+    <string name="sparrow">Fältsparvar</string>
+    <string name="pony">ponny</string>
+    <string name="spider">spindel</string>
+    <string name="armadillo">bältdjur</string>
+    <string name="wombat">wombat</string>
+    <string name="capybara">Capybara</string>
+    <string name="meerkat">Surikat</string>
+    <string name="quokka">Quokka</string>
+    <string name="sloth">Sengångare</string>
+    <string name="monitorlizard">Varan</string>
+    <string name="anteater">myrslok</string>
+    <string name="ferret">iller</string>
+    <string name="lizard">ödla</string>
 </resources>

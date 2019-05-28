@@ -148,4 +148,17 @@
 <string name="griffon">Griff</string>
 
     <string name="shark"> Cápa </string>
+    <string name="sparrow">veréb</string>
+    <string name="pony">Dales póni</string>
+    <string name="spider">pók</string>
+    <string name="armadillo">tatú</string>
+    <string name="wombat">vombat</string>
+    <string name="capybara">vízidisznó</string>
+    <string name="meerkat">Szurikáta</string>
+    <string name="quokka">kurtafarkú kenguru</string>
+    <string name="sloth">Lajhár</string>
+    <string name="monitorlizard">varánusz</string>
+    <string name="anteater">hangyász</string>
+    <string name="ferret">görény</string>
+    <string name="lizard">gyík</string>
 </resources>

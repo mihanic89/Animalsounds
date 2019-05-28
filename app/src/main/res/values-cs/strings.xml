@@ -150,4 +150,18 @@
     <string name="griffon">Gryf</string>
 
     <string name="shark"> Žralok </string>
+
+    <string name="sparrow">Vrabec</string>
+    <string name="pony">Pony</string>
+    <string name="spider">Pavouk</string>
+    <string name="armadillo">pásovec</string>
+    <string name="wombat">Wombat</string>
+    <string name="capybara">Kapybara</string>
+    <string name="meerkat">Surikata</string>
+    <string name="quokka">Klokan quokka</string>
+    <string name="sloth">lenochod</string>
+    <string name="monitorlizard">Varan</string>
+    <string name="anteater">Mravenečník</string>
+    <string name="ferret">tchoř</string>
+    <string name="lizard">ještěrka</string>
 </resources>

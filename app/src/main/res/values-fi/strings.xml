@@ -146,4 +146,17 @@
 <string name="waternymph">Merenneito</string>
 <string name="griffon">Aarnikotka</string>
     <string name="shark"> Hai </string>
+    <string name="sparrow">varpunen</string>
+    <string name="pony">poni</string>
+    <string name="spider">hämähäkki</string>
+    <string name="armadillo">vyötiäinen</string>
+    <string name="wombat">vompatti</string>
+    <string name="capybara">vesisika</string>
+    <string name="meerkat">Nelisormimangusti</string>
+    <string name="quokka">Lyhythäntäkenguru</string>
+    <string name="sloth">laiskiainen</string>
+    <string name="monitorlizard">varaani</string>
+    <string name="anteater">Muurahaiskarhut</string>
+    <string name="ferret">hilleri</string>
+    <string name="lizard">lisko</string>
 </resources>

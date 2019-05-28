@@ -151,4 +151,18 @@
     <string name="gametext">Вгадайте тварин по звуку</string>
 
     <string name="shark">Акула</string>
+
+    <string name="sparrow">Горобець</string>
+    <string name="pony">Поні</string>
+    <string name="spider">Павук</string>
+    <string name="armadillo">Броненосець</string>
+    <string name="wombat">Вомбат</string>
+    <string name="capybara">Капібара</string>
+    <string name="meerkat">Сурикат</string>
+    <string name="quokka">Квока</string>
+    <string name="sloth">Лінивець</string>
+    <string name="monitorlizard">Варан</string>
+    <string name="anteater">Мурахоїд</string>
+    <string name="ferret">Тхір </string>
+    <string name="lizard">Ящірка</string>
 </resources>

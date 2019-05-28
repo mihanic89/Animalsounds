@@ -146,4 +146,18 @@
 <string name="waternymph">Syrenka</string>
 <string name="griffon">Gryf</string>
     <string name="shark"> Rekin </string>
+
+    <string name="sparrow">Wróbel</string>
+    <string name="pony">Kucyk</string>
+    <string name="spider">Pająk</string>
+    <string name="armadillo">Pancernik</string>
+    <string name="wombat">Wombat</string>
+    <string name="capybara">Kapibara</string>
+    <string name="meerkat">Surykatka</string>
+    <string name="quokka">kuoka krótkoogonowa</string>
+    <string name="sloth">Leniwiec</string>
+    <string name="monitorlizard">waran</string>
+    <string name="anteater">Mrówkojad</string>
+    <string name="ferret">Fretka</string>
+    <string name="lizard">Jaszczurka</string>
 </resources>
