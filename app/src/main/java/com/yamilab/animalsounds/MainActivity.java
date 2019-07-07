@@ -510,7 +510,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
 
 
-        if (purchasesResult.getPurchasesList()!=null){
+        if (purchasesResult!=null && purchasesResult.getPurchasesList()!=null){
         return purchasesResult.getPurchasesList();}
         else return null;
     }
@@ -547,7 +547,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
         //removeAd();
         writeBoolean(false);
-        loadInterstitial();
+        //loadInterstitial();
       //  ProcessPhoenix.triggerRebirth(this);
 
     }
@@ -589,7 +589,13 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
         if (!mInterstitialAd.isLoading() && !mInterstitialAd.isLoaded() && !ads_disabled) {
         loadInterstitial();
+            /*
+            Toast toast = Toast.makeText(this,
+                    "showInterstitial() loadInterstitial()", Toast.LENGTH_SHORT);
+            toast.show();
+            */
         }
+
 
         if (ratingCounter>3 && !ratingDialogWasShown){
             showRatingDialog();
@@ -618,7 +624,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         if (!dontShowRatingDialog && !ads_disabled) {
 
             final RatingDialog ratingDialog = new RatingDialog.Builder(this)
-                    .threshold(5)
+                    .threshold(4)
 
                     .title(getString(R.string.rd_title))
                     .positiveButtonText(getString(R.string.rd_positiveButtonText))
@@ -1300,7 +1306,15 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
     public void incAdCounter(){
         adCount++;
-        if (adCount==11) loadInterstitial();
+        if (adCount==11) {
+            loadInterstitial();
+            /*
+            Toast toast = Toast.makeText(this,
+                    "adCount==11 loadInterstitial()", Toast.LENGTH_SHORT);
+
+            toast.show();
+            */
+        }
     }
 
     public int getAdCounter(){

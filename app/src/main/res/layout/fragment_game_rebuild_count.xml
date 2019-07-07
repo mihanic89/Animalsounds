@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/two"
         android:orientation="vertical"
+        android:layout_below="@id/correctCounter"
         android:layout_above="@+id/downLayout"
         android:weightSum="2">
 
@@ -140,8 +141,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/downLayout"
+        android:layout_below="@id/wrongCounter"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+
         android:scaleType="fitCenter"
         android:background="@null" />
 
@@ -150,12 +152,14 @@
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_alignBottom="@+id/two"
+
         android:layout_centerHorizontal="true"
 
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
+
         android:background="@drawable/oval_shape"
         android:clickable="true"
         android:elevation="5dp"
@@ -167,6 +171,50 @@
         app:autoSizeTextType="uniform"
         tools:text="Animadddddddddl" />
 
+    <Button
+        android:id="@+id/wrongCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
 
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="30dp"
+
+        android:background="@drawable/oval_shape_red"
+        android:clickable="false"
+        android:elevation="5dp"
+        android:focusable="auto"
+
+        android:padding="1dp"
+
+
+        android:textColor="#ffffff"
+        android:textSize="25sp"
+        app:autoSizeTextType="uniform"
+        tools:text="10" />
+
+    <Button
+        android:id="@+id/correctCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="30dp"
+
+
+
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/oval_shape"
+        android:clickable="false"
+        android:elevation="5dp"
+
+        android:focusable="auto"
+        android:padding="1dp"
+        android:scaleType="fitCenter"
+        android:textColor="#ffffff"
+        android:textSize="25sp"
+        app:autoSizeTextType="uniform"
+        tools:text="10" />
 
 </RelativeLayout>

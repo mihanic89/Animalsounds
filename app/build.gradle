@@ -14,7 +14,7 @@ repositories {
 
 android {
     compileSdkVersion 28
-    buildToolsVersion "28.0.3"
+    buildToolsVersion "29.0.0"
     defaultConfig {
         applicationId "com.yamilab.animalsounds"
         minSdkVersion 19
@@ -49,23 +49,23 @@ dependencies {
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
 
     implementation "androidx.appcompat:appcompat:1.0.2"
-    implementation "com.google.android.material:material:1.1.0-alpha06"
+    implementation "com.google.android.material:material:1.1.0-alpha07"
 
     implementation "androidx.cardview:cardview:1.0.0"
 
-    implementation "com.google.firebase:firebase-core:16.0.9"
+    implementation "com.google.firebase:firebase-core:17.0.0"
     implementation "com.google.firebase:firebase-crash:16.2.1"
-    implementation "com.google.firebase:firebase-ads:17.2.1"
-    implementation "com.google.firebase:firebase-perf:17.0.2"
-    implementation "com.google.firebase:firebase-storage:17.0.0"
-    implementation "com.google.firebase:firebase-auth:17.0.0"
-    implementation 'com.google.firebase:firebase-config:17.0.0'
+    implementation "com.google.firebase:firebase-ads:18.0.0"
+    implementation "com.google.firebase:firebase-perf:18.0.1"
+    implementation "com.google.firebase:firebase-storage:18.0.0"
+    implementation "com.google.firebase:firebase-auth:18.0.0"
+    implementation 'com.google.firebase:firebase-config:18.0.0'
     implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
 //    testImplementation 'junit:junit:4.12'
     implementation 'com.github.apl-devs:appintro:v4.2.3'
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
-    annotationProcessor 'androidx.annotation:annotation:1.1.0-rc01'
+    annotationProcessor 'androidx.annotation:annotation:1.1.0'
 
     implementation 'com.android.billingclient:billing:1.2.2'
 

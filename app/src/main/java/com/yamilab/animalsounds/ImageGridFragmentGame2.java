@@ -1,8 +1,11 @@
 package com.yamilab.animalsounds;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +38,8 @@ public class ImageGridFragmentGame2 extends Fragment {
     private static final String KEY_LAYOUT_MANAGER = "layoutManager";
     private static final int SPAN_COUNT = 2;
     private static final int DATASET_COUNT = 40;
+    private static final String KEY_WRONG_COUNTER = "wrongCounter2";
+    private static final String KEY_CORRECT_COUNTER = "correctCounter2";
     //private int adCounter=0;
     private TTSListener ttsListener;
     private FirebaseAnalytics mFirebaseAnalytics;
@@ -67,6 +72,8 @@ public class ImageGridFragmentGame2 extends Fragment {
     private int size=0, correctAnswer=0;
     private int wrong1=0, wrong2=0, wrong3=0;
     private int correctCard=0;
+    private int correctInt=0, wrongInt=0;
+    private boolean wrongHasTry=false;
 
     private int[] cardsNumbers;
 
@@ -76,7 +83,7 @@ public class ImageGridFragmentGame2 extends Fragment {
     ImageButton image3;
     ImageButton full;
 
-    Button buttonAnswer;
+    Button buttonAnswer,correctCounter, wrongCounter;
 
 
     @Override
@@ -102,7 +109,7 @@ public class ImageGridFragmentGame2 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_game2_rebuild, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_game2_rebuild_count, container, false);
 
         animals = new ArrayList<Animal>();
 
@@ -123,7 +130,26 @@ public class ImageGridFragmentGame2 extends Fragment {
 
         //textAnswer = (TextView) rootView.findViewById(R.id.textAnswer);
         buttonAnswer = rootView.findViewById(R.id.buttonAnswer);
+        correctCounter = rootView.findViewById(R.id.correctCounter);
+        wrongCounter = rootView.findViewById(R.id.wrongCounter);
 
+
+       // correctCounter.setText(correctInt);
+       // wrongCounter.setText(wrongInt);
+
+        SharedPreferences getPrefs = PreferenceManager
+                .getDefaultSharedPreferences(this.getActivity());
+
+
+        correctInt=getPrefs.getInt(KEY_CORRECT_COUNTER,0);
+        wrongInt=getPrefs.getInt(KEY_WRONG_COUNTER,0);
+        if (wrongInt>999||correctInt>999){
+            wrongInt=0;
+            correctInt=0;
+        }
+
+        wrongCounter.setText( String.valueOf(wrongInt));
+        correctCounter.setText( String.valueOf(correctInt));
        // ImageButton sound = rootView.findViewById(buttonSound);
         ImageButton next = rootView.findViewById(buttonNext);
 
@@ -352,7 +378,7 @@ public class ImageGridFragmentGame2 extends Fragment {
 
         if (correctCard==answer){
 
-
+            setCorrectInt();
 
 
             SoundPlay.playSP(getContext(), R.raw.correct);
@@ -389,6 +415,9 @@ public class ImageGridFragmentGame2 extends Fragment {
         }
         else
         {
+
+            setWrongInt();
+
             //звук ошибки
             SoundPlay.playSP(getContext(), R.raw.error);
             if (answer==0){
@@ -409,6 +438,9 @@ public class ImageGridFragmentGame2 extends Fragment {
 
 
     private void newRound (){
+
+        wrongHasTry=false;
+
         //adCounter++;
         ((MainActivity) getActivity()).incAdCounter();
 
@@ -451,6 +483,31 @@ public class ImageGridFragmentGame2 extends Fragment {
         full.setImageResource(animals.get(num).getImageSmall());
     }
 
+    private void setCorrectInt(){
+        if (!wrongHasTry) {
+            correctInt++;
 
+            correctCounter.setText(String.valueOf(correctInt));
+            saveInt(KEY_CORRECT_COUNTER, correctInt);
+        }
+    };
+
+
+    private void setWrongInt(){
+        if (!wrongHasTry){
+        wrongInt++;
+        wrongCounter.setText( String.valueOf(wrongInt));
+        saveInt(KEY_WRONG_COUNTER,wrongInt);
+        wrongHasTry=true;
+        }
+    };
+
+    public void saveInt(String key, int value){
+        SharedPreferences getPrefs = PreferenceManager
+                .getDefaultSharedPreferences(this.getActivity());
+        SharedPreferences.Editor editor = getPrefs.edit();
+        editor.putInt(key, value);
+        editor.commit();
+    }
 
 }
