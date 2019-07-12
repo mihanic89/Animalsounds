@@ -79,6 +79,8 @@ public class ImageGridFragmentGame extends Fragment {
     private int correctInt=0, wrongInt=0;
     private boolean wrongHasTry=false;
 
+    private ArrayList<Integer> numbers = new ArrayList<>();
+
     ImageButton image0;
     ImageButton image1;
     ImageButton image2;
@@ -257,7 +259,18 @@ public class ImageGridFragmentGame extends Fragment {
 
         correctAnswer = new Random().nextInt(size);
 
+        while (numbers.contains(correctAnswer)){
+            correctAnswer = new Random().nextInt(size);
 
+
+        }
+
+        numbers.add(correctAnswer);
+
+        if (numbers.size()>(size-5)){
+            numbers.clear();
+
+        }
 
         wrong1=new Random().nextInt(size);
         while (wrong1==correctAnswer){
@@ -346,7 +359,7 @@ public class ImageGridFragmentGame extends Fragment {
         if (this!=null) {
             GlideApp.with(this)
                     .load(image)
-                    .fitCenter()
+                    //.fitCenter()
                     .transition(withCrossFade(1000))
                     .priority(Priority.LOW)
                     .skipMemoryCache(true)
@@ -357,7 +370,7 @@ public class ImageGridFragmentGame extends Fragment {
         {
             GlideApp.with(imageView.getContext())
                     .load(image)
-                    .fitCenter()
+                    //.fitCenter()
                     .transition(withCrossFade(1000))
                     .priority(Priority.LOW)
                     .skipMemoryCache(true)

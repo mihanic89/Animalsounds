@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -76,6 +77,7 @@ public class ImageGridFragmentGame2 extends Fragment {
     private boolean wrongHasTry=false;
 
     private int[] cardsNumbers;
+    private ArrayList<Integer> numbers = new ArrayList<>();
 
     ImageButton image0;
     ImageButton image1;
@@ -263,6 +265,20 @@ public class ImageGridFragmentGame2 extends Fragment {
 
 
 
+        while (numbers.contains(correctAnswer)){
+            correctAnswer = new Random().nextInt(size);
+
+
+        }
+
+        numbers.add(correctAnswer);
+
+        if (numbers.size()>(size-5)){
+            numbers.clear();
+
+        }
+
+
         wrong1=new Random().nextInt(size);
         while (wrong1==correctAnswer){
             wrong1=new Random().nextInt(size);
@@ -352,7 +368,7 @@ public class ImageGridFragmentGame2 extends Fragment {
         if (this!=null) {
             GlideApp.with(this)
                     .load(image)
-                    .fitCenter()
+                   // .fitCenter()
                     .transition(withCrossFade(1000))
                     .priority(Priority.LOW)
                     .skipMemoryCache(true)
@@ -363,7 +379,7 @@ public class ImageGridFragmentGame2 extends Fragment {
         {
             GlideApp.with(imageView.getContext())
                     .load(image)
-                    .fitCenter()
+                   // .fitCenter()
                     .transition(withCrossFade(1000))
                     .priority(Priority.LOW)
                     .skipMemoryCache(true)
