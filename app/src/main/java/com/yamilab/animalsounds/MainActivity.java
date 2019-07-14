@@ -1229,17 +1229,11 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-       // if (data == null) {return;}
-       // String name = data.getStringExtra("name");
-       // tvName.setText("Your name is " + name);
-        mViewPager.setCurrentItem(4);
-    }
+
 
     private void fetch() {
 
-        long cacheExpiration = 180;
+        long cacheExpiration = 01;
         if (!notFirstStart) {
             cacheExpiration = 1; // 1 hour in seconds.
         }
