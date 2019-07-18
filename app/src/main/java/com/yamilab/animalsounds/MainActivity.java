@@ -273,6 +273,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         initData();
 
 
