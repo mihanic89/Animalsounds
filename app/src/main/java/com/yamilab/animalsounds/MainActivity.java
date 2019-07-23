@@ -256,7 +256,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
 
         if (!ads_disabled) {
-            setContentView(R.layout.activity_main);
+            setContentView(R.layout.activity_main_down_tabs);
         }
         else
         {
