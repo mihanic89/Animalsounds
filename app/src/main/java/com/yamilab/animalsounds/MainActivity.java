@@ -260,7 +260,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         }
         else
         {
-            setContentView(R.layout.activity_main_noads);
+            setContentView(R.layout.activity_main_down_tabs_noads);
         }
 
 
