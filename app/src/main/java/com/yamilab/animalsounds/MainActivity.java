@@ -412,7 +412,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                     .addTestDevice("634EE6DF579E0E01020981609CDA857D")
                     .addTestDevice("A4203BC89A24BEEC45D1111F16D2F0A3")
                     .addTestDevice("4174C23AC2A2DAFD78A7C0F0DFB39F3E") //Samsung A50
-                    .addTestDevice("D96AA369D18B1F795F0B248BAF0363C6") //Nexus
+                    .addTestDevice("7A4531178089C7C58205C7AA937079B6") //Nexus
                     //.addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
                     .build();
             mAdView.loadAd(adRequest);
@@ -573,7 +573,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                     .addTestDevice("634EE6DF579E0E01020981609CDA857D")
                     .addTestDevice("A4203BC89A24BEEC45D1111F16D2F0A3")
                     .addTestDevice("4174C23AC2A2DAFD78A7C0F0DFB39F3E") //Samsung A50
-                    .addTestDevice("D96AA369D18B1F795F0B248BAF0363C6") //Nexus
+                    .addTestDevice("7A4531178089C7C58205C7AA937079B6") //Nexus
                   //  .addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
                     .build();
             mInterstitialAd.loadAd(adRequest);
