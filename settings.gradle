@@ -1,1 +1,1 @@
-include ':app'
+include ':app', ':sdk-v1.0.0', ':slook_v1.4.0', ':spenremote-v1.0.0'

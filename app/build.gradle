@@ -14,7 +14,7 @@ repositories {
 
 android {
     compileSdkVersion 28
-    buildToolsVersion "29.0.1"
+    buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.yamilab.animalsounds"
         minSdkVersion 19
