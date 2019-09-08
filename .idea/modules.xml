@@ -4,9 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Animalsounds.iml" filepath="$PROJECT_DIR$/Animalsounds.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sdk-v1.0.0/sdk-v1.0.0.iml" filepath="$PROJECT_DIR$/sdk-v1.0.0/sdk-v1.0.0.iml" />
-      <module fileurl="file://$PROJECT_DIR$/slook_v1.4.0/slook_v1.4.0.iml" filepath="$PROJECT_DIR$/slook_v1.4.0/slook_v1.4.0.iml" />
-      <module fileurl="file://$PROJECT_DIR$/spenremote-v1.0.0/spenremote-v1.0.0.iml" filepath="$PROJECT_DIR$/spenremote-v1.0.0/spenremote-v1.0.0.iml" />
     </modules>
   </component>
 </project>
