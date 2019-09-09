@@ -956,6 +956,11 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     }
 
     private void makeLanguageList(String locale){
+
+        if (locale.equals("ar")){
+            language="ar";
+        }
+
         if (locale.equals("bg")){
             language="bg";
         }
