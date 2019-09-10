@@ -432,6 +432,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
             @Override
             public void onAdLoaded(){
                 // showInterstitial();
+                mFirebaseAnalytics.logEvent("interstitial_onAdLoaded", null);
             }
         });
 
@@ -454,7 +455,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                 .transition(withCrossFade(1000))
                 .into((ImageView) findViewById(R.id.imageViewBackground));
 
-        loadInterstitial();
+        //loadInterstitial();
 
 
 
@@ -588,14 +589,16 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         //если баннер создан
         //ratingCounter++;
 
+        /*
         if (!mInterstitialAd.isLoading() && !mInterstitialAd.isLoaded() && !ads_disabled) {
         loadInterstitial();
             /*
             Toast toast = Toast.makeText(this,
                     "showInterstitial() loadInterstitial()", Toast.LENGTH_SHORT);
             toast.show();
-            */
+
         }
+        */
 
 
         if (ratingCounter>3 && !ratingDialogWasShown){
@@ -607,14 +610,16 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
             e.putBoolean(RATING_DIALOG_WAS_SHOWN_KEY,true);
             e.apply();
             ratingCounter=0;
-            adCount=0;
+           // adCount=0;
         }
-        else {
-            if (mInterstitialAd != null && mInterstitialAd.isLoaded() && !ads_disabled) {
+
+            if (mInterstitialAd != null && mInterstitialAd.isLoaded() ) {
                 mInterstitialAd.show();
                 mFirebaseAnalytics.logEvent("interstitial_show", null);
+             }
+            else {
+                mFirebaseAnalytics.logEvent("interstitial_is_null_or_not_loaded", null);
             }
-        }
     }
 
 
@@ -824,8 +829,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
             incAdCounter();
             if (adCount>13){
                 showInterstitial();
-                //loadInterstitial();
-                //adCount=0;
+
             }
 
             switch (position) {
@@ -1309,7 +1313,16 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
     public void incAdCounter(){
         adCount++;
-        if (adCount==11) {
+
+        /*
+        Toast toast = Toast.makeText(this,
+                "adCount" + adCount, Toast.LENGTH_SHORT);
+
+        toast.show();
+        */
+
+
+        if (adCount==3||adCount>20) {
             loadInterstitial();
             /*
             Toast toast = Toast.makeText(this,
