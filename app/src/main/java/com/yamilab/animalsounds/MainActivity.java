@@ -835,7 +835,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
             //adCount++;
             incAdCounter();
-            if (adCount>13){
+            if (adCount>19){
                 showInterstitial();
 
             }
