@@ -404,8 +404,8 @@ public class ImageGridFragmentGame2 extends Fragment {
             //buttonAnswer.setVisibility(View.VISIBLE);
             //buttonAnswer.setText(animals.get(correctAnswer).getName());
 
-            ttsListener.playSilence(750);
-            ttsListener.speak(animals.get(correctAnswer).getName(),animals.get(correctAnswer).getSound());
+            //ttsListener.playSilence(750);
+           // ttsListener.speak(animals.get(correctAnswer).getName(),animals.get(correctAnswer).getSound());
 
 
             /*
@@ -505,6 +505,7 @@ public class ImageGridFragmentGame2 extends Fragment {
 
             correctCounter.setText(String.valueOf(correctInt));
             saveInt(KEY_CORRECT_COUNTER, correctInt);
+            ((MainActivity) getActivity()).incrementUnlockCounter();
         }
     };
 

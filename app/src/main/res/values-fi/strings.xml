@@ -24,6 +24,9 @@
     <string name="rd_formSubmitText">Lähetä</string>
     <string name="rd_formCancelText">peruutus</string>
 
+    <string name="unlock_text1">Sinun täytyy arvata</string>
+    <string name="unlock_text2">Eläimet kaikissa peleissä tämän välilehden avaamiseksi</string>
+
 <string name="fromdottodot">Maalaamasi pisteistä</string>
 <string name="draw">Sormivärimaalauksista</string>
 <string name="lullaby">Tuutulauluja</string>

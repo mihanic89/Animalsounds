@@ -24,6 +24,9 @@
     <string name="rd_formSubmitText">За изпращане</string>
     <string name="rd_formCancelText">анулиране</string>
 
+    <string name="unlock_text1">Трябва да познае</string>
+    <string name="unlock_text2">животните във всяка игра, за да отключите тази раздела</string>
+
 
 <string name="fromdottodot">Рисуваме по точки</string>
 <string name="draw">Рисуване</string>

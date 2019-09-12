@@ -24,6 +24,9 @@
     <string name="rd_formSubmitText">Küldéshez</string>
     <string name="rd_formCancelText">törlés</string>
 
+    <string name="unlock_text1">Tippelned kell</string>
+    <string name="unlock_text2">állatok bármely játék, hogy kinyit ezt a lapot</string>
+
 
 <string name="fromdottodot">Pontokat húzunk.</string>
 <string name="draw">Rajz</string>

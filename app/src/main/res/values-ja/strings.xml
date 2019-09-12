@@ -24,6 +24,9 @@
     <string name="rd_formSubmitText">送信する</string>
     <string name="rd_formCancelText">キャンセル</string>
 
+    <string name="unlock_text1">推測する必要があります</string>
+    <string name="unlock_text2">このタブのロックを解除</string>
+
 <string name="fromdottodot">我々は、点に頼ります</string>
 <string name="draw">スケッチ</string>
 <string name="lullaby">子守り歌</string>

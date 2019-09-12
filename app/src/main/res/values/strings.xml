@@ -22,6 +22,10 @@
     <string name="rd_formSubmitText" >Submit</string>
     <string name="rd_formCancelText" >Cancel</string>
 
+    <string name="unlock_text1" >You need to guess</string>
+    <string name="unlock_text2" >more animals in any games to unlock this tab</string>
+
+
     <string name="dog"> Dog </string>
     <string name="cat"> Cat </string>
     <string name="pig"> Pig </string>

@@ -24,6 +24,9 @@
     <string name="rd_formSubmitText">Para enviar</string>
     <string name="rd_formCancelText">Cancelar</string>
 
+    <string name="unlock_text1">Tienes que adivinar</string>
+    <string name="unlock_text2">animales en cualquier juego para desbloquear esta pestaña</string>
+
     <string name="fromdottodot">Dibujamos por los puntos</string>
     <string name="draw">El dibujo</string>
     <string name="lullaby">De cuna</string>

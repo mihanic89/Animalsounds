@@ -24,6 +24,9 @@
     <string name="rd_formSubmitText">Отправить</string>
     <string name="rd_formCancelText">Отмена</string>
 
+    <string name="unlock_text1" >Вам нужно угадать</string>
+    <string name="unlock_text2" >животных в любой игре чтобы разблокировать эту вкладку</string>
+
     <string name="ants">Муравьи</string>
     <string name="bear">Медведь</string>
     <string name="bees">Пчелы</string>

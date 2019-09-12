@@ -25,6 +25,9 @@
     <string name="rd_formSubmitText">Zu senden</string>
     <string name="rd_formCancelText">Abbrechen</string>
 
+    <string name="unlock_text1">Sie müssen erraten</string>
+    <string name="unlock_text2">Tiere in jedem Spiel, um diese Registerkarte zu entsperren</string>
+
     <string name="fromdottodot">Wir zeichnen nach den Punkten</string>
     <string name="draw">Das Zeichnen</string>
     <string name="lullaby">Wiegen-</string>

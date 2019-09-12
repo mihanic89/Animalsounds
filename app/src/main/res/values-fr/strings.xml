@@ -25,6 +25,9 @@
     <string name="rd_formSubmitText">À envoyer</string>
     <string name="rd_formCancelText">Annuler</string>
 
+    <string name="unlock_text1">Vous devez deviner</string>
+    <string name="unlock_text2">animaux dans n"'"importe quel jeu pour déverrouiller cet onglet</string>
+
 <string name="fromdottodot">Nous tirons sur les points</string>
 <string name="draw">Dessin</string>
 <string name="lullaby">Berceuses</string>

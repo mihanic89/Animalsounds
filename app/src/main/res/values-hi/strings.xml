@@ -24,6 +24,9 @@
     <string name="rd_formSubmitText">भेजना है</string>
     <string name="rd_formCancelText">रद्द करना</string>
 
+    <string name="unlock_text1">आप को लगता है की जरूरत है</string>
+    <string name="unlock_text2">किसी भी खेल में पशु इस टैब अनलॉक करने के लिए</string>
+
 
     <string name="fromdottodot">का बिंदुओं पर</string>
     <string name="draw">लॉटरी</string>

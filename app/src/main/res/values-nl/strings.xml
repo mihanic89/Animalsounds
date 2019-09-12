@@ -24,6 +24,9 @@
     <string name="rd_formSubmitText">Verzenden</string>
     <string name="rd_formCancelText">annulering</string>
 
+    <string name="unlock_text1">Je moet raden.</string>
+    <string name="unlock_text2">dieren in elk spel om dit tabblad te ontgrendelen</string>
+
 <string name="fromdottodot">We putten uit punten</string>
 <string name="draw">Tekening</string>
 <string name="lullaby">Slaapliedje</string>

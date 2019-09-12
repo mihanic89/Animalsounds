@@ -24,6 +24,9 @@
     <string name="rd_formSubmitText">Για αποστολή</string>
     <string name="rd_formCancelText">Ακύρωση</string>
 
+    <string name="unlock_text1">Θα πρέπει να μαντέψει</string>
+    <string name="unlock_text2">ζώα σε κάθε παιχνίδι για να ξεκλειδώσετε αυτήν την καρτέλα</string>
+
 <string name="fromdottodot">Σχέδιο στα σημεία</string>
 <string name="draw">Σχέδιο</string>
 <string name="lullaby">Νανουρίσματα</string>

@@ -24,6 +24,9 @@
     <string name="rd_formSubmitText">Pentru a trimite</string>
     <string name="rd_formCancelText">anulare</string>
 
+    <string name="unlock_text1">Trebuie să ghiciți</string>
+    <string name="unlock_text2">animale în orice joc pentru a debloca această filă</string>
+
 
     <string name="fromdottodot">Ne bazăm pe puncte</string>
     <string name="draw">Desen</string>

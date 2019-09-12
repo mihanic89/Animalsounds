@@ -22,6 +22,9 @@
     <string name="rd_formSubmitText">Надіслати</string>
     <string name="rd_formCancelText">Скасувати</string>
 
+    <string name="unlock_text1">Вам потрібно вгадати</string>
+    <string name="unlock_text2">тварин в будь-якій грі щоб розблокувати цю вкладку</string>
+
 
 
     <string name="fromdottodot">Окуляри в малюнки</string>

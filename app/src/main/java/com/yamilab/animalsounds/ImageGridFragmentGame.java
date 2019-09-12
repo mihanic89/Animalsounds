@@ -510,6 +510,7 @@ public class ImageGridFragmentGame extends Fragment {
 
             correctCounter.setText(String.valueOf(correctInt));
             saveInt(KEY_CORRECT_COUNTER, correctInt);
+            ((MainActivity) getActivity()).incrementUnlockCounter();
         }
     };
 

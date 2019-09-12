@@ -24,6 +24,9 @@
     <string name="rd_formSubmitText">Untuk mengirim</string>
     <string name="rd_formCancelText">Batalkan</string>
 
+    <string name="unlock_text1">Anda perlu menebak</string>
+    <string name="unlock_text2">hewan dalam permainan apapun untuk membuka tab ini</string>
+
 
     <string name="fromdottodot">Gambar pada poin</string>
     <string name="draw">Gambar</string>

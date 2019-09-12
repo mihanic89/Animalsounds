@@ -24,6 +24,9 @@
     <string name="rd_formSubmitText">Att skicka</string>
     <string name="rd_formCancelText">annullering</string>
 
+    <string name="unlock_text1">Du måste gissa</string>
+    <string name="unlock_text2">djur i alla spel för att låsa upp den här fliken</string>
+
 
 <string name="fromdottodot">Rita på poäng</string>
 <string name="draw">Ritning</string>

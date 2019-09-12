@@ -25,6 +25,9 @@
     <string name="rd_formSubmitText">Per inviare</string>
     <string name="rd_formCancelText">cancellazione</string>
 
+    <string name="unlock_text1">Devi indovinare</string>
+    <string name="unlock_text2">animali in qualsiasi gioco per sbloccare questa scheda</string>
+
 
     <string name="fromdottodot">Attingiamo punti</string>
     <string name="draw">Disegno</string>

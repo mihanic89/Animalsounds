@@ -24,6 +24,9 @@
     <string name="rd_formSubmitText">Aby wysłać</string>
     <string name="rd_formCancelText">Anuluj</string>
 
+    <string name="unlock_text1">Trzeba odgadnąć</string>
+    <string name="unlock_text2">zwierząt, w każdej grze, aby odblokować tę kartę</string>
+
 <string name="fromdottodot">Okulary w rysunki</string>
 <string name="draw">Farba.</string>
 <string name="lullaby">Kołysanka</string>

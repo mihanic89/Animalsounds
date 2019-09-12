@@ -22,6 +22,8 @@
     <string name="rd_formHint">أخبرنا أين يمكننا أن نتطور</string>
     <string name="rd_formSubmitText">قدم</string>
     <string name="rd_formCancelText">إلغاء</string>
+    <string name="unlock_text1">عليك أن تخمن</string>
+    <string name="unlock_text2">الحيوانات في أي لعبة لفتح هذا اللسان</string>
 
 <string name="fromdottodot">الرسم</string>
 <string name="draw">الرسم</string>

@@ -23,6 +23,9 @@
     <string name="rd_formSubmitText">送</string>
     <string name="rd_formCancelText">消除</string>
 
+    <string name="unlock_text1">你得猜猜</string>
+    <string name="unlock_text2">动物在任何游戏解锁这个标签</string>
+
 <string name="fromdottodot">画一个点</string>
 <string name="draw">绘图</string>
 <string name="lullaby">摇篮曲</string>

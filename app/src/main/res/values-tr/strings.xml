@@ -24,6 +24,9 @@
     <string name="rd_formSubmitText">Göndermek için</string>
     <string name="rd_formCancelText">iptal</string>
 
+    <string name="unlock_text1">Tahmin etmelisin</string>
+    <string name="unlock_text2">bu sekmenin kilidini açmak için</string>
+
 
 <string name="fromdottodot">Bu drawables puan</string>
 <string name="draw">Boya.</string>

@@ -24,6 +24,9 @@
     <string name="rd_formSubmitText">전송하려면</string>
     <string name="rd_formCancelText">취소</string>
 
+    <string name="unlock_text1">당신은 추측 할 필요가있다</string>
+    <string name="unlock_text2">이 탭의 잠금을 해제 할 수있는 게임의 동물</string>
+
 <string name="fromdottodot">점에 드로어 블</string>
 <string name="draw">페인트합니다</string>
 <string name="lullaby">자장가</string>

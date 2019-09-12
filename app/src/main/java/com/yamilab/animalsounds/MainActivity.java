@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     private static final String RATING_DIALOG_WAS_SHOWN_KEY="rating_dialog_was_shown";
     private static final String NUMBER_OF_RATING_START_KEY="number_of_rating_start";
     private static final  String DONT_SHOW_RATING_DIALOF_KEY="dont_show_rating_dialog";
+    private static final String KEY_TO_UNLOCK_FAIRY = "unlockFairy";
 
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
 
@@ -118,6 +119,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     private int screenWidth=800,screenHeight=1280;
     private String language="en";
 
+    private int unlockCounter=0;
+
 
 
 
@@ -136,6 +139,9 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     private String mSkuId = "disable_ads";
     private List<String> skuList = new ArrayList<>();
     private SharedPreferences getPrefs;
+    private TabLayout.Tab  tab;
+    TabLayout tabLayout;
+
 
 
     @Override
@@ -169,6 +175,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         dontShowRatingDialog = getPrefs.getBoolean(DONT_SHOW_RATING_DIALOF_KEY,false);
 
         numRatingDialog = getPrefs.getInt(NUMBER_OF_RATING_START_KEY,0);
+
+        unlockCounter = getPrefs.getInt(KEY_TO_UNLOCK_FAIRY,0);
 
         mBillingClient = BillingClient.newBuilder(this).setListener(new PurchasesUpdatedListener() {
             @Override
@@ -287,7 +295,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
 
 
-        TabLayout tabLayout = findViewById(R.id.tabs);
+        tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
 
@@ -377,7 +385,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
             }
         }
         */
-        TabLayout.Tab tab = tabLayout.getTabAt(firstTab);
+        tab = tabLayout.getTabAt(firstTab);
         tab.select();
 
 
@@ -864,7 +872,13 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                     return ImageGridFragment.newInstance( insects,screenWidth);
                 case 8:
                     mFirebaseAnalytics.logEvent("tab_fairy", null);
-                    return ImageGridFragment.newInstance(fairy,screenWidth);
+
+                    if (unlockCounter<50) {
+                        return FragmentUnlockFairy.newInstance(unlockCounter);
+                    }
+                    else {
+                        return ImageGridFragment.newInstance(fairy, screenWidth);
+                    }
 
             }
             return ImageGridFragment.newInstance(home,screenWidth);//PlaceholderFragment.newInstance(position + 1);
@@ -1238,7 +1252,9 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         animals.addAll(birds);
         animals.addAll(aqua);
         animals.addAll(insects);
-        animals.addAll(fairy);
+        if (unlockCounter>50) {
+            animals.addAll(fairy);
+        }
 
     }
 
@@ -1377,6 +1393,11 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
     }
 
+    public void incrementUnlockCounter (){
+        unlockCounter++;
+        saveInt(KEY_TO_UNLOCK_FAIRY,unlockCounter);
+    }
+
     private void openPlaystore(Context context) {
         final Uri marketUri = Uri.parse("market://details?id=com.yamilab.animalsounds");
         try {
@@ -1400,6 +1421,11 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         SharedPreferences.Editor editor = getPrefs1.edit();
         editor.putInt(key, value);
         editor.commit();
+    }
+
+    public void setGameTab (){
+        tab = tabLayout.getTabAt(1);
+        tab.select();
     }
 
 }

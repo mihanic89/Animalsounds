@@ -24,6 +24,9 @@
     <string name="rd_formSubmitText">Odeslání</string>
     <string name="rd_formCancelText">Zrušit</string>
 
+    <string name="unlock_text1">Musíte hádat</string>
+    <string name="unlock_text2">zvířata v každé hře odemknout tuto kartu</string>
+
 
     <string name="fromdottodot">Remíza na body</string>
     <string name="draw">Kresba</string>
