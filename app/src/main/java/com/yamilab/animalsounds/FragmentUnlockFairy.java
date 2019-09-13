@@ -65,12 +65,16 @@ public class FragmentUnlockFairy extends Fragment {
         unlockTextDown.setText(getString(R.string.unlock_text2));
 
 
-        startGame.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                ((MainActivity) getActivity()).setGameTab();
-            }
-        });
+        startGame.setOnClickListener(v -> ((MainActivity) getActivity()).setGameTab());
+
+        unlockTextUp.setOnClickListener(v -> ((MainActivity) getActivity()).setGameTab());
+
+        unlockTextCenter.setOnClickListener(v -> ((MainActivity) getActivity()).setGameTab());
+
+        unlockTextDown.setOnClickListener(v -> ((MainActivity) getActivity()).setGameTab());
+
+
+
 
         if (this!=null) {
             GlideApp.with(this)
@@ -93,6 +97,8 @@ public class FragmentUnlockFairy extends Fragment {
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(unlockImage);
         }
+
+        unlockImage.setOnClickListener(v -> ((MainActivity) getActivity()).setGameTab());
 
 
 
