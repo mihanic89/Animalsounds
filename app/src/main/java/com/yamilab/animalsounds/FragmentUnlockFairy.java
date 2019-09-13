@@ -58,7 +58,7 @@ public class FragmentUnlockFairy extends Fragment {
         unlockTextDown = rootView.findViewById(R.id.textUnlockCounterDown);
         unlockImage = rootView.findViewById(R.id.unlockBackgroud);
 
-        int need = 50 - getArguments().getInt("counter",50);
+        int need = 29 - getArguments().getInt("counter",50);
         if (need<0) need =0;
         unlockTextUp.setText(getString(R.string.unlock_text1));
         unlockTextCenter.setText(" " + need + " ");
@@ -74,7 +74,7 @@ public class FragmentUnlockFairy extends Fragment {
 
         if (this!=null) {
             GlideApp.with(this)
-                    .load( R.drawable.baseline_lock_black_48)
+                    .load( R.drawable.lock)
                     // .fitCenter()
                     .transition(withCrossFade(1000))
                     .priority(Priority.LOW)
@@ -85,7 +85,7 @@ public class FragmentUnlockFairy extends Fragment {
         else
         {
             GlideApp.with(unlockImage.getContext())
-                    .load(R.drawable.baseline_lock_black_48)
+                    .load(R.drawable.lock)
                     // .fitCenter()
                     .transition(withCrossFade(1000))
                     .priority(Priority.LOW)

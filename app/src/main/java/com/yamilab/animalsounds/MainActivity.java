@@ -49,6 +49,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -835,7 +836,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
             //adCount++;
             incAdCounter();
-            if (adCount>19){
+            if (adCount>14){
                 showInterstitial();
 
             }
@@ -873,7 +874,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                 case 8:
                     mFirebaseAnalytics.logEvent("tab_fairy", null);
 
-                    if (unlockCounter<50) {
+                    if (unlockCounter<29) {
                         return FragmentUnlockFairy.newInstance(unlockCounter);
                     }
                     else {
@@ -1424,7 +1425,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     }
 
     public void setGameTab (){
-        tab = tabLayout.getTabAt(1);
+        tab = tabLayout.getTabAt(new Random().nextInt(2));
         tab.select();
     }
 
