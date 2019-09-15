@@ -14,7 +14,7 @@
     <string name="game">Game</string>
     <string name="gametext">Guess the animals by sound</string>
     <string name="buy_ads_disable">Remove ads</string>
-    <string name="rd_title" >How was your experience with us?</string>
+    <string name="rd_title">Do you want rate app in Google Play?</string>
     <string name="rd_positiveButtonText" >Maybe later</string>
     <string name="rd_negativeButtonText" >Never</string>
     <string name="rd_formTitle" >Submit Feedback</string>
