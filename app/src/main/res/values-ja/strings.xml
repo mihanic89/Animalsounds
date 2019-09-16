@@ -16,7 +16,7 @@
     <string name="gametext">音で動物を推測する</string>
     <string name="buy_ads_disable">広告を削除</string>
 
-    <string name="rd_title">あなたはアプリが好きでしたか？</string>
+    <string name="rd_title">Google Playでアプリを評価しますか？</string>
     <string name="rd_positiveButtonText">後で</string>
     <string name="rd_negativeButtonText">しない</string>
     <string name="rd_formTitle">フィードバックを送る</string>

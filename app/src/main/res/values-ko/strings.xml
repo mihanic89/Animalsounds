@@ -16,7 +16,7 @@
     <string name="gametext">동물을 소리로 맞춰보세요</string>
     <string name="buy_ads_disable">광고 삭제</string>
 
-    <string name="rd_title">앱이 좋았 니?</string>
+    <string name="rd_title">Google Play에서 평가 앱을 원하십니까?</string>
     <string name="rd_positiveButtonText">나중에</string>
     <string name="rd_negativeButtonText">절대 안함</string>
     <string name="rd_formTitle">의견 보내기</string>
