@@ -56,14 +56,14 @@ dependencies {
     implementation "com.google.firebase:firebase-crash:16.2.1"
     implementation "com.google.firebase:firebase-ads:18.2.0"
     implementation "com.google.firebase:firebase-perf:19.0.0"
-    implementation "com.google.firebase:firebase-storage:19.0.1"
-    implementation "com.google.firebase:firebase-auth:19.0.0"
-    implementation 'com.google.firebase:firebase-config:19.0.1'
+    implementation "com.google.firebase:firebase-storage:19.1.0"
+    implementation "com.google.firebase:firebase-auth:19.1.0"
+    implementation 'com.google.firebase:firebase-config:19.0.2'
     implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
 //    testImplementation 'junit:junit:4.12'
     implementation 'com.github.apl-devs:appintro:v4.2.3'
-    implementation 'com.github.bumptech.glide:glide:4.9.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
     annotationProcessor 'androidx.annotation:annotation:1.1.0'
     implementation 'com.android.billingclient:billing:1.2.2'
     implementation 'com.codemybrainsout.rating:ratingdialog:1.0.8'
