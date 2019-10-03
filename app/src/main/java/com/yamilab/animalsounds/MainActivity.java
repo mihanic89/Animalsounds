@@ -938,8 +938,9 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
             tts.shutdown();
         }
 
-        super.onDestroy();
         GlideApp.get(this).clearMemory();
+        super.onDestroy();
+
     }
 
     public class TtsInit extends AsyncTask<Void, Void, Void> {
