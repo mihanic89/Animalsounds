@@ -119,7 +119,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
         //holder.getImageView().setImageBitmap(null);
 
         holder.getTextView().setText(null);
-        holder.getImageView().setImageBitmap(null);
+        holder.getImageView().setImageDrawable(null);
         GlideApp.with(holder.getImageView().getContext()).clear(holder.getImageView());
         holder.getImageView().setOnClickListener(null);
         holder.getTextView().setOnClickListener(null);
@@ -164,45 +164,42 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
         //GlideApp.get(holder.itemView.getContext()).setMemoryCategory(MemoryCategory.LOW);
         //GlideApp.ц
 
-        if (animal.isGIF() & Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
-
-            try {
-                //GlideApp.with(context)
-                          glideRequests
-
-                        .load(mStorageRef.child(animal.getGifHref()))
-                        .priority(Priority.LOW)
-
-                        //.load(internetUrl)
-                        .skipMemoryCache(true)
-                        //.diskCacheStrategy(DiskCacheStrategy.ALL)
-                        // .override((int) screenWidth)
-                        .fitCenter()
-                         .thumbnail(
-                                 glideRequests.
-                         load(animal.getImageSmall()))
-                        //.error(animal.getImageSmall())
-                        //.placeholder(new ColorDrawable(context.getResources().getColor(R.color.colorBackground))
-                        // .placeholder(animal.getImageSmall())
-                        //.placeholder(new ColorDrawable(context.getResources().getColor(R.color.colorBackground)))
-                        //.placeholder(R.mipmap.placeholder)
-
-                        //.transition(withCrossFade(1000))
-                        .into(holder.getImageView())
-                          .clearOnDetach();
-
-            }
-            catch (Exception e){
-                holder.getImageView().setImageDrawable(holder.getImageView().
-                        getContext().
-                        getResources().
-                        getDrawable(mDataSet.get(position).getImageSmall()));
-            }
-        }
 
 
+            if (animal.isGIF() & Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
 
-            else {
+                try {
+                    //GlideApp.with(context)
+                    glideRequests
+
+                            .load(mStorageRef.child(animal.getGifHref()))
+                            .priority(Priority.LOW)
+
+                            //.load(internetUrl)
+                            .skipMemoryCache(true)
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                            //.override((int) screenWidth)
+                            .fitCenter()
+                            .override((int)screenWidth/2, Target.SIZE_ORIGINAL)
+                            .thumbnail( glideRequests.load(animal.getImageSmall()))
+                            //.error(animal.getImageSmall())
+                            //.placeholder(new ColorDrawable(context.getResources().getColor(R.color.colorBackground))
+                            // .placeholder(animal.getImageSmall())
+                            //.placeholder(new ColorDrawable(context.getResources().getColor(R.color.colorBackground)))
+                            //.placeholder(R.mipmap.placeholder)
+
+                            //.transition(withCrossFade(100))
+                            .into(holder.getImageView())
+                            //.clearOnDetach()
+                             ;
+
+                } catch (Exception e) {
+                    holder.getImageView().setImageDrawable(holder.getImageView().
+                            getContext().
+                            getResources().
+                            getDrawable(mDataSet.get(position).getImageSmall()));
+                }
+            } else {
 
                 /*
               holder.getImageView().setImageDrawable(holder.getImageView().
@@ -211,33 +208,34 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
                       getDrawable(mDataSet.get(position).getImageSmall()));
               */
 
-            try {
-              // GlideApp.with(context)
-            glideRequests
-                        .load(mDataSet.get(position).getImageSmall())
-                        .priority(Priority.LOW)
-                        //.load(internetUrl)
+                try {
+                    // GlideApp.with(context)
+                    glideRequests
+                            .load(mDataSet.get(position).getImageSmall())
+                            .priority(Priority.LOW)
+                            //.load(internetUrl)
 
-                         .skipMemoryCache(true)
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)
-                        .override(screenWidth, Target.SIZE_ORIGINAL)
-                        .fitCenter()
-                        // .thumbnail()
-                        //.error(R.mipmap.ic_launcher)
-                        .placeholder(new ColorDrawable(holder.itemView.getContext().getResources().getColor(R.color.colorBackground)))
-                        //.placeholder(R.mipmap.placeholder)
-                        .transition(withCrossFade(1000))
-                        .into(holder.getImageView());
+                            .skipMemoryCache(true)
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                            .override(screenWidth, Target.SIZE_ORIGINAL)
+                            .fitCenter()
+                            // .thumbnail()
+                            //.error(R.mipmap.ic_launcher)
+                            //.placeholder(new ColorDrawable(holder.itemView.getContext().getResources().getColor(R.color.colorBackground)))
+                            //.placeholder(R.mipmap.placeholder)
+                            //.transition(withCrossFade(1000))
+                            .into(holder.getImageView());
 
-        }
-            catch (Exception e){
-            holder.getImageView().setImageDrawable(holder.getImageView().
-                    getContext().
-                    getResources().
-                    getDrawable(mDataSet.get(position).getImageSmall()));
-        }
+                } catch (Exception e) {
+                    holder.getImageView().setImageDrawable(holder.getImageView().
+                            getContext().
+                            getResources().
+                            getDrawable(mDataSet.get(position).getImageSmall()));
+                }
 
             }
+
+
 
 
 

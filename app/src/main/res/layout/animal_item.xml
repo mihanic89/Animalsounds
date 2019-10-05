@@ -43,7 +43,7 @@
             android:layout_alignParentBottom="true"
             android:adjustViewBounds="true"
             android:gravity="center_horizontal"
-            android:scaleType="centerCrop" />
+            />
 
 
     </RelativeLayout>
