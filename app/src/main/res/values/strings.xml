@@ -167,11 +167,13 @@
     <string name="meerkat">meerkat</string>
     <string name="quokka">Quokka</string>
     <string name="sloth">Sloth</string>
-    <string name="monitorlizard">monitor lizard</string>
-    <string name="anteater">anteater</string>
+    <string name="monitorlizard">Monitor lizard</string>
+    <string name="anteater">Anteater</string>
     <string name="ferret">Ferret</string>
-    <string name="lizard">lizard</string>
-    <string name="wolverine">wolverine</string>
+    <string name="lizard">Lizard</string>
+    <string name="wolverine">Wolverine</string>
+
+    <string name="yeti">Yeti</string>
 
 
 </resources>

@@ -168,4 +168,7 @@
     <string name="ferret">tchoř</string>
     <string name="lizard">ještěrka</string>
     <string name="wolverine">rosomák</string>
+
+    <string name="yeti">yeti</string>
+
 </resources>

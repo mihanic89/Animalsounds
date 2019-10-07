@@ -836,7 +836,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
             //adCount++;
             incAdCounter();
-            if (adCount>14){
+            if (adCount>15){
                 showInterstitial();
 
             }
@@ -1246,6 +1246,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         fairy.add(new Animal(getString(R.string.phoenix), R.drawable.f7hd,R.raw.f7,true, "f7.gif"));
         fairy.add(new Animal(getString(R.string.waternymph), R.drawable.f8hd,R.raw.f8));
         fairy.add(new Animal(getString(R.string.griffon), R.drawable.f9hd,R.raw.f9));
+        fairy.add(new Animal(getString(R.string.yeti), R.drawable.f10hd,R.raw.f10));
 
 
         animals =new ArrayList<Animal>();
@@ -1254,7 +1255,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         animals.addAll(birds);
         animals.addAll(aqua);
         animals.addAll(insects);
-        if (unlockCounter>50) {
+        if (unlockCounter>29) {
             animals.addAll(fairy);
         }
 

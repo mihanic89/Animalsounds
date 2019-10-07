@@ -164,4 +164,6 @@
     <string name="ferret">fret</string>
     <string name="lizard">hagedis</string>
     <string name="wolverine">veelvraat</string>
+
+    <string name="yeti">Yeti</string>
 </resources>

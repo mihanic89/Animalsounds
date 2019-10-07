@@ -162,4 +162,6 @@
 <string name="ferret">鼬</string>
 <string name="lizard">蜥蜴</string>
 <string name="wolverine">貂熊</string>
+    <string name="yeti">大脚怪</string>
+
 </resources>

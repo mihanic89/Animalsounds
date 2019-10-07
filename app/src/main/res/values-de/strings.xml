@@ -168,4 +168,7 @@
     <string name="ferret">Frettchen</string>
     <string name="lizard">Eidechse</string>
     <string name="wolverine">Vielfraß</string>
+
+    <string name="yeti">Yeti</string>
+
 </resources>

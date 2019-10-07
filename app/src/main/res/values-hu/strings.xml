@@ -165,4 +165,7 @@
     <string name="ferret">görény</string>
     <string name="lizard">gyík</string>
     <string name="wolverine">rozsomák</string>
+
+    <string name="yeti">Jeti</string>
+
 </resources>
