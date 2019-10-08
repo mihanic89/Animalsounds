@@ -16,7 +16,7 @@
     <string name="gametext">Odgadnij zwierzęta za pomocą dźwięku</string>
     <string name="buy_ads_disable">Usuń reklamy</string>
 
-    <string name="rd_title">Czy chcesz ocenić aplikację w Google Play?</string>
+    <string name="rd_title">Spodobała ci się aplikacja?</string>
     <string name="rd_positiveButtonText">Później</string>
     <string name="rd_negativeButtonText">Nigdy</string>
     <string name="rd_formTitle">Wyślij opinię</string>

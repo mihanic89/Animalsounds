@@ -17,7 +17,7 @@
     <string name="gametext">Devinez les animaux par le son</string>
     <string name="buy_ads_disable">Supprimer les annonces</string>
 
-    <string name="rd_title">Voulez-vous évaluer l"'"application dans Google Play?</string>
+    <string name="rd_title">Vous avez aimé app?</string>
     <string name="rd_positiveButtonText">Plus tard</string>
     <string name="rd_negativeButtonText">Jamais</string>
     <string name="rd_formTitle">Envoyer des commentaires</string>

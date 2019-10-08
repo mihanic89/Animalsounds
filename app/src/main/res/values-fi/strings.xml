@@ -16,7 +16,7 @@
     <string name="gametext">Arvaa eläimet äänellä</string>
     <string name="buy_ads_disable">Poista mainokset</string>
 
-    <string name="rd_title">Haluatko hinnansovelluksen Google Playssa?</string>
+    <string name="rd_title">Piditkö sovelluksesta?</string>
     <string name="rd_positiveButtonText">Myöhemmin</string>
     <string name="rd_negativeButtonText">ei koskaan</string>
     <string name="rd_formTitle">Lähetä palautetta</string>

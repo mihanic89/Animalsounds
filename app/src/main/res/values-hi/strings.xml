@@ -16,7 +16,7 @@
     <string name="gametext">ध्वनि से जानवरों को लगता है</string>
     <string name="buy_ads_disable">विज्ञापन निकालें</string>
 
-    <string name="rd_title">क्या आप Google Play में दर ऐप चाहते हैं?</string>
+    <string name="rd_title">आप आवेदन पसंद आया?</string>
     <string name="rd_positiveButtonText">पर बाद में</string>
     <string name="rd_negativeButtonText">कभी नहीं</string>
     <string name="rd_formTitle">प्रतिक्रिया भेजें</string>

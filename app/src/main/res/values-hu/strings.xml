@@ -16,7 +16,7 @@
     <string name="gametext">Találd meg az állatok</string>
     <string name="buy_ads_disable">Hirdetések eltávolítása</string>
 
-    <string name="rd_title">Szeretne értékelő alkalmazást használni a Google Play?</string>
+    <string name="rd_title">Tetszett a jelentkezés?</string>
     <string name="rd_positiveButtonText">Később</string>
     <string name="rd_negativeButtonText">soha</string>
     <string name="rd_formTitle">Visszajelzés küldése</string>

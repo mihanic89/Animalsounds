@@ -16,7 +16,7 @@
     <string name="game">Juego</string>
     <string name="buy_ads_disable">Eliminar anuncios</string>
 
-    <string name="rd_title">Quieres calificar la aplicación en Google Play?</string>
+    <string name="rd_title">Te ha gustado la aplicación?</string>
     <string name="rd_positiveButtonText">Mas tarde</string>
     <string name="rd_negativeButtonText">Nunca</string>
     <string name="rd_formTitle">Enviar comentarios</string>

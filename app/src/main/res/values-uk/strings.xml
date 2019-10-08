@@ -14,7 +14,7 @@
     <string name="clicktext">Натисніть на текст</string>
     <string name="buy_ads_disable">Видалити оголошення</string>
 
-    <string name="rd_title">Ви хочете оцінити додаток в Google Play?</string>
+    <string name="rd_title">Вам сподобалося додаток?</string>
     <string name="rd_positiveButtonText">пізніше</string>
     <string name="rd_negativeButtonText">ніколи</string>
     <string name="rd_formTitle">відправити відгук</string>
