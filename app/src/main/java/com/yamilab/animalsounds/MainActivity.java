@@ -409,23 +409,29 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         }
 
 
+
         MobileAds.initialize(getApplicationContext(), "ca-app-pub-2888343178529026~2046736590");
 
-        if (!ads_disabled) {
 
-            mAdView = findViewById(R.id.adView);
-            AdRequest adRequest = new AdRequest.Builder()
-                    // .addNetworkExtrasBundle(AdMobAdapter.class, extrasAdview)
-                    // .addNetworkExtrasBundle(AdMobAdapter.class, extras)
-                    //.tagForChildDirectedTreatment(true)
-                    .addTestDevice("634EE6DF579E0E01020981609CDA857D")
-                    .addTestDevice("A4203BC89A24BEEC45D1111F16D2F0A3")
-                    .addTestDevice("4174C23AC2A2DAFD78A7C0F0DFB39F3E") //Samsung A50
-                    .addTestDevice("7A4531178089C7C58205C7AA937079B6") //Nexus
-                    //.addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
-                    .build();
-            mAdView.loadAd(adRequest);
-        }
+
+
+                if (!ads_disabled) {
+
+                    mAdView = findViewById(R.id.adView);
+                    AdRequest adRequest = new AdRequest.Builder()
+                            // .addNetworkExtrasBundle(AdMobAdapter.class, extrasAdview)
+                            // .addNetworkExtrasBundle(AdMobAdapter.class, extras)
+                            //.tagForChildDirectedTreatment(true)
+                            .addTestDevice("634EE6DF579E0E01020981609CDA857D")
+                            .addTestDevice("A4203BC89A24BEEC45D1111F16D2F0A3")
+                            .addTestDevice("4174C23AC2A2DAFD78A7C0F0DFB39F3E") //Samsung A50
+                            .addTestDevice("7A4531178089C7C58205C7AA937079B6") //Nexus
+                            //.addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
+                            .build();
+                    mAdView.loadAd(adRequest);
+                }
+
+
 
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId("ca-app-pub-2888343178529026/6970013790");
