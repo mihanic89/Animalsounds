@@ -628,13 +628,17 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
            // adCount=0;
         }
 
-            if (mInterstitialAd != null && mInterstitialAd.isLoaded() ) {
+        else {
+
+            if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
                 mInterstitialAd.show();
                 mFirebaseAnalytics.logEvent("interstitial_show", null);
-             }
-            else {
-                mFirebaseAnalytics.logEvent("interstitial_is_null_or_not_loaded", null);
+            } else {
+                Bundle params = new Bundle();
+                params.putInt("adCount", adCount);
+                mFirebaseAnalytics.logEvent("interstitial_is_null_or_not_loaded", params);
             }
+        }
     }
 
 
@@ -680,6 +684,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                             dontShowRatingDialog=true;
                             e.putBoolean(DONT_SHOW_RATING_DIALOF_KEY, true);
                             e.apply();
+                            mFirebaseAnalytics.logEvent("rating_dialog_4_and_less", null);
                             Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                                     "mailto", "contact@yapapa.xyz", null));
                             emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Feedback");
@@ -880,7 +885,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                 case 8:
                     mFirebaseAnalytics.logEvent("tab_fairy", null);
 
-                    if (unlockCounter<29) {
+                    if (unlockCounter<9) {
                         return FragmentUnlockFairy.newInstance(unlockCounter);
                     }
                     else {
@@ -1261,7 +1266,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         animals.addAll(birds);
         animals.addAll(aqua);
         animals.addAll(insects);
-        if (unlockCounter>29) {
+        if (unlockCounter>9) {
             animals.addAll(fairy);
         }
 
