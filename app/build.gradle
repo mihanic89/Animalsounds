@@ -53,7 +53,7 @@ dependencies {
     implementation "com.google.firebase:firebase-core:17.2.1"
     implementation "com.google.firebase:firebase-crash:16.2.1"
     implementation "com.google.firebase:firebase-ads:18.3.0"
-    implementation "com.google.firebase:firebase-perf:19.0.1"
+    implementation "com.google.firebase:firebase-perf:19.0.2"
     implementation "com.google.firebase:firebase-storage:19.1.0"
     implementation "com.google.firebase:firebase-auth:19.1.0"
     implementation 'com.google.firebase:firebase-config:19.0.3'
