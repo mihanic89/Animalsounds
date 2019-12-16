@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     private static final String NUMBER_OF_RATING_START_KEY="number_of_rating_start";
     private static final  String DONT_SHOW_RATING_DIALOF_KEY="dont_show_rating_dialog";
     private static final String KEY_TO_UNLOCK_FAIRY = "unlockFairy";
+    private static final String REVIEW_ENABLED="ReviewEnabled";
 
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
 
@@ -96,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
     public boolean ads_disable_button=false;
     private boolean dontShowRatingDialog=true;
+    private boolean review_enabled = true;
     private int numRatingDialog=0;
 
     private int firstTab = 3;
@@ -615,7 +617,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         */
 
 
-        if (ratingCounter>3 && !ratingDialogWasShown){
+        if (ratingCounter>3 && !ratingDialogWasShown && review_enabled){
             showRatingDialog();
             ratingDialogWasShown=true;
             SharedPreferences getPrefs = PreferenceManager
@@ -906,7 +908,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
     @Override
     public void onResume() {
-        super.onResume();
+
         // Resume the AdView.
         if (!ads_disabled) {
             try {
@@ -916,6 +918,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
             }
         }
+
+        super.onResume();
     }
 
     @Override
@@ -949,6 +953,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         }
 
         GlideApp.get(this).clearMemory();
+        SoundPlay.clearSP(this);
         super.onDestroy();
 
     }
@@ -1323,6 +1328,10 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
                             }
 
+                            if (!mFirebaseRemoteConfig.getBoolean(REVIEW_ENABLED)) {
+                                review_enabled = false;
+                            }
+
                             e.putBoolean(GRID_MINIMIZATION_KEY,grid);
                             e.putBoolean("ads_disable_button_key", ads_disable_button);
                             e.apply();
@@ -1383,7 +1392,9 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
             return;
         }
         else {
-            showRatingDialog();
+            if (review_enabled) {
+                showRatingDialog();
+            }
             backPressedToExitOnce=true;
 
         }

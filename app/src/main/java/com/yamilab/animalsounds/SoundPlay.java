@@ -19,10 +19,21 @@ public class SoundPlay {
 
     public static void playSP(Context context, Integer sound) {
 
+        /*
         if (sp!=null){
             sp.release();
             sp=null;
         }
+        */
+
+        try
+        {
+            sp.autoPause();
+        }
+        catch (
+                Exception e
+        ){}
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 

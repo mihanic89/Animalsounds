@@ -10,17 +10,18 @@
 
 
 
-    android:elevation="5dp"
+    android:elevation="10dp"
     card_view:cardCornerRadius="10dp"
     card_view:cardUseCompatPadding="true">
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary">
+        android:background="@color/colorPrimary"
+        >
 
         <TextView
-            android:background="?android:attr/selectableItemBackground"
+            android:foreground="?android:attr/selectableItemBackground"
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -35,7 +36,7 @@
 
 
         <ImageView
-            android:background="?android:attr/selectableItemBackground"
+            android:foreground="?android:attr/selectableItemBackground"
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,6 +44,9 @@
             android:layout_alignParentBottom="true"
             android:adjustViewBounds="true"
             android:gravity="center_horizontal"
+            android:clickable="true"
+            android:focusable="true"
+
             />
 
 

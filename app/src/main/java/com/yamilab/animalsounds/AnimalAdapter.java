@@ -242,7 +242,12 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
             @Override
             public void onClick(View v) {
 
-                SoundPlay.playSP(context, animal.getSound());
+              try {
+                  SoundPlay.playSP(context, animal.getSound());
+              }
+              catch (Exception e){
+
+              }
             }
         });
 

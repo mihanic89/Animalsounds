@@ -9,6 +9,10 @@
         <key>grid_minimization</key>
         <value>2</value>
     </entry>
+    <entry>
+        <key>rating_enabled</key>
+        <value>true</value>
+    </entry>
 
 </defaultsMap>
     <!-- END xml_defaults -->
