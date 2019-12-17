@@ -31,6 +31,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+/*
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingClientStateListener;
 import com.android.billingclient.api.BillingFlowParams;
@@ -39,6 +40,8 @@ import com.android.billingclient.api.PurchasesUpdatedListener;
 import com.android.billingclient.api.SkuDetails;
 import com.android.billingclient.api.SkuDetailsParams;
 import com.android.billingclient.api.SkuDetailsResponseListener;
+*/
+
 import com.bumptech.glide.MemoryCategory;
 import com.bumptech.glide.Priority;
 import com.codemybrainsout.ratingdialog.RatingDialog;
@@ -136,8 +139,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
 
     //по покупкам
-    private BillingClient mBillingClient;
-    private Map<String, SkuDetails> mSkuDetailsMap = new HashMap<>();
+   // private BillingClient mBillingClient;
+  //  private Map<String, SkuDetails> mSkuDetailsMap = new HashMap<>();
     private String mSkuId = "disable_ads";
     private List<String> skuList = new ArrayList<>();
     private SharedPreferences getPrefs;
@@ -180,6 +183,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
         unlockCounter = getPrefs.getInt(KEY_TO_UNLOCK_FAIRY,0);
 
+        /*
         mBillingClient = BillingClient.newBuilder(this).setListener(new PurchasesUpdatedListener() {
             @Override
             public void onPurchasesUpdated(int responseCode, @Nullable List<Purchase> purchases) {
@@ -227,6 +231,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                 //сюда мы попадем если что-то пойдет не так
             }
         });
+        */
+
 
         //  Declare a new thread to do a preference check
         Thread t = new Thread(new Runnable() {
@@ -495,8 +501,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
 
 
-
-
+    /*
     private void querySkuDetails() {
         SkuDetailsParams.Builder params = SkuDetailsParams.newBuilder();
         skuList.add("disable_ads");
@@ -506,11 +511,11 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
             @Override
             public void onSkuDetailsResponse(int responseCode, List<SkuDetails> skuDetailsList) {
                 if (responseCode == 0) {
-                    /*
-                    Toast toast = Toast.makeText(getApplication(),
-                            "ответ получен " + skuDetailsList.size(), Toast.LENGTH_SHORT);
-                    toast.show();
-                    */
+
+                   // Toast toast = Toast.makeText(getApplication(),
+                   //         "ответ получен " + skuDetailsList.size(), Toast.LENGTH_SHORT);
+                   // toast.show();
+
                     for (SkuDetails skuDetails : skuDetailsList) {
                         mSkuDetailsMap.put(skuDetails.getSku(), skuDetails);
                     }
@@ -569,6 +574,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
       //  ProcessPhoenix.triggerRebirth(this);
 
     }
+    */
 
 
     public void writeBoolean (boolean enabled){
@@ -760,7 +766,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
     }
 
-    public void launchBilling() {
+
+   // public void launchBilling() {
         /*
         mAdView.setEnabled(false);
         mAdView.destroy();
@@ -768,9 +775,9 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         */
         //View view = getWindow().getDecorView();
        // removeAd();
-        launchBilling(mSkuId);
+    //    launchBilling(mSkuId);
 
-    }
+   // }
 
     private void removeAd() {
         if (mAdView != null && !ads_disabled) {

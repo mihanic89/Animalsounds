@@ -84,6 +84,7 @@ public class ImageGridFragmentAds extends Fragment {
 
 
 
+        /*
         if (((MainActivity) getActivity()).ads_disable_button && !((MainActivity) getActivity()).ads_disabled) {
 
             //disableAds.setVisibility(View.VISIBLE);
@@ -105,6 +106,7 @@ public class ImageGridFragmentAds extends Fragment {
                 }
             });
         }
+        */
         /*
         else
         {
