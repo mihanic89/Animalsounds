@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
@@ -373,6 +374,7 @@ public class ImageGridFragmentGame2 extends Fragment {
                     .priority(Priority.LOW)
                     .skipMemoryCache(true)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .apply(new RequestOptions().override((int)getArguments().getInt("width")/3))
                     .into(imageView);
         }
         else
@@ -384,6 +386,7 @@ public class ImageGridFragmentGame2 extends Fragment {
                     .priority(Priority.LOW)
                     .skipMemoryCache(true)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .apply(new RequestOptions().override((int)getArguments().getInt("width")/3))
                     .into(imageView);
         }
     }
