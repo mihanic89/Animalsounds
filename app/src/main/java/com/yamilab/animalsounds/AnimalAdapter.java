@@ -5,6 +5,7 @@ import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -37,6 +38,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textView;
         private final ImageView imageView;
+        private final ImageButton wikiButton;
 
 
         //public Context context;
@@ -46,6 +48,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
             super(itemView);
             textView = itemView.findViewById(R.id.textView);
             imageView = itemView.findViewById(R.id.imageView);
+            wikiButton = itemView.findViewById(R.id.buttonWiki);
 
 
         }
@@ -57,6 +60,10 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
 
         public ImageView getImageView() {
             return imageView;
+        }
+
+        public ImageButton getImageButton() {
+            return wikiButton;
         }
         //public void setContext (Context context) {
         //    this.context=context;
@@ -119,7 +126,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
         GlideApp.with(holder.getImageView().getContext()).clear(holder.getImageView());
         holder.getImageView().setOnClickListener(null);
         holder.getTextView().setOnClickListener(null);
-
+        holder.getImageButton().setOnClickListener(null);
         //Toast toast = Toast.makeText(holder.getImageView().getContext(),
         //          "очищен" + holder.getImageView(), Toast.LENGTH_SHORT);
         //    toast.show();
@@ -260,6 +267,13 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
             }
         });
 
+        holder.getImageButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendStringWiki(animal.getName());
+            }
+        });
+
 
         /*
         holder.getImageView().setOnLongClickListener(new View.OnLongClickListener() {
@@ -270,6 +284,10 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
             }
         });
         */
+    }
+
+    public void sendStringWiki (String url){
+        ((MainActivity) context).startWiki(url);
     }
 
     public void startAnotherActivity (int counter){

@@ -1,14 +1,17 @@
 package com.yamilab.animalsounds;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
@@ -17,7 +20,14 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -93,6 +103,36 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     private static final  String DONT_SHOW_RATING_DIALOF_KEY="dont_show_rating_dialog";
     private static final String KEY_TO_UNLOCK_FAIRY = "unlockFairy";
     private static final String REVIEW_ENABLED="ReviewEnabled";
+    private static final String WIKI_EN="http://en.m.wikipedia.org/wiki/";
+    private static final String WIKI_AR="http://ar.m.wikipedia.org/wiki/";
+    private static final String WIKI_BG="http://bg.m.wikipedia.org/wiki/";
+    private static final String WIKI_CS="http://cs.m.wikipedia.org/wiki/";
+    private static final String WIKI_DE="http://de.m.wikipedia.org/wiki/";
+    private static final String WIKI_EL="http://el.m.wikipedia.org/wiki/";
+    private static final String WIKI_ES="http://es.m.wikipedia.org/wiki/";
+    private static final String WIKI_FI="http://fi.m.wikipedia.org/wiki/";
+    private static final String WIKI_FR="http://fr.m.wikipedia.org/wiki/";
+    private static final String WIKI_HI="http://hi.m.wikipedia.org/wiki/";
+    private static final String WIKI_HU="http://hu.m.wikipedia.org/wiki/";
+    private static final String WIKI_IN="http://in.m.wikipedia.org/wiki/";
+    private static final String WIKI_IT="http://it.m.wikipedia.org/wiki/";
+    private static final String WIKI_JA="http://ja.m.wikipedia.org/wiki/";
+    private static final String WIKI_KO="http://ko.m.wikipedia.org/wiki/";
+    private static final String WIKI_NL="http://nl.m.wikipedia.org/wiki/";
+    private static final String WIKI_PL="http://pl.m.wikipedia.org/wiki/";
+    private static final String WIKI_PT="http://pt.m.wikipedia.org/wiki/";
+    private static final String WIKI_RO="http://ro.m.wikipedia.org/wiki/";
+    private static final String WIKI_RU="http://ru.m.wikipedia.org/wiki/";
+    private static final String WIKI_SV="http://sv.m.wikipedia.org/wiki/";
+    private static final String WIKI_TR="http://tr.m.wikipedia.org/wiki/";
+    private static final String WIKI_UK="http://uk.m.wikipedia.org/wiki/";
+    private static final String WIKI_ZH="http://zh.m.wikipedia.org/wiki/";
+
+    private String wikiHref=WIKI_EN;
+
+
+
+
 
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
 
@@ -147,6 +187,10 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     private TabLayout.Tab  tab;
     TabLayout tabLayout;
 
+    private WebView wiki;
+    private ImageButton stopWiki;
+    private ProgressBar progressWiki;
+
 
 
     @Override
@@ -155,6 +199,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         GlideApp.get(this).setMemoryCategory(MemoryCategory.LOW);
+
+
 
         /*
         FiveStarsDialog fiveStarsDialog = new FiveStarsDialog(this,"contact@yapapa.xyz");
@@ -272,13 +318,20 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
 
         if (!ads_disabled) {
-            setContentView(R.layout.activity_main_down_tabs);
+            setContentView(R.layout.activity_main_down_tabs_webview);
         }
         else
         {
             setContentView(R.layout.activity_main_down_tabs_noads);
         }
 
+        wiki = (WebView) findViewById(R.id.wiki);
+        stopWiki = (ImageButton) findViewById(R.id.buttonWikiClose);
+        progressWiki = (ProgressBar) findViewById(R.id.progressWiki);
+
+        wiki.setVisibility(View.INVISIBLE);
+        stopWiki.setVisibility(View.INVISIBLE);
+        progressWiki.setVisibility(View.INVISIBLE);
 
         Point size = new Point();
         getWindowManager().getDefaultDisplay().getSize(size);
@@ -493,7 +546,12 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         fetch();
 
        // Debug.stopMethodTracing();
-
+        stopWiki.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stopWiki();
+            }
+        });
 
     }
 
@@ -853,12 +911,16 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
 
+            stopWiki();
+
             //adCount++;
             incAdCounter();
             if (adCount>15){
                 showInterstitial();
 
             }
+
+
 
             switch (position) {
 
@@ -961,6 +1023,9 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
         GlideApp.get(this).clearMemory();
         SoundPlay.clearSP(this);
+        wiki.loadUrl("about:blank");
+        wiki.setVisibility(View.INVISIBLE);
+        stopWiki.setVisibility(View.INVISIBLE);
         super.onDestroy();
 
     }
@@ -1000,25 +1065,32 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     private void makeLanguageList(String locale){
 
         if (locale.equals("ar")){
+            wikiHref=WIKI_AR;
             language="ar";
         }
 
         if (locale.equals("bg")){
+            wikiHref=WIKI_BG;
             language="bg";
         }
         if (locale.equals("cs")){
+            wikiHref=WIKI_CS;
             language="cs";
         }
         if (locale.equals("de")){
+            wikiHref=WIKI_DE;
             language="de";
         }
         if (locale.equals("el")){
+            wikiHref=WIKI_EL;
             language="el";
         }
         if (locale.equals("es")){
+            wikiHref=WIKI_ES;
             language="es";
         }
         if (locale.equals("fi")){
+            wikiHref=WIKI_FI;
             language="fi";
         }
         /*
@@ -1027,51 +1099,67 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         }
         */
         if (locale.equals("fr")){
+            wikiHref=WIKI_FR;
             language="fr";
         }
         if (locale.equals("hi")){
+            wikiHref=WIKI_HI;
             language="hi";
         }
         if (locale.equals("hu")){
+            wikiHref=WIKI_HU;
             language="hu";
         }
         if (locale.equals("in")){
+            wikiHref=WIKI_IN;
             language="in";
         }
         if (locale.equals("it")){
+            wikiHref=WIKI_IT;
             language="it";
         }
         if (locale.equals("ja")){
+            wikiHref=WIKI_JA;
             language="ja";
         }
         if (locale.equals("ko")){
+            wikiHref=WIKI_KO;
             language="ko";
         }
         if (locale.equals("nl")){
+            wikiHref=WIKI_NL;
             language="nl";
         }
         if (locale.equals("pl")){
+            wikiHref=WIKI_PL;
             language="pl";
         }
         if (locale.equals("pt")){
+            wikiHref=WIKI_PT;
             language="pt";
         }
         if (locale.equals("ro")){
+            wikiHref=WIKI_RO;
             language="ro";
         }
         if (locale.equals("ru")){
+            wikiHref=WIKI_RU;
             language="ru";
         }
         if (locale.equals("sv")){
+            wikiHref=WIKI_SV;
             language="sv";
         }
         if (locale.equals("tr")){
+            wikiHref=WIKI_TR;
             language="tr";
         }
         if (locale.equals("uk")){
+            wikiHref=WIKI_UK;
             language="uk";
         }
         if (locale.equals("zh")){
+            wikiHref=WIKI_ZH;
             language="zh";
         }
 
@@ -1457,6 +1545,63 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     public void setGameTab (){
         tab = tabLayout.getTabAt(new Random().nextInt(2));
         tab.select();
+    }
+
+    public void startWiki (String url){
+        WebSettings webSettings = wiki.getSettings();
+        webSettings.setBuiltInZoomControls(false);
+        webSettings.setJavaScriptEnabled(true);
+        wiki.setWebViewClient(new WebViewClient(){
+            boolean ok=true;
+            @SuppressWarnings("deprecation")
+            @Override
+            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                // Handle the error
+                ok=false;
+                Toast toast = Toast.makeText(MainActivity.this,
+                                 "Check connection", Toast.LENGTH_SHORT);
+                           toast.show();
+                stopWiki();
+            }
+
+            @TargetApi(android.os.Build.VERSION_CODES.M)
+            @Override
+            public void onReceivedError(WebView view, WebResourceRequest req, WebResourceError rerr) {
+                // Redirect to deprecated method, so you can use it in all SDK versions
+                onReceivedError(view, rerr.getErrorCode(), rerr.getDescription().toString(), req.getUrl().toString());
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                if (ok) {
+                    wiki.setVisibility(View.VISIBLE);
+                    stopWiki.setVisibility(View.VISIBLE);
+                    progressWiki.setVisibility(View.INVISIBLE);
+                }
+            }
+
+            @Override
+            public void onPageStarted (WebView view, String url, Bitmap favicon){
+                progressWiki.setVisibility(View.VISIBLE);
+            }
+
+        });
+        wiki.loadUrl(wikiHref+url);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                progressWiki.setVisibility(View.INVISIBLE);
+            }
+        }, 7000);
+
+    }
+
+    public void stopWiki(){
+        //wiki.loadUrl("about:blank");
+        progressWiki.setVisibility(View.INVISIBLE);
+        wiki.setVisibility(View.INVISIBLE);
+        stopWiki.setVisibility(View.INVISIBLE);
     }
 
 }

@@ -49,6 +49,23 @@
 
             />
 
+        <ImageButton
+            android:id="@+id/buttonWiki"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/textView"
+            android:layout_alignParentRight="true"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/oval_shape"
+            android:clickable="true"
+            android:elevation="5dp"
+            android:focusable="true"
+            android:scaleType="fitCenter"
+
+            app:srcCompat="@drawable/baseline_school_white_48" />
+
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
