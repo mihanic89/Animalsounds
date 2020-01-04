@@ -29,20 +29,20 @@
     <string name="dog"> Dog </string>
     <string name="cat"> Cat </string>
     <string name="pig"> Pig </string>
-    <string name="cock"> Cock </string>
+    <string name="cock"> Cock #Rooster </string>
     <string name="chiken"> Chicken </string>
     <string name="cow"> Cow </string>
     <string name="horse"> Horse </string>
     <string name="sheep"> Sheep </string>
     <string name="goat"> Goat </string>
     <string name="donkey"> Donkey </string>
-    <string name="turkey"> Turkey </string>
+    <string name="turkey"> Turkey # Turkey (bird)</string>
     <string name="cavy"> Guinea pig </string>
     <string name="rabbit"> Rabbit </string>
 
     <string name="bear"> Bear </string>
     <string name="wolf"> Wolf </string>
-    <string name="leo"> Leo </string>
+    <string name="leo"> Lion </string>
     <string name="tiger"> Tiger </string>
     <string name="monkey"> Monkey </string>
     <string name="elephant"> Elephant </string>
@@ -71,7 +71,7 @@
     <string name="deer"> Deer </string>
     <string name="hedgehog"> Hedgehog </string>
     <string name="giraffe"> Giraffe </string>
-    <string name="mole"> Mole </string>
+    <string name="mole"> Mole #Mole (animal)</string>
     <string name="skunk"> Skunk </string>
     <string name="boar"> Boar </string>
     <string name="bison"> Bison </string>
@@ -96,15 +96,15 @@
     <string name="flamingo"> Flamingo </string>
     <string name="peacock"> Peacock </string>
     <string name="catbird"> Catbird </string>
-    <string name="tit"> Tit </string>
+    <string name="tit"> Tit #Tit (bird) </string>
     <string name="toucan"> Toucan </string>
-    <string name="robin"> Robin </string>
+    <string name="robin"> Robin #European robin</string>
     <string name="blackgrouse"> Black grouse </string>
     <string name="hummingbird"> Hummingbird </string>
-    <string name="bullfinch"> Bullfinch </string>
+    <string name="bullfinch"> Bullfinch #Eurasian bullfinch </string>
     <string name="stork"> Stork </string>
     <string name="heron"> Heron </string>
-    <string name="canary"> Canary </string>
+    <string name="canary"> Canary #Domestic canary</string>
     <string name="magpie"> Magpie </string>
     <string name="bat"> Bat </string>
     <string name="jay"> Jay </string>
@@ -128,7 +128,7 @@
     <string name="mosquito"> Mosquito </string>
     <string name="grasshopper"> Grasshopper </string>
     <string name="bumblebee"> Bumblebee </string>
-    <string name="cricket"> Сricket </string>
+    <string name="cricket"> Сricket #Gryllus_campestris </string>
     <string name="butterfly"> Butterfly </string>
     <string name="dragonfly"> Dragonfly </string>
     <string name="ants"> Ants </string>
@@ -142,10 +142,10 @@
     <string name="dinosaur"> Dinosaur </string>
     <string name="pegasus"> Pegasus </string>
     <string name="centaur"> Centaur </string>
-    <string name="phoenix"> Phoenix </string>
-    <string name="waternymph"> Water-nymph </string>
+    <string name="phoenix"> Phoenix #Phoenix (mythology)</string>
+    <string name="waternymph"> Mermaid </string>
 
-    <string name="griffon"> Griffon </string>
+    <string name="griffon"> Griffin </string>
 
     <string name="shark"> Shark </string>
 
@@ -158,7 +158,7 @@
     <string name="phrasebook">Phrasebook</string>
     <string name="title_activity_tabbed" translatable="false">TabbedActivity</string>
 
-    <string name="sparrow">sparrow</string>
+    <string name="sparrow">sparrow #Old_World_sparrow</string>
     <string name="pony">pony</string>
     <string name="spider">spider</string>
     <string name="armadillo">Armadillo</string>

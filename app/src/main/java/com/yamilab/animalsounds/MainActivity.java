@@ -128,7 +128,11 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     private static final String WIKI_UK="http://uk.m.wikipedia.org/wiki/";
     private static final String WIKI_ZH="http://zh.m.wikipedia.org/wiki/";
 
+    private boolean showWiki = false;
+
     private String wikiHref=WIKI_EN;
+
+    public static final Integer adShowInt = 15;
 
 
 
@@ -915,7 +919,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
             //adCount++;
             incAdCounter();
-            if (adCount>15){
+            if (adCount>adShowInt){
                 showInterstitial();
 
             }
@@ -1063,6 +1067,11 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     }
 
     private void makeLanguageList(String locale){
+        if (locale.equals("en")){
+           showWiki = true;
+        }
+
+
 
         if (locale.equals("ar")){
             wikiHref=WIKI_AR;
@@ -1145,6 +1154,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         if (locale.equals("ru")){
             wikiHref=WIKI_RU;
             language="ru";
+            showWiki = true;
         }
         if (locale.equals("sv")){
             wikiHref=WIKI_SV;
@@ -1480,18 +1490,25 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
     @Override
     public void onBackPressed() {
-        incrementRating();
-        if (backPressedToExitOnce) {
-        //if (false){
-            super.onBackPressed();
-            return;
-        }
-        else {
-            if (review_enabled) {
-                showRatingDialog();
-            }
-            backPressedToExitOnce=true;
 
+        if (wiki.isShown()){
+            stopWiki();
+        }
+
+        else {
+
+            incrementRating();
+            if (backPressedToExitOnce) {
+                //if (false){
+                super.onBackPressed();
+                return;
+            } else {
+                if (review_enabled) {
+                    showRatingDialog();
+                }
+                backPressedToExitOnce = true;
+
+            }
         }
 
     }
@@ -1548,10 +1565,32 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     }
 
     public void startWiki (String url){
-        WebSettings webSettings = wiki.getSettings();
-        webSettings.setBuiltInZoomControls(false);
-        webSettings.setJavaScriptEnabled(true);
+       // WebSettings webSettings = wiki.getSettings();
+        //webSettings.setBuiltInZoomControls(false);
+
+        incAdCounter();
+
+        if (adCount>adShowInt)
+                showInterstitial();
+
+        wiki.getSettings().setJavaScriptEnabled(true);
         wiki.setWebViewClient(new WebViewClient(){
+
+            String jsFunction=new StringBuilder()
+                    .append("var heading = document.getElementsByClassName(\"collapsible-heading\");\n")
+                    .append("for (var i = 0; i < heading.length; i++) {\n")
+                    .append("if(heading[i].classList.contains(\"open-block\")) {\n")
+                    .append("heading[i].className = heading[i].className.replace(\"open-block\", \"close-block\");\n}\n")
+                    .append("else {\n")
+                    .append("heading[i].className+= \" close-block\";\n}\n}\n")
+                    .append("var section = document.getElementsByClassName(\"collapsible-block\");\n")
+                    .append("for (var i = 0; i < section.length; i++) {\n")
+                    .append("if(section[i].classList.contains(\"open-block\")) {\n")
+                    .append("section[i].className = section[i].className.replace(\"open-block\", \"close-block\");\n}\n")
+                    .append("else {\n")
+                    .append("section[i].className+= \" close-block\";\n}\n}\n")
+                    .toString();
+
             boolean ok=true;
             @SuppressWarnings("deprecation")
             @Override
@@ -1559,7 +1598,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                 // Handle the error
                 ok=false;
                 Toast toast = Toast.makeText(MainActivity.this,
-                                 "Check connection", Toast.LENGTH_SHORT);
+                                 "Check connection " + errorCode + " " + description, Toast.LENGTH_SHORT);
                            toast.show();
                 stopWiki();
             }
@@ -1573,12 +1612,47 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
             @Override
             public void onPageFinished(WebView view, String url) {
+                //wiki.loadUrl("javascript:(function(){"+jsFunction+"})()");
+
                 if (ok) {
+                   // wiki.loadUrl("javascript:(function(){"+jsFunction+"})()");
                     wiki.setVisibility(View.VISIBLE);
                     stopWiki.setVisibility(View.VISIBLE);
                     progressWiki.setVisibility(View.INVISIBLE);
                 }
+                 wiki.loadUrl("javascript:(function() { " +
+                         "document.getElementsByClassName ('header-container header-chrome')[0].style.display='none';"+
+                      //   "document.getElementsByClassName ('pre-content heading-holder')[0].style.display='none';"+
+                         "document.getElementsByClassName ('page-actions-menu')[0].style.display='none';"+
+                         "document.getElementsByClassName ('minerva-footer')[0].style.display='none';"+
+                      //   "document.getElementsByClassName ('plainlinks metadata ambox ambox-discussion').style.display='none';"+
+                         "document.getElementsByClassName ('dablink hatnote')[0].style.display='none';"+
+                         "document.getElementsByClassName ('dablink hatnote')[1].style.display='none';"+
+                         "document.getElementsByClassName ('dablink hatnote')[2].style.display='none';"+
+                         "document.getElementsByClassName ('dablink hatnote')[3].style.display='none';"+
+                         "document.getElementsByClassName ('dablink hatnote')[4].style.display='none';"+
+                         "document.getElementsByClassName ('dablink hatnote')[5].style.display='none';"+
+                        // "document.getElementsByClassName ('othermeaning-box').style.display='none';"+
+                         "document.getElementsByClassName ('dablink hatnote noprint')[0].style.display='none';"+
+
+                          "})()");
+
+
+                //wiki.loadUrl("javascript:(function(){"+jsFunction+"})()");
+               // wiki.loadUrl("javascript:(function() { " +
+               //         "document.getElementsByClassName ('header-container header-chrome')[0].style.display='none';"
+               //         +"})()");
+               // wiki.loadUrl("javascript:(function() { " +
+               //         "document.getElementsByClassName ('page-actions-menu')[0].style.display='none';"
+               //         +"})()");
+               // wiki.loadUrl("javascript:(function() { " +
+               //         "document.getElementsByClassName ('dablink hatnote noprint')[0].style.display='none';"
+               //         +"})()");
+               // wiki.loadUrl("javascript:(function() { " +
+                //        "document.getElementsByClassName ('dablink hatnote')[0].style.display='none';"
+                //        +"})()");
             }
+
 
             @Override
             public void onPageStarted (WebView view, String url, Bitmap favicon){
@@ -1602,6 +1676,10 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         progressWiki.setVisibility(View.INVISIBLE);
         wiki.setVisibility(View.INVISIBLE);
         stopWiki.setVisibility(View.INVISIBLE);
+    }
+
+    public boolean showWiki (){
+       return showWiki;
     }
 
 }

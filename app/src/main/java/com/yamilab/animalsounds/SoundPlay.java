@@ -19,13 +19,17 @@ public class SoundPlay {
 
     public static void playSP(Context context, Integer sound) {
 
-        /*
-        if (sp!=null){
-            sp.release();
-            sp=null;
+        try {
+            if (sp != null) {
+                sp.release();
+                sp = null;
+            }
         }
-        */
+        catch (Exception e){
 
+        }
+
+            /*
         try
         {
             sp.autoPause();
@@ -33,6 +37,8 @@ public class SoundPlay {
         catch (
                 Exception e
         ){}
+
+             */
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -77,8 +83,13 @@ public class SoundPlay {
 
     public static void clearSP(Context context) {
         if (sp!=null){
-            sp.release();
-            sp=null;
+            try {
+                sp.release();
+                sp = null;
+            }
+            catch (Exception e){
+
+            }
         }
     }
 

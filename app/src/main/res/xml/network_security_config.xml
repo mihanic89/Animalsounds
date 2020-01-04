@@ -7,6 +7,6 @@
         </trust-anchors>
     </debug-overrides>
     <domain-config cleartextTrafficPermitted="true">
-        <domain includeSubdomains="true">domain.com (to be adjusted)</domain>
+        <domain includeSubdomains="true">wikipedia.org</domain>
     </domain-config>
 </network-security-config>

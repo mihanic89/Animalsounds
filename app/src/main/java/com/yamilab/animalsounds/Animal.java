@@ -19,6 +19,7 @@ public class Animal implements Serializable {
     private Integer sound;
     private boolean isGIF=false;
     private String gifHref;
+    private String wikiName=null;
 
     public boolean isGIF() {
         return isGIF;
@@ -44,6 +45,16 @@ public class Animal implements Serializable {
         this.sound = sound;
         this.isGIF= isGIF;
         this.gifHref=gifHref;
+        this.wikiName =null;
+    }
+
+    public Animal(String name, Integer imageSmall, Integer sound, boolean isGIF, String gifHref, String wikiName){
+        this.name= name;
+        this.imageSmall = imageSmall;
+        this.sound = sound;
+        this.isGIF= isGIF;
+        this.gifHref=gifHref;
+        this.wikiName = wikiName;
     }
 
     public Animal() {
@@ -62,7 +73,8 @@ public class Animal implements Serializable {
     }
 
     public String getName(){
-        return name;
+        String retval[]=name.split("#");
+        return retval[0];
     }
 
     public void  setName(String name){
@@ -94,5 +106,18 @@ public class Animal implements Serializable {
         display.getSize(size);
         //int width = size.x %3;
         return size.x %3;
+    }
+
+    public String getWikiName(){
+
+        String retval[]=name.split("#");
+        String answer = name;
+
+        if (retval.length>1 ){
+            answer = retval[1];
+        }
+
+            return answer;
+
     }
 }

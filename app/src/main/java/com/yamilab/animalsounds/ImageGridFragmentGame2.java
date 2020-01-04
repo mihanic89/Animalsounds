@@ -467,7 +467,7 @@ public class ImageGridFragmentGame2 extends Fragment {
 
 
         //if (adCounter>13) {
-        if (((MainActivity) getActivity()).getAdCounter()>13) {
+        if (((MainActivity) getActivity()).getAdCounter()>((MainActivity) getActivity()).adShowInt) {
             ((MainActivity) getActivity()).showInterstitial();
             //adCounter=0;
            // ((MainActivity) getActivity()).zeroAdCounter();

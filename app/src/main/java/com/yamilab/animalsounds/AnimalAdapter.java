@@ -50,6 +50,16 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
             imageView = itemView.findViewById(R.id.imageView);
             wikiButton = itemView.findViewById(R.id.buttonWiki);
 
+            if (context instanceof MainActivity){
+                try
+                {
+                    if (!((MainActivity)context).showWiki()) wikiButton.setVisibility(View.INVISIBLE);
+                }
+                catch (Exception e){
+
+                }
+            }
+
 
         }
 
@@ -270,7 +280,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
         holder.getImageButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendStringWiki(animal.getName());
+                sendStringWiki(animal.getWikiName());
             }
         });
 
