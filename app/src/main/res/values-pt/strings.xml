@@ -35,10 +35,10 @@
 <string name="recipeabc">Cadernos de uma carta e figura</string>
 <string name="phrasebook">O livro de frases para crianças e adultos</string>
 
-<string name="ants">Formigas</string>
+<string name="ants">Formiga</string>
 <string name="bear">Urso</string>
 <string name="bees">Abelhas</string>
-<string name="bumblebee">Mangangá</string>
+<string name="bumblebee">Mangangá#Mamangaba</string>
 <string name="butterfly">Borboleta</string>
 <string name="camel">Camelo</string>
 <string name="cat">Gato</string>
@@ -82,7 +82,7 @@
 <string name="mantis">Louva-a-deus</string>
 <string name="monkey">Macaco</string>
 <string name="mosquito">Culicidae</string>
-<string name="mouse">Сamundongo</string>
+<string name="mouse">Сamundongo#Mus_musculus</string>
 <string name="nightingale">Rouxinol</string>
 <string name="ostrich">Avestruz</string>
 <string name="owl">Coruja</string>
@@ -96,7 +96,7 @@
 <string name="rat">Rato</string>
 <string name="rhino">Rinoceronte</string>
 <string name="seagull">Gaivota</string>
-<string name="sealbark">Otariídeos</string>
+<string name="sealbark">Lobo-marinho</string>
 <string name="sealion">Leão-marinho</string>
 <string name="sheep">Ovelhas</string>
 <string name="snake">Cobra</string>
@@ -117,7 +117,7 @@
 <string name="mole">Toupeira</string>
 <string name="otter">Lontra</string>
 <string name="rabbit">Coelho</string>
-<string name="robin">Pisco-de-peito-ruivo</string>
+<string name="robin">Pisco#Pisco-de-peito-ruivo</string>
 <string name="skunk">Skunk</string>
 <string name="tit">Chapim</string>
 <string name="toucan">Tucano</string>
@@ -130,11 +130,11 @@
 <string name="cicada">Cigarra</string>
 <string name="bullfinch">Dom-fafe</string>
 <string name="stork">Cegonha</string>
-<string name="heron">Garça)</string>
+<string name="heron">Garça</string>
 <string name="canary">Canário</string>
 <string name="magpie">Gralha</string>
 <string name="bat">Morcego</string>
-<string name="jay">Gaio</string>
+<string name="jay">Gaio#Gaio (ave)</string>
 <string name="starling">Estorninho</string>
 <string name="alpaca">Alpaca</string>
 <string name="hyena">Hiena</string>
@@ -158,7 +158,7 @@
     <string name="capybara">Capivara</string>
     <string name="meerkat">Suricata</string>
     <string name="quokka">quokka</string>
-    <string name="sloth">Preguiça</string>
+    <string name="sloth">Folivora</string>
     <string name="monitorlizard">varano</string>
     <string name="anteater">Tamanduá</string>
     <string name="ferret">Furão</string>
