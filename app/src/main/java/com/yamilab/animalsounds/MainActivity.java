@@ -321,13 +321,14 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
 
-        if (!ads_disabled) {
+        //if (!ads_disabled) {
             setContentView(R.layout.activity_main_down_tabs_webview);
-        }
-        else
-        {
+
+       /* {
             setContentView(R.layout.activity_main_down_tabs_noads);
         }
+        */
+
 
         wiki = (WebView) findViewById(R.id.wiki);
         stopWiki = (ImageButton) findViewById(R.id.buttonWikiClose);
