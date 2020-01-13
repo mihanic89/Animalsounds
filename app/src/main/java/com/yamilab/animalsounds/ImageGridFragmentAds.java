@@ -3,18 +3,17 @@ package com.yamilab.animalsounds;
 import android.content.res.Configuration;
 import android.graphics.Point;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+
 import java.util.ArrayList;
 
-import static com.yamilab.animalsounds.R.id.buttonDisableAds;
 import static com.yamilab.animalsounds.R.id.recyclerView;
 
 /**
@@ -39,7 +38,7 @@ public class ImageGridFragmentAds extends Fragment {
     protected RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<LinkItem> mDataset;
     private StaggeredGridLayoutManager gaggeredGridLayoutManager;
-    private Button disableAds;
+   // private Button disableAds;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,16 +53,20 @@ public class ImageGridFragmentAds extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView;
+
+        /*
         if (((MainActivity) getActivity()).ads_disable_button && !((MainActivity) getActivity()).ads_disabled) {
             rootView = inflater.inflate(R.layout.fragment_ads_with_button, container, false);
         }
         else
         {
+
+         */
             rootView = inflater.inflate(R.layout.fragment_ads, container, false);
-        }
+       // }
         // BEGIN_INCLUDE(initializeRecyclerView)
         mRecyclerView = rootView.findViewById(recyclerView);
-        disableAds = rootView.findViewById(buttonDisableAds);
+       // disableAds = rootView.findViewById(buttonDisableAds);
         // LinearLayoutManager is used here, this will layout the elements in a similar fashion
         // to the way ListView would layout elements. The RecyclerView.LayoutManager defines how
         // elements are laid out.
