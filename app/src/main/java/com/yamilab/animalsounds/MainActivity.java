@@ -1094,6 +1094,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         if (locale.equals("de")){
             wikiHref=WIKI_DE;
             language="de";
+         //   showWiki = true;
         }
         if (locale.equals("el")){
             wikiHref=WIKI_EL;

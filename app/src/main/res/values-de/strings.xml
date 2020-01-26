@@ -44,7 +44,7 @@
     <string name="bumblebee">die Hummel</string>
     <string name="butterfly">die Schmetterlinge</string>
     <string name="camel">Der Kamel</string>
-    <string name="cat">Die Katze</string>
+    <string name="cat">Die Katze#Hauskatze</string>
     <string name="cavy">Das Meerschweinchen</string>
     <string name="chiken">Das Huhn</string>
     <string name="cock">Der Hahn</string>
@@ -54,7 +54,7 @@
     <string name="crow">Die Krähe</string>
     <string name="cuckoo">Der Kuckuck</string>
     <string name="chipmunk">Der Streifenhörnchen</string>
-    <string name="dog">Der Hund</string>
+    <string name="dog">Der Hund#Haushund</string>
     <string name="dolphin">Der Delfin</string>
     <string name="donkey">Der Esel</string>
     <string name="dove">Die Tauben</string>
@@ -94,7 +94,7 @@
     <string name="peacock">der Pfau</string>
     <string name="pelican">der Pelikan</string>
     <string name="penguin">der Pinguin</string>
-    <string name="pig">das Schwein</string>
+    <string name="pig">das Schwein#Hausschwein</string>
     <string name="racoon">der Waschbär</string>
     <string name="rat">die Ratte</string>
     <string name="rhino">das Nashorn</string>
