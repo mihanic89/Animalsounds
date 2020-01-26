@@ -317,28 +317,27 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
 
         //if (!ads_disabled) {
-        try {
+
 
 
             setContentView(R.layout.activity_main_down_tabs_webview);
 
-        }
-        catch (Exception e){
 
-        }
        /* {
             setContentView(R.layout.activity_main_down_tabs_noads);
         }
         */
 
 
-        wiki = (WebView) findViewById(R.id.wiki);
-        stopWiki = (ImageButton) findViewById(R.id.buttonWikiClose);
-        progressWiki = (ProgressBar) findViewById(R.id.progressWiki);
 
-        wiki.setVisibility(View.INVISIBLE);
-        stopWiki.setVisibility(View.INVISIBLE);
-        progressWiki.setVisibility(View.INVISIBLE);
+           wiki = (WebView) findViewById(R.id.wiki);
+           stopWiki = (ImageButton) findViewById(R.id.buttonWikiClose);
+           progressWiki = (ProgressBar) findViewById(R.id.progressWiki);
+
+           wiki.setVisibility(View.INVISIBLE);
+           stopWiki.setVisibility(View.INVISIBLE);
+           progressWiki.setVisibility(View.INVISIBLE);
+
 
         Point size = new Point();
         getWindowManager().getDefaultDisplay().getSize(size);
@@ -468,6 +467,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
         makeLanguageList(Locale.getDefault().getLanguage());
 
+
         try {
             new TtsInit().execute();
         }
@@ -553,12 +553,14 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         fetch();
 
        // Debug.stopMethodTracing();
-        stopWiki.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                stopWiki();
-            }
-        });
+
+            stopWiki.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    stopWiki();
+                }
+            });
+
 
     }
 
@@ -1113,6 +1115,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         if (locale.equals("fr")){
             wikiHref=WIKI_FR;
             language="fr";
+            showWiki = true;
         }
         if (locale.equals("hi")){
             wikiHref=WIKI_HI;

@@ -37,19 +37,23 @@ android {
     }
 }
 
+
+
 dependencies {
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    //implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta4'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "androidx.browser:browser:1.2.0"
     implementation "androidx.vectordrawable:vectordrawable-animated:1.1.0"
     implementation "androidx.media:media:1.1.0"
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
-    implementation 'com.google.android.material:material:1.2.0-alpha03'
+    //вернуть когда заработает на API 21 22 Nexus 5 api 22 без GS
+   //implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'com.google.android.material:material:1.0.0'
     implementation "androidx.cardview:cardview:1.0.0"
-    implementation "com.google.firebase:firebase-core:17.2.1"
+    implementation "com.google.firebase:firebase-core:17.2.2"
     implementation "com.google.firebase:firebase-crash:16.2.1"
     implementation "com.google.firebase:firebase-ads:18.3.0"
-    implementation "com.google.firebase:firebase-perf:19.0.4"
+    implementation "com.google.firebase:firebase-perf:19.0.5"
     implementation "com.google.firebase:firebase-storage:19.1.0"
     implementation "com.google.firebase:firebase-auth:19.2.0"
     implementation 'com.google.firebase:firebase-config:19.1.0'
@@ -61,6 +65,10 @@ dependencies {
     annotationProcessor 'androidx.annotation:annotation:1.1.0'
     //   implementation 'com.android.billingclient:billing:2.1.0'
     implementation 'com.codemybrainsout.rating:ratingdialog:1.0.8'
+    //вернуть когда заработает на API 21 22
+   // implementation 'androidx.appcompat:appcompat:1.2.0-alpha01'
+    //implementation 'androidx.appcompat:appcompat:1.0.0-rc01'
+
 
 }
 apply plugin: 'com.google.gms.google-services'
