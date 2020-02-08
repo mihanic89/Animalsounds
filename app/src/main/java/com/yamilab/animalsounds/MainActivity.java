@@ -1637,6 +1637,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                          "document.getElementsByClassName ('page-actions-menu')[0].style.display='none';"+
                          "document.getElementsByClassName ('minerva-footer')[0].style.display='none';"+
                       //   "document.getElementsByClassName ('plainlinks metadata ambox ambox-discussion').style.display='none';"+
+                         "document.getElementsByClassName ('hatnote rellink')[0].style.display='none';"+
                          "document.getElementsByClassName ('dablink hatnote')[0].style.display='none';"+
                          "document.getElementsByClassName ('dablink hatnote')[1].style.display='none';"+
                          "document.getElementsByClassName ('dablink hatnote')[2].style.display='none';"+
