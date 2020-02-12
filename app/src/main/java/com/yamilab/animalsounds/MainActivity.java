@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     private boolean review_enabled = true;
     private int numRatingDialog=0;
 
-    private int firstTab = 3;
+    private int firstTab = 4;
     private int ratingCounter=0;
 
     /**
@@ -380,17 +380,24 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         mScaleAnimation3 = AnimationUtils.loadAnimation(this,R.anim.myscale3);
         mScaleAnimation4 = AnimationUtils.loadAnimation(this,R.anim.myscale4);
 
+        View view10 = getLayoutInflater().inflate(R.layout.customtab, null);
+        ImageView imageViewTab10 = view10.findViewById(R.id.icon);
+        imageViewTab10.setImageResource(R.drawable.tab_game3);
+        imageViewTab10.startAnimation(mScaleAnimation3);
+        tabLayout.getTabAt(0).setCustomView(view10);
+
+
         View view0 = getLayoutInflater().inflate(R.layout.customtab, null);
         ImageView imageViewTab0 = view0.findViewById(R.id.icon);
         imageViewTab0.setImageResource(R.drawable.tab_game2);
         imageViewTab0.startAnimation(mScaleAnimation0);
-        tabLayout.getTabAt(0).setCustomView(view0);
+        tabLayout.getTabAt(1).setCustomView(view0);
 
         View view1 = getLayoutInflater().inflate(R.layout.customtab, null);
         ImageView imageViewTab1 = view1.findViewById(R.id.icon);
         imageViewTab1.setImageResource(R.drawable.tab_game);
         imageViewTab1.startAnimation(mScaleAnimation2);
-        tabLayout.getTabAt(1).setCustomView(view1);
+        tabLayout.getTabAt(2).setCustomView(view1);
 
 
 
@@ -401,43 +408,43 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         */
        // tabLayout.getTabAt(0).setIcon( R.drawable.tab_game2);
        //tabLayout.getTabAt(1).setIcon( R.drawable.tab_game);
-        tabLayout.getTabAt(2).setText("Ads");
+        tabLayout.getTabAt(3).setText("Ads");
 
         View view3 = getLayoutInflater().inflate(R.layout.customtab, null);
         ImageView imageViewTab3 = view3.findViewById(R.id.icon);
         imageViewTab3.setImageResource(R.drawable.tab_home);
         imageViewTab3.startAnimation(mScaleAnimation4);
-        tabLayout.getTabAt(3).setCustomView(view3);
+        tabLayout.getTabAt(4).setCustomView(view3);
 
         View view4 = getLayoutInflater().inflate(R.layout.customtab, null);
         ImageView imageViewTab4 = view4.findViewById(R.id.icon);
         imageViewTab4.setImageResource(R.drawable.tab_wild);
         imageViewTab4.startAnimation(mScaleAnimation1);
-        tabLayout.getTabAt(4).setCustomView(view4);
+        tabLayout.getTabAt(5).setCustomView(view4);
 
         View view5 = getLayoutInflater().inflate(R.layout.customtab, null);
         ImageView imageViewTab5 = view5.findViewById(R.id.icon);
         imageViewTab5.setImageResource(R.drawable.tab_birds);
         imageViewTab5.startAnimation(mScaleAnimation3);
-        tabLayout.getTabAt(5).setCustomView(view5);
+        tabLayout.getTabAt(6).setCustomView(view5);
 
         View view6 = getLayoutInflater().inflate(R.layout.customtab, null);
         ImageView imageViewTab6 = view6.findViewById(R.id.icon);
         imageViewTab6.setImageResource(R.drawable.tab_aqua);
         imageViewTab6.startAnimation(mScaleAnimation0);
-        tabLayout.getTabAt(6).setCustomView(view6);
+        tabLayout.getTabAt(7).setCustomView(view6);
 
         View view7 = getLayoutInflater().inflate(R.layout.customtab, null);
         ImageView imageViewTab7 = view7.findViewById(R.id.icon);
         imageViewTab7.setImageResource(R.drawable.tab_insects);
         imageViewTab7.startAnimation(mScaleAnimation2);
-        tabLayout.getTabAt(7).setCustomView(view7);
+        tabLayout.getTabAt(8).setCustomView(view7);
 
         View view8 = getLayoutInflater().inflate(R.layout.customtab, null);
         ImageView imageViewTab8 = view8.findViewById(R.id.icon);
         imageViewTab8.setImageResource(R.drawable.tab_fairy);
         imageViewTab8.startAnimation(mScaleAnimation4);
-        tabLayout.getTabAt(8).setCustomView(view8);
+        tabLayout.getTabAt(9).setCustomView(view8);
 
         /*
         for (int i = 3; i < tabLayout.getTabCount(); i++) {
@@ -934,34 +941,38 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
             switch (position) {
 
                 case 0:
+                    mFirebaseAnalytics.logEvent("tab_game3", null);
+                    return ImageGridFragmentGame3.newInstance(animals,screenWidth);
+
+                case 1:
                     mFirebaseAnalytics.logEvent("tab_game2", null);
                     return ImageGridFragmentGame2.newInstance(animals,screenWidth);
 
-                case 1:
+                case 2:
                     mFirebaseAnalytics.logEvent("tab_game1", null);
                     return ImageGridFragmentGame.newInstance(animals,screenWidth);
 
-                case 2:
+                case 3:
                     mFirebaseAnalytics.logEvent("tab_ads", null);
                     return new ImageGridFragmentAds();
 
-                case 3:
+                case 4:
                     mFirebaseAnalytics.logEvent("tab_home", null);
                     return ImageGridFragment.newInstance( home,screenWidth);
 
-                case 4:
+                case 5:
                     mFirebaseAnalytics.logEvent("tab_wild", null);
                     return ImageGridFragment.newInstance( wild,screenWidth);
-                case 5:
+                case 6:
                     mFirebaseAnalytics.logEvent("tab_birds", null);
                     return ImageGridFragment.newInstance( birds,screenWidth);
-                case 6:
+                case 7:
                     mFirebaseAnalytics.logEvent("tab_aqua", null);
                     return ImageGridFragment.newInstance( aqua,screenWidth);
-                case 7:
+                case 8:
                     mFirebaseAnalytics.logEvent("tab_insects", null);
                     return ImageGridFragment.newInstance( insects,screenWidth);
-                case 8:
+                case 9:
                     mFirebaseAnalytics.logEvent("tab_fairy", null);
 
                     if (unlockCounter<9) {
@@ -978,7 +989,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 9;
+            return 10;
         }
 
 
@@ -1571,7 +1582,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     }
 
     public void setGameTab (){
-        tab = tabLayout.getTabAt(new Random().nextInt(2));
+        tab = tabLayout.getTabAt(new Random().nextInt(3));
         tab.select();
     }
 

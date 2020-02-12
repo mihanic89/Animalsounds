@@ -134,7 +134,7 @@ public class ImageGridFragmentGame extends Fragment {
         full = rootView.findViewById(imageFull);
 
         //textAnswer = (TextView) rootView.findViewById(R.id.textAnswer);
-        buttonAnswer = rootView.findViewById(R.id.buttonAnswer);
+        buttonAnswer = rootView.findViewById(R.id.buttonName);
 
         correctCounter = rootView.findViewById(R.id.correctCounter);
         wrongCounter = rootView.findViewById(R.id.wrongCounter);

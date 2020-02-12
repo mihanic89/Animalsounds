@@ -3,15 +3,18 @@ package com.yamilab.animalsounds;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-
+import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -32,15 +35,15 @@ import static com.yamilab.animalsounds.R.id.imageGame3;
 /**
  * Created by Misha on 28.03.2017.
  */
-public class ImageGridFragmentGame2 extends Fragment {
+public class ImageGridFragmentGame3 extends Fragment {
 
 
     private static final String TAG = "RecyclerViewFragment";
     private static final String KEY_LAYOUT_MANAGER = "layoutManager";
     private static final int SPAN_COUNT = 2;
     private static final int DATASET_COUNT = 40;
-    private static final String KEY_WRONG_COUNTER = "wrongCounter2";
-    private static final String KEY_CORRECT_COUNTER = "correctCounter2";
+    private static final String KEY_WRONG_COUNTER = "wrongCounter3";
+    private static final String KEY_CORRECT_COUNTER = "correctCounter23";
     //private int adCounter=0;
     private TTSListener ttsListener;
     private FirebaseAnalytics mFirebaseAnalytics;
@@ -48,15 +51,15 @@ public class ImageGridFragmentGame2 extends Fragment {
 // ...
 // Obtain the FirebaseAnalytics instance.
 
-    public ImageGridFragmentGame2(){
+    public ImageGridFragmentGame3(){
 
     }
 
-    public static ImageGridFragmentGame2 newInstance(
+    public static ImageGridFragmentGame3 newInstance(
             ArrayList array,
             int screenWidth) {
 
-        ImageGridFragmentGame2 fragmentGame = new ImageGridFragmentGame2();
+        ImageGridFragmentGame3 fragmentGame = new ImageGridFragmentGame3();
         Bundle args = new Bundle();
         args.putSerializable("key", array);
         args.putInt("width", screenWidth);
@@ -73,19 +76,17 @@ public class ImageGridFragmentGame2 extends Fragment {
     private int size=0, correctAnswer=0;
     private int wrong1=0, wrong2=0, wrong3=0;
     private int correctCard=0;
-    private int correctInt=0, wrongInt=0;
+    private int correctInt=0, wrongInt=0, checkedAnswer=0, correctAnswer1from4=0;
     private boolean wrongHasTry=false;
+    private int sound1, sound2, sound3, sound4;
 
     private int[] cardsNumbers;
     private ArrayList<Integer> numbers = new ArrayList<>();
 
-    ImageButton image0;
-    ImageButton image1;
-    ImageButton image2;
-    ImageButton image3;
-    ImageButton full;
+    ImageButton full,buttonCheck,buttonNext;
 
-    Button buttonAnswer,correctCounter, wrongCounter;
+    Button buttonName,button1,button2, button3, button4,
+            correctCounter, wrongCounter;
 
 
     @Override
@@ -111,7 +112,7 @@ public class ImageGridFragmentGame2 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_game2_rebuild_count, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_game3, container, false);
 
         animals = new ArrayList<Animal>();
 
@@ -122,16 +123,17 @@ public class ImageGridFragmentGame2 extends Fragment {
 
         correctAnswer = new Random().nextInt(size);
 
-
-
-        image0= rootView.findViewById(imageGame0);
-        image1= rootView.findViewById(imageGame1);
-        image2= rootView.findViewById(imageGame2);
-        image3= rootView.findViewById(imageGame3);
+        buttonName= rootView.findViewById(R.id.buttonName);
+        button1= rootView.findViewById(R.id.button1);
+        button2= rootView.findViewById(R.id.button2);
+        button3= rootView.findViewById(R.id.button3);
+        button4= rootView.findViewById(R.id.button4);
+        buttonCheck = rootView.findViewById(R.id.buttonCheck);
+        buttonNext= rootView.findViewById(R.id.buttonNext);
         full = rootView.findViewById(imageFull);
 
         //textAnswer = (TextView) rootView.findViewById(R.id.textAnswer);
-        buttonAnswer = rootView.findViewById(R.id.buttonName);
+
         correctCounter = rootView.findViewById(R.id.correctCounter);
         wrongCounter = rootView.findViewById(R.id.wrongCounter);
 
@@ -153,13 +155,14 @@ public class ImageGridFragmentGame2 extends Fragment {
         wrongCounter.setText( String.valueOf(wrongInt));
         correctCounter.setText( String.valueOf(correctInt));
        // ImageButton sound = rootView.findViewById(buttonSound);
-        ImageButton next = rootView.findViewById(buttonNext);
+
 
         try
         {
             generateWrong();
-            setImages();
-            buttonAnswer.setText(animals.get(correctAnswer).getName());
+            setSounds();
+            full.setImageResource(animals.get(correctAnswer).getImageSmall());
+            buttonName.setText(animals.get(correctAnswer).getName());
            // newRound();
            // adCounter=0;
         }
@@ -201,42 +204,54 @@ public class ImageGridFragmentGame2 extends Fragment {
 
         */
 
-        next.setOnClickListener(new View.OnClickListener() {
+        buttonName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ttsListener.speak(animals.get(correctAnswer).getName(),animals.get(correctAnswer).getSound());
+            }
+        });
+
+        buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 newRound();
             }
         });
 
-        image0.setOnClickListener(new View.OnClickListener() {
+        button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkAnswer(0);
+                setAnswer(1);
+                SoundPlay.playSP(getContext(), sound1);
 
             }
         });
 
-        image1.setOnClickListener(new View.OnClickListener() {
+        button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkAnswer(1);
+                setAnswer(2);
+                SoundPlay.playSP(getContext(), sound2);
             }
         });
 
-        image2.setOnClickListener(new View.OnClickListener() {
+        button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkAnswer(2);
+                setAnswer(3);
+                SoundPlay.playSP(getContext(), sound3);
             }
         });
 
-        image3.setOnClickListener(new View.OnClickListener() {
+        button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkAnswer(3);
+                setAnswer(4);
+                SoundPlay.playSP(getContext(), sound4);
             }
         });
 
+        /*
         full.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -245,11 +260,14 @@ public class ImageGridFragmentGame2 extends Fragment {
                // setImages();
             }
         });
+        */
 
-        buttonAnswer.setOnClickListener(new View.OnClickListener() {
+
+        buttonCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ttsListener.speak(animals.get(correctAnswer).getName(),animals.get(correctAnswer).getSound());
+                //ttsListener.speak(animals.get(correctAnswer).getName(),animals.get(correctAnswer).getSound());
+              checkAnswer();
             }
         });
 
@@ -295,17 +313,18 @@ public class ImageGridFragmentGame2 extends Fragment {
 
 
 
-    private void setImages(){
+    private void setSounds(){
 
 
-        image0.setVisibility(View.VISIBLE);
-        image1.setVisibility(View.VISIBLE);
-        image2.setVisibility(View.VISIBLE);
-        image3.setVisibility(View.VISIBLE);
+        button1.setVisibility(View.VISIBLE);
+        button2.setVisibility(View.VISIBLE);
+        button3.setVisibility(View.VISIBLE);
+        button4.setVisibility(View.VISIBLE);
+        buttonCheck.setVisibility(View.VISIBLE);
         //buttonAnswer.setVisibility(View.INVISIBLE);
 
 
-        full.setVisibility(View.INVISIBLE);
+        full.setVisibility(View.VISIBLE);
         correctCard = new Random().nextInt(3);
 
         if (correctCard==0){
@@ -314,11 +333,17 @@ public class ImageGridFragmentGame2 extends Fragment {
             image1.setImageResource(animals.get(wrong1).getImageSmall());
             image2.setImageResource(animals.get(wrong2).getImageSmall());
             image3.setImageResource(animals.get(wrong3).getImageSmall());
-            */
+
             setImageGlide(image0,animals.get(correctAnswer).getImageSmall());
             setImageGlide(image1,animals.get(wrong1).getImageSmall());
             setImageGlide(image2,animals.get(wrong2).getImageSmall());
             setImageGlide(image3,animals.get(wrong3).getImageSmall());
+            */
+
+            sound1 = animals.get(correctAnswer).getSound();
+            sound2 = animals.get(wrong1).getSound();
+            sound3 = animals.get(wrong2).getSound();
+            sound4 = animals.get(wrong3).getSound();
         }
 
         else if (correctCard==1){
@@ -327,11 +352,18 @@ public class ImageGridFragmentGame2 extends Fragment {
             image0.setImageResource(animals.get(wrong1).getImageSmall());
             image2.setImageResource(animals.get(wrong2).getImageSmall());
             image3.setImageResource(animals.get(wrong3).getImageSmall());
-            */
+
             setImageGlide(image0,animals.get(wrong1).getImageSmall());
             setImageGlide(image1,animals.get(correctAnswer).getImageSmall());
             setImageGlide(image2,animals.get(wrong2).getImageSmall());
             setImageGlide(image3,animals.get(wrong3).getImageSmall());
+
+             */
+
+            sound1 = animals.get(wrong1).getSound();
+            sound2 = animals.get(correctAnswer).getSound();
+            sound3 = animals.get(wrong2).getSound();
+            sound4 = animals.get(wrong3).getSound();
 
         }
 
@@ -341,24 +373,47 @@ public class ImageGridFragmentGame2 extends Fragment {
             image1.setImageResource(animals.get(wrong2).getImageSmall());
             image2.setImageResource(animals.get(correctAnswer).getImageSmall());
             image3.setImageResource(animals.get(wrong3).getImageSmall());
-             */
+
             setImageGlide(image0,animals.get(wrong1).getImageSmall());
             setImageGlide(image1,animals.get(wrong2).getImageSmall());
             setImageGlide(image2,animals.get(correctAnswer).getImageSmall());
             setImageGlide(image3,animals.get(wrong3).getImageSmall());
+
+             */
+
+            sound1 = animals.get(wrong1).getSound();
+            sound2 = animals.get(wrong2).getSound();
+            sound3 = animals.get(correctAnswer).getSound();
+            sound4 = animals.get(wrong3).getSound();
         }
-        else {
+        else if (correctCard==3){
             /*
             image0.setImageResource(animals.get(wrong1).getImageSmall());
             image1.setImageResource(animals.get(wrong2).getImageSmall());
             image2.setImageResource(animals.get(wrong3).getImageSmall());
             image3.setImageResource(animals.get(correctAnswer).getImageSmall());
-             */
+
             setImageGlide(image0,animals.get(wrong1).getImageSmall());
             setImageGlide(image1,animals.get(wrong2).getImageSmall());
             setImageGlide(image2,animals.get(wrong3).getImageSmall());
             setImageGlide(image3,animals.get(correctAnswer).getImageSmall());
+        */
+
+            sound1 = animals.get(wrong1).getSound();
+            sound2 = animals.get(wrong2).getSound();
+            sound3 = animals.get(wrong3).getSound();
+            sound4 = animals.get(correctAnswer).getSound();
         }
+        correctAnswer1from4 = correctCard+1;
+
+        /*
+        Toast toast = Toast.makeText(getActivity(),
+                "correctAnswer1from4 " + correctAnswer1from4 ,
+                Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
+
+         */
 
        // SoundPlay.playSP(getContext(), animals.get(correctAnswer).getSound());
 
@@ -390,74 +445,155 @@ public class ImageGridFragmentGame2 extends Fragment {
         }
     }
 
-    private void checkAnswer (int answer){
+   private void setAnswer(int answer){
+       if (answer==1){
+           button1.setBackgroundResource(R.drawable.oval_shape_blue);
+           button2.setBackgroundResource(R.drawable.oval_shape);
+           button3.setBackgroundResource(R.drawable.oval_shape);
+           button4.setBackgroundResource(R.drawable.oval_shape);
+       }
+       if (answer==2){
+           button1.setBackgroundResource(R.drawable.oval_shape);
+           button2.setBackgroundResource(R.drawable.oval_shape_blue);
+           button3.setBackgroundResource(R.drawable.oval_shape);
+           button4.setBackgroundResource(R.drawable.oval_shape);
+       }
+       if (answer==3){
+           button1.setBackgroundResource(R.drawable.oval_shape);
+           button2.setBackgroundResource(R.drawable.oval_shape);
+           button3.setBackgroundResource(R.drawable.oval_shape_blue);
+           button4.setBackgroundResource(R.drawable.oval_shape);
+       }
+       if (answer==4){
+           button1.setBackgroundResource(R.drawable.oval_shape);
+           button2.setBackgroundResource(R.drawable.oval_shape);
+           button3.setBackgroundResource(R.drawable.oval_shape);
+           button4.setBackgroundResource(R.drawable.oval_shape_blue);
+       }
+       checkedAnswer = answer;
+
+        /*
+       Toast toast = Toast.makeText(getActivity(),
+               "checkedAnswer " + answer ,
+               Toast.LENGTH_SHORT);
+       toast.setGravity(Gravity.CENTER, 0, 0);
+       toast.show();
+       */
+
+   }
 
 
 
-        if (correctCard==answer){
+    private void checkAnswer (){
 
-            setCorrectInt();
+        if (checkedAnswer!=0) {
 
+            if (checkedAnswer == correctAnswer1from4) {
 
-            SoundPlay.playSP(getContext(), R.raw.correct);
-            //delay(500);
-            setAllInvisible();
-            setFull(correctAnswer);
-            //buttonAnswer.setVisibility(View.VISIBLE);
-            //buttonAnswer.setText(animals.get(correctAnswer).getName());
-
-            //ttsListener.playSilence(750);
-           // ttsListener.speak(animals.get(correctAnswer).getName(),animals.get(correctAnswer).getSound());
-
-
-            /*
-            //звук, название животного, смена карт
-            try {
-
-
-                //SoundPlay.playSP(getContext(), R.raw.correct);
-                Thread.sleep(500);     //1000-задержка  на 1000 миллисекунду = 1 секунда
-                ttsListener.speak(animals.get(correctAnswer).getName(),animals.get(correctAnswer).getSound());
-           } catch (InterruptedException e) {
+                if (!wrongHasTry) setCorrectInt();
+                SoundPlay.playSP(getContext(), R.raw.correct);
+                setButtonsInvisible(checkedAnswer);
+            } else {
+                setWrongInt();
+                wrongHasTry = true;
+                //звук ошибки
+                SoundPlay.playSP(getContext(), R.raw.error);
+                if (checkedAnswer == 1) {
+                    button1.setVisibility(View.INVISIBLE);
+                }
+                if (checkedAnswer == 2) {
+                    button2.setVisibility(View.INVISIBLE);
+                }
+                if (checkedAnswer == 3) {
+                    button3.setVisibility(View.INVISIBLE);
+                }
+                if (checkedAnswer == 4) {
+                    button4.setVisibility(View.INVISIBLE);
+                }
 
             }
-
-            try {
-
-                Thread.sleep(3500);     //1000-задержка  на 1000 миллисекунду = 1 секунда
-                newRound();
-            } catch (InterruptedException e) {
-
-            }
-            */
         }
-        else
-        {
+        else {
+            final Handler handler = new Handler();
+            button1.setBackgroundResource(R.drawable.oval_shape_blue);
 
-            setWrongInt();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    button1.setBackgroundResource(R.drawable.oval_shape);
+                    button2.setBackgroundResource(R.drawable.oval_shape_blue);
+                }
+            }, 250);
 
-            //звук ошибки
-            SoundPlay.playSP(getContext(), R.raw.error);
-            if (answer==0){
-                image0.setVisibility(View.INVISIBLE);
-            }
-            if (answer==1){
-                image1.setVisibility(View.INVISIBLE);
-            }
-             if (answer==2){
-                 image2.setVisibility(View.INVISIBLE);
-            }
-            if (answer==3){
-                image3.setVisibility(View.INVISIBLE);
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    button2.setBackgroundResource(R.drawable.oval_shape);
+                    button3.setBackgroundResource(R.drawable.oval_shape_blue);
+                }
+            }, 500);
+
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    button3.setBackgroundResource(R.drawable.oval_shape);
+                    button4.setBackgroundResource(R.drawable.oval_shape_blue);
+                }
+            }, 750);
+
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    button4.setBackgroundResource(R.drawable.oval_shape);
+                    //button4.setBackgroundResource(R.drawable.oval_shape_blue);
+                }
+            }, 1000);
         }
 
+
+
+    }
+
+    private void setButtonsInvisible(int checkedAnswer) {
+        if (checkedAnswer==1){
+            button2.setVisibility(View.INVISIBLE);
+            button3.setVisibility(View.INVISIBLE);
+            button4.setVisibility(View.INVISIBLE);
+            buttonCheck.setVisibility(View.INVISIBLE);
         }
+
+        if (checkedAnswer==2){
+            button1.setVisibility(View.INVISIBLE);
+            button3.setVisibility(View.INVISIBLE);
+            button4.setVisibility(View.INVISIBLE);
+            buttonCheck.setVisibility(View.INVISIBLE);
+        }
+
+        if (checkedAnswer==3){
+            button1.setVisibility(View.INVISIBLE);
+            button2.setVisibility(View.INVISIBLE);
+            button4.setVisibility(View.INVISIBLE);
+            buttonCheck.setVisibility(View.INVISIBLE);
+        }
+        if (checkedAnswer==4){
+            button1.setVisibility(View.INVISIBLE);
+            button2.setVisibility(View.INVISIBLE);
+            button3.setVisibility(View.INVISIBLE);
+            buttonCheck.setVisibility(View.INVISIBLE);
+        }
+
     }
 
 
     private void newRound (){
 
         wrongHasTry=false;
+        checkedAnswer=0;
+        button1.setBackgroundResource(R.drawable.oval_shape);
+        button2.setBackgroundResource(R.drawable.oval_shape);
+        button3.setBackgroundResource(R.drawable.oval_shape);
+        button4.setBackgroundResource(R.drawable.oval_shape);
+
 
         //adCounter++;
         ((MainActivity) getActivity()).incAdCounter();
@@ -471,29 +607,31 @@ public class ImageGridFragmentGame2 extends Fragment {
             //adCounter=0;
            // ((MainActivity) getActivity()).zeroAdCounter();
             generateWrong();
-            setImages();
-            buttonAnswer.setText(animals.get(correctAnswer).getName());
+            setSounds();
+            buttonName.setText(animals.get(correctAnswer).getName());
 
-            mFirebaseAnalytics.logEvent("game2_ad", null);
+            mFirebaseAnalytics.logEvent("game3_ad", null);
         }
 
         else{
             generateWrong();
-            setImages();
-            buttonAnswer.setText(animals.get(correctAnswer).getName());
+            setSounds();
+            buttonName.setText(animals.get(correctAnswer).getName());
             ttsListener.speak(animals.get(correctAnswer).getName(),animals.get(correctAnswer).getSound());
         }
 
+        full.setImageResource(animals.get(correctAnswer).getImageSmall());
+
         Bundle params = new Bundle();
-        params.putString("new_round2", "New round start 2");
-        mFirebaseAnalytics.logEvent("new_round_2", params);
+        params.putString("new_round3", "New round start 3");
+        mFirebaseAnalytics.logEvent("new_round_3", params);
     }
 
     private void setAllInvisible(){
-        image0.setVisibility(View.INVISIBLE);
-        image1.setVisibility(View.INVISIBLE);
-        image2.setVisibility(View.INVISIBLE);
-        image3.setVisibility(View.INVISIBLE);
+        button1.setVisibility(View.INVISIBLE);
+        button2.setVisibility(View.INVISIBLE);
+        button3.setVisibility(View.INVISIBLE);
+        button4.setVisibility(View.INVISIBLE);
     }
 
     private void setFull (int num){
