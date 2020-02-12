@@ -16,82 +16,82 @@
         android:layout_above="@+id/downLayout"
         android:weightSum="2">
 
-        <LinearLayout
-            android:id="@+id/up"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="horizontal"
-            android:gravity="center"
+    <LinearLayout
+        android:id="@+id/up"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:weightSum="2"
+
+        >
+
+        <ImageButton
+            android:id="@+id/imageGame0"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:weightSum="2"
+            android:layout_margin="@dimen/image_margin"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:background="@null"
+            android:src="@drawable/a5hd"/>
 
-            >
-
-            <ImageButton
-                android:id="@+id/imageGame0"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_margin="@dimen/image_margin"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:background="@null"
-                android:src="@drawable/a5hd"/>
-
-            <ImageButton
-                android:id="@+id/imageGame1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-
-                android:layout_margin="@dimen/image_margin"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:background="@null"
-                android:src="@drawable/w8hd"
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/down"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="horizontal"
+        <ImageButton
+            android:id="@+id/imageGame1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
-            android:weightSum="2"
+
+            android:layout_margin="@dimen/image_margin"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:background="@null"
+            android:src="@drawable/w8hd"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/down"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:weightSum="2"
 
 
-            >
+        >
 
 
-            <ImageButton
-                android:id="@+id/imageGame2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_margin="@dimen/image_margin"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:background="@null"
-                android:src="@drawable/a7hd"
-                />
+        <ImageButton
+            android:id="@+id/imageGame2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/image_margin"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:background="@null"
+            android:src="@drawable/a7hd"
+            />
 
 
-            <ImageButton
-                android:id="@+id/imageGame3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+        <ImageButton
+            android:id="@+id/imageGame3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
 
-                android:layout_margin="@dimen/image_margin"
-                android:adjustViewBounds="true"
-                android:background="@null"
-                android:scaleType="fitCenter"
-                android:src="@drawable/w8hd"/>
+            android:layout_margin="@dimen/image_margin"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/w8hd"/>
 
-        </LinearLayout>
+    </LinearLayout>
 
     </LinearLayout>
 
@@ -148,7 +148,7 @@
         android:background="@null" />
 
     <Button
-        android:id="@+id/buttonAnswer"
+        android:id="@+id/buttonName"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_alignBottom="@+id/two"
