@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
 
             android:layout_marginRight="30dp"
-            android:layout_alignParentLeft="true"
+
 
 
             android:background="@drawable/oval_shape_red"
@@ -76,8 +76,8 @@
         android:gravity="center"
         android:layout_weight="1"
         android:weightSum="2"
-        android:layout_alignParentTop="true"
-        android:layout_above="@+id/down"
+
+
          >
 
         <ImageButton
@@ -114,7 +114,7 @@
         android:gravity="center"
         android:layout_weight="1"
         android:weightSum="2"
-        android:layout_above="@+id/downLayout"
+
 
         >
 
