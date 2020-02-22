@@ -113,6 +113,7 @@
             android:background="@drawable/oval_shape"
             android:clickable="true"
             android:elevation="5dp"
+            android:foreground="?android:attr/selectableItemBackground"
             android:focusable="auto"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/baseline_pets_black_18dp" />
@@ -128,6 +129,7 @@
             android:background="@drawable/oval_shape"
             android:clickable="true"
             android:elevation="5dp"
+            android:foreground="?android:attr/selectableItemBackground"
             android:focusable="auto"
             android:scaleType="fitCenter"
             app:srcCompat="@android:drawable/ic_media_next" />
@@ -164,6 +166,7 @@
         android:clickable="true"
         android:elevation="5dp"
         android:focusable="auto"
+        android:foreground="?android:attr/selectableItemBackground"
         android:padding="8dp"
         android:scaleType="fitCenter"
         android:textColor="#ffffff"

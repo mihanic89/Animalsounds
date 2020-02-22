@@ -1375,6 +1375,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         insects.add(new Animal(getString(R.string.mantis),R.drawable.i9hd,R.raw.i9));
         insects.add(new Animal(getString(R.string.cicada), R.drawable.i10hd,R.raw.i10));
         insects.add(new Animal(getString(R.string.spider), R.drawable.i11,R.raw.i11));
+        insects.add(new Animal(getString(R.string.scorpion),R.drawable.i12,R.raw.i12));
 
 
         fairy = new ArrayList<>();
