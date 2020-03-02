@@ -37,8 +37,6 @@ android {
     }
 }
 
-
-
 dependencies {
     //implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta4'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
