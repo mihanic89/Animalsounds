@@ -19,6 +19,7 @@ public class SoundPlay {
 
     public static void playSP(Context context, Integer sound) {
 
+        /*
         try {
             if (sp != null) {
                 sp.release();
@@ -28,6 +29,8 @@ public class SoundPlay {
         catch (Exception e){
 
         }
+
+         */
 
             /*
         try
@@ -39,8 +42,7 @@ public class SoundPlay {
         ){}
 
              */
-
-
+            /*
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 
             AudioAttributes audioAttrib = new AudioAttributes.Builder()
@@ -53,9 +55,11 @@ public class SoundPlay {
 
             sp = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
         }
+        */
+
 
         try {
-            int soundId = sp.load(context, sound, 1);
+            int soundId = getsp().load(context, sound, 1);
             //sp.play(soundId, 1, 1, 0, 0, 1);
         }
         catch (Exception e)
@@ -72,6 +76,26 @@ public class SoundPlay {
                 soundPool.play(sampleId,1,1,0,0,1);
             }
         });
+    }
+
+    private static SoundPool getsp (){
+        if (sp==null){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
+                AudioAttributes audioAttrib = new AudioAttributes.Builder()
+                        .setUsage(AudioAttributes.USAGE_GAME)
+                        .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                        .build();
+                sp = new SoundPool.Builder().setAudioAttributes(audioAttrib).setMaxStreams(1).build();
+            }
+            else {
+
+                sp = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+            }
+
+        }
+        //sp.release();
+        return sp;
     }
 
     public void clearSP(){
