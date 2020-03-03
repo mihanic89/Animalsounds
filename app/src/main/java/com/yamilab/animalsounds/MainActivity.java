@@ -975,7 +975,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                 case 9:
                     mFirebaseAnalytics.logEvent("tab_fairy", null);
 
-                    if (unlockCounter<9) {
+                    if (unlockCounter<29) {
                         return FragmentUnlockFairy.newInstance(unlockCounter);
                     }
                     else {

@@ -56,7 +56,7 @@ public class FragmentUnlockFairy extends Fragment {
         unlockTextDown = rootView.findViewById(R.id.textUnlockCounterDown);
         unlockImage = rootView.findViewById(R.id.unlockBackgroud);
 
-        int need = 9 - getArguments().getInt("counter",50);
+        int need = 29 - getArguments().getInt("counter",50);
         if (need<0) need =0;
         unlockTextUp.setText(getString(R.string.unlock_text1));
         unlockTextCenter.setText(" " + need + " ");
