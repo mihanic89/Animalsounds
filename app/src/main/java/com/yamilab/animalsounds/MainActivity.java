@@ -46,6 +46,9 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.RequestConfiguration;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;
@@ -54,6 +57,7 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
@@ -484,8 +488,15 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
 
 
-        MobileAds.initialize(getApplicationContext(), "ca-app-pub-2888343178529026~2046736590");
-
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+        List<String> testDeviceIds = Arrays.asList("202EFAFD70CDAE930A3318D4508534C0");
+        RequestConfiguration configuration =
+                new RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build();
+        MobileAds.setRequestConfiguration(configuration);
 
 
 
@@ -496,11 +507,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                             // .addNetworkExtrasBundle(AdMobAdapter.class, extrasAdview)
                             // .addNetworkExtrasBundle(AdMobAdapter.class, extras)
                             //.tagForChildDirectedTreatment(true)
-                            .addTestDevice("634EE6DF579E0E01020981609CDA857D")
-                            .addTestDevice("A4203BC89A24BEEC45D1111F16D2F0A3")
-                            .addTestDevice("4174C23AC2A2DAFD78A7C0F0DFB39F3E") //Samsung A50
-                            .addTestDevice("7A4531178089C7C58205C7AA937079B6") //Nexus
-                            //.addTestDevice("09D7B5315C60A80D280B8CDF618FD3DE")
+
                             .build();
                     mAdView.loadAd(adRequest);
                 }
@@ -553,8 +560,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
                 //.setDeveloperModeEnabled(BuildConfig.DEBUG)
                 .build();
-        mFirebaseRemoteConfig.setConfigSettings(configSettings);
-        mFirebaseRemoteConfig.setDefaults(R.xml.remote_config_defaults);
+        mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
+        mFirebaseRemoteConfig.setDefaultsAsync(R.xml.remote_config_defaults);
 
 
         fetch();
@@ -667,6 +674,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         if (!mInterstitialAd.isLoading() && !mInterstitialAd.isLoaded() && !ads_disabled) {
             AdRequest adRequest = new AdRequest.Builder()
                     //.tagForChildDirectedTreatment(true)
+
                     .addTestDevice("634EE6DF579E0E01020981609CDA857D")
                     .addTestDevice("A4203BC89A24BEEC45D1111F16D2F0A3")
                     .addTestDevice("4174C23AC2A2DAFD78A7C0F0DFB39F3E") //Samsung A50
@@ -1415,9 +1423,9 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
         // If your app is using developer mode, cacheExpiration is set to 0, so each fetch will
         // retrieve values from the service.
-        if (mFirebaseRemoteConfig.getInfo().getConfigSettings().isDeveloperModeEnabled()) {
-            cacheExpiration = 0;
-        }
+       // if (mFirebaseRemoteConfig.getInfo().getConfigSettings().isDeveloperModeEnabled()) {
+       //     cacheExpiration = 0;
+       // }
 
         // [START fetch_config_with_callback]
         // cacheExpirationSeconds is set to cacheExpiration here, indicating the next fetch request
@@ -1433,7 +1441,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
                             // After config data is successfully fetched, it must be activated before newly fetched
                             // values are returned.
-                            mFirebaseRemoteConfig.activateFetched();
+                            mFirebaseRemoteConfig.activate();
 
                             SharedPreferences getPrefs = PreferenceManager
                                     .getDefaultSharedPreferences(getBaseContext());
