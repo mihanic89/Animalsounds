@@ -1,11 +1,15 @@
 package com.yamilab.animalsounds;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Point;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,6 +38,7 @@ public class ImageGridFragmentAds extends Fragment {
     private int gridCount = 2;
     protected RecyclerView mRecyclerView;
     protected CustomLinkAdapter mAdapter;
+    protected TextView txt;
     protected RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<LinkItem> mDataset;
     private StaggeredGridLayoutManager gaggeredGridLayoutManager;
@@ -65,6 +70,7 @@ public class ImageGridFragmentAds extends Fragment {
        // }
         // BEGIN_INCLUDE(initializeRecyclerView)
         mRecyclerView = rootView.findViewById(recyclerView);
+        txt = rootView.findViewById(R.id.textViewPolicy);
        // disableAds = rootView.findViewById(buttonDisableAds);
         // LinearLayoutManager is used here, this will layout the elements in a similar fashion
         // to the way ListView would layout elements. The RecyclerView.LayoutManager defines how
@@ -85,6 +91,14 @@ public class ImageGridFragmentAds extends Fragment {
         // END_INCLUDE(initializeRecyclerView)
 
 
+        txt.setMovementMethod(LinkMovementMethod.getInstance());
+        txt.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW);
+                browserIntent.setData(Uri.parse("http://www.yapapa.xyz/private-policy-animalsounds/"));
+                startActivity(browserIntent);
+            }
+        });
 
         /*
         if (((MainActivity) getActivity()).ads_disable_button && !((MainActivity) getActivity()).ads_disabled) {

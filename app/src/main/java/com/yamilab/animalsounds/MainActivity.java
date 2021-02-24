@@ -412,7 +412,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         */
        // tabLayout.getTabAt(0).setIcon( R.drawable.tab_game2);
        //tabLayout.getTabAt(1).setIcon( R.drawable.tab_game);
-        tabLayout.getTabAt(3).setText("Ads");
+        tabLayout.getTabAt(3).setText("Ads&Privacy");
 
         View view3 = getLayoutInflater().inflate(R.layout.customtab, null);
         ImageView imageViewTab3 = view3.findViewById(R.id.icon);
