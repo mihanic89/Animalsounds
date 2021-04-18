@@ -96,7 +96,14 @@ public class ImageGridFragmentAds extends Fragment {
             public void onClick(View v) {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW);
                 browserIntent.setData(Uri.parse("http://www.yapapa.xyz/private-policy-animalsounds/"));
-                startActivity(browserIntent);
+                try {
+                    startActivity(browserIntent);
+                }
+                catch (Exception e)
+                {
+                    
+                }
+
             }
         });
 
