@@ -184,17 +184,15 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
                 try {
                     //GlideApp.with(context)
                     glideRequests
-
                             .load(mStorageRef.child(animal.getGifHref()))
                             .priority(Priority.LOW)
-
                             //.load(internetUrl)
                             .skipMemoryCache(true)
                             .diskCacheStrategy(DiskCacheStrategy.ALL)
                             //.override((int) screenWidth)
                             .fitCenter()
                             .override((int)screenWidth/2, Target.SIZE_ORIGINAL)
-                            .thumbnail( glideRequests.load(animal.getImageSmall()))
+                            .thumbnail(glideRequests.load(animal.getImageSmall()))
                             //.error(animal.getImageSmall())
                             //.placeholder(new ColorDrawable(context.getResources().getColor(R.color.colorBackground))
                             // .placeholder(animal.getImageSmall())
