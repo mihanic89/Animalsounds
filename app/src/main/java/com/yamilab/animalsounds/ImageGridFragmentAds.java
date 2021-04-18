@@ -101,7 +101,7 @@ public class ImageGridFragmentAds extends Fragment {
                 }
                 catch (Exception e)
                 {
-                    
+
                 }
 
             }
