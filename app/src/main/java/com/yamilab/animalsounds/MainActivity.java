@@ -44,11 +44,13 @@ import com.codemybrainsout.ratingdialog.RatingDialog;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.RequestConfiguration;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;
@@ -493,9 +495,9 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
             public void onInitializationComplete(InitializationStatus initializationStatus) {
             }
         });
-        List<String> testDeviceIds = Arrays.asList("202EFAFD70CDAE930A3318D4508534C0");
+        List<String> testDeviceIds = Arrays.asList("1A421611008EBE0F7C03F7072A14720");
         RequestConfiguration configuration =
-                new RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build();
+                new RequestConfiguration.Builder().setTestDeviceIds(Arrays.asList("C1A421611008EBE0F7C03F7072A14720")).build();
         MobileAds.setRequestConfiguration(configuration);
 
 
@@ -514,6 +516,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
 
 
+
+        /*
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId("ca-app-pub-2888343178529026/6970013790");
 
@@ -531,6 +535,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                 mFirebaseAnalytics.logEvent("interstitial_onAdLoaded", null);
             }
         });
+        */
+
 
 
         GlideApp.with(this)
@@ -669,6 +675,38 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     }
 
     public void loadInterstitial() {
+
+        AdRequest adRequestInterstitial = new AdRequest.Builder().build();
+
+        mInterstitialAd.load(this,"ca-app-pub-2888343178529026/6970013790", adRequestInterstitial,
+                new InterstitialAdLoadCallback() {
+                    @Override
+                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                        // The mInterstitialAd reference will be null until
+                        // an ad is loaded.
+                        mInterstitialAd = interstitialAd;
+                        // loadInterstitial();
+                        mFirebaseAnalytics.logEvent("interstitial_onAdLoaded", null);
+                    }
+
+
+
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        // Handle the error
+
+                        mInterstitialAd = null;
+                    }
+
+
+                    public void onAdClosed(@NonNull InterstitialAd interstitialAd) {
+                        // loadInterstitial();
+                        adCount=0;
+                        ratingCounter++;
+                    }
+                });
+
+        /*
         // Show the ad if it's ready. Otherwise toast and restart the game.
         //если не грузится, не загружено и не запрещено, то загрузить
         if (!mInterstitialAd.isLoading() && !mInterstitialAd.isLoaded() && !ads_disabled) {
@@ -684,6 +722,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
             mInterstitialAd.loadAd(adRequest);
             mFirebaseAnalytics.logEvent("interstitial_load", null);
         }
+
+         */
     }
 
 
@@ -719,8 +759,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
         else {
 
-            if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
-                mInterstitialAd.show();
+            if (mInterstitialAd != null) {
+                mInterstitialAd.show(MainActivity.this);
                 mFirebaseAnalytics.logEvent("interstitial_show", null);
             } else {
                 Bundle params = new Bundle();
