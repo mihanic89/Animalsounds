@@ -50,14 +50,15 @@ import java.security.MessageDigest;
  *         .into(iv);
  * </pre>
  */
-public class FirebaseImageLoader implements ModelLoader<StorageReference, InputStream> {
+
+
+//
+/*public class FirebaseImageLoader implements ModelLoader<StorageReference, InputStream> {
 
     private static final String TAG = "FirebaseImageLoader";
 
 
-    /**
-     * Factory to create {@link FirebaseImageLoader}.
-     */
+
     public static class Factory implements ModelLoaderFactory<StorageReference, InputStream> {
 
         @Override
@@ -163,3 +164,6 @@ public class FirebaseImageLoader implements ModelLoader<StorageReference, InputS
         }
     }
 }
+*/
+
+

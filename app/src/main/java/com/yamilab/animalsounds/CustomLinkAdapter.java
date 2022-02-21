@@ -43,7 +43,7 @@ import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOption
  */
 public  class CustomLinkAdapter extends RecyclerView.Adapter<CustomLinkAdapter.ViewHolder> {
     private static final String TAG = "CustomAdapter";
-    private final StorageReference mStorageRef= FirebaseStorage.getInstance().getReferenceFromUrl("gs://animalsounds-a4395.appspot.com/");
+    //private final StorageReference mStorageRef= FirebaseStorage.getInstance().getReferenceFromUrl("gs://animalsounds-a4395.appspot.com/");
     private  ArrayList<LinkItem> mDataSet;
     private final int screenWidth;
     private final GlideRequests glideRequests;
@@ -136,7 +136,7 @@ public  class CustomLinkAdapter extends RecyclerView.Adapter<CustomLinkAdapter.V
        // viewHolder.getTextView().setText(data.getName());
 
             glideRequests
-                .load(mStorageRef.child(data.getName()))
+                .load(data.getName())
                 .priority(Priority.LOW)
                 //.load(internetUrl)
                 //.skipMemoryCache(true)

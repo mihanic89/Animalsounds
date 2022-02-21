@@ -3,7 +3,7 @@
 
 buildscript {
     repositories {
-        jcenter()
+        //jcenter()
 
         mavenCentral()
         maven {
@@ -15,16 +15,17 @@ buildscript {
 
     dependencies {
         classpath 'com.google.gms:google-services:4.3.10'
-        classpath 'com.android.tools.build:gradle:7.0.3'
+        classpath 'com.android.tools.build:gradle:7.1.1'
         classpath 'com.google.firebase:firebase-plugins:2.0.0'
-        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.8.0'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.8.1'
     }
 }
 
 allprojects {
     repositories {
-        jcenter()
+      //  jcenter()
         google()
+        mavenCentral()
         maven {
             url 'https://maven.google.com/'
         }

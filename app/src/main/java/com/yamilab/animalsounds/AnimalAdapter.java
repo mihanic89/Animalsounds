@@ -30,8 +30,8 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
     private Context context;
     //private Fragment fr;
     private GlideRequests glideRequests=null;
-    private final StorageReference
-            mStorageRef= FirebaseStorage.getInstance().getReferenceFromUrl("gs://animalsounds-a4395.appspot.com/");
+    //private final StorageReference
+    //        mStorageRef= FirebaseStorage.getInstance().getReferenceFromUrl("gs://animalsounds-a4395.appspot.com/");
 
     private TTSListener ttsListener;
 
@@ -184,7 +184,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
                 try {
                     //GlideApp.with(context)
                     glideRequests
-                            .load(mStorageRef.child(animal.getGifHref()))
+                            .load("https://yapapa.xyz/gifs/" + animal.getGifHref())
                             .priority(Priority.LOW)
                             //.load(internetUrl)
                             .skipMemoryCache(true)

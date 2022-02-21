@@ -156,33 +156,33 @@ public class ImageGridFragmentAds extends Fragment {
         mDataset = new ArrayList<>();
 
         mDataset.add(new LinkItem(
-                "ads/ads01.gif",
+                "https://yapapa.xyz/gifs/ads/ads01.gif",
 
                 "https://gf896.app.goo.gl/jdF1"
         ));
 
         mDataset.add(new LinkItem(
-                "ads/ads02.gif",
+                "https://yapapa.xyz/gifs/ads/ads02.gif",
 
                 "https://gf896.app.goo.gl/GZGa"));
 
         mDataset.add(new LinkItem(
-                "ads/ads03.gif",
+                "https://yapapa.xyz/gifs/ads/ads03.gif",
 
                 "https://gf896.app.goo.gl/TYCN"));
 
         mDataset.add(new LinkItem(
-                "ads/ads04.gif",
+                "https://yapapa.xyz/gifs/ads/ads04.gif",
 
                 "https://gf896.app.goo.gl/EawQ"));
 
         mDataset.add(new LinkItem(
-                "ads/ads05.gif",
+                "https://yapapa.xyz/gifs/ads/ads05.gif",
 
                 "https://gf896.app.goo.gl/gs5e"));
 
         mDataset.add(new LinkItem(
-                "ads/ads06.gif",
+                "https://yapapa.xyz/gifs/ads/ads06.gif",
 
                 "https://gf896.app.goo.gl/wMv3"));
 

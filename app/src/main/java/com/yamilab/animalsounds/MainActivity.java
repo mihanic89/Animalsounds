@@ -761,6 +761,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
             if (mInterstitialAd != null) {
                 mInterstitialAd.show(MainActivity.this);
+                adCount=0;
                 mFirebaseAnalytics.logEvent("interstitial_show", null);
             } else {
                 Bundle params = new Bundle();
@@ -1243,11 +1244,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
             language="zh";
         }
 
-
-
-
-
-
+        showWiki=false;
 
 
         /*
