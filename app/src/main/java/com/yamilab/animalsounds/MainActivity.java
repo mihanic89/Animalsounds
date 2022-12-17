@@ -338,6 +338,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
            wiki = (WebView) findViewById(R.id.wiki);
            stopWiki = (ImageButton) findViewById(R.id.buttonWikiClose);
+           stopWiki.setImageResource(R.drawable.baseline_close_white_48);
            progressWiki = (ProgressBar) findViewById(R.id.progressWiki);
 
            wiki.setVisibility(View.INVISIBLE);
