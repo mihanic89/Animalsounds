@@ -346,6 +346,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
            progressWiki.setVisibility(View.INVISIBLE);
 
 
+
+
         Point size = new Point();
         getWindowManager().getDefaultDisplay().getSize(size);
         screenWidth = size.x;
