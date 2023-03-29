@@ -1,17 +1,16 @@
 package com.yamilab.animalsounds;
 
-import android.annotation.TargetApi;
+import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
 import android.view.View;
@@ -19,10 +18,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.webkit.WebResourceError;
-import android.webkit.WebResourceRequest;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -41,15 +36,14 @@ import androidx.viewpager.widget.ViewPager;
 import com.bumptech.glide.MemoryCategory;
 import com.bumptech.glide.Priority;
 import com.codemybrainsout.ratingdialog.RatingDialog;
-import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.LoadAdError;
-import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.RequestConfiguration;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -63,8 +57,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
-
-import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
 /*
 import com.android.billingclient.api.BillingClient;
@@ -148,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     private boolean review_enabled = true;
     private int numRatingDialog=0;
 
-    private int firstTab = 4;
+    private final int firstTab = 4;
     private int ratingCounter=0;
 
     /**
@@ -186,13 +178,13 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     //по покупкам
    // private BillingClient mBillingClient;
   //  private Map<String, SkuDetails> mSkuDetailsMap = new HashMap<>();
-    private String mSkuId = "disable_ads";
-    private List<String> skuList = new ArrayList<>();
+    private final String mSkuId = "disable_ads";
+    private final List<String> skuList = new ArrayList<>();
     private SharedPreferences getPrefs;
     private TabLayout.Tab  tab;
     TabLayout tabLayout;
 
-    private WebView wiki;
+    //private WebView wiki;
     private ImageButton stopWiki;
     private ProgressBar progressWiki;
 
@@ -336,12 +328,12 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
 
 
-           wiki = (WebView) findViewById(R.id.wiki);
+           //wiki = (WebView) findViewById(R.id.wiki);
            stopWiki = (ImageButton) findViewById(R.id.buttonWikiClose);
            stopWiki.setImageResource(R.drawable.baseline_close_white_48);
            progressWiki = (ProgressBar) findViewById(R.id.progressWiki);
 
-           wiki.setVisibility(View.INVISIBLE);
+          // wiki.setVisibility(View.INVISIBLE);
            stopWiki.setVisibility(View.INVISIBLE);
            progressWiki.setVisibility(View.INVISIBLE);
 
@@ -576,13 +568,15 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         fetch();
 
        // Debug.stopMethodTracing();
-
+/*
             stopWiki.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     stopWiki();
                 }
             });
+
+ */
 
 
     }
@@ -681,7 +675,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
         AdRequest adRequestInterstitial = new AdRequest.Builder().build();
 
-        mInterstitialAd.load(this,"ca-app-pub-2888343178529026/6970013790", adRequestInterstitial,
+        InterstitialAd.load(this,"ca-app-pub-2888343178529026/6970013790", adRequestInterstitial,
                 new InterstitialAdLoadCallback() {
                     @Override
                     public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
@@ -979,7 +973,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
 
-            stopWiki();
+           // stopWiki();
 
             //adCount++;
             incAdCounter();
@@ -1095,9 +1089,9 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
         GlideApp.get(this).clearMemory();
         SoundPlay.clearSP(this);
-        wiki.loadUrl("about:blank");
-        wiki.setVisibility(View.INVISIBLE);
-        stopWiki.setVisibility(View.INVISIBLE);
+        //wiki.loadUrl("about:blank");
+       // wiki.setVisibility(View.INVISIBLE);
+       // stopWiki.setVisibility(View.INVISIBLE);
         super.onDestroy();
 
     }
@@ -1487,22 +1481,10 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                                     .getDefaultSharedPreferences(getBaseContext());
                             SharedPreferences.Editor e = getPrefs.edit();
 
-                            if (mFirebaseRemoteConfig.getBoolean(ADS_DISABLE_KEY)) {
-                                ads_disable_button=true;
-                            }
-                            else {
-                                ads_disable_button=false;
-                            }
+                            ads_disable_button= mFirebaseRemoteConfig.getBoolean(ADS_DISABLE_KEY);
 
 
-                            if (mFirebaseRemoteConfig.getBoolean(GRID_MINIMIZATION_KEY)){
-                                grid=true;
-
-                            }
-                            else {
-                                grid=false;
-
-                            }
+                            grid= mFirebaseRemoteConfig.getBoolean(GRID_MINIMIZATION_KEY);
 
                             if (!mFirebaseRemoteConfig.getBoolean(REVIEW_ENABLED)) {
                                 review_enabled = false;
@@ -1562,11 +1544,11 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     @Override
     public void onBackPressed() {
 
-        if (wiki.isShown()){
-            stopWiki();
-        }
+      //  if (wiki.isShown()){
+      //      stopWiki();
+      //  }
 
-        else {
+      //  else {
 
             incrementRating();
             if (backPressedToExitOnce) {
@@ -1580,7 +1562,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
                 backPressedToExitOnce = true;
 
             }
-        }
+      //  }
 
     }
 
@@ -1635,6 +1617,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         tab.select();
     }
 
+    /*
     public void startWiki (String url){
        // WebSettings webSettings = wiki.getSettings();
         //webSettings.setBuiltInZoomControls(false);
@@ -1644,8 +1627,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         if (adCount>adShowInt)
                 showInterstitial();
 
-        wiki.getSettings().setJavaScriptEnabled(true);
-        wiki.setWebViewClient(new WebViewClient(){
+        //wiki.getSettings().setJavaScriptEnabled(true);
+       // wiki.setWebViewClient(new WebViewClient(){
 
             String jsFunction=new StringBuilder()
                     .append("var heading = document.getElementsByClassName(\"collapsible-heading\");\n")
@@ -1742,7 +1725,9 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         }, 7000);
 
     }
+    */
 
+/*
     public void stopWiki(){
         //wiki.loadUrl("about:blank");
         progressWiki.setVisibility(View.INVISIBLE);
@@ -1753,5 +1738,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     public boolean showWiki (){
        return showWiki;
     }
+
+ */
 
 }

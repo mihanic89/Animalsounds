@@ -80,7 +80,7 @@ public class ImageGridFragmentGame extends Fragment {
     private int correctInt=0, wrongInt=0;
     private boolean wrongHasTry=false;
 
-    private ArrayList<Integer> numbers = new ArrayList<>();
+    private final ArrayList<Integer> numbers = new ArrayList<>();
 
     ImageButton image0;
     ImageButton image1;
@@ -515,7 +515,7 @@ public class ImageGridFragmentGame extends Fragment {
             saveInt(KEY_CORRECT_COUNTER, correctInt);
             ((MainActivity) getActivity()).incrementUnlockCounter();
         }
-    };
+    }
 
 
     private void setWrongInt(){
@@ -525,7 +525,7 @@ public class ImageGridFragmentGame extends Fragment {
             saveInt(KEY_WRONG_COUNTER,wrongInt);
             wrongHasTry=true;
         }
-    };
+    }
 
     public void saveInt(String key, int value){
         SharedPreferences getPrefs = PreferenceManager

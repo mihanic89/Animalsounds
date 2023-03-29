@@ -5,7 +5,6 @@ import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,8 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.Target;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
@@ -25,7 +22,7 @@ import java.util.ArrayList;
 
 public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder>{
 
-    private ArrayList<Animal> mDataSet;
+    private final ArrayList<Animal> mDataSet;
     private final int screenWidth;
     private Context context;
     //private Fragment fr;
@@ -38,7 +35,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textView;
         private final ImageView imageView;
-        private final ImageButton wikiButton;
+       // private final ImageButton wikiButton;
 
 
         //public Context context;
@@ -48,8 +45,8 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
             super(itemView);
             textView = itemView.findViewById(R.id.textView);
             imageView = itemView.findViewById(R.id.imageView);
-            wikiButton = itemView.findViewById(R.id.buttonWiki);
-
+            //wikiButton = itemView.findViewById(R.id.buttonWiki);
+/*
             if (context instanceof MainActivity){
                 try
                 {
@@ -59,6 +56,8 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
 
                 }
             }
+
+ */
 
 
         }
@@ -71,10 +70,12 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
         public ImageView getImageView() {
             return imageView;
         }
-
+/*
         public ImageButton getImageButton() {
             return wikiButton;
         }
+
+ */
         //public void setContext (Context context) {
         //    this.context=context;
         //}
@@ -136,7 +137,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
         GlideApp.with(holder.getImageView().getContext()).clear(holder.getImageView());
         holder.getImageView().setOnClickListener(null);
         holder.getTextView().setOnClickListener(null);
-        holder.getImageButton().setOnClickListener(null);
+       // holder.getImageButton().setOnClickListener(null);
         //Toast toast = Toast.makeText(holder.getImageView().getContext(),
         //          "очищен" + holder.getImageView(), Toast.LENGTH_SHORT);
         //    toast.show();
@@ -274,13 +275,15 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
                 ttsListener.speak(animal.getName(),animal.getSound());
             }
         });
-
+/*
         holder.getImageButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendStringWiki(animal.getWikiName());
+               // sendStringWiki(animal.getWikiName());
             }
         });
+
+ */
 
 
         /*
@@ -293,10 +296,12 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
         });
         */
     }
-
+/*
     public void sendStringWiki (String url){
         ((MainActivity) context).startWiki(url);
     }
+
+ */
 
     public void startAnotherActivity (int counter){
      //   Intent intent = new Intent(context, TabbedActivity.class);

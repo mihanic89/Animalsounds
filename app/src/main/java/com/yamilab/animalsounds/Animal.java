@@ -73,7 +73,7 @@ public class Animal implements Serializable {
     }
 
     public String getName(){
-        String retval[]=name.split("#");
+        String[] retval =name.split("#");
         return retval[0];
     }
 
@@ -110,7 +110,7 @@ public class Animal implements Serializable {
 
     public String getWikiName(){
 
-        String retval[]=name.split("#");
+        String[] retval =name.split("#");
         String answer = name;
 
         if (retval.length>1 ){

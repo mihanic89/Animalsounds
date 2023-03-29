@@ -74,7 +74,7 @@ public class ImageGridFragmentGame3 extends Fragment {
     private int sound1, sound2, sound3, sound4;
 
     private int[] cardsNumbers;
-    private ArrayList<Integer> numbers = new ArrayList<>();
+    private final ArrayList<Integer> numbers = new ArrayList<>();
 
     ImageButton full,buttonCheck,buttonNext;
 
@@ -640,7 +640,7 @@ public class ImageGridFragmentGame3 extends Fragment {
             saveInt(KEY_CORRECT_COUNTER, correctInt);
             ((MainActivity) getActivity()).incrementUnlockCounter();
         }
-    };
+    }
 
 
     private void setWrongInt(){
@@ -650,7 +650,7 @@ public class ImageGridFragmentGame3 extends Fragment {
         saveInt(KEY_WRONG_COUNTER,wrongInt);
         wrongHasTry=true;
         }
-    };
+    }
 
     public void saveInt(String key, int value){
         SharedPreferences getPrefs = PreferenceManager
