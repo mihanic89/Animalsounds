@@ -75,4 +75,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics:21.2.1'
 
 }
+configurations.all {
+    exclude group: 'com.google.android.gms', module: 'play-services-safetynet'
+}
 apply plugin: 'com.google.gms.google-services'

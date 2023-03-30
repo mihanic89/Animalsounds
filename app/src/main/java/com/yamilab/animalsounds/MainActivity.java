@@ -185,8 +185,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     TabLayout tabLayout;
 
     //private WebView wiki;
-    private ImageButton stopWiki;
-    private ProgressBar progressWiki;
+    //private ImageButton stopWiki;
+    //private ProgressBar progressWiki;
 
 
 
@@ -329,13 +329,13 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
 
            //wiki = (WebView) findViewById(R.id.wiki);
-           stopWiki = (ImageButton) findViewById(R.id.buttonWikiClose);
-           stopWiki.setImageResource(R.drawable.baseline_close_white_48);
-           progressWiki = (ProgressBar) findViewById(R.id.progressWiki);
+        //   stopWiki = (ImageButton) findViewById(R.id.buttonWikiClose);
+       //    stopWiki.setImageResource(R.drawable.baseline_close_white_48);
+       //    progressWiki = (ProgressBar) findViewById(R.id.progressWiki);
 
           // wiki.setVisibility(View.INVISIBLE);
-           stopWiki.setVisibility(View.INVISIBLE);
-           progressWiki.setVisibility(View.INVISIBLE);
+       //    stopWiki.setVisibility(View.INVISIBLE);
+        //   progressWiki.setVisibility(View.INVISIBLE);
 
 
 

@@ -51,20 +51,7 @@
 
 
 
-    <ImageButton
-        android:id="@+id/buttonWikiClose"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
 
-      />
-
-    <ProgressBar
-        android:id="@+id/progressWiki"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:indeterminate="true" />
 
 
     <com.google.android.gms.ads.AdView
