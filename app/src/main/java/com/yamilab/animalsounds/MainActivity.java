@@ -18,9 +18,9 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ImageButton;
+//import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
+//import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
     private static final String WIKI_UK="http://uk.m.wikipedia.org/wiki/";
     private static final String WIKI_ZH="http://zh.m.wikipedia.org/wiki/";
 
-    private boolean showWiki = false;
+  //  private boolean showWiki = false;
 
     private String wikiHref=WIKI_EN;
 
@@ -1130,7 +1130,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
 
     private void makeLanguageList(String locale){
         if (locale.equals("en")){
-           showWiki = true;
+          // showWiki = true;
         }
 
 
@@ -1160,7 +1160,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         if (locale.equals("es")){
             wikiHref=WIKI_ES;
             language="es";
-            showWiki = true;
+            //showWiki = true;
         }
         if (locale.equals("fi")){
             wikiHref=WIKI_FI;
@@ -1174,7 +1174,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         if (locale.equals("fr")){
             wikiHref=WIKI_FR;
             language="fr";
-            showWiki = true;
+           // showWiki = true;
         }
         if (locale.equals("hi")){
             wikiHref=WIKI_HI;
@@ -1191,7 +1191,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         if (locale.equals("it")){
             wikiHref=WIKI_IT;
             language="it";
-            showWiki = true;
+            //showWiki = true;
         }
         if (locale.equals("ja")){
             wikiHref=WIKI_JA;
@@ -1212,7 +1212,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         if (locale.equals("pt")){
             wikiHref=WIKI_PT;
             language="pt";
-            showWiki = true;
+           // showWiki = true;
         }
         if (locale.equals("ro")){
             wikiHref=WIKI_RO;
@@ -1221,7 +1221,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         if (locale.equals("ru")){
             wikiHref=WIKI_RU;
             language="ru";
-            showWiki = true;
+           // showWiki = true;
         }
         if (locale.equals("sv")){
             wikiHref=WIKI_SV;
@@ -1234,14 +1234,14 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         if (locale.equals("uk")){
             wikiHref=WIKI_UK;
             language="uk";
-            showWiki = true;
+           // showWiki = true;
         }
         if (locale.equals("zh")){
             wikiHref=WIKI_ZH;
             language="zh";
         }
 
-        showWiki=false;
+        //showWiki=false;
 
 
         /*
