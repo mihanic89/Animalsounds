@@ -490,9 +490,9 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
             public void onInitializationComplete(InitializationStatus initializationStatus) {
             }
         });
-        List<String> testDeviceIds = Arrays.asList("1A421611008EBE0F7C03F7072A14720");
+        List<String> testDeviceIds = Arrays.asList("01481448E8EC40257290F6C3754DA1E2");
         RequestConfiguration configuration =
-                new RequestConfiguration.Builder().setTestDeviceIds(Arrays.asList("C1A421611008EBE0F7C03F7072A14720")).build();
+                new RequestConfiguration.Builder().setTestDeviceIds(Arrays.asList("01481448E8EC40257290F6C3754DA1E2")).build();
         MobileAds.setRequestConfiguration(configuration);
 
 
@@ -555,17 +555,19 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         //loadInterstitial();
 
 
+        try {
+            //удаленная конфигурация
+            mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+            FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
+                    //.setDeveloperModeEnabled(BuildConfig.DEBUG)
+                    .build();
+            mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
+            mFirebaseRemoteConfig.setDefaultsAsync(R.xml.remote_config_defaults);
+            fetch();
+        }
+        catch (Exception e){
 
-        //удаленная конфигурация
-        mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
-        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
-                //.setDeveloperModeEnabled(BuildConfig.DEBUG)
-                .build();
-        mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
-        mFirebaseRemoteConfig.setDefaultsAsync(R.xml.remote_config_defaults);
-
-
-        fetch();
+        }
 
        // Debug.stopMethodTracing();
 /*
