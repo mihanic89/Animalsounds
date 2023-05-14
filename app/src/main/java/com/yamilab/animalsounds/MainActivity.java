@@ -492,7 +492,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         });
         List<String> testDeviceIds = Arrays.asList("01481448E8EC40257290F6C3754DA1E2");
         RequestConfiguration configuration =
-                new RequestConfiguration.Builder().setTestDeviceIds(Arrays.asList("01481448E8EC40257290F6C3754DA1E2")).build();
+                new RequestConfiguration.Builder().setTestDeviceIds(Arrays.asList("01481448E8EC40257290F6C3754DA1E2",
+                                                                                    "84E317C211C4719630024A009A35FDCA")).build();
         MobileAds.setRequestConfiguration(configuration);
 
 
@@ -747,6 +748,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener  {
         if (ratingCounter>3 && !ratingDialogWasShown && review_enabled){
             showRatingDialog();
             ratingDialogWasShown=true;
+            mFirebaseAnalytics.logEvent("showRatingDialog", null);
             SharedPreferences getPrefs = PreferenceManager
                     .getDefaultSharedPreferences(getBaseContext());
             SharedPreferences.Editor e = getPrefs.edit();
