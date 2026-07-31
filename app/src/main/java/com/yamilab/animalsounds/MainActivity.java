@@ -457,6 +457,12 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
         }
         // Clear interstitial ad reference to prevent memory leak
         mInterstitialAd = null;
+        // Stop animations to prevent memory leak
+        if (mScaleAnimation0 != null) mScaleAnimation0.cancel();
+        if (mScaleAnimation1 != null) mScaleAnimation1.cancel();
+        if (mScaleAnimation2 != null) mScaleAnimation2.cancel();
+        if (mScaleAnimation3 != null) mScaleAnimation3.cancel();
+        if (mScaleAnimation4 != null) mScaleAnimation4.cancel();
         if (tts != null) {
             tts.stop();
             tts.shutdown();
