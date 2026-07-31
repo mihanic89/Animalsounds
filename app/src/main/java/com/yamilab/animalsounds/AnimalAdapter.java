@@ -185,7 +185,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
                 try {
                     //GlideApp.with(context)
                     glideRequests
-                            .load("https://yapapa.xyz/gifs/" + animal.getGifHref())
+                            .load("https://apps.mayak.net.ru/gifs/" + animal.getGifHref())
                             .priority(Priority.LOW)
                             //.load(internetUrl)
                             .skipMemoryCache(true)

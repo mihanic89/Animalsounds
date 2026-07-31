@@ -38,16 +38,11 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.yamilab.animalsounds.ViewPagerFixed
+    <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:layout_above="@+id/appbarlayout"
-        >
-
-
-    </com.yamilab.animalsounds.ViewPagerFixed>
+        android:layout_above="@+id/appbarlayout" />
 
 
 
