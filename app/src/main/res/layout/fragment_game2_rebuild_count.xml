@@ -89,7 +89,7 @@
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             android:elevation="4dp"
-            android:background="@drawable/image_card_shadow"
+            android:background="@null"
             android:src="@drawable/a5hd"/>
 
         <ImageButton
@@ -102,7 +102,7 @@
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             android:elevation="4dp"
-            android:background="@drawable/image_card_shadow"
+            android:background="@null"
             android:src="@drawable/w8hd"
             />
 
@@ -130,7 +130,7 @@
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             android:elevation="4dp"
-            android:background="@drawable/image_card_shadow"
+            android:background="@null"
             android:src="@drawable/a7hd"
             />
 
@@ -145,7 +145,7 @@
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             android:elevation="4dp"
-            android:background="@drawable/image_card_shadow"
+            android:background="@null"
             android:src="@drawable/w8hd"/>
 
     </LinearLayout>

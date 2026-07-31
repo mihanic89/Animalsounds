@@ -15,6 +15,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
@@ -357,9 +358,11 @@ public class ImageGridFragmentGame extends Fragment {
     }
 
     private void setImageGlide (ImageView imageView, int image){
+            int radius = (int) (16 * getResources().getDisplayMetrics().density);
             GlideApp.with(imageView.getContext())
                     .load(image)
                     //.fitCenter()
+                    .transform(new RoundedCorners(radius))
                     .transition(withCrossFade(1000))
                     .priority(Priority.LOW)
                     .skipMemoryCache(true)

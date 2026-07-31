@@ -2,20 +2,24 @@ package com.yamilab.animalsounds;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowInsets;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
+import androidx.core.view.WindowInsetsControllerCompat;
 
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
@@ -107,6 +111,22 @@ public class ImageGridFragmentGame3 extends Fragment {
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_game3, container, false);
 
+        // Hide system UI (status bar icons)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            final android.view.WindowInsetsController controller = getActivity().getWindow().getInsetsController();
+            if (controller != null) {
+                controller.hide(WindowInsets.Type.statusBars() | WindowInsets.Type.navigationBars());
+            }
+        } else {
+            rootView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+            );
+        }
+
         animals = new ArrayList<Animal>();
 
         animals = (ArrayList<Animal>) getArguments().getSerializable("key");
@@ -154,7 +174,7 @@ public class ImageGridFragmentGame3 extends Fragment {
         {
             generateWrong();
             setSounds();
-            full.setImageResource(animals.get(correctAnswer).getImageSmall());
+            setImageGlide(full, animals.get(correctAnswer).getImageSmall());
             buttonName.setText(animals.get(correctAnswer).getName());
            // newRound();
            // adCounter=0;
@@ -413,8 +433,10 @@ public class ImageGridFragmentGame3 extends Fragment {
     }
 
     private void setImageGlide (ImageView imageView, int image){
+        int radius = (int) (16 * getResources().getDisplayMetrics().density);
         GlideApp.with(imageView.getContext())
                 .load(image)
+                .transform(new RoundedCorners(radius))
                 .transition(withCrossFade(1000))
                 .priority(Priority.LOW)
                 .skipMemoryCache(true)
@@ -614,7 +636,7 @@ public class ImageGridFragmentGame3 extends Fragment {
 
     private void setFull (int num){
         full.setVisibility(View.VISIBLE);
-        full.setImageResource(animals.get(num).getImageSmall());
+        setImageGlide(full, animals.get(num).getImageSmall());
     }
 
     private void setCorrectInt(){
