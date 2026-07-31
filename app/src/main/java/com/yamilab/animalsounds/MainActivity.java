@@ -182,24 +182,31 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
 
         makeLanguageList(Locale.getDefault().getLanguage());
 
-        try {
-            new Thread(() -> {
-                try {
-                    tts = new TextToSpeech(getApplicationContext(), status -> {
-                        if (status == TextToSpeech.SUCCESS) {
-                            tts.setLanguage(new Locale(language, ""));
+                // Initialize TTS in main thread to avoid memory leaks
+        if (!isFinishing()) {
+            new android.os.Handler(getMainLooper()).post(() -> {
+                if (!isFinishing() && tts == null) {
+                    try {
+                        tts = new TextToSpeech(getApplicationContext(), status -> {
+                            if (status == TextToSpeech.SUCCESS && !isFinishing()) {
+                                tts.setLanguage(new Locale(language, ""));
+                            }
+                        });
+                    } catch (Exception e) {
+                        if (!isFinishing() && tts == null) {
+                            try {
+                                tts = new TextToSpeech(getApplicationContext(), status -> {
+                                    if (status == TextToSpeech.SUCCESS && !isFinishing()) {
+                                        tts.setLanguage(new Locale("en", ""));
+                                    }
+                                });
+                            } catch (Exception ex) {
+                                // ignore
+                            }
                         }
-                    });
-                } catch (Exception e) {
-                    tts = new TextToSpeech(getApplicationContext(), status -> {
-                        if (status == TextToSpeech.SUCCESS) {
-                            tts.setLanguage(new Locale("en", ""));
-                        }
-                    });
+                    }
                 }
-            }).start();
-        } catch (Exception e) {
-            // ignore
+            });
         }
 
         MobileAds.initialize(this, initializationStatus -> {});
