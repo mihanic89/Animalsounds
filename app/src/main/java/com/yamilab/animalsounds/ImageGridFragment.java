@@ -52,7 +52,7 @@ public class ImageGridFragment extends Fragment {
 
 
 
-        glideRequests = GlideApp.with(this);
+        glideRequests = GlideApp.with(rootView.getContext());
         //glideRequests = GlideApp.with(rootView.getContext());
         //glideRequests = GlideApp.with((ImageGridFragment)this);
         //GlideApp.get(rootView.getContext()).setMemoryCategory(MemoryCategory.LOW);
