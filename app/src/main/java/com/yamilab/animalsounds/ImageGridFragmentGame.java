@@ -108,7 +108,7 @@ public class ImageGridFragmentGame extends Fragment {
         }
         if (ttsListener==null){
             ttsListener = (TTSListener)context;}
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this.getContext().getApplicationContext());
 }
 
     @Override
