@@ -367,7 +367,6 @@ public class ImageGridFragmentGame extends Fragment {
                     .apply(new RequestOptions().override((int)getArguments().getInt("width")/3))
                     .into(imageView);
         }
-    }
 
     private void checkAnswer (int answer){
 
