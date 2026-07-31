@@ -35,7 +35,8 @@
             android:layout_margin="@dimen/image_margin"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            android:background="@null"
+            android:elevation="4dp"
+            android:background="@drawable/image_card_shadow"
             android:src="@drawable/a5hd"/>
 
         <ImageButton
@@ -47,7 +48,8 @@
             android:layout_margin="@dimen/image_margin"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            android:background="@null"
+            android:elevation="4dp"
+            android:background="@drawable/image_card_shadow"
             android:src="@drawable/w8hd"
             />
 
@@ -74,7 +76,8 @@
             android:layout_margin="@dimen/image_margin"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            android:background="@null"
+            android:elevation="4dp"
+            android:background="@drawable/image_card_shadow"
             android:src="@drawable/a7hd"
             />
 
@@ -87,7 +90,8 @@
 
             android:layout_margin="@dimen/image_margin"
             android:adjustViewBounds="true"
-            android:background="@null"
+            android:elevation="4dp"
+            android:background="@drawable/image_card_shadow"
             android:scaleType="fitCenter"
             android:src="@drawable/w8hd"/>
 
