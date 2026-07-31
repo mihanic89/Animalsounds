@@ -726,13 +726,13 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
     public void saveBoolean(String key, boolean value) {
         SharedPreferences.Editor editor = getPrefs.edit();
         editor.putBoolean(key, value);
-        editor.commit();
+        editor.apply();
     }
 
     public void saveInt(String key, int value) {
         SharedPreferences.Editor editor = getPrefs.edit();
         editor.putInt(key, value);
-        editor.commit();
+        editor.apply();
     }
 
     public void setGameTab() {
