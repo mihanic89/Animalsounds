@@ -413,29 +413,14 @@ public class ImageGridFragmentGame3 extends Fragment {
     }
 
     private void setImageGlide (ImageView imageView, int image){
-        if (this!=null) {
-            GlideApp.with(this)
-                    .load(image)
-                   // .fitCenter()
-                    .transition(withCrossFade(1000))
-                    .priority(Priority.LOW)
-                    .skipMemoryCache(true)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .apply(new RequestOptions().override((int)getArguments().getInt("width")/3))
-                    .into(imageView);
-        }
-        else
-        {
-            GlideApp.with(imageView.getContext())
-                    .load(image)
-                   // .fitCenter()
-                    .transition(withCrossFade(1000))
-                    .priority(Priority.LOW)
-                    .skipMemoryCache(true)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .apply(new RequestOptions().override((int)getArguments().getInt("width")/3))
-                    .into(imageView);
-        }
+        GlideApp.with(imageView.getContext())
+                .load(image)
+                .transition(withCrossFade(1000))
+                .priority(Priority.LOW)
+                .skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .apply(new RequestOptions().override((int)getArguments().getInt("width")/3))
+                .into(imageView);
     }
 
    private void setAnswer(int answer){
