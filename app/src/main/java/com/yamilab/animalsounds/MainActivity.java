@@ -326,8 +326,10 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
                 new InterstitialAdLoadCallback() {
                     @Override
                     public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
-                        mInterstitialAd = interstitialAd;
-                        mFirebaseAnalytics.logEvent("interstitial_onAdLoaded", null);
+                        if (!isFinishing()) {
+                            mInterstitialAd = interstitialAd;
+                            mFirebaseAnalytics.logEvent("interstitial_onAdLoaded", null);
+                        }
                     }
 
                     @Override
@@ -452,6 +454,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
                 // ignore
             }
         }
+        // Clear interstitial ad reference to prevent memory leak
+        mInterstitialAd = null;
         if (tts != null) {
             tts.stop();
             tts.shutdown();
