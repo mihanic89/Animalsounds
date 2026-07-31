@@ -435,7 +435,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
 
     @Override
     public void onPause() {
-        if (!ads_disabled) {
+        if (!ads_disabled && mAdView != null) {
             try {
                 mAdView.pause();
             } catch (Exception e) {
@@ -447,12 +447,13 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
 
     @Override
     public void onDestroy() {
-        if (!ads_disabled) {
+        if (!ads_disabled && mAdView != null) {
             try {
                 mAdView.destroy();
             } catch (Exception e) {
                 // ignore
             }
+            mAdView = null;
         }
         // Clear interstitial ad reference to prevent memory leak
         mInterstitialAd = null;
