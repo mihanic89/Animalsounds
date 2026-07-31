@@ -646,18 +646,20 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
     }
 
     private void fetch() {
+        final java.lang.ref.WeakReference<MainActivity> weakRef = new java.lang.ref.WeakReference<>(this);
         mFirebaseRemoteConfig.fetch(3600)
-                .addOnCompleteListener(this, task -> {
-                    if (task.isSuccessful()) {
+                .addOnCompleteListener(task -> {
+                    MainActivity activity = weakRef.get();
+                    if (activity != null && !activity.isFinishing() && task.isSuccessful()) {
                         mFirebaseRemoteConfig.activate();
-                        SharedPreferences.Editor e = getPrefs.edit();
-                        ads_disable_button = mFirebaseRemoteConfig.getBoolean(ADS_DISABLE_KEY);
-                        grid = mFirebaseRemoteConfig.getBoolean(GRID_MINIMIZATION_KEY);
+                        SharedPreferences.Editor e = activity.getPrefs.edit();
+                        activity.ads_disable_button = mFirebaseRemoteConfig.getBoolean(ADS_DISABLE_KEY);
+                        activity.grid = mFirebaseRemoteConfig.getBoolean(GRID_MINIMIZATION_KEY);
                         if (!mFirebaseRemoteConfig.getBoolean(REVIEW_ENABLED)) {
-                            review_enabled = false;
+                            activity.review_enabled = false;
                         }
-                        e.putBoolean(GRID_MINIMIZATION_KEY, grid);
-                        e.putBoolean("ads_disable_button_key", ads_disable_button);
+                        e.putBoolean(GRID_MINIMIZATION_KEY, activity.grid);
+                        e.putBoolean("ads_disable_button_key", activity.ads_disable_button);
                         e.apply();
                     }
                 });
