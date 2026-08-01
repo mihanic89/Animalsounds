@@ -1,4 +1,5 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
@@ -6,40 +7,94 @@
     android:layout_height="match_parent"
     android:padding="8dp">
 
+    <!-- Счётчик неправильных ответов -->
+    <Button
+        android:id="@+id/wrongCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/oval_shape_red"
+        android:clickable="false"
+        android:elevation="5dp"
+        android:focusable="false"
+        android:padding="1dp"
+        android:textColor="#ffffff"
+        android:textSize="25sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="10" />
+
+    <!-- Счётчик правильных ответов -->
+    <Button
+        android:id="@+id/correctCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/oval_shape"
+        android:clickable="false"
+        android:elevation="5dp"
+        android:focusable="false"
+        android:padding="1dp"
+        android:scaleType="fitCenter"
+        android:textColor="#ffffff"
+        android:textSize="25sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="10" />
+
+    <!-- Картинка -->
+    <ImageButton
+        android:id="@+id/imageFull"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_margin="@dimen/image_margin"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/wrongCounter"
+        app:layout_constraintBottom_toTopOf="@id/buttonName"
+        app:layout_constraintWidth_max="393dp"
+        app:layout_constraintHeight_max="373dp" />
+
+    <!-- Кнопка с названием -->
     <Button
         android:id="@+id/buttonName"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
-        android:layout_above="@+id/answer12"
-
-        android:layout_centerHorizontal="true"
-
-
-
-
-
         android:background="@drawable/oval_shape"
         android:clickable="true"
         android:elevation="5dp"
-        android:focusable="auto"
+        android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
         android:padding="8dp"
         android:scaleType="fitCenter"
         android:textColor="#ffffff"
         android:textSize="25sp"
         app:autoSizeTextType="uniform"
-        tools:text="Animadddddddddl" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/answer12"
+        tools:text="Animal" />
 
+    <!-- Ряд ответов 1-2 -->
     <LinearLayout
         android:id="@+id/answer12"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_above="@+id/answer34">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/answer34">
 
         <Button
             android:id="@+id/button1"
-            android:layout_width="60dp"
+            android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_margin="@dimen/image_margin"
             android:layout_weight="1"
@@ -47,23 +102,19 @@
             android:background="@drawable/oval_shape"
             android:clickable="true"
             android:elevation="5dp"
-            android:focusable="auto"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:padding="8dp"
             android:scaleType="fitCenter"
             android:text="1"
-
-
-            android:padding="8dp"
             android:textColor="#ffffff"
             android:textSize="25sp"
             app:autoSizeTextType="uniform"
-            tools:text="1"
-            android:foreground="?android:attr/selectableItemBackground"
-             />
-
+            tools:text="1" />
 
         <Button
             android:id="@+id/button2"
-            android:layout_width="60dp"
+            android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_margin="@dimen/image_margin"
             android:layout_weight="1"
@@ -71,25 +122,27 @@
             android:background="@drawable/oval_shape"
             android:clickable="true"
             android:elevation="5dp"
-            android:focusable="auto"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:padding="8dp"
             android:scaleType="fitCenter"
             android:text="2"
-            android:padding="8dp"
             android:textColor="#ffffff"
             android:textSize="25sp"
             app:autoSizeTextType="uniform"
-            tools:text="2"
-            android:foreground="?android:attr/selectableItemBackground"/>
+            tools:text="2" />
 
     </LinearLayout>
 
-
+    <!-- Ряд ответов 3-4 -->
     <LinearLayout
         android:id="@+id/answer34"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_above="@+id/downLayout">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/downLayout">
 
         <Button
             android:id="@+id/button3"
@@ -101,16 +154,15 @@
             android:background="@drawable/oval_shape"
             android:clickable="true"
             android:elevation="5dp"
-            android:focusable="auto"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:padding="8dp"
             android:scaleType="fitCenter"
             android:text="3"
-            android:padding="8dp"
             android:textColor="#ffffff"
             android:textSize="25sp"
             app:autoSizeTextType="uniform"
-            tools:text="3"
-            android:foreground="?android:attr/selectableItemBackground"/>
-
+            tools:text="3" />
 
         <Button
             android:id="@+id/button4"
@@ -122,47 +174,41 @@
             android:background="@drawable/oval_shape"
             android:clickable="true"
             android:elevation="5dp"
-            android:focusable="auto"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:padding="8dp"
             android:scaleType="fitCenter"
             android:text="4"
-            android:padding="8dp"
             android:textColor="#ffffff"
             android:textSize="25sp"
             app:autoSizeTextType="uniform"
-            tools:text="4"
-            android:foreground="?android:attr/selectableItemBackground"/>
+            tools:text="4" />
 
     </LinearLayout>
 
-
+    <!-- Нижняя панель: проверить / далее -->
     <LinearLayout
         android:id="@+id/downLayout"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <ImageButton
             android:id="@+id/buttonCheck"
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_margin="@dimen/image_margin"
-
             android:layout_weight="4"
-
-
             android:background="@drawable/oval_shape"
             android:clickable="true"
             android:elevation="5dp"
-            android:focusable="auto"
-
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/baseline_done_outline_white_48"
+            android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground"
-
-            />
-
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/baseline_done_outline_white_48" />
 
         <ImageButton
             android:id="@+id/buttonNext"
@@ -174,74 +220,11 @@
             android:background="@drawable/oval_shape"
             android:clickable="true"
             android:elevation="5dp"
-            android:focusable="auto"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             android:scaleType="fitCenter"
-            app:srcCompat="@android:drawable/ic_media_next"
-            android:foreground="?android:attr/selectableItemBackground"/>
+            app:srcCompat="@android:drawable/ic_media_next" />
 
     </LinearLayout>
 
-
-    <ImageButton
-        android:id="@+id/imageFull"
-        android:layout_width="393dp"
-        android:layout_height="373dp"
-
-        android:layout_above="@+id/buttonName"
-        android:layout_below="@id/wrongCounter"
-        android:layout_alignParentStart="true"
-        android:layout_margin="@dimen/image_margin"
-        android:layout_marginStart="10dp"
-
-        android:background="@null"
-        android:scaleType="fitCenter" />
-
-
-
-    <Button
-        android:id="@+id/wrongCounter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="30dp"
-
-        android:background="@drawable/oval_shape_red"
-        android:clickable="false"
-        android:elevation="5dp"
-        android:focusable="auto"
-
-        android:padding="1dp"
-
-
-        android:textColor="#ffffff"
-        android:textSize="25sp"
-        app:autoSizeTextType="uniform"
-        tools:text="10" />
-
-    <Button
-        android:id="@+id/correctCounter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginRight="30dp"
-
-
-
-        android:layout_marginBottom="0dp"
-        android:background="@drawable/oval_shape"
-        android:clickable="false"
-        android:elevation="5dp"
-
-        android:focusable="auto"
-        android:padding="1dp"
-        android:scaleType="fitCenter"
-        android:textColor="#ffffff"
-        android:textSize="25sp"
-        app:autoSizeTextType="uniform"
-        tools:text="10" />
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
