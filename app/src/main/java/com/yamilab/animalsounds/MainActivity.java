@@ -777,17 +777,17 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
             }
             switch (position) {
                 case 0:
-                    mFirebaseAnalytics.logEvent("tab_game3", null);
-                    return ImageGridFragmentGame3.newInstance(animals, screenWidth);
-                case 1:
-                    mFirebaseAnalytics.logEvent("tab_game2", null);
-                    return ImageGridFragmentGame2.newInstance(animals, screenWidth);
-                case 2:
-                    mFirebaseAnalytics.logEvent("tab_game1", null);
-                    return ImageGridFragmentGame.newInstance(animals, screenWidth);
-                case 3:
                     mFirebaseAnalytics.logEvent("tab_ads", null);
                     return new ImageGridFragmentAds();
+                case 1:
+                    mFirebaseAnalytics.logEvent("tab_game3", null);
+                    return ImageGridFragmentGame3.newInstance(animals, screenWidth);
+                case 2:
+                    mFirebaseAnalytics.logEvent("tab_game2", null);
+                    return ImageGridFragmentGame2.newInstance(animals, screenWidth);
+                case 3:
+                    mFirebaseAnalytics.logEvent("tab_game1", null);
+                    return ImageGridFragmentGame.newInstance(animals, screenWidth);
                 case 4:
                     mFirebaseAnalytics.logEvent("tab_home", null);
                     return ImageGridFragment.newInstance(home, screenWidth);
