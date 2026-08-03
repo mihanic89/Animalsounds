@@ -1,56 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="16dp"
+    android:layout_margin="8dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp"
+    app:cardUseCompatPadding="true">
 
-
-
-    android:elevation="10dp"
-    card_view:cardCornerRadius="10dp"
-    card_view:cardUseCompatPadding="true">
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        >
+        android:orientation="vertical"
+        android:background="@color/colorPrimary">
 
         <TextView
-            android:foreground="?android:attr/selectableItemBackground"
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:gravity="center_horizontal"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
             android:textColor="#ffffff"
             android:textSize="25sp"
             app:autoSizeTextType="uniform"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeMaxTextSize="25sp"
             tools:text="Animaghjghjghjgjl" />
 
-
         <ImageView
-            android:foreground="?android:attr/selectableItemBackground"
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView"
-            android:layout_alignParentBottom="true"
             android:adjustViewBounds="true"
-            android:gravity="center_horizontal"
-            android:clickable="true"
-            android:focusable="true"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/animal_image_description" />
 
-            />
+    </LinearLayout>
 
-
-
-
-    </RelativeLayout>
 </androidx.cardview.widget.CardView>

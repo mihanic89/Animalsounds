@@ -472,7 +472,7 @@ public class ImageGridFragmentGame extends Fragment {
 
     private void setFull (int num){
         full.setVisibility(View.VISIBLE);
-        full.setImageResource(animals.get(num).getImageSmall());
+        setImageGlide(full, animals.get(num).getImageSmall());
     }
 
     private void delay (int seconds){

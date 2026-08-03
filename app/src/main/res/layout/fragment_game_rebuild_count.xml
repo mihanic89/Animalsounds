@@ -1,4 +1,5 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
@@ -6,106 +7,174 @@
     android:layout_height="match_parent"
     android:padding="8dp">
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <!-- Счётчик неправильных ответов -->
+    <Button
+        android:id="@+id/wrongCounter"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/oval_shape_red"
+        android:clickable="false"
+        android:elevation="5dp"
+        android:focusable="false"
+        android:padding="1dp"
+        android:textColor="#ffffff"
+        android:textSize="25sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="10" />
+
+    <!-- Счётчик правильных ответов -->
+    <Button
+        android:id="@+id/correctCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/oval_shape"
+        android:clickable="false"
+        android:elevation="5dp"
+        android:focusable="false"
+        android:padding="1dp"
+        android:scaleType="fitCenter"
+        android:textColor="#ffffff"
+        android:textSize="25sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="10" />
+
+    <!-- Сетка 2x2 картинок для выбора -->
+    <LinearLayout
         android:id="@+id/two"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:orientation="vertical"
-        android:layout_below="@id/correctCounter"
-        android:layout_above="@+id/downLayout"
-        android:weightSum="2">
-
-    <LinearLayout
-        android:id="@+id/up"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_weight="1"
         android:weightSum="2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/correctCounter"
+        app:layout_constraintBottom_toTopOf="@id/buttonName">
 
-        >
-
-        <ImageButton
-            android:id="@+id/imageGame0"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:id="@+id/up"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_margin="@dimen/image_margin"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:elevation="4dp"
-            android:background="@null"
-            android:src="@drawable/a5hd"/>
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:weightSum="2">
 
-        <ImageButton
-            android:id="@+id/imageGame1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            <ImageButton
+                android:id="@+id/imageGame0"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/image_margin"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:elevation="4dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/a5hd" />
+
+            <ImageButton
+                android:id="@+id/imageGame1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/image_margin"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:elevation="4dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/w8hd" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/down"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:weightSum="2">
 
-            android:layout_margin="@dimen/image_margin"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:elevation="4dp"
-            android:background="@null"
-            android:src="@drawable/w8hd"
-            />
+            <ImageButton
+                android:id="@+id/imageGame2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/image_margin"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:elevation="4dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/a7hd" />
+
+            <ImageButton
+                android:id="@+id/imageGame3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/image_margin"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:elevation="4dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/w8hd" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/down"
-        android:layout_width="match_parent"
+    <!-- Фоновая картинка целиком (над buttonName, не пересекается с ней, как в game1) -->
+    <ImageButton
+        android:id="@+id/imageFull"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:orientation="horizontal"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:weightSum="2"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/wrongCounter"
+        app:layout_constraintBottom_toTopOf="@id/buttonName" />
 
+    <!-- Кнопка с названием: под картинкой/сеткой, над нижней панелью -->
+    <Button
+        android:id="@+id/buttonName"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/oval_shape"
+        android:clickable="true"
+        android:elevation="5dp"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        android:textColor="#ffffff"
+        android:textSize="25sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/downLayout"
+        tools:text="Animal" />
 
-        >
-
-
-        <ImageButton
-            android:id="@+id/imageGame2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="@dimen/image_margin"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:elevation="4dp"
-            android:background="@null"
-            android:src="@drawable/a7hd"
-            />
-
-
-        <ImageButton
-            android:id="@+id/imageGame3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-
-            android:layout_margin="@dimen/image_margin"
-            android:adjustViewBounds="true"
-            android:elevation="4dp"
-            android:background="@null"
-            android:scaleType="fitCenter"
-            android:src="@drawable/w8hd"/>
-
-    </LinearLayout>
-
-    </LinearLayout>
-
+    <!-- Нижняя панель: звук / далее -->
     <LinearLayout
         android:id="@+id/downLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <ImageButton
             android:id="@+id/buttonSound"
@@ -117,11 +186,10 @@
             android:background="@drawable/oval_shape"
             android:clickable="true"
             android:elevation="5dp"
+            android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground"
-            android:focusable="auto"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/baseline_pets_black_18dp" />
-
 
         <ImageButton
             android:id="@+id/buttonNext"
@@ -133,95 +201,11 @@
             android:background="@drawable/oval_shape"
             android:clickable="true"
             android:elevation="5dp"
+            android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground"
-            android:focusable="auto"
             android:scaleType="fitCenter"
             app:srcCompat="@android:drawable/ic_media_next" />
 
     </LinearLayout>
 
-
-
-    <ImageButton
-        android:id="@+id/imageFull"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/downLayout"
-        android:layout_below="@id/wrongCounter"
-        android:layout_alignParentStart="true"
-
-        android:scaleType="fitCenter"
-        android:background="@null" />
-
-    <Button
-        android:id="@+id/buttonName"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:layout_alignBottom="@+id/two"
-
-        android:layout_centerHorizontal="true"
-
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-
-        android:background="@drawable/oval_shape"
-        android:clickable="true"
-        android:elevation="5dp"
-        android:focusable="auto"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:padding="8dp"
-        android:scaleType="fitCenter"
-        android:textColor="#ffffff"
-        android:textSize="25sp"
-        app:autoSizeTextType="uniform"
-        tools:text="Animadddddddddl" />
-
-    <Button
-        android:id="@+id/wrongCounter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="30dp"
-
-        android:background="@drawable/oval_shape_red"
-        android:clickable="false"
-        android:elevation="5dp"
-        android:focusable="auto"
-
-        android:padding="1dp"
-
-
-        android:textColor="#ffffff"
-        android:textSize="25sp"
-        app:autoSizeTextType="uniform"
-        tools:text="10" />
-
-    <Button
-        android:id="@+id/correctCounter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginRight="30dp"
-
-
-
-        android:layout_marginBottom="0dp"
-        android:background="@drawable/oval_shape"
-        android:clickable="false"
-        android:elevation="5dp"
-
-        android:focusable="auto"
-        android:padding="1dp"
-        android:scaleType="fitCenter"
-        android:textColor="#ffffff"
-        android:textSize="25sp"
-        app:autoSizeTextType="uniform"
-        tools:text="10" />
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

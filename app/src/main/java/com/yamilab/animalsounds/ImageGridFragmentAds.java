@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 import static com.yamilab.animalsounds.R.id.recyclerView;
 
+
 /**
  * Created by Misha on 28.03.2017.
  */
@@ -95,7 +96,7 @@ public class ImageGridFragmentAds extends Fragment {
         txt.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW);
-                browserIntent.setData(Uri.parse("http://www.yapapa.xyz/private-policy-animalsounds/"));
+                browserIntent.setData(Uri.parse("https://apps.mayak.net.ru/private-policy-animalsounds/"));
                 try {
                     startActivity(browserIntent);
                 }
@@ -156,11 +157,11 @@ public class ImageGridFragmentAds extends Fragment {
         mDataset = new ArrayList<>();
 
         mDataset.add(new LinkItem(
-                "https://yapapa.xyz/gifs/ads/ads01.gif",
+                "https://apps.mayak.net.ru/gifs/ads/ads01.gif",
 
                 "https://gf896.app.goo.gl/jdF1"
         ));
-
+        /*
         mDataset.add(new LinkItem(
                 "https://yapapa.xyz/gifs/ads/ads02.gif",
 
@@ -185,7 +186,7 @@ public class ImageGridFragmentAds extends Fragment {
                 "https://yapapa.xyz/gifs/ads/ads06.gif",
 
                 "https://gf896.app.goo.gl/wMv3"));
-
+        */
 
 
     }

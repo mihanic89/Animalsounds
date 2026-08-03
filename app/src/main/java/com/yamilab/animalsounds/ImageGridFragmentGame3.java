@@ -620,7 +620,7 @@ public class ImageGridFragmentGame3 extends Fragment {
             ttsListener.speak(animals.get(correctAnswer).getName(),animals.get(correctAnswer).getSound());
         }
 
-        full.setImageResource(animals.get(correctAnswer).getImageSmall());
+        setImageGlide(full, animals.get(correctAnswer).getImageSmall());
 
         Bundle params = new Bundle();
         params.putString("new_round3", "New round start 3");
