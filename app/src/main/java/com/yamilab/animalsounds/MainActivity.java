@@ -256,29 +256,31 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
                 R.drawable.tab_home, R.drawable.tab_wild, R.drawable.tab_birds,
                 R.drawable.tab_aqua, R.drawable.tab_insects, R.drawable.tab_fairy};
 
-        // Tab 0 - Game3
+        // Tab 0 - Ads
+        tabLayout.getTabAt(0).setText("Ads&Privacy");
+
+        // Tab 1 - Game3
         View view10 = getLayoutInflater().inflate(R.layout.customtab, null);
         ImageView imageViewTab10 = view10.findViewById(R.id.icon);
         imageViewTab10.setImageResource(R.drawable.tab_game3);
         imageViewTab10.startAnimation(mScaleAnimation3);
-        tabLayout.getTabAt(0).setCustomView(view10);
+        tabLayout.getTabAt(1).setCustomView(view10);
 
-        // Tab 1 - Game2
+        // Tab 2 - Game2
         View view0 = getLayoutInflater().inflate(R.layout.customtab, null);
         ImageView imageViewTab0 = view0.findViewById(R.id.icon);
         imageViewTab0.setImageResource(R.drawable.tab_game2);
         imageViewTab0.startAnimation(mScaleAnimation0);
-        tabLayout.getTabAt(1).setCustomView(view0);
+        tabLayout.getTabAt(2).setCustomView(view0);
 
-        // Tab 2 - Game1
+        // Tab 3 - Game1
         View view1 = getLayoutInflater().inflate(R.layout.customtab, null);
         ImageView imageViewTab1 = view1.findViewById(R.id.icon);
         imageViewTab1.setImageResource(R.drawable.tab_game);
         imageViewTab1.startAnimation(mScaleAnimation2);
-        tabLayout.getTabAt(2).setCustomView(view1);
+        tabLayout.getTabAt(3).setCustomView(view1);
 
-        // Tab 3 - Ads
-        tabLayout.getTabAt(3).setText("Ads&Privacy");
+
 
         // Tab 4 - Home
         View view3 = getLayoutInflater().inflate(R.layout.customtab, null);
