@@ -4,8 +4,10 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:gravity="center"
-    android:minWidth="64dp"
-    android:minHeight="64dp">
+    android:minWidth="56dp"
+    android:minHeight="56dp"
+    android:padding="8dp"
+    android:background="@drawable/tab_background_selector">
 
     <ImageView
         android:id="@+id/icon"

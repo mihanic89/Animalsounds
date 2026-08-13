@@ -34,7 +34,9 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             app:tabGravity="fill"
-            app:tabMode="fixed" />
+            app:tabMode="fixed"
+            app:tabIndicatorHeight="0dp"
+            app:tabRippleColor="@null" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
