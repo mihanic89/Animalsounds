@@ -1,10 +1,12 @@
 package com.yamilab.animalsounds;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -164,7 +166,31 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
         return mDataSet.size();
     }
 
+    @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
+        // Массив возможных периодов анимации (в миллисекундах)
+        long[] durations = {3500, 4000, 4500};
+        // Выбираем случайный период для этой карточки
+        long duration = durations[position % durations.length];
+
+        // Анимация масштабирования (95% → 100%, случайный период, бесконечно)
+        ObjectAnimator scaleAnimator = ObjectAnimator.ofFloat(
+            holder.itemView, "scaleX", 0.95f, 1.0f
+        );
+        scaleAnimator.setDuration(duration);
+        scaleAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
+        scaleAnimator.setRepeatCount(ObjectAnimator.INFINITE);
+        scaleAnimator.setRepeatMode(ObjectAnimator.REVERSE);
+        scaleAnimator.start();
+
+        ObjectAnimator scaleAnimatorY = ObjectAnimator.ofFloat(
+            holder.itemView, "scaleY", 0.95f, 1.0f
+        );
+        scaleAnimatorY.setDuration(duration);
+        scaleAnimatorY.setInterpolator(new AccelerateDecelerateInterpolator());
+        scaleAnimatorY.setRepeatCount(ObjectAnimator.INFINITE);
+        scaleAnimatorY.setRepeatMode(ObjectAnimator.REVERSE);
+        scaleAnimatorY.start();
 
 
 

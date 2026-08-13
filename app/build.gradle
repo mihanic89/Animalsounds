@@ -14,8 +14,8 @@ android {
         applicationId "com.yamilab.animalsounds"
         minSdk 23
         targetSdk 37
-        versionCode 93
-        versionName "3.9.3"
+        versionCode 94
+        versionName "3.9.4"
         multiDexEnabled true
         lintOptions {
             checkReleaseBuilds true
@@ -39,7 +39,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'androidx.appcompat:appcompat:1.8.0'
     implementation "androidx.browser:browser:1.10.0"
     implementation "androidx.vectordrawable:vectordrawable-animated:1.2.0"
     implementation "androidx.media:media:1.8.0"
