@@ -190,6 +190,33 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
         tab = tabLayout.getTabAt(firstTab);
         tab.select();
 
+        // Add listener to update background pill for custom views
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                if (tab.getCustomView() != null) {
+                    tab.getCustomView().setSelected(true);
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                if (tab.getCustomView() != null) {
+                    tab.getCustomView().setSelected(false);
+                }
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {}
+        });
+
+        // Manually set selected state for initial tab (listener may not fire during init)
+        int currentPosition = tabLayout.getSelectedTabPosition();
+        TabLayout.Tab currentTab = tabLayout.getTabAt(currentPosition);
+        if (currentTab != null && currentTab.getCustomView() != null) {
+            currentTab.getCustomView().setSelected(true);
+        }
+
         makeLanguageList(Locale.getDefault().getLanguage());
 
                 // Initialize TTS in main thread to avoid memory leaks
