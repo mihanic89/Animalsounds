@@ -5,6 +5,7 @@ import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOption
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.graphics.Point;
@@ -12,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -190,12 +192,16 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
         tab = tabLayout.getTabAt(firstTab);
         tab.select();
 
-        // Add listener to update background pill for custom views
+        // Add listener to update background pill and icon tint for custom views
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 if (tab.getCustomView() != null) {
                     tab.getCustomView().setSelected(true);
+                    ImageView icon = tab.getCustomView().findViewById(R.id.icon);
+                    if (icon != null) {
+                        icon.setImageTintList(ColorStateList.valueOf(0xFFF16700));
+                    }
                 }
             }
 
@@ -203,6 +209,10 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
             public void onTabUnselected(TabLayout.Tab tab) {
                 if (tab.getCustomView() != null) {
                     tab.getCustomView().setSelected(false);
+                    ImageView icon = tab.getCustomView().findViewById(R.id.icon);
+                    if (icon != null) {
+                        icon.setImageTintList(ColorStateList.valueOf(0xFFFFFFFF));
+                    }
                 }
             }
 
@@ -215,6 +225,10 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
         TabLayout.Tab currentTab = tabLayout.getTabAt(currentPosition);
         if (currentTab != null && currentTab.getCustomView() != null) {
             currentTab.getCustomView().setSelected(true);
+            ImageView icon = currentTab.getCustomView().findViewById(R.id.icon);
+            if (icon != null) {
+                icon.setImageTintList(ColorStateList.valueOf(0xFFF16700));
+            }
         }
 
         makeLanguageList(Locale.getDefault().getLanguage());
