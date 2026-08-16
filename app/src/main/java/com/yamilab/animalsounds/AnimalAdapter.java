@@ -218,7 +218,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
                             .diskCacheStrategy(DiskCacheStrategy.ALL)
                             //.override((int) screenWidth)
                             .fitCenter()
-                            .override((int)screenWidth/2, Target.SIZE_ORIGINAL)
+                            .override(screenWidth /2, Target.SIZE_ORIGINAL)
                             .thumbnail(glideRequests.load(animal.getImageSmall()))
                             //.error(animal.getImageSmall())
                             //.placeholder(new ColorDrawable(context.getResources().getColor(R.color.colorBackground))

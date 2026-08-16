@@ -441,7 +441,7 @@ public class ImageGridFragmentGame3 extends Fragment {
                 .priority(Priority.LOW)
                 .skipMemoryCache(true)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .apply(new RequestOptions().override((int)getArguments().getInt("width")/3))
+                .apply(new RequestOptions().override(getArguments().getInt("width") /3))
                 .into(imageView);
     }
 
@@ -602,7 +602,8 @@ public class ImageGridFragmentGame3 extends Fragment {
 
 
         //if (adCounter>13) {
-        if (((MainActivity) getActivity()).getAdCounter()>((MainActivity) getActivity()).adShowInt) {
+        getActivity();
+        if (((MainActivity) getActivity()).getAdCounter()> MainActivity.adShowInt) {
             ((MainActivity) getActivity()).showInterstitial();
             //adCounter=0;
            // ((MainActivity) getActivity()).zeroAdCounter();

@@ -754,7 +754,6 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
         incrementRating();
         if (backPressedToExitOnce) {
             super.onBackPressed();
-            return;
         } else {
             if (review_enabled) {
                 showRatingDialog();
