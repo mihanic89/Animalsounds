@@ -14,8 +14,8 @@ android {
         applicationId "com.yamilab.animalsounds"
         minSdk 23
         targetSdk 37
-        versionCode 94
-        versionName "3.9.4"
+        versionCode 95
+        versionName "3.9.5"
         multiDexEnabled true
         lintOptions {
             checkReleaseBuilds true
@@ -27,7 +27,8 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
