@@ -237,6 +237,13 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
         int restoredPosition = savedInstanceState != null
                 ? savedInstanceState.getInt(KEY_SELECTED_TAB, firstTab)
                 : firstTab;
+        // Мгновенный переход без плавной прокрутки: tab.select() через
+        // TabLayoutMediator вызывает setCurrentItem(position, true) с анимацией.
+        // Если в этот момент поверх открыт онбординг (первый запуск), прокрутка
+        // прерывается, и ViewPager2 остаётся на странице 0, хотя вкладка 4 уже
+        // подсвечена — возникает рассинхрон. setCurrentItem(..., false) переключает
+        // страницу мгновенно, поэтому страница и подсветка всегда совпадают.
+        mViewPager.setCurrentItem(restoredPosition, false);
         tab = tabLayout.getTabAt(restoredPosition);
         tab.select();
 
