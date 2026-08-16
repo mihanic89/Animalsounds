@@ -2,8 +2,9 @@ package com.yamilab.animalsounds;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Parcelable;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -20,7 +21,6 @@ public class ImageGridFragment extends Fragment {
     //private static final int PRELOAD_AHEAD_ITEMS = 5;
     RecyclerView recyclerView;
     StaggeredGridLayoutManager staggeredGridLayoutManager;
-    LinearLayoutManager llm;
     AnimalAdapter animalAdapter;
     GlideRequests glideRequests;
 
@@ -41,26 +41,51 @@ public class ImageGridFragment extends Fragment {
     }
 
 
+    private static final String KEY_SCROLL_POSITION = "scroll_position";
+    private Parcelable layoutManagerState;
+
+    private int calculateSpanCount(boolean isLandscape) {
+        // smallestScreenWidthDp — фиксированная характеристика устройства,
+        // не меняется при повороте экрана
+        int smallestWidthDp = getResources().getConfiguration().smallestScreenWidthDp;
+
+        int baseSpan;
+        if (smallestWidthDp >= 720) {
+            baseSpan = 3;
+        } else if (smallestWidthDp >= 600) {
+            baseSpan = 2;
+        } else {
+            baseSpan = 1;
+        }
+
+        int spanCount = isLandscape ? baseSpan + 1 : baseSpan;
+
+        int maxAllowed = isLandscape ? 4 : 3;
+        return Math.min(spanCount, maxAllowed);
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (recyclerView != null && recyclerView.getLayoutManager() != null) {
+            outState.putParcelable(KEY_SCROLL_POSITION, recyclerView.getLayoutManager().onSaveInstanceState());
+        }
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-        // TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-        // textView.setText(getStrng(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-
-
-
-
+        
+        if (savedInstanceState != null) {
+            layoutManagerState = savedInstanceState.getParcelable(KEY_SCROLL_POSITION);
+        }
 
         glideRequests = GlideApp.with(rootView.getContext());
-        //glideRequests = GlideApp.with(rootView.getContext());
-        //glideRequests = GlideApp.with((ImageGridFragment)this);
-        //GlideApp.get(rootView.getContext()).setMemoryCategory(MemoryCategory.LOW);
-        //glideRequests=GlideApp.with(getActivity().getApplicationContext());
 
-
-
-        int spanCount = 1;
+        boolean isLandscape = getResources().getConfiguration().orientation
+                == Configuration.ORIENTATION_LANDSCAPE;
+        int spanCount = calculateSpanCount(isLandscape);
 
         try {
             if (((MainActivity) getActivity()).getGrid()) {
@@ -68,31 +93,14 @@ public class ImageGridFragment extends Fragment {
             }
         }
         catch (Exception e){
-
+            // Ignore
         }
-
-
-        int screenSize = getResources().getConfiguration().screenLayout &
-                Configuration.SCREENLAYOUT_SIZE_MASK;
-
-        if (screenSize >= Configuration.SCREENLAYOUT_SIZE_LARGE) spanCount ++;
 
         recyclerView = rootView.findViewById(R.id.recyclerView);
 
-        if (spanCount==1) {
-            if (getActivity()!=null) {
-                llm = new LinearLayoutManager(getActivity());
-            }
-            else {
-                llm = new LinearLayoutManager(rootView.getContext());
-            }
-            recyclerView.setLayoutManager(llm);
-        }
-        else
-         {
-             staggeredGridLayoutManager = new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL);
-             recyclerView.setLayoutManager(staggeredGridLayoutManager);
-         }
+        staggeredGridLayoutManager = new StaggeredGridLayoutManager(
+                spanCount, StaggeredGridLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(staggeredGridLayoutManager);
 
 
         if (getActivity()!=null){
@@ -114,6 +122,12 @@ public class ImageGridFragment extends Fragment {
         recyclerView.setAdapter(animalAdapter);
         recyclerView.setItemViewCacheSize(spanCount * 5);
         recyclerView.setHasFixedSize(true);
+
+        // Восстановление позиции скролла (после setAdapter)
+        if (layoutManagerState != null && recyclerView.getLayoutManager() != null) {
+            recyclerView.getLayoutManager().onRestoreInstanceState(layoutManagerState);
+            layoutManagerState = null;
+        }
 
             /*
             preloadSizeProvider = new ViewPreloadSizeProvider<>();

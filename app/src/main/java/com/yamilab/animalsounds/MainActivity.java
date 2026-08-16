@@ -103,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
     private boolean dontShowRatingDialog = true;
     private boolean review_enabled = true;
     private int numRatingDialog = 0;
+    private static final String KEY_SELECTED_TAB = "selected_tab_position";
     private final int firstTab = 4;
     private int ratingCounter = 0;
 
@@ -189,10 +190,21 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
         mScaleAnimation4 = AnimationUtils.loadAnimation(this, R.anim.myscale4);
 
         setupTabIcons();
-        tab = tabLayout.getTabAt(firstTab);
-        tab.select();
+
+        // Сброс подсветки всех вкладок (чистое состояние перед выбором)
+        for (int i = 0; i < tabLayout.getTabCount(); i++) {
+            TabLayout.Tab t = tabLayout.getTabAt(i);
+            if (t != null && t.getCustomView() != null) {
+                t.getCustomView().setSelected(false);
+                ImageView icon = t.getCustomView().findViewById(R.id.icon);
+                if (icon != null) {
+                    icon.setImageTintList(ColorStateList.valueOf(0xFFFFFFFF));
+                }
+            }
+        }
 
         // Add listener to update background pill and icon tint for custom views
+        // ВАЖНО: добавляется ДО tab.select() — сработает автоматически
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -220,16 +232,13 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
             public void onTabReselected(TabLayout.Tab tab) {}
         });
 
-        // Manually set selected state for initial tab (listener may not fire during init)
-        int currentPosition = tabLayout.getSelectedTabPosition();
-        TabLayout.Tab currentTab = tabLayout.getTabAt(currentPosition);
-        if (currentTab != null && currentTab.getCustomView() != null) {
-            currentTab.getCustomView().setSelected(true);
-            ImageView icon = currentTab.getCustomView().findViewById(R.id.icon);
-            if (icon != null) {
-                icon.setImageTintList(ColorStateList.valueOf(0xFFF16700));
-            }
-        }
+        // Восстановление выбранной вкладки (после добавления листенера —
+        // он сам применит подсветку к restoredPosition и снимет с предыдущей)
+        int restoredPosition = savedInstanceState != null
+                ? savedInstanceState.getInt(KEY_SELECTED_TAB, firstTab)
+                : firstTab;
+        tab = tabLayout.getTabAt(restoredPosition);
+        tab.select();
 
         makeLanguageList(Locale.getDefault().getLanguage());
 
@@ -289,6 +298,14 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
             fetch();
         } catch (Exception e) {
             // ignore
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (mViewPager != null) {
+            outState.putInt(KEY_SELECTED_TAB, mViewPager.getCurrentItem());
         }
     }
 
