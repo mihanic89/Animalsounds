@@ -50,6 +50,10 @@ dependencies {
     implementation "androidx.cardview:cardview:1.0.0"
     implementation "androidx.viewpager2:viewpager2:1.1.0"
     implementation 'androidx.recyclerview:recyclerview:1.4.0'
+    // Explicitly pin a modern WorkManager. AdMob (play-services-ads) pulls in an old
+    // transitive work-runtime 2.7.0, which crashes on Firebase Test Lab devices with
+    // "Failed to create an instance of androidx.work.impl.WorkDatabase".
+    implementation 'androidx.work:work-runtime:2.11.2'
     implementation 'com.google.android.gms:play-services-ads:25.4.0'
     implementation 'com.google.firebase:firebase-crashlytics:20.1.0'
     implementation 'com.github.AppIntro:AppIntro:6.3.1'
