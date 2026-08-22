@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -81,6 +82,9 @@ public class ImageGridFragmentGame3 extends Fragment {
     private final ArrayList<Integer> numbers = new ArrayList<>();
 
     ImageButton full,buttonCheck,buttonNext;
+
+    /** Общий handler фрагмента; все postDelayed снимаются в onDestroyView(). */
+    private final Handler uiHandler = new Handler(Looper.getMainLooper());
 
     Button buttonName,button1,button2, button3, button4,
             correctCounter, wrongCounter;
@@ -514,10 +518,9 @@ public class ImageGridFragmentGame3 extends Fragment {
             }
         }
         else {
-            final Handler handler = new Handler();
             button1.setBackgroundResource(R.drawable.oval_shape_blue);
 
-            handler.postDelayed(new Runnable() {
+            uiHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     button1.setBackgroundResource(R.drawable.oval_shape);
@@ -525,7 +528,7 @@ public class ImageGridFragmentGame3 extends Fragment {
                 }
             }, 250);
 
-            handler.postDelayed(new Runnable() {
+            uiHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     button2.setBackgroundResource(R.drawable.oval_shape);
@@ -533,7 +536,7 @@ public class ImageGridFragmentGame3 extends Fragment {
                 }
             }, 500);
 
-            handler.postDelayed(new Runnable() {
+            uiHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     button3.setBackgroundResource(R.drawable.oval_shape);
@@ -541,7 +544,7 @@ public class ImageGridFragmentGame3 extends Fragment {
                 }
             }, 750);
 
-            handler.postDelayed(new Runnable() {
+            uiHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     button4.setBackgroundResource(R.drawable.oval_shape);
@@ -666,6 +669,14 @@ public class ImageGridFragmentGame3 extends Fragment {
         SharedPreferences.Editor editor = getPrefs.edit();
         editor.putInt(key, value);
         editor.commit();
+    }
+
+    @Override
+    public void onDestroyView() {
+        // Снимаем отложенные шаги анимации ответа, чтобы они не выполнялись
+        // на отвязанных view после ухода со вкладки.
+        uiHandler.removeCallbacksAndMessages(null);
+        super.onDestroyView();
     }
 
 }

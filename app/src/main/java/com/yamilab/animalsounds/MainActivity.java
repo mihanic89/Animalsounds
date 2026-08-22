@@ -69,30 +69,30 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
     private static final String DONT_SHOW_RATING_DIALOF_KEY = "dont_show_rating_dialog";
     private static final String KEY_TO_UNLOCK_FAIRY = "unlockFairy";
     private static final String REVIEW_ENABLED = "ReviewEnabled";
-    private static final String WIKI_EN = "http://en.m.wikipedia.org/wiki/";
-    private static final String WIKI_AR = "http://ar.m.wikipedia.org/wiki/";
-    private static final String WIKI_BG = "http://bg.m.wikipedia.org/wiki/";
-    private static final String WIKI_CS = "http://cs.m.wikipedia.org/wiki/";
-    private static final String WIKI_DE = "http://de.m.wikipedia.org/wiki/";
-    private static final String WIKI_EL = "http://el.m.wikipedia.org/wiki/";
-    private static final String WIKI_ES = "http://es.m.wikipedia.org/wiki/";
-    private static final String WIKI_FI = "http://fi.m.wikipedia.org/wiki/";
-    private static final String WIKI_FR = "http://fr.m.wikipedia.org/wiki/";
-    private static final String WIKI_HI = "http://hi.m.wikipedia.org/wiki/";
-    private static final String WIKI_HU = "http://hu.m.wikipedia.org/wiki/";
-    private static final String WIKI_IN = "http://in.m.wikipedia.org/wiki/";
-    private static final String WIKI_IT = "http://it.m.wikipedia.org/wiki/";
-    private static final String WIKI_JA = "http://ja.m.wikipedia.org/wiki/";
-    private static final String WIKI_KO = "http://ko.m.wikipedia.org/wiki/";
-    private static final String WIKI_NL = "http://nl.m.wikipedia.org/wiki/";
-    private static final String WIKI_PL = "http://pl.m.wikipedia.org/wiki/";
-    private static final String WIKI_PT = "http://pt.m.wikipedia.org/wiki/";
-    private static final String WIKI_RO = "http://ro.m.wikipedia.org/wiki/";
-    private static final String WIKI_RU = "http://ru.m.wikipedia.org/wiki/";
-    private static final String WIKI_SV = "http://sv.m.wikipedia.org/wiki/";
-    private static final String WIKI_TR = "http://tr.m.wikipedia.org/wiki/";
-    private static final String WIKI_UK = "http://uk.m.wikipedia.org/wiki/";
-    private static final String WIKI_ZH = "http://zh.m.wikipedia.org/wiki/";
+    private static final String WIKI_EN = "https://en.m.wikipedia.org/wiki/";
+    private static final String WIKI_AR = "https://ar.m.wikipedia.org/wiki/";
+    private static final String WIKI_BG = "https://bg.m.wikipedia.org/wiki/";
+    private static final String WIKI_CS = "https://cs.m.wikipedia.org/wiki/";
+    private static final String WIKI_DE = "https://de.m.wikipedia.org/wiki/";
+    private static final String WIKI_EL = "https://el.m.wikipedia.org/wiki/";
+    private static final String WIKI_ES = "https://es.m.wikipedia.org/wiki/";
+    private static final String WIKI_FI = "https://fi.m.wikipedia.org/wiki/";
+    private static final String WIKI_FR = "https://fr.m.wikipedia.org/wiki/";
+    private static final String WIKI_HI = "https://hi.m.wikipedia.org/wiki/";
+    private static final String WIKI_HU = "https://hu.m.wikipedia.org/wiki/";
+    private static final String WIKI_ID = "https://id.m.wikipedia.org/wiki/";
+    private static final String WIKI_IT = "https://it.m.wikipedia.org/wiki/";
+    private static final String WIKI_JA = "https://ja.m.wikipedia.org/wiki/";
+    private static final String WIKI_KO = "https://ko.m.wikipedia.org/wiki/";
+    private static final String WIKI_NL = "https://nl.m.wikipedia.org/wiki/";
+    private static final String WIKI_PL = "https://pl.m.wikipedia.org/wiki/";
+    private static final String WIKI_PT = "https://pt.m.wikipedia.org/wiki/";
+    private static final String WIKI_RO = "https://ro.m.wikipedia.org/wiki/";
+    private static final String WIKI_RU = "https://ru.m.wikipedia.org/wiki/";
+    private static final String WIKI_SV = "https://sv.m.wikipedia.org/wiki/";
+    private static final String WIKI_TR = "https://tr.m.wikipedia.org/wiki/";
+    private static final String WIKI_UK = "https://uk.m.wikipedia.org/wiki/";
+    private static final String WIKI_ZH = "https://zh.m.wikipedia.org/wiki/";
 
     private String wikiHref = WIKI_EN;
     public static final Integer adShowInt = 15;
@@ -245,7 +245,9 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
         // страницу мгновенно, поэтому страница и подсветка всегда совпадают.
         mViewPager.setCurrentItem(restoredPosition, false);
         tab = tabLayout.getTabAt(restoredPosition);
-        tab.select();
+        if (tab != null) {
+            tab.select();
+        }
 
         makeLanguageList(Locale.getDefault().getLanguage());
 
@@ -569,7 +571,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
         else if (locale.equals("fr")) { wikiHref = WIKI_FR; language = "fr"; }
         else if (locale.equals("hi")) { wikiHref = WIKI_HI; language = "hi"; }
         else if (locale.equals("hu")) { wikiHref = WIKI_HU; language = "hu"; }
-        else if (locale.equals("in")) { wikiHref = WIKI_IN; language = "in"; }
+        else if (locale.equals("in") || locale.equals("id")) { wikiHref = WIKI_ID; language = "id"; }
         else if (locale.equals("it")) { wikiHref = WIKI_IT; language = "it"; }
         else if (locale.equals("ja")) { wikiHref = WIKI_JA; language = "ja"; }
         else if (locale.equals("ko")) { wikiHref = WIKI_KO; language = "ko"; }
@@ -828,6 +830,9 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
 
     public void setGameTab() {
         tab = tabLayout.getTabAt(new Random().nextInt(3));
+        if (tab == null) {
+            return;
+        }
         tab.select();
     }
 

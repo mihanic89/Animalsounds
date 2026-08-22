@@ -10,6 +10,7 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Priority;
@@ -38,6 +39,11 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
         private final TextView textView;
         private final ImageView imageView;
        // private final ImageButton wikiButton;
+
+        // Текущие аниматоры «дыхания» карточки; отменяются при recycle,
+        // ставятся на паузу при уходе view с экрана.
+        private ObjectAnimator scaleXAnimator;
+        private ObjectAnimator scaleYAnimator;
 
 
         //public Context context;
@@ -71,6 +77,35 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
 
         public ImageView getImageView() {
             return imageView;
+        }
+
+        void cancelAnimations() {
+            if (scaleXAnimator != null) {
+                scaleXAnimator.cancel();
+                scaleXAnimator = null;
+            }
+            if (scaleYAnimator != null) {
+                scaleYAnimator.cancel();
+                scaleYAnimator = null;
+            }
+        }
+
+        void pauseAnimations() {
+            if (scaleXAnimator != null && !scaleXAnimator.isPaused()) {
+                scaleXAnimator.pause();
+            }
+            if (scaleYAnimator != null && !scaleYAnimator.isPaused()) {
+                scaleYAnimator.pause();
+            }
+        }
+
+        void resumeAnimations() {
+            if (scaleXAnimator != null && scaleXAnimator.isPaused()) {
+                scaleXAnimator.resume();
+            }
+            if (scaleYAnimator != null && scaleYAnimator.isPaused()) {
+                scaleYAnimator.resume();
+            }
         }
 /*
         public ImageButton getImageButton() {
@@ -131,6 +166,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
 
     @Override
     public void onViewRecycled (ViewHolder holder){
+        holder.cancelAnimations();
 
         //holder.getImageView().setImageBitmap(null);
 
@@ -146,6 +182,19 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
 
         super.onViewRecycled(holder);
 
+    }
+
+    @Override
+    public void onViewDetachedFromWindow(@NonNull ViewHolder holder) {
+        // Карточка ушла с экрана — пауза вместо бесконечной работы в фоне.
+        holder.pauseAnimations();
+        super.onViewDetachedFromWindow(holder);
+    }
+
+    @Override
+    public void onViewAttachedToWindow(@NonNull ViewHolder holder) {
+        super.onViewAttachedToWindow(holder);
+        holder.resumeAnimations();
     }
 
     @Override
@@ -174,23 +223,28 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
         long duration = durations[position % durations.length];
 
         // Анимация масштабирования (95% → 100%, случайный период, бесконечно)
-        ObjectAnimator scaleAnimator = ObjectAnimator.ofFloat(
+        // Аниматоры пересоздаются на каждый бинд и хранятся в ViewHolder:
+        // так их можно поставить на паузу (detach) и отменить (recycle).
+        // Бесконечные аниматоры на отвязанных view расходуют батарею и держат ссылки.
+        holder.cancelAnimations();
+
+        holder.scaleXAnimator = ObjectAnimator.ofFloat(
             holder.itemView, "scaleX", 0.95f, 1.0f
         );
-        scaleAnimator.setDuration(duration);
-        scaleAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
-        scaleAnimator.setRepeatCount(ObjectAnimator.INFINITE);
-        scaleAnimator.setRepeatMode(ObjectAnimator.REVERSE);
-        scaleAnimator.start();
+        holder.scaleXAnimator.setDuration(duration);
+        holder.scaleXAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
+        holder.scaleXAnimator.setRepeatCount(ObjectAnimator.INFINITE);
+        holder.scaleXAnimator.setRepeatMode(ObjectAnimator.REVERSE);
+        holder.scaleXAnimator.start();
 
-        ObjectAnimator scaleAnimatorY = ObjectAnimator.ofFloat(
+        holder.scaleYAnimator = ObjectAnimator.ofFloat(
             holder.itemView, "scaleY", 0.95f, 1.0f
         );
-        scaleAnimatorY.setDuration(duration);
-        scaleAnimatorY.setInterpolator(new AccelerateDecelerateInterpolator());
-        scaleAnimatorY.setRepeatCount(ObjectAnimator.INFINITE);
-        scaleAnimatorY.setRepeatMode(ObjectAnimator.REVERSE);
-        scaleAnimatorY.start();
+        holder.scaleYAnimator.setDuration(duration);
+        holder.scaleYAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
+        holder.scaleYAnimator.setRepeatCount(ObjectAnimator.INFINITE);
+        holder.scaleYAnimator.setRepeatMode(ObjectAnimator.REVERSE);
+        holder.scaleYAnimator.start();
 
 
 
