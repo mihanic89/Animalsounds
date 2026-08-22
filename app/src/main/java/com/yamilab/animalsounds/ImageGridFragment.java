@@ -98,7 +98,7 @@ public class ImageGridFragment extends Fragment {
 
         recyclerView = rootView.findViewById(R.id.recyclerView);
 
-        staggeredGridLayoutManager = new StaggeredGridLayoutManager(
+        staggeredGridLayoutManager = new SafeStaggeredGridLayoutManager(
                 spanCount, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(staggeredGridLayoutManager);
 

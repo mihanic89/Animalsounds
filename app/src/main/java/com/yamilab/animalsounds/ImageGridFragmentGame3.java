@@ -194,7 +194,7 @@ public class ImageGridFragmentGame3 extends Fragment {
         int screenSize = getResources().getConfiguration().screenLayout &
                 Configuration.SCREENLAYOUT_SIZE_MASK;
         if (screenSize>=Configuration.SCREENLAYOUT_SIZE_LARGE) gridCount=3;
-        gaggeredGridLayoutManager = new StaggeredGridLayoutManager(gridCount, StaggeredGridLayoutManager.VERTICAL);
+        gaggeredGridLayoutManager = new SafeStaggeredGridLayoutManager(gridCount, StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(gaggeredGridLayoutManager);
         Point size = new Point();
         getActivity().getWindowManager().getDefaultDisplay().getSize(size);
