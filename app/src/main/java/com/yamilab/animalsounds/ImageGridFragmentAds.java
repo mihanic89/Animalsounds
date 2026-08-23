@@ -2,7 +2,6 @@ package com.yamilab.animalsounds;
 
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
@@ -81,9 +80,7 @@ public class ImageGridFragmentAds extends Fragment {
         if (screenSize>=Configuration.SCREENLAYOUT_SIZE_LARGE) gridCount=3;
         gaggeredGridLayoutManager = new SafeStaggeredGridLayoutManager(gridCount, StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(gaggeredGridLayoutManager);
-        Point size = new Point();
-        getActivity().getWindowManager().getDefaultDisplay().getSize(size);
-       int screenWidth = size.x;
+        int screenWidth = getResources().getDisplayMetrics().widthPixels;
 
 
         mAdapter = new CustomLinkAdapter(mDataset, screenWidth /3, GlideApp.with(rootView.getContext()));

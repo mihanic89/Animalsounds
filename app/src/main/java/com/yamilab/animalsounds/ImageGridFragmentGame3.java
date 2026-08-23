@@ -6,7 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import androidx.core.os.BundleCompat;
 import androidx.fragment.app.Fragment;
 import androidx.core.view.WindowInsetsControllerCompat;
 
@@ -133,7 +134,7 @@ public class ImageGridFragmentGame3 extends Fragment {
 
         animals = new ArrayList<Animal>();
 
-        animals = (ArrayList<Animal>) getArguments().getSerializable("key");
+        animals = BundleCompat.getSerializable(getArguments(), "key", ArrayList.class);
 
         size = animals.size()-1;
         if (size<0) size=0;
@@ -200,9 +201,7 @@ public class ImageGridFragmentGame3 extends Fragment {
         if (screenSize>=Configuration.SCREENLAYOUT_SIZE_LARGE) gridCount=3;
         gaggeredGridLayoutManager = new SafeStaggeredGridLayoutManager(gridCount, StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(gaggeredGridLayoutManager);
-        Point size = new Point();
-        getActivity().getWindowManager().getDefaultDisplay().getSize(size);
-       int screenWidth = size.x;
+        int screenWidth = getResources().getDisplayMetrics().widthPixels;
 
 
         mAdapter = new CustomLinkAdapter(mDataset, (int) screenWidth/3, GlideApp.with(rootView.getContext()));

@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Priority;
@@ -286,10 +287,10 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
                              ;
 
                 } catch (Exception e) {
-                    holder.getImageView().setImageDrawable(holder.getImageView().
-                            getContext().
-                            getResources().
-                            getDrawable(mDataSet.get(position).getImageSmall()));
+                    holder.getImageView().setImageDrawable(
+                            ContextCompat.getDrawable(
+                                    holder.getImageView().getContext(),
+                                    mDataSet.get(position).getImageSmall()));
                 }
             } else {
 
@@ -319,10 +320,10 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
                             .into(holder.getImageView());
 
                 } catch (Exception e) {
-                    holder.getImageView().setImageDrawable(holder.getImageView().
-                            getContext().
-                            getResources().
-                            getDrawable(mDataSet.get(position).getImageSmall()));
+                    holder.getImageView().setImageDrawable(
+                            ContextCompat.getDrawable(
+                                    holder.getImageView().getContext(),
+                                    mDataSet.get(position).getImageSmall()));
                 }
 
             }

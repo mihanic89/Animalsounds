@@ -4,6 +4,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Parcelable;
 import androidx.annotation.NonNull;
+import androidx.core.os.BundleCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
@@ -104,7 +105,7 @@ public class ImageGridFragment extends Fragment {
 
 
         if (getActivity()!=null){
-        animalAdapter = new AnimalAdapter((ArrayList<Animal>) getArguments().getSerializable("key"),
+        animalAdapter = new AnimalAdapter(BundleCompat.getSerializable(getArguments(), "key", ArrayList.class),
                 getArguments().getInt("width") / (spanCount + 1)
                 ,getActivity()
                 //,GlideApp.with(this)
@@ -112,7 +113,7 @@ public class ImageGridFragment extends Fragment {
         );}
         else
 
-            animalAdapter = new AnimalAdapter((ArrayList<Animal>) getArguments().getSerializable("key"),
+            animalAdapter = new AnimalAdapter(BundleCompat.getSerializable(getArguments(), "key", ArrayList.class),
                     getArguments().getInt("width") / (spanCount + 1)
                     ,rootView.getContext()
                   //  ,GlideApp.with(this)

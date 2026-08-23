@@ -33,6 +33,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
@@ -144,7 +145,8 @@ public  class CustomLinkAdapter extends RecyclerView.Adapter<CustomLinkAdapter.V
                 .fitCenter()
                 // .thumbnail()
                 .error(R.mipmap.ic_launcher)
-                .placeholder(new ColorDrawable(context.getResources().getColor(R.color.colorBackground)))
+                .placeholder(new ColorDrawable(ContextCompat.getColor(context,
+                        R.color.colorBackground)))
                 //.placeholder(R.mipmap.placeholder)
                 .transition(withCrossFade(1000))
                 .into(viewHolder.getImageView());

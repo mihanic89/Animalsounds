@@ -6,26 +6,33 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
-import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowMetrics;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.MemoryCategory;
@@ -158,20 +165,27 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         setContentView(R.layout.activity_main_down_tabs_webview);
 
-        // Fullscreen mode
-        getWindow().getDecorView().setSystemUiVisibility(
-            View.SYSTEM_UI_FLAG_FULLSCREEN
-            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-            | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-        );
+        // Fullscreen mode через WindowInsetsControllerCompat (SYSTEM_UI_FLAG_* устарели).
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+        WindowInsetsControllerCompat insetsController =
+                WindowCompat.getInsetsController(getWindow(), getWindow().getDecorView());
+        insetsController.hide(WindowInsetsCompat.Type.statusBars()
+                | WindowInsetsCompat.Type.navigationBars());
+        // Аналог IMMERSIVE_STICKY: панели возвращаются свайпом и показываются полупрозрачными.
+        insetsController.setSystemBarsBehavior(
+                WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
 
-        Point size = new Point();
-        getWindowManager().getDefaultDisplay().getSize(size);
-        screenWidth = size.x;
-        screenHeight = size.y;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            Rect bounds = getWindowManager().getCurrentWindowMetrics().getBounds();
+            screenWidth = bounds.width();
+            screenHeight = bounds.height();
+        } else {
+            // Ветка для API < 30: getDefaultDisplay().getSize() здесь единственный вариант.
+            Point size = new Point();
+            getWindowManager().getDefaultDisplay().getSize(size);
+            screenWidth = size.x;
+            screenHeight = size.y;
+        }
 
         initData();
         mSectionsPagerAdapter = new SectionsPagerAdapter(this);
@@ -295,7 +309,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
                 .priority(Priority.LOW)
                 .override(screenWidth / 3, screenHeight / 3)
                 .fitCenter()
-                .placeholder(new ColorDrawable(getResources().getColor(R.color.colorBackground)))
+                .placeholder(new ColorDrawable(ContextCompat.getColor(this,
+                        R.color.colorBackground)))
                 .transition(withCrossFade(1000))
                 .into((ImageView) findViewById(R.id.imageViewBackground));
 
@@ -308,6 +323,23 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
         } catch (Exception e) {
             // ignore
         }
+
+        // Обратная кнопка через OnBackPressedDispatcher: переопределение onBackPressed()
+        // устарело и блокирует predictive back на новых версиях Android.
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                incrementRating();
+                if (backPressedToExitOnce) {
+                    finish();
+                } else {
+                    if (review_enabled) {
+                        showRatingDialog();
+                    }
+                    backPressedToExitOnce = true;
+                }
+            }
+        });
     }
 
     @Override
@@ -773,19 +805,6 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
 
     public boolean getGrid() {
         return grid;
-    }
-
-    @Override
-    public void onBackPressed() {
-        incrementRating();
-        if (backPressedToExitOnce) {
-            super.onBackPressed();
-        } else {
-            if (review_enabled) {
-                showRatingDialog();
-            }
-            backPressedToExitOnce = true;
-        }
     }
 
     public void incrementRating() {
