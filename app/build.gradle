@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId "com.yamilab.animalsounds"
-        minSdk 23
+        minSdk 24
         targetSdk 37
         versionCode 96
         versionName "3.9.6"
@@ -54,13 +54,13 @@ dependencies {
     // Explicitly pin a modern WorkManager. AdMob (play-services-ads) pulls in an old
     // transitive work-runtime 2.7.0, which crashes on Firebase Test Lab devices with
     // "Failed to create an instance of androidx.work.impl.WorkDatabase".
-    implementation 'androidx.work:work-runtime:2.11.2'
-    implementation 'com.google.android.gms:play-services-ads:25.4.0'
-    implementation 'com.google.firebase:firebase-crashlytics:20.1.0'
+    implementation 'androidx.work:work-runtime:2.12.0'
+    implementation 'com.google.android.gms:play-services-ads:25.5.0'
+    implementation 'com.google.firebase:firebase-crashlytics:20.1.1'
     implementation 'com.github.AppIntro:AppIntro:6.3.1'
     implementation 'com.github.bumptech.glide:glide:4.16.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
-    annotationProcessor 'androidx.annotation:annotation:1.10.0'
+    annotationProcessor 'androidx.annotation:annotation:1.11.0'
     implementation 'com.codemybrainsout.rating:ratingdialog:1.0.8'
     implementation platform('com.google.firebase:firebase-bom:34.18.0')
     implementation 'com.google.firebase:firebase-analytics'
