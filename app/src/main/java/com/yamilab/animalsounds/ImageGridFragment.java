@@ -77,7 +77,7 @@ public class ImageGridFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-        
+
         if (savedInstanceState != null) {
             layoutManagerState = savedInstanceState.getParcelable(KEY_SCROLL_POSITION);
         }

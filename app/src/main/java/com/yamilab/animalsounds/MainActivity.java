@@ -38,6 +38,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.bumptech.glide.MemoryCategory;
 import com.bumptech.glide.Priority;
 import com.codemybrainsout.ratingdialog.RatingDialog;
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.LoadAdError;
@@ -111,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
     private boolean review_enabled = true;
     private int numRatingDialog = 0;
     private static final String KEY_SELECTED_TAB = "selected_tab_position";
-    private final int firstTab = 5;
+    private final int firstTab = 4;
     private int ratingCounter = 0;
 
     private ViewPager2 mViewPager;
@@ -186,7 +187,6 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
             screenWidth = size.x;
             screenHeight = size.y;
         }
-
         initData();
         mSectionsPagerAdapter = new SectionsPagerAdapter(this);
         mViewPager = findViewById(R.id.container);
@@ -292,16 +292,50 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
             });
         }
 
-        MobileAds.initialize(this, initializationStatus -> {});
-        RequestConfiguration configuration = new RequestConfiguration.Builder()
-                .setTestDeviceIds(Arrays.asList("01481448E8EC40257290F6C3754DA1E2", "84E317C211C4719630024A009A35FDCA"))
-                .build();
-        MobileAds.setRequestConfiguration(configuration);
+        mAdView = findViewById(R.id.adView);
+        // appbarlayout (вкладки) позиционируется через layout_above="@+id/adView" в
+        // RelativeLayout, поэтому важно не задеть разрешение этого якоря. GONE — не
+        // вариант: RelativeLayout тогда не может разрешить layout_above у ссылающейся
+        // на него вьюхи, и вкладки улетают в (0,0). INVISIBLE + нулевая высота: AdView
+        // по-прежнему участвует в измерении/позиционировании (якорь работает), но по
+        // умолчанию занимает 0 места и ничего не рисует — вкладки вплотную к низу.
+        // Место под баннер раздвигаем ТОЛЬКО когда он реально успешно загрузился
+        // (onAdLoaded) — так вкладки не резервируют пустую полосу, если реклама
+        // выключена или не грузится/не заполняется, и не "падают" при неудаче.
+        ViewGroup.LayoutParams adViewLayoutParams = mAdView.getLayoutParams();
+        adViewLayoutParams.height = 0;
+        mAdView.setLayoutParams(adViewLayoutParams);
+        mAdView.setVisibility(View.INVISIBLE);
 
         if (!ads_disabled) {
-            mAdView = findViewById(R.id.adView);
-            AdRequest adRequest = new AdRequest.Builder().build();
-            mAdView.loadAd(adRequest);
+            mAdView.setAdListener(new AdListener() {
+                @Override
+                public void onAdLoaded() {
+                    ViewGroup.LayoutParams lp = mAdView.getLayoutParams();
+                    lp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                    mAdView.setLayoutParams(lp);
+                    mAdView.setVisibility(View.VISIBLE);
+                }
+            });
+            // MobileAds.initialize() делает заметную синхронную работу (~250ms в замерах)
+            // прямо в вызывающем потоке, хотя AdMob официально разрешает вызывать его в
+            // фоновом потоке. loadAd() зовём из колбэка инициализации, возвращаясь на
+            // главный поток — AdView трогать можно только оттуда.
+            new Thread(() -> {
+                RequestConfiguration configuration = new RequestConfiguration.Builder()
+                        .setTestDeviceIds(Arrays.asList("01481448E8EC40257290F6C3754DA1E2", "84E317C211C4719630024A009A35FDCA"))
+                        .build();
+                MobileAds.setRequestConfiguration(configuration);
+                MobileAds.initialize(getApplicationContext(), initializationStatus -> {
+                    if (!ads_disabled && mAdView != null) {
+                        runOnUiThread(() -> {
+                            if (!isFinishing()) {
+                                mAdView.loadAd(new AdRequest.Builder().build());
+                            }
+                        });
+                    }
+                });
+            }, "MobileAdsInit").start();
         }
 
         GlideApp.with(this)
@@ -358,87 +392,79 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
         // Tab 0 - Ads
         tabLayout.getTabAt(0).setText("Ads&Privacy");
 
-        // Tab 1 - Game4 (Mole)
-        View viewMole = getLayoutInflater().inflate(R.layout.customtab, null);
-        ImageView imageViewTabMole = viewMole.findViewById(R.id.icon);
-        imageViewTabMole.setImageResource(R.drawable.tab_game4);
-        imageViewTabMole.setContentDescription("Game 4");
-        imageViewTabMole.startAnimation(mScaleAnimation1);
-        tabLayout.getTabAt(1).setCustomView(viewMole);
-
-        // Tab 2 - Game3
+        // Tab 1 - Game3
         View view10 = getLayoutInflater().inflate(R.layout.customtab, null);
         ImageView imageViewTab10 = view10.findViewById(R.id.icon);
         imageViewTab10.setImageResource(R.drawable.tab_game3);
         imageViewTab10.setContentDescription("Game 3");
         imageViewTab10.startAnimation(mScaleAnimation3);
-        tabLayout.getTabAt(2).setCustomView(view10);
+        tabLayout.getTabAt(1).setCustomView(view10);
 
-        // Tab 3 - Game2
+        // Tab 2 - Game2
         View view0 = getLayoutInflater().inflate(R.layout.customtab, null);
         ImageView imageViewTab0 = view0.findViewById(R.id.icon);
         imageViewTab0.setImageResource(R.drawable.tab_game2);
         imageViewTab0.setContentDescription("Game 2");
         imageViewTab0.startAnimation(mScaleAnimation0);
-        tabLayout.getTabAt(3).setCustomView(view0);
+        tabLayout.getTabAt(2).setCustomView(view0);
 
-        // Tab 4 - Game1
+        // Tab 3 - Game1
         View view1 = getLayoutInflater().inflate(R.layout.customtab, null);
         ImageView imageViewTab1 = view1.findViewById(R.id.icon);
         imageViewTab1.setImageResource(R.drawable.tab_game);
         imageViewTab1.setContentDescription("Game 1");
         imageViewTab1.startAnimation(mScaleAnimation2);
-        tabLayout.getTabAt(4).setCustomView(view1);
+        tabLayout.getTabAt(3).setCustomView(view1);
 
 
 
-        // Tab 5 - Home
+        // Tab 4 - Home
         View view3 = getLayoutInflater().inflate(R.layout.customtab, null);
         ImageView imageViewTab3 = view3.findViewById(R.id.icon);
         imageViewTab3.setImageResource(R.drawable.tab_home);
         imageViewTab3.setContentDescription("Home");
         imageViewTab3.startAnimation(mScaleAnimation4);
-        tabLayout.getTabAt(5).setCustomView(view3);
+        tabLayout.getTabAt(4).setCustomView(view3);
 
-        // Tab 6 - Wild
+        // Tab 5 - Wild
         View view4 = getLayoutInflater().inflate(R.layout.customtab, null);
         ImageView imageViewTab4 = view4.findViewById(R.id.icon);
         imageViewTab4.setImageResource(R.drawable.tab_wild);
         imageViewTab4.setContentDescription("Wild animals");
         imageViewTab4.startAnimation(mScaleAnimation1);
-        tabLayout.getTabAt(6).setCustomView(view4);
+        tabLayout.getTabAt(5).setCustomView(view4);
 
-        // Tab 7 - Birds
+        // Tab 6 - Birds
         View view5 = getLayoutInflater().inflate(R.layout.customtab, null);
         ImageView imageViewTab5 = view5.findViewById(R.id.icon);
         imageViewTab5.setImageResource(R.drawable.tab_birds);
         imageViewTab5.setContentDescription("Birds");
         imageViewTab5.startAnimation(mScaleAnimation3);
-        tabLayout.getTabAt(7).setCustomView(view5);
+        tabLayout.getTabAt(6).setCustomView(view5);
 
-        // Tab 8 - Aqua
+        // Tab 7 - Aqua
         View view6 = getLayoutInflater().inflate(R.layout.customtab, null);
         ImageView imageViewTab6 = view6.findViewById(R.id.icon);
         imageViewTab6.setImageResource(R.drawable.tab_aqua);
         imageViewTab6.setContentDescription("Aquatic animals");
         imageViewTab6.startAnimation(mScaleAnimation0);
-        tabLayout.getTabAt(8).setCustomView(view6);
+        tabLayout.getTabAt(7).setCustomView(view6);
 
-        // Tab 9 - Insects
+        // Tab 8 - Insects
         View view7 = getLayoutInflater().inflate(R.layout.customtab, null);
         ImageView imageViewTab7 = view7.findViewById(R.id.icon);
         imageViewTab7.setImageResource(R.drawable.tab_insects);
         imageViewTab7.setContentDescription("Insects");
         imageViewTab7.startAnimation(mScaleAnimation2);
-        tabLayout.getTabAt(9).setCustomView(view7);
+        tabLayout.getTabAt(8).setCustomView(view7);
 
-        // Tab 10 - Fairy
+        // Tab 9 - Fairy
         View view8 = getLayoutInflater().inflate(R.layout.customtab, null);
         ImageView imageViewTab8 = view8.findViewById(R.id.icon);
         imageViewTab8.setImageResource(R.drawable.tab_fairy);
         imageViewTab8.setContentDescription("Fairy tales");
         imageViewTab8.startAnimation(mScaleAnimation4);
-        tabLayout.getTabAt(10).setCustomView(view8);
+        tabLayout.getTabAt(9).setCustomView(view8);
     }
 
     public void writeBoolean(boolean enabled) {
@@ -856,9 +882,9 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
     }
 
     public void setGameTab() {
-        // Игровые вкладки занимают позиции 1..4 (Крот, Game3, Game2, Game1);
+        // Игровые вкладки занимают позиции 1..3 (Game3, Game2, Game1);
         // позиция 0 — вкладка Ads, её сюда попадать не должно.
-        tab = tabLayout.getTabAt(1 + new Random().nextInt(4));
+        tab = tabLayout.getTabAt(1 + new Random().nextInt(3));
         if (tab == null) {
             return;
         }
@@ -903,33 +929,30 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
                     mFirebaseAnalytics.logEvent("tab_ads", null);
                     return new ImageGridFragmentAds();
                 case 1:
-                    mFirebaseAnalytics.logEvent("tab_game4", null);
-                    return ImageGridFragmentGame4.newInstance(animals, screenWidth);
-                case 2:
                     mFirebaseAnalytics.logEvent("tab_game3", null);
                     return ImageGridFragmentGame3.newInstance(animals, screenWidth);
-                case 3:
+                case 2:
                     mFirebaseAnalytics.logEvent("tab_game2", null);
                     return ImageGridFragmentGame2.newInstance(animals, screenWidth);
-                case 4:
+                case 3:
                     mFirebaseAnalytics.logEvent("tab_game1", null);
                     return ImageGridFragmentGame.newInstance(animals, screenWidth);
-                case 5:
+                case 4:
                     mFirebaseAnalytics.logEvent("tab_home", null);
                     return ImageGridFragment.newInstance(home, screenWidth);
-                case 6:
+                case 5:
                     mFirebaseAnalytics.logEvent("tab_wild", null);
                     return ImageGridFragment.newInstance(wild, screenWidth);
-                case 7:
+                case 6:
                     mFirebaseAnalytics.logEvent("tab_birds", null);
                     return ImageGridFragment.newInstance(birds, screenWidth);
-                case 8:
+                case 7:
                     mFirebaseAnalytics.logEvent("tab_aqua", null);
                     return ImageGridFragment.newInstance(aqua, screenWidth);
-                case 9:
+                case 8:
                     mFirebaseAnalytics.logEvent("tab_insects", null);
                     return ImageGridFragment.newInstance(insects, screenWidth);
-                case 10:
+                case 9:
                     mFirebaseAnalytics.logEvent("tab_fairy", null);
                     if (unlockCounter < 29) {
                         return FragmentUnlockFairy.newInstance(unlockCounter);
@@ -943,7 +966,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
 
         @Override
         public int getItemCount() {
-            return 11;
+            return 10;
         }
     }
 }
