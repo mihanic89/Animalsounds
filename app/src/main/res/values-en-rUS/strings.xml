@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- American English: only the words that differ from the default (British/international) names -->
+<resources>
+    <string name="elk"> Moose #Moose</string>
+    <string name="cock"> Rooster #Rooster</string>
+    <string name="robin"> European robin #European_robin</string>
+    <string name="lobster"> Crawfish #Crayfish</string>
+    <string name="mole"> Mole #Mole_(animal)</string>
+</resources>

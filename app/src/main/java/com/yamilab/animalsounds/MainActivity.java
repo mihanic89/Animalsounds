@@ -77,32 +77,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
     private static final String DONT_SHOW_RATING_DIALOF_KEY = "dont_show_rating_dialog";
     private static final String KEY_TO_UNLOCK_FAIRY = "unlockFairy";
     private static final String REVIEW_ENABLED = "ReviewEnabled";
-    private static final String WIKI_EN = "https://en.m.wikipedia.org/wiki/";
-    private static final String WIKI_AR = "https://ar.m.wikipedia.org/wiki/";
-    private static final String WIKI_BG = "https://bg.m.wikipedia.org/wiki/";
-    private static final String WIKI_CS = "https://cs.m.wikipedia.org/wiki/";
-    private static final String WIKI_DE = "https://de.m.wikipedia.org/wiki/";
-    private static final String WIKI_EL = "https://el.m.wikipedia.org/wiki/";
-    private static final String WIKI_ES = "https://es.m.wikipedia.org/wiki/";
-    private static final String WIKI_FI = "https://fi.m.wikipedia.org/wiki/";
-    private static final String WIKI_FR = "https://fr.m.wikipedia.org/wiki/";
-    private static final String WIKI_HI = "https://hi.m.wikipedia.org/wiki/";
-    private static final String WIKI_HU = "https://hu.m.wikipedia.org/wiki/";
-    private static final String WIKI_ID = "https://id.m.wikipedia.org/wiki/";
-    private static final String WIKI_IT = "https://it.m.wikipedia.org/wiki/";
-    private static final String WIKI_JA = "https://ja.m.wikipedia.org/wiki/";
-    private static final String WIKI_KO = "https://ko.m.wikipedia.org/wiki/";
-    private static final String WIKI_NL = "https://nl.m.wikipedia.org/wiki/";
-    private static final String WIKI_PL = "https://pl.m.wikipedia.org/wiki/";
-    private static final String WIKI_PT = "https://pt.m.wikipedia.org/wiki/";
-    private static final String WIKI_RO = "https://ro.m.wikipedia.org/wiki/";
-    private static final String WIKI_RU = "https://ru.m.wikipedia.org/wiki/";
-    private static final String WIKI_SV = "https://sv.m.wikipedia.org/wiki/";
-    private static final String WIKI_TR = "https://tr.m.wikipedia.org/wiki/";
-    private static final String WIKI_UK = "https://uk.m.wikipedia.org/wiki/";
-    private static final String WIKI_ZH = "https://zh.m.wikipedia.org/wiki/";
 
-    private String wikiHref = WIKI_EN;
+    private String wikiHref = wikiBase("en");
     public static final Integer adShowInt = 15;
 
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
@@ -682,30 +658,24 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
         super.onDestroy();
     }
 
+    private static String wikiBase(String wikiLang) {
+        return "https://" + wikiLang + ".m.wikipedia.org/wiki/";
+    }
+
+    // Языки интерфейса, для которых есть строки; остальные остаются английскими.
+    private static final java.util.Set<String> SUPPORTED_LANGUAGES = new java.util.HashSet<>(java.util.Arrays.asList(
+            "ar", "bg", "cs", "da", "de", "el", "es", "fi", "fr", "he", "hi", "hr", "hu", "id", "it", "ja", "ko",
+            "ms", "nb", "nl", "pl", "pt", "ro", "ru", "sk", "sv", "th", "tr", "uk", "vi", "zh"));
+
     private void makeLanguageList(String locale) {
-        if (locale.equals("ar")) { wikiHref = WIKI_AR; language = "ar"; }
-        else if (locale.equals("bg")) { wikiHref = WIKI_BG; language = "bg"; }
-        else if (locale.equals("cs")) { wikiHref = WIKI_CS; language = "cs"; }
-        else if (locale.equals("de")) { wikiHref = WIKI_DE; language = "de"; }
-        else if (locale.equals("el")) { wikiHref = WIKI_EL; language = "el"; }
-        else if (locale.equals("es")) { wikiHref = WIKI_ES; language = "es"; }
-        else if (locale.equals("fi")) { wikiHref = WIKI_FI; language = "fi"; }
-        else if (locale.equals("fr")) { wikiHref = WIKI_FR; language = "fr"; }
-        else if (locale.equals("hi")) { wikiHref = WIKI_HI; language = "hi"; }
-        else if (locale.equals("hu")) { wikiHref = WIKI_HU; language = "hu"; }
-        else if (locale.equals("in") || locale.equals("id")) { wikiHref = WIKI_ID; language = "id"; }
-        else if (locale.equals("it")) { wikiHref = WIKI_IT; language = "it"; }
-        else if (locale.equals("ja")) { wikiHref = WIKI_JA; language = "ja"; }
-        else if (locale.equals("ko")) { wikiHref = WIKI_KO; language = "ko"; }
-        else if (locale.equals("nl")) { wikiHref = WIKI_NL; language = "nl"; }
-        else if (locale.equals("pl")) { wikiHref = WIKI_PL; language = "pl"; }
-        else if (locale.equals("pt")) { wikiHref = WIKI_PT; language = "pt"; }
-        else if (locale.equals("ro")) { wikiHref = WIKI_RO; language = "ro"; }
-        else if (locale.equals("ru")) { wikiHref = WIKI_RU; language = "ru"; }
-        else if (locale.equals("sv")) { wikiHref = WIKI_SV; language = "sv"; }
-        else if (locale.equals("tr")) { wikiHref = WIKI_TR; language = "tr"; }
-        else if (locale.equals("uk")) { wikiHref = WIKI_UK; language = "uk"; }
-        else if (locale.equals("zh")) { wikiHref = WIKI_ZH; language = "zh"; }
+        // Java отдаёт старые коды: in = id, iw = he, no/nn = norwegian
+        String lang = locale;
+        if (lang.equals("in")) lang = "id";
+        else if (lang.equals("iw")) lang = "he";
+        else if (lang.equals("no") || lang.equals("nn")) lang = "nb";
+        if (!SUPPORTED_LANGUAGES.contains(lang)) return;
+        language = lang;
+        wikiHref = wikiBase(lang.equals("nb") ? "no" : lang);
     }
 
     private void initData() {
