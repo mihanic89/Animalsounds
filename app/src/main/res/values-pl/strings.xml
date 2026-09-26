@@ -4,14 +4,14 @@
     <string name="action_settings">Parametry</string>
     <string name="tabs">Karty</string>
     <string name="click">Kliknij na zdjęcie</string>
-    <string name="longclick">Długie kliknij</string>
-    <string name="bigimage">Duże zdjęcia</string>
+    <string name="longclick">Długie kliknięcie</string>
+    <string name="bigimage">Duże zdjęcie</string>
     <string name="game">Gra</string>
-    <string name="category">Zmiany dźwięki, kliknij na zakładkę</string>
-    <string name="clickdesc">Po kliknięciu na grafikę, dźwięki zwierząt grają.</string>
+    <string name="category">Aby zmienić kategorię, kliknij zakładkę</string>
+    <string name="clickdesc">Po kliknięciu obrazka odtwarzany jest dźwięk zwierzęcia.</string>
     <string name="clicktextdesc">Po kliknięciu na tekst - nazwa zwierzęcia brzmi.</string>
-    <string name="longclickdesc">Na długo naciśnij dźwięk jest stracone i duży obraz otwiera</string>
-    <string name="bigimagedesc">Po kliknięciu na duży obraz dźwięk znowu przegrał</string>
+    <string name="longclickdesc">Po długim kliknięciu odtwarzany jest dźwięk i otwiera się duży obraz</string>
+    <string name="bigimagedesc">Po kliknięciu dużego obrazu dźwięk jest odtwarzany ponownie</string>
     <string name="clicktext">Kliknij na tekst</string>
     <string name="gametext">Odgadnij zwierzęta za pomocą dźwięku</string>
     <string name="buy_ads_disable">Usuń reklamy</string>
@@ -21,21 +21,21 @@
     <string name="rd_negativeButtonText">Nigdy</string>
     <string name="rd_formTitle">Wyślij opinię</string>
     <string name="rd_formHint">Powiedz nam, co można poprawić.</string>
-    <string name="rd_formSubmitText">Aby wysłać</string>
+    <string name="rd_formSubmitText">Wyślij</string>
     <string name="rd_formCancelText">Anuluj</string>
 
-    <string name="unlock_text1">Trzeba odgadnąć</string>
-    <string name="unlock_text2">zwierząt, w każdej grze, aby odblokować tę kartę</string>
+    <string name="unlock_text1">Musisz odgadnąć</string>
+    <string name="unlock_text2">zwierząt w dowolnej grze, aby odblokować tę kartę</string>
 
-<string name="fromdottodot">Okulary w rysunki</string>
-<string name="draw">Farba.</string>
+<string name="fromdottodot">Rysowanie po kropkach</string>
+<string name="draw">Rysowanie</string>
 <string name="lullaby">Kołysanka</string>
-<string name="recipe">Dla dzieci przepisy</string>
-<string name="rebuses">Puzzle</string>
-<string name="recipeabc">Przepisy, litery i cyfry</string>
-<string name="phrasebook">Dorosłych i dzieci</string>
+<string name="recipe">Nauka pisania dla dzieci</string>
+<string name="rebuses">Rebusy</string>
+<string name="recipeabc">Nauka pisania: litery i cyfry</string>
+<string name="phrasebook">Rozmówki dla dzieci i dorosłych</string>
 
-<string name="ants">Mrówkowate</string>
+<string name="ants">Mrówki</string>
 <string name="bear">Niedźwiedź</string>
 <string name="bees">Pszczoły</string>
 <string name="bumblebee">Trzmiel</string>
@@ -48,7 +48,7 @@
 <string name="cow">Krowa</string>
 <string name="cricket">Świerszcz</string>
 <string name="crocodile">Krokodyl</string>
-<string name="crow">Kruk</string>
+<string name="crow">Wrona</string>
 <string name="cuckoo">Kukułka</string>
 <string name="chipmunk">Burunduk</string>
 <string name="dog">Pies</string>
@@ -60,7 +60,7 @@
 <string name="eagle">Orzeł</string>
 <string name="elephant">Słoń</string>
 <string name="elk">Łoś</string>
-<string name="fish">Ryby</string>
+<string name="fish">Ryba</string>
 <string name="flamingo">Flaming</string>
 <string name="flies">Mucha</string>
 <string name="fox">Lis</string>
@@ -96,7 +96,7 @@
 <string name="rat">Szczur</string>
 <string name="rhino">Nosorożec</string>
 <string name="seagull">Mewa</string>
-<string name="sealbark">Fokowate</string>
+<string name="sealbark">Uchatka</string>
 <string name="sealion">Lew morski</string>
 <string name="sheep">Owca</string>
 <string name="snake">Wąż</string>
@@ -125,7 +125,7 @@
 <string name="bison">Żubr</string>
 <string name="blackgrouse">Cietrzew</string>
 <string name="boar">Dzik</string>
-<string name="hummingbird">Kolibrowate</string>
+<string name="hummingbird">Koliber</string>
 <string name="lobster">Rak</string>
 <string name="cicada">Cykada</string>
 <string name="bullfinch">Gil</string>
@@ -140,9 +140,9 @@
 <string name="hyena">Hiena</string>
 <string name="dragon">Smok</string>
 <string name="unicorn">Jednorożec</string>
-<string name="pokemon">Pokemon</string>
+<string name="pokemon">Pokémon</string>
 <string name="buckbeak">Hipogryf</string>
-<string name="dinosaur">Dinozaury</string>
+<string name="dinosaur">Dinozaur</string>
 <string name="pegasus">Pegaz</string>
 <string name="centaur">Centaur</string>
 <string name="phoenix">Feniks</string>

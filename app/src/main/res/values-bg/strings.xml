@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Звуци на животни. Изучай зверове и играе.</string>
+    <string name="app_name">Звуци на животни</string>
     <string name="action_settings">Настройки</string>
-    <string name="tabs">Разделите</string>
+    <string name="tabs">Раздели</string>
     <string name="click">Клик върху картинката</string>
     <string name="longclick">Дълъг клик</string>
     <string name="bigimage">Голямо изображение</string>
-    <string name="game">Играта</string>
+    <string name="game">Игра</string>
     <string name="category">За смяна на звуци кликнете върху раздела</string>
-    <string name="clickdesc">При клик на снимката и пуснат звука на животното.</string>
+    <string name="clickdesc">При клик върху снимката се възпроизвежда звукът на животното.</string>
     <string name="clicktextdesc">При клик върху текста - звучи името на животното.</string>
-    <string name="longclickdesc">При дълг е на един клик разстояние пуснат звук и се отваря голямо изображение</string>
-    <string name="bigimagedesc">При натискане на голяма картина, звук и пуснат отново</string>
-    <string name="clicktext">Клик текста</string>
-    <string name="gametext">Угадывай на животните по звук</string>
-    <string name="buy_ads_disable">Изтрий реклама</string>
+    <string name="longclickdesc">При дълго натискане се възпроизвежда звук и се отваря голямо изображение</string>
+    <string name="bigimagedesc">При натискане върху голямото изображение звукът се възпроизвежда отново</string>
+    <string name="clicktext">Клик върху текста</string>
+    <string name="gametext">Познай животните по звук</string>
+    <string name="buy_ads_disable">Премахване на рекламите</string>
 
     <string name="rd_title">Хареса ли ви приложението?</string>
     <string name="rd_positiveButtonText">По-късно</string>
-    <string name="rd_negativeButtonText">никога</string>
+    <string name="rd_negativeButtonText">Никога</string>
     <string name="rd_formTitle">Изпратете отзиви</string>
     <string name="rd_formHint">Кажете ни какво може да се подобри.</string>
     <string name="rd_formSubmitText">За изпращане</string>
-    <string name="rd_formCancelText">анулиране</string>
+    <string name="rd_formCancelText">Отказ</string>
 
-    <string name="unlock_text1">Трябва да познае</string>
-    <string name="unlock_text2">животните във всяка игра, за да отключите тази раздела</string>
+    <string name="unlock_text1">Трябва да познаете</string>
+    <string name="unlock_text2">животни във всяка игра, за да отключите този раздел</string>
 
 
 <string name="fromdottodot">Рисуваме по точки</string>
 <string name="draw">Рисуване</string>
-<string name="lullaby">Колыбельные</string>
+<string name="lullaby">Приспивни песни</string>
 <string name="recipe">Прописи за деца</string>
-<string name="rebuses">Ребусы</string>
+<string name="rebuses">Ребуси</string>
 <string name="recipeabc">Прописи букви и цифри</string>
 <string name="phrasebook">Разговорник за деца и възрастни</string>
 
@@ -50,7 +50,7 @@
 <string name="cow">Крава</string>
 <string name="cricket">Щурец</string>
 <string name="crocodile">Крокодил</string>
-<string name="crow">Гарван</string>
+<string name="crow">Врана</string>
 <string name="cuckoo">Кукувица</string>
 <string name="chipmunk">Бурундук</string>
 <string name="dog">Куче</string>
@@ -61,13 +61,13 @@
 <string name="duck">Патица</string>
 <string name="eagle">Орел</string>
 <string name="elephant">Слон</string>
-<string name="elk">Лосове</string>
+<string name="elk">Лос</string>
 <string name="fish">Риба</string>
 <string name="flamingo">Фламинго</string>
 <string name="flies">Мухи</string>
 <string name="fox">Лисица</string>
 <string name="frog">Жаба</string>
-<string name="goat">Кози</string>
+<string name="goat">Коза</string>
 <string name="goose">Гъска</string>
 <string name="grasshopper">Скакалец</string>
 <string name="hare">Заек</string>
@@ -76,7 +76,7 @@
 <string name="horse">Кон</string>
 <string name="jackal">Чакал</string>
 <string name="jaguar">Ягуар</string>
-<string name="kangoroo">Ръждиво кенгуру</string>
+<string name="kangoroo">Кенгуру</string>
 <string name="koala">Коала</string>
 <string name="lemur">Лемур</string>
 <string name="leo">Лъв</string>
@@ -98,7 +98,7 @@
 <string name="rat">Плъх</string>
 <string name="rhino">Носорог</string>
 <string name="seagull">Чайка</string>
-<string name="sealbark">Морска котик</string>
+<string name="sealbark">Морски котик</string>
 <string name="sealion">Морски лъв</string>
 <string name="sheep">Овца</string>
 <string name="snake">Змия</string>
@@ -154,11 +154,11 @@
     <string name="sparrow">Врабче</string>
     <string name="pony">Пони</string>
     <string name="spider">Паяк</string>
-    <string name="armadillo">Боен кораб</string>
-    <string name="wombat">Wombat</string>
-    <string name="capybara">Капибарата</string>
+    <string name="armadillo">Броненосец</string>
+    <string name="wombat">Вомбат</string>
+    <string name="capybara">Капибара</string>
     <string name="meerkat">Сурикат</string>
-    <string name="quokka">куока</string>
+    <string name="quokka">Квока</string>
     <string name="sloth">Ленивец</string>
     <string name="monitorlizard">Варан</string>
     <string name="anteater">Мравояд</string>

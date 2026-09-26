@@ -8,44 +8,44 @@
     <string name="bigimage">Nagy kép</string>
     <string name="game">Játék</string>
     <string name="category">A hangok módosításához kattintson a fülre</string>
-    <string name="clickdesc">Amikor rákattint a képre, a hang az állat játszott.</string>
-    <string name="clicktextdesc">A clique a szöveg - a neve egy állat hangok.</string>
-    <string name="longclickdesc">Hosszú kattintás után a hang eltűnik, a nagy kép megnyílik</string>
-    <string name="bigimagedesc">A nagy kép megnyomásával a hang ismét eltűnik</string>
+    <string name="clickdesc">Ha a képre kattint, az állat hangja lejátszódik.</string>
+    <string name="clicktextdesc">A szövegre kattintva felhangzik az állat neve.</string>
+    <string name="longclickdesc">Hosszú kattintásra lejátszódik a hang és megnyílik a nagy kép</string>
+    <string name="bigimagedesc">A nagy képre kattintva a hang újra lejátszódik</string>
     <string name="clicktext">Kattintson a szövegre</string>
-    <string name="gametext">Találd meg az állatok</string>
+    <string name="gametext">Találd ki az állatokat a hangjuk alapján</string>
     <string name="buy_ads_disable">Hirdetések eltávolítása</string>
 
-    <string name="rd_title">Tetszett a jelentkezés?</string>
+    <string name="rd_title">Tetszik az alkalmazás?</string>
     <string name="rd_positiveButtonText">Később</string>
-    <string name="rd_negativeButtonText">soha</string>
+    <string name="rd_negativeButtonText">Soha</string>
     <string name="rd_formTitle">Visszajelzés küldése</string>
     <string name="rd_formHint">Mondja el, mit lehet javítani.</string>
-    <string name="rd_formSubmitText">Küldéshez</string>
-    <string name="rd_formCancelText">törlés</string>
+    <string name="rd_formSubmitText">Küldés</string>
+    <string name="rd_formCancelText">Mégse</string>
 
     <string name="unlock_text1">Tippelned kell</string>
-    <string name="unlock_text2">állatok bármely játék, hogy kinyit ezt a lapot</string>
+    <string name="unlock_text2">állatot bármelyik játékban, hogy feloldd ezt a lapot</string>
 
 
-<string name="fromdottodot">Pontokat húzunk.</string>
+<string name="fromdottodot">Rajzolás pontokból</string>
 <string name="draw">Rajz</string>
 <string name="lullaby">Altatódalok</string>
-<string name="recipe">Gyermekkönyvek</string>
-<string name="rebuses">Visszatérítések</string>
-<string name="recipeabc">Levél és számmásolata</string>
+<string name="recipe">Írásgyakorlók gyerekeknek</string>
+<string name="rebuses">Ábrarejtvények</string>
+<string name="recipeabc">Írásgyakorló: betűk és számok</string>
 <string name="phrasebook">A gyermekek és felnőttek kifejezésgyűjteménye</string>
 
 <string name="ants">Hangyák</string>
 <string name="bear">Medve</string>
 <string name="bees">Méhek</string>
 <string name="bumblebee">Poszméh</string>
-<string name="butterfly">Lepkék</string>
+<string name="butterfly">Pillangó</string>
 <string name="camel">Teve</string>
 <string name="cat">Macska</string>
 <string name="cavy">Tengerimalac</string>
 <string name="chiken">Tyúk</string>
-<string name="cock">Házityúk</string>
+<string name="cock">Kakas</string>
 <string name="cow">Tehén</string>
 <string name="cricket">Tücskök</string>
 <string name="crocodile">Krokodil</string>
@@ -57,7 +57,7 @@
 <string name="donkey">Szamár</string>
 <string name="dove">Galamb</string>
 <string name="dragonfly">Szitakötő</string>
-<string name="duck">Úszórécék</string>
+<string name="duck">Kacsa</string>
 <string name="eagle">Sas</string>
 <string name="elephant">Elefánt</string>
 <string name="elk">Jávorszarvas</string>
@@ -69,9 +69,9 @@
 <string name="goat">Kecske</string>
 <string name="goose">Házilúd</string>
 <string name="grasshopper">Szöcske</string>
-<string name="hare">Nyúl</string>
+<string name="hare">Mezei nyúl</string>
 <string name="hawk">Héja</string>
-<string name="hippopotamus">Vízilófélék</string>
+<string name="hippopotamus">Víziló</string>
 <string name="horse">Ló</string>
 <string name="jackal">Sakál</string>
 <string name="jaguar">Jaguár</string>
@@ -117,13 +117,13 @@
 <string name="hedgehog">Sündisznó</string>
 <string name="mole">Vakond</string>
 <string name="otter">Vidra</string>
-<string name="rabbit">Nyúl</string>
+<string name="rabbit">Házinyúl</string>
 <string name="robin">Vörösbegy</string>
 <string name="skunk">Bűzösborz</string>
 <string name="tit">Cinege</string>
 <string name="toucan">Tukán</string>
 <string name="turtle">Teknős</string>
-<string name="bison">Bison</string>
+<string name="bison">Bölény</string>
 <string name="blackgrouse">Nyírfajd</string>
 <string name="boar">Vaddisznó</string>
 <string name="hummingbird">Kolibri</string>

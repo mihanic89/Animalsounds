@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Kuulostaa lihotuseläinten</string>
+    <string name="app_name">Eläinten äänet</string>
     <string name="action_settings">Asetukset</string>
-    <string name="tabs">Välilehtiä</string>
+    <string name="tabs">Välilehdet</string>
     <string name="click">Napsauta kuvaa</string>
-    <string name="longclick">Valitse kauan</string>
+    <string name="longclick">Pitkä painallus</string>
     <string name="bigimage">Suuri kuva</string>
     <string name="game">Peli</string>
-    <string name="category">Muutoksen kuulostaakin, napsauta tab</string>
-    <string name="clickdesc">Kun napsautat, kuva, ääni eläin on ollut.</string>
-    <string name="clicktextdesc">Klo klikki tekstissä - nimeämme eläimen kuulostaa.</string>
-    <string name="longclickdesc">Valitse vihdoin ääni katoaa ja iso kuva aukeaa</string>
-    <string name="bigimagedesc">Painamalla iso kuva, ääni katoaa jälleen</string>
-    <string name="clicktext">Valitse teksti</string>
+    <string name="category">Vaihda luokkaa napsauttamalla välilehteä</string>
+    <string name="clickdesc">Kun napsautat kuvaa, eläimen ääni toistetaan.</string>
+    <string name="clicktextdesc">Kun napsautat tekstiä, eläimen nimi äännetään.</string>
+    <string name="longclickdesc">Pitkällä painalluksella ääni toistetaan ja kuva avautuu koko näytölle</string>
+    <string name="bigimagedesc">Kun napautat suurta kuvaa, ääni toistetaan uudelleen</string>
+    <string name="clicktext">Napsauta tekstiä</string>
     <string name="gametext">Arvaa eläimet äänellä</string>
     <string name="buy_ads_disable">Poista mainokset</string>
 
     <string name="rd_title">Piditkö sovelluksesta?</string>
     <string name="rd_positiveButtonText">Myöhemmin</string>
-    <string name="rd_negativeButtonText">ei koskaan</string>
+    <string name="rd_negativeButtonText">Ei koskaan</string>
     <string name="rd_formTitle">Lähetä palautetta</string>
     <string name="rd_formHint">Kerro meille, mitä voidaan parantaa.</string>
     <string name="rd_formSubmitText">Lähetä</string>
-    <string name="rd_formCancelText">peruutus</string>
+    <string name="rd_formCancelText">Peruuta</string>
 
     <string name="unlock_text1">Sinun täytyy arvata</string>
-    <string name="unlock_text2">Eläimet kaikissa peleissä tämän välilehden avaamiseksi</string>
+    <string name="unlock_text2">eläintä missä tahansa pelissä avataksesi tämän välilehden</string>
 
-<string name="fromdottodot">Maalaamasi pisteistä</string>
-<string name="draw">Sormivärimaalauksista</string>
+<string name="fromdottodot">Piirtäminen pisteistä</string>
+<string name="draw">Piirtäminen</string>
 <string name="lullaby">Tuutulauluja</string>
-<string name="recipe">Resepti lapsille</string>
-<string name="rebuses">Palapelit</string>
-<string name="recipeabc">Resepti aakkosnumeeriset</string>
-<string name="phrasebook">Fraasikokoelmissa lapsille ja aikuisille</string>
+<string name="recipe">Kirjoitusharjoituksia lapsille</string>
+<string name="rebuses">Rebukset</string>
+<string name="recipeabc">Kirjoitusharjoituksia: kirjaimet ja numerot</string>
+<string name="phrasebook">Fraasisanakirja lapsille ja aikuisille</string>
 
 <string name="ants">Muurahaisia</string>
 <string name="bear">Karhu</string>
@@ -79,7 +79,7 @@
 <string name="lemur">Maki</string>
 <string name="leo">Leijona</string>
 <string name="lynx">Ilves</string>
-<string name="mantis">Sirkka</string>
+<string name="mantis">Rukoilijasirkka</string>
 <string name="monkey">Apina</string>
 <string name="mosquito">Hyttynen</string>
 <string name="mouse">Hiiri</string>
@@ -98,7 +98,7 @@
 <string name="seagull">Lokki</string>
 <string name="sealbark">Merikarhu</string>
 <string name="sealion">Merileijona</string>
-<string name="sheep">Lamaas</string>
+<string name="sheep">Lammas</string>
 <string name="snake">Käärme</string>
 <string name="squirrel">Orava</string>
 <string name="tiger">Tiikeri</string>
@@ -141,7 +141,7 @@
 <string name="dragon">Lohikäärme</string>
 <string name="unicorn">Yksisarvinen</string>
 <string name="pokemon">Pokémon</string>
-<string name="buckbeak">Hevoskotka</string>
+<string name="buckbeak">Hippogrifi</string>
 <string name="dinosaur">Dinosaurus</string>
 <string name="pegasus">Pegasos</string>
 <string name="centaur">Kentauri</string>

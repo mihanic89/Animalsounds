@@ -2,39 +2,39 @@
 <resources>
     <string name="app_name">Hayvanların sesleri</string>
     <string name="action_settings">Ayar</string>
-    <string name="tabs">Sekme</string>
+    <string name="tabs">Sekmeler</string>
     <string name="click">Görüntüye tıklayın</string>
     <string name="longclick">Uzun tıklama</string>
     <string name="bigimage">Büyük resim</string>
-    <string name="game">oyun</string>
-    <string name="category">Bir sekmeye tıklayın sesleri değiştirmek için</string>
+    <string name="game">Oyun</string>
+    <string name="category">Kategoriyi değiştirmek için bir sekmeye tıklayın</string>
     <string name="clickdesc">Resmin üzerine tıkladığınızda, hayvanın sesi çalınır.</string>
-    <string name="clicktextdesc">Metindeki clike"'"de  bir hayvanın adı geliyor.</string>
-    <string name="longclickdesc">Uzun bir süre tıklayın ses kaybolur ve büyük görüntü açılır</string>
-    <string name="bigimagedesc">Büyük resme basarak ses tekrar kaybolur</string>
+    <string name="clicktextdesc">Metne tıkladığınızda hayvanın adı okunur.</string>
+    <string name="longclickdesc">Uzun tıklamada ses çalınır ve büyük resim açılır</string>
+    <string name="bigimagedesc">Büyük resme tıklandığında ses tekrar çalınır</string>
     <string name="clicktext">Metni tıklayın</string>
-    <string name="gametext">Sesleri hayvanlarla tahmin et</string>
-    <string name="buy_ads_disable">Reklamları kaldırmak</string>
+    <string name="gametext">Hayvanları sesinden tahmin et</string>
+    <string name="buy_ads_disable">Reklamları kaldır</string>
 
     <string name="rd_title">Uygulamayı Beğendin mi?</string>
     <string name="rd_positiveButtonText">Daha sonra</string>
-    <string name="rd_negativeButtonText">asla</string>
+    <string name="rd_negativeButtonText">Asla</string>
     <string name="rd_formTitle">Geri bildirim gönder</string>
     <string name="rd_formHint">Bize neler geliştirilebileceğini söyle.</string>
-    <string name="rd_formSubmitText">Göndermek için</string>
-    <string name="rd_formCancelText">iptal</string>
+    <string name="rd_formSubmitText">Gönder</string>
+    <string name="rd_formCancelText">İptal</string>
 
     <string name="unlock_text1">Tahmin etmelisin</string>
-    <string name="unlock_text2">bu sekmenin kilidini açmak için</string>
+    <string name="unlock_text2">hayvan tahmin et, bu sekmenin kilidini açmak için</string>
 
 
-<string name="fromdottodot">Bu drawables puan</string>
-<string name="draw">Boya.</string>
+<string name="fromdottodot">Noktalarla çizim</string>
+<string name="draw">Çizim</string>
 <string name="lullaby">Ninni</string>
-<string name="recipe">Çocuklar için yemek tarifleri</string>
+<string name="recipe">Çocuklar için yazı defterleri</string>
 <string name="rebuses">Bulmaca</string>
-<string name="recipeabc">Yemek tarifleri, harfler ve sayılar</string>
-<string name="phrasebook">Yetişkinler ve çocuklar</string>
+<string name="recipeabc">Harfler ve sayılar yazma</string>
+<string name="phrasebook">Çocuklar ve yetişkinler için konuşma kılavuzu</string>
 
 <string name="ants">Karıncalar</string>
 <string name="bear">Ayı</string>
@@ -50,7 +50,7 @@
 <string name="cricket">Cırcırböceği</string>
 <string name="crocodile">Timsah</string>
 <string name="crow">Karga</string>
-<string name="cuckoo">Guguk</string>
+<string name="cuckoo">Guguk kuşu</string>
 <string name="chipmunk">Sibirya çizgili sincab</string>
 <string name="dog">Köpek</string>
 <string name="dolphin">Yunus</string>

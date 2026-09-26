@@ -4,39 +4,39 @@
     <string name="action_settings">Inställning</string>
     <string name="tabs">Flikar</string>
     <string name="click">Klicka på bilden</string>
-    <string name="longclick">Ett långt klick</string>
+    <string name="longclick">Långt klick</string>
     <string name="bigimage">Stor bild</string>
     <string name="game">Spel</string>
     <string name="category">För att ändra ljud, klicka på fliken</string>
     <string name="clickdesc">Genom att klicka på bilden spelar ljudet av djuret.</string>
-    <string name="clicktextdesc">När du klickar på texten-låter djurets namn.</string>
+    <string name="clicktextdesc">När du klickar på texten sägs djurets namn.</string>
     <string name="longclickdesc">Med ett långt klick spelas ljudet och en stor bild öppnas</string>
     <string name="bigimagedesc">När du klickar på den stora bilden spelas ljudet igen</string>
     <string name="clicktext">Klicka på texten</string>
     <string name="gametext">Gissa djuren med ljud</string>
     <string name="buy_ads_disable">Ta bort annonser</string>
 
-    <string name="rd_title">Gillade du ansökan?</string>
+    <string name="rd_title">Gillar du appen?</string>
     <string name="rd_positiveButtonText">Senare</string>
-    <string name="rd_negativeButtonText">aldrig</string>
+    <string name="rd_negativeButtonText">Aldrig</string>
     <string name="rd_formTitle">Skicka feedback</string>
     <string name="rd_formHint">Berätta för oss vad som kan förbättras.</string>
-    <string name="rd_formSubmitText">Att skicka</string>
-    <string name="rd_formCancelText">annullering</string>
+    <string name="rd_formSubmitText">Skicka</string>
+    <string name="rd_formCancelText">Avbryt</string>
 
     <string name="unlock_text1">Du måste gissa</string>
     <string name="unlock_text2">djur i alla spel för att låsa upp den här fliken</string>
 
 
-<string name="fromdottodot">Rita på poäng</string>
+<string name="fromdottodot">Rita efter prickar</string>
 <string name="draw">Ritning</string>
 <string name="lullaby">Vaggvisa</string>
-<string name="recipe">Recept för barn</string>
+<string name="recipe">Skrivövningar för barn</string>
 <string name="rebuses">Bildgåtor</string>
-<string name="recipeabc">Recept bokstäver och siffror</string>
-<string name="phrasebook">PhraseBook för barn och vuxna</string>
+<string name="recipeabc">Skrivövningar: bokstäver och siffror</string>
+<string name="phrasebook">Parlör för barn och vuxna</string>
 
-<string name="ants">Myra</string>
+<string name="ants">Myror</string>
 <string name="bear">Björn</string>
 <string name="bees">Honungsbi</string>
 <string name="bumblebee">Humla</string>
@@ -100,12 +100,12 @@
 <string name="sealbark">Pälssäl</string>
 <string name="sealion">Sjölejon</string>
 <string name="sheep">Får</string>
-<string name="snake">Ormar</string>
+<string name="snake">Orm</string>
 <string name="squirrel">Ekorre</string>
 <string name="tiger">Tiger</string>
 <string name="turkey">Kalkon</string>
 <string name="walrus">Valross</string>
-<string name="whale">Knölval</string>
+<string name="whale">Val</string>
 <string name="wolf">Varg</string>
 <string name="woodpecker">Hackspett</string>
 <string name="zebra">Zebra</string>
@@ -123,7 +123,7 @@
 <string name="tit">Talgoxe</string>
 <string name="toucan">Tukan</string>
 <string name="turtle">Sköldpadda</string>
-<string name="bison">Uroxen</string>
+<string name="bison">Bison</string>
 <string name="blackgrouse">Orre</string>
 <string name="boar">Vildsvin</string>
 <string name="hummingbird">Kolibri</string>
@@ -131,7 +131,7 @@
 <string name="cicada">Cikada</string>
 <string name="bullfinch">Domherre</string>
 <string name="stork">Stork</string>
-<string name="heron">Ägretthäger </string>
+<string name="heron">Häger</string>
 <string name="canary">Kanariefågel</string>
 <string name="magpie">Skata</string>
 <string name="bat">Fladdermus</string>
@@ -151,7 +151,7 @@
 <string name="griffon">Grip</string>
     <string name="shark">Haj</string>
 
-    <string name="sparrow">Fältsparvar</string>
+    <string name="sparrow">Sparv</string>
     <string name="pony">ponny</string>
     <string name="spider">spindel</string>
     <string name="armadillo">bältdjur</string>
@@ -167,6 +167,6 @@
     <string name="wolverine">järv</string>
 
     <string name="yeti">Yeti</string>
-    <string name="scorpion">Scorpion</string>
+    <string name="scorpion">Skorpion</string>
 
 </resources>

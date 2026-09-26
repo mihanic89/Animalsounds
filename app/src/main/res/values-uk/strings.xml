@@ -4,20 +4,20 @@
     <string name="action_settings">Параметри</string>
     <string name="tabs">Вкладки</string>
     <string name="click">Натисніть на картинку</string>
-    <string name="longclick">Довгі натисніть</string>
+    <string name="longclick">Довгий клік</string>
     <string name="bigimage">Великі зображення</string>
     <string name="category">Для зміни звуків, натисніть на вкладку</string>
-    <string name="clickdesc">При натисканні на картинку, звуки тварин грають.</string>
+    <string name="clickdesc">При натисканні на зображення відтворюється звук тварини.</string>
     <string name="clicktextdesc">При кліці на текст - назва тварини звучить.</string>
-    <string name="longclickdesc">На довго натисніть звук втрачається і відкривається велике зображення</string>
-    <string name="bigimagedesc">При натисканні на велике зображення звук знову програв</string>
+    <string name="longclickdesc">При довгому натисканні відтворюється звук і відкривається велике зображення</string>
+    <string name="bigimagedesc">При натисканні на велике зображення звук відтворюється знову</string>
     <string name="clicktext">Натисніть на текст</string>
     <string name="buy_ads_disable">Видалити оголошення</string>
 
-    <string name="rd_title">Вам сподобалося додаток?</string>
-    <string name="rd_positiveButtonText">пізніше</string>
-    <string name="rd_negativeButtonText">ніколи</string>
-    <string name="rd_formTitle">відправити відгук</string>
+    <string name="rd_title">Вам сподобався застосунок?</string>
+    <string name="rd_positiveButtonText">Пізніше</string>
+    <string name="rd_negativeButtonText">Ніколи</string>
+    <string name="rd_formTitle">Надіслати відгук</string>
     <string name="rd_formHint">Розкажіть нам що можна поліпшити</string>
     <string name="rd_formSubmitText">Надіслати</string>
     <string name="rd_formCancelText">Скасувати</string>
@@ -27,13 +27,13 @@
 
 
 
-    <string name="fromdottodot">Окуляри в малюнки</string>
-    <string name="draw">Фарба.</string>
+    <string name="fromdottodot">Малюємо за крапками</string>
+    <string name="draw">Малювання</string>
     <string name="lullaby">Колискова</string>
-    <string name="recipe">Для дітей рецепти</string>
-    <string name="rebuses">Головоломка</string>
-    <string name="recipeabc">Рецепти, букви і цифри</string>
-    <string name="phrasebook">Дорослих і дітей</string>
+    <string name="recipe">Прописи для дітей</string>
+    <string name="rebuses">Ребуси</string>
+    <string name="recipeabc">Прописи: літери та цифри</string>
+    <string name="phrasebook">Розмовник для дітей і дорослих</string>
 
 
 

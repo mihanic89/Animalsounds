@@ -2,38 +2,38 @@
 <resources>
     <string name="app_name">Geluiden van dieren</string>
     <string name="action_settings">Instelling</string>
-    <string name="tabs">Tabblad</string>
+    <string name="tabs">Tabbladen</string>
     <string name="click">Klik op afbeelding</string>
     <string name="longclick">Lange klik</string>
     <string name="bigimage">Groot beeld</string>
     <string name="game">Spel</string>
     <string name="category">Voor verandering van geluiden klikt u op een tabblad</string>
     <string name="clickdesc">Als je op de foto klikt, wordt het geluid van het dier afgespeeld.</string>
-    <string name="clicktextdesc">Bij kliek in de tekst - de naam van een dier klinkt.</string>
-    <string name="longclickdesc">Bij lange klik is het geluid verloren en de grote afbeelding opent</string>
-    <string name="bigimagedesc">Door op het grote beeld te drukken is het geluid weer verloren.</string>
+    <string name="clicktextdesc">Als je op de tekst klikt, wordt de naam van het dier uitgesproken.</string>
+    <string name="longclickdesc">Bij een lange klik wordt het geluid afgespeeld en opent de grote afbeelding</string>
+    <string name="bigimagedesc">Als je op de grote afbeelding klikt, wordt het geluid opnieuw afgespeeld.</string>
     <string name="clicktext">Klik op tekst</string>
     <string name="gametext">Raad de dieren</string>
     <string name="buy_ads_disable">Verwijder advertenties</string>
 
-    <string name="rd_title">Vond je sollicitatie leuk?</string>
+    <string name="rd_title">Vind je de app leuk?</string>
     <string name="rd_positiveButtonText">Later</string>
-    <string name="rd_negativeButtonText">nooit</string>
+    <string name="rd_negativeButtonText">Nooit</string>
     <string name="rd_formTitle">Feedback verzenden</string>
     <string name="rd_formHint">Vertel ons wat kan worden verbeterd.</string>
     <string name="rd_formSubmitText">Verzenden</string>
-    <string name="rd_formCancelText">annulering</string>
+    <string name="rd_formCancelText">Annuleren</string>
 
-    <string name="unlock_text1">Je moet raden.</string>
-    <string name="unlock_text2">dieren in elk spel om dit tabblad te ontgrendelen</string>
+    <string name="unlock_text1">Je moet nog</string>
+    <string name="unlock_text2">dieren raden in een spel om dit tabblad te ontgrendelen</string>
 
-<string name="fromdottodot">We putten uit punten</string>
+<string name="fromdottodot">Tekenen met stippen</string>
 <string name="draw">Tekening</string>
-<string name="lullaby">Slaapliedje</string>
-<string name="recipe">Copy-books for children</string>
+<string name="lullaby">Slaapliedjes</string>
+<string name="recipe">Schrijfboekjes voor kinderen</string>
 <string name="rebuses">Rebussen</string>
-<string name="recipeabc">Copy-books of a letter and figure</string>
-<string name="phrasebook">The phrasebook for children and volwassenen</string>
+<string name="recipeabc">Schrijfboekjes: letters en cijfers</string>
+<string name="phrasebook">Taalgids voor kinderen en volwassenen</string>
 
 <string name="ants">Mieren</string>
 <string name="bear">Beer</string>
@@ -42,7 +42,7 @@
 <string name="butterfly">Vlinder</string>
 <string name="camel">Kameel</string>
 <string name="cat">Kat</string>
-<string name="cavy">Cavia"'"s</string>
+<string name="cavy">Cavia</string>
 <string name="chiken">Kip</string>
 <string name="cock">Haan</string>
 <string name="cow">Koe</string>
@@ -60,7 +60,7 @@
 <string name="eagle">Arend</string>
 <string name="elephant">Olifant</string>
 <string name="elk">Eland</string>
-<string name="fish">Vissen</string>
+<string name="fish">Vis</string>
 <string name="flamingo">Flamingo</string>
 <string name="flies">Vliegen</string>
 <string name="fox">Vos</string>
@@ -87,7 +87,7 @@
 <string name="ostrich">Struisvogel</string>
 <string name="owl">Uil</string>
 <string name="panda">Panda</string>
-<string name="parrot">Papegaaien</string>
+<string name="parrot">Papegaai</string>
 <string name="peacock">Pauw</string>
 <string name="pelican">Pelikaan</string>
 <string name="penguin">Pinguïn</string>
@@ -96,7 +96,7 @@
 <string name="rat">Rat</string>
 <string name="rhino">Neushoorn</string>
 <string name="seagull">Meeuw</string>
-<string name="sealbark">Zeeber</string>
+<string name="sealbark">Pelsrob</string>
 <string name="sealion">Zeeleeuw</string>
 <string name="sheep">Schaap</string>
 <string name="snake">Slang</string>
@@ -104,7 +104,7 @@
 <string name="tiger">Tijger</string>
 <string name="turkey">Kalkoen</string>
 <string name="walrus">Walrus</string>
-<string name="whale">Walvisachtigen</string>
+<string name="whale">Walvis</string>
 <string name="wolf">Wolf</string>
 <string name="woodpecker">Specht</string>
 <string name="zebra">Zebra</string>
@@ -112,22 +112,22 @@
 <string name="beaver">Bever</string>
 <string name="catbird">Lijster</string>
 <string name="deer">Hert</string>
-<string name="giraffe">Giraffa</string>
+<string name="giraffe">Giraf</string>
 <string name="hedgehog">Egel</string>
 <string name="mole">Mol</string>
 <string name="otter">Otter</string>
 <string name="rabbit">Konijn</string>
 <string name="robin">Roodborst</string>
 <string name="skunk">Skunk</string>
-<string name="tit">Mezen</string>
+<string name="tit">Mees</string>
 <string name="toucan">Toekan</string>
 <string name="turtle">Schildpad</string>
 <string name="bison">Bizon</string>
 <string name="blackgrouse">Korhoen</string>
 <string name="boar">Wild zwijn</string>
 <string name="hummingbird">Kolibrie</string>
-<string name="lobster">Kreeft</string>
-<string name="cicada">Krekel</string>
+<string name="lobster">Rivierkreeft</string>
+<string name="cicada">Cicade</string>
 <string name="bullfinch">Goudvink</string>
 <string name="stork">Ooievaar</string>
 <string name="heron">Reiger</string>
@@ -152,10 +152,10 @@
 
     <string name="sparrow">Huismus</string>
     <string name="pony">pony</string>
-    <string name="spider">Kobbe</string>
+    <string name="spider">Spin</string>
     <string name="armadillo">gordeldier</string>
     <string name="wombat">wombat</string>
-    <string name="capybara">Capibaraa</string>
+    <string name="capybara">Capibara</string>
     <string name="meerkat">Stokstaartje</string>
     <string name="quokka">Quokka</string>
     <string name="sloth">luiaard</string>

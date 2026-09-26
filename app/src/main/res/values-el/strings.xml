@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Τους ήχους των ζώων</string>
+    <string name="app_name">Ήχοι ζώων</string>
     <string name="action_settings">Ρυθμίσεις</string>
     <string name="tabs">Καρτέλες</string>
     <string name="click">Κλικ στην εικόνα</string>
-    <string name="longclick">Μια μακρά κλικ</string>
+    <string name="longclick">Παρατεταμένο κλικ</string>
     <string name="bigimage">Μεγάλη εικόνα</string>
     <string name="game">Παιχνίδι</string>
     <string name="category">Για να αλλάξετε τους ήχους κάντε κλικ στην καρτέλα</string>
@@ -16,29 +16,29 @@
     <string name="gametext">Μαντέψτε τα ζώα με ήχο</string>
     <string name="buy_ads_disable">Κατάργηση διαφημίσεων</string>
 
-    <string name="rd_title">Σου άρεσε το app?</string>
+    <string name="rd_title">Σου άρεσε η εφαρμογή;</string>
     <string name="rd_positiveButtonText">Αργότερα</string>
     <string name="rd_negativeButtonText">Ποτέ</string>
     <string name="rd_formTitle">Αποστολή σχολίων</string>
     <string name="rd_formHint">Πείτε μας τι μπορεί να βελτιωθεί.</string>
-    <string name="rd_formSubmitText">Για αποστολή</string>
+    <string name="rd_formSubmitText">Αποστολή</string>
     <string name="rd_formCancelText">Ακύρωση</string>
 
-    <string name="unlock_text1">Θα πρέπει να μαντέψει</string>
+    <string name="unlock_text1">Πρέπει να μαντέψετε</string>
     <string name="unlock_text2">ζώα σε κάθε παιχνίδι για να ξεκλειδώσετε αυτήν την καρτέλα</string>
 
 <string name="fromdottodot">Σχέδιο στα σημεία</string>
 <string name="draw">Σχέδιο</string>
 <string name="lullaby">Νανουρίσματα</string>
-<string name="recipe">Συνταγή για παιδιά</string>
+<string name="recipe">Καλλιγραφία για παιδιά</string>
 <string name="rebuses">Αινίγματα</string>
-<string name="recipeabc">Συνταγή γράμματα και αριθμούς</string>
+<string name="recipeabc">Καλλιγραφία: γράμματα και αριθμοί</string>
 <string name="phrasebook">Φρασεολόγιο για παιδιά και ενήλικες</string>
 
 <string name="ants">Μυρμήγκι</string>
 <string name="bear">Αρκούδα</string>
 <string name="bees">Μέλισσα</string>
-<string name="bumblebee">Μέλισσα</string>
+<string name="bumblebee">Βομβίνος</string>
 <string name="butterfly">Πεταλούδα</string>
 <string name="camel">Καμήλα</string>
 <string name="cat">Γάτα</string>
@@ -69,7 +69,7 @@
 <string name="goose">Χήνα</string>
 <string name="grasshopper">Ακρίδα</string>
 <string name="hare">Λαγός</string>
-<string name="hawk">Αετός</string>
+<string name="hawk">Γεράκι</string>
 <string name="hippopotamus">Ιπποπόταμος</string>
 <string name="horse">Άλογο</string>
 <string name="jackal">Τσακάλι</string>
@@ -96,7 +96,7 @@
 <string name="rat">Αρουραίος</string>
 <string name="rhino">Ρινόκερος</string>
 <string name="seagull">Γλάρος</string>
-<string name="sealbark">Θαλάσσιος λέοντας</string>
+<string name="sealbark">Γουνοφώκια</string>
 <string name="sealion">Θαλάσσιος λέοντας</string>
 <string name="sheep">Πρόβατο</string>
 <string name="snake">Φίδι</string>
@@ -126,7 +126,7 @@
 <string name="blackgrouse">Λυροπετεινός</string>
 <string name="boar">Αγριογούρουνο</string>
 <string name="hummingbird">Κολιμπρί</string>
-<string name="lobster">Αστακός</string>
+<string name="lobster">Καραβίδα</string>
 <string name="cicada">Τζιτζίκι</string>
 <string name="bullfinch">Πύρρουλας</string>
 <string name="stork">Πελαργός</string>

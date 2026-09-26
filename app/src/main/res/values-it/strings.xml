@@ -3,52 +3,52 @@
 
     <string name="app_name">Suoni di animali</string>
     <string name="action_settings">Impostazioni</string>
-    <string name="tabs">Etichette</string>
-    <string name="click">Clicchi l"'"immagine</string>
-    <string name="longclick">A lungo faccia clic</string>
+    <string name="tabs">Schede</string>
+    <string name="click">Clicca sull\'immagine</string>
+    <string name="longclick">Clic lungo</string>
     <string name="bigimage">Immagine grande</string>
-    <string name="category">Per cambiamento di suoni per cliccare un"'"etichetta</string>
-    <string name="clickdesc">Quando clicca il quadro, il suono dell"'"animale è giocato.</string>
-    <string name="clicktextdesc">A cricca nel testo - il nome di un animale suona.</string>
-    <string name="longclickdesc">A clic lungo il suono è perso e l"'"immagine grande si apre</string>
-    <string name="bigimagedesc">Premendo l"'"immagine grande il suono è perso di nuovo</string>
-    <string name="clicktext">Clicchi il testo</string>
+    <string name="category">Per cambiare categoria, clicca su una scheda</string>
+    <string name="clickdesc">Quando clicchi sull\'immagine, viene riprodotto il suono dell\'animale.</string>
+    <string name="clicktextdesc">Cliccando sul testo viene pronunciato il nome dell\'animale.</string>
+    <string name="longclickdesc">Con un clic lungo viene riprodotto il suono e si apre l\'immagine a schermo intero</string>
+    <string name="bigimagedesc">Cliccando sull\'immagine a schermo intero il suono viene riprodotto di nuovo</string>
+    <string name="clicktext">Clicca sul testo</string>
     <string name="gametext">Indovinate gli animali per suono</string>
     <string name="game">Gioco</string>
     <string name="buy_ads_disable">Rimuovi annunci</string>
 
-    <string name="rd_title">Ti e"'"piaciuta la domanda?</string>
+    <string name="rd_title">Ti è piaciuta l\'app?</string>
     <string name="rd_positiveButtonText">Più tardi</string>
-    <string name="rd_negativeButtonText">mai</string>
+    <string name="rd_negativeButtonText">Mai</string>
     <string name="rd_formTitle">Invia feedback</string>
     <string name="rd_formHint">Dicci cosa può essere migliorato.</string>
-    <string name="rd_formSubmitText">Per inviare</string>
-    <string name="rd_formCancelText">cancellazione</string>
+    <string name="rd_formSubmitText">Invia</string>
+    <string name="rd_formCancelText">Annulla</string>
 
     <string name="unlock_text1">Devi indovinare</string>
     <string name="unlock_text2">animali in qualsiasi gioco per sbloccare questa scheda</string>
 
 
-    <string name="fromdottodot">Attingiamo punti</string>
+    <string name="fromdottodot">Disegno con i punti</string>
     <string name="draw">Disegno</string>
     <string name="lullaby">Ninnananne</string>
-    <string name="recipe">Quaderni per bambini</string>
+    <string name="recipe">Quaderni di scrittura per bambini</string>
     <string name="rebuses">Rebus</string>
-    <string name="recipeabc">Quaderni di una lettera e una cifra</string>
+    <string name="recipeabc">Quaderni di lettere e numeri</string>
     <string name="phrasebook">Il vocabolarietto per bambini e adulti</string>
 
 
 
     <string name="ants">Formiche</string>
     <string name="bear">Orso</string>
-    <string name="bees">Ape</string>
+    <string name="bees">Api</string>
     <string name="bumblebee">Bombo#Bombus</string>
     <string name="butterfly">Farfalla</string>
     <string name="camel">Cammello</string>
     <string name="cat">Gatto</string>
     <string name="cavy">Cavia</string>
     <string name="chiken">Gallina</string>
-    <string name="cock">Pollo</string>
+    <string name="cock">Gallo</string>
     <string name="cow">Mucca</string>
     <string name="cricket">Grillo domestico</string>
     <string name="crocodile">Coccodrillo</string>
@@ -84,7 +84,7 @@
     <string name="leo">Leone</string>
     <string name="lynx">Lince</string>
     <string name="mantis">Mantide</string>
-    <string name="monkey">Macaca</string>
+    <string name="monkey">Scimmia</string>
     <string name="mosquito">Zanzara</string>
     <string name="mouse">Topo</string>
     <string name="nightingale">Usignolo</string>
@@ -96,11 +96,11 @@
     <string name="pelican">Pellicano</string>
     <string name="penguin">Pinguino</string>
     <string name="pig">Maiale</string>
-    <string name="racoon">Procyon</string>
+    <string name="racoon">Procione</string>
     <string name="rat">Ratto</string>
     <string name="rhino">Rinoceronte</string>
     <string name="seagull">Gabbiano</string>
-    <string name="sealbark">Callorino dell"'Alaska</string>
+    <string name="sealbark">Otaria orsina</string>
     <string name="sealion">Leone marino</string>
     <string name="sheep">Pecora</string>
     <string name="snake">Serpente</string>
@@ -122,7 +122,7 @@
     <string name="otter">Lontra</string>
     <string name="rabbit">Coniglio</string>
     <string name="robin">Pettirosso</string>
-    <string name="skunk">Mephitidae</string>
+    <string name="skunk">Moffetta</string>
     <string name="tit">Cincia</string>
     <string name="toucan">Tucano</string>
     <string name="turtle">Tartaruga</string>

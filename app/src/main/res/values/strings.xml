@@ -14,7 +14,7 @@
     <string name="game">Game</string>
     <string name="gametext">Guess the animals by sound</string>
     <string name="buy_ads_disable">Remove ads</string>
-    <string name="rd_title">Did you like app?</string>
+    <string name="rd_title">Did you like the app?</string>
     <string name="rd_positiveButtonText" >Maybe later</string>
     <string name="rd_negativeButtonText" >Never</string>
     <string name="rd_formTitle" >Submit Feedback</string>
@@ -128,7 +128,7 @@
     <string name="mosquito"> Mosquito </string>
     <string name="grasshopper"> Grasshopper </string>
     <string name="bumblebee"> Bumblebee </string>
-    <string name="cricket"> Сricket #Gryllus_campestris </string>
+    <string name="cricket"> Cricket #Gryllus_campestris </string>
     <string name="butterfly"> Butterfly </string>
     <string name="dragonfly"> Dragonfly </string>
     <string name="ants"> Ants </string>
@@ -158,13 +158,13 @@
     <string name="phrasebook">Phrasebook</string>
     <string name="title_activity_tabbed" translatable="false">TabbedActivity</string>
 
-    <string name="sparrow">sparrow #Old_World_sparrow</string>
-    <string name="pony">pony</string>
-    <string name="spider">spider</string>
+    <string name="sparrow">Sparrow #Old_World_sparrow</string>
+    <string name="pony">Pony</string>
+    <string name="spider">Spider</string>
     <string name="armadillo">Armadillo</string>
-    <string name="wombat">wombat</string>
-    <string name="capybara">capybara</string>
-    <string name="meerkat">meerkat</string>
+    <string name="wombat">Wombat</string>
+    <string name="capybara">Capybara</string>
+    <string name="meerkat">Meerkat</string>
     <string name="quokka">Quokka</string>
     <string name="sloth">Sloth</string>
     <string name="monitorlizard">Monitor lizard</string>

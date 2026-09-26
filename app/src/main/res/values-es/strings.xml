@@ -2,38 +2,38 @@
 <resources>
     <string name="app_name">Sonidos de animales</string>
     <string name="action_settings">Ajustes</string>
-    <string name="tabs">Etiquetas</string>
+    <string name="tabs">Pestañas</string>
     <string name="click">Haga clic en la imagen</string>
-    <string name="longclick">Mucho tiempo haga clic</string>
+    <string name="longclick">Clic largo</string>
     <string name="bigimage">Imagen grande</string>
-    <string name="category">Para cambio de sonidos para hacer clic en una etiqueta</string>
-    <string name="clickdesc">Cuando hace clic en el cuadro, el sonido del animal se juega.</string>
-    <string name="clicktextdesc">En la camarilla en el texto - el nombre de un animal suena.</string>
-    <string name="longclickdesc">En el chasquido largo el sonido se pierde y la imagen grande se abre</string>
-    <string name="bigimagedesc">Presionando la imagen grande el sonido se pierde otra vez</string>
+    <string name="category">Para cambiar de categoría, pulse una pestaña</string>
+    <string name="clickdesc">Al hacer clic en la imagen se reproduce el sonido del animal.</string>
+    <string name="clicktextdesc">Al hacer clic en el texto suena el nombre del animal.</string>
+    <string name="longclickdesc">Con un clic largo se reproduce el sonido y se abre la imagen a pantalla completa</string>
+    <string name="bigimagedesc">Al pulsar la imagen grande el sonido se reproduce de nuevo</string>
     <string name="clicktext">Haga clic en el texto</string>
     <string name="gametext">Adivina los animales por sonido</string>
     <string name="game">Juego</string>
     <string name="buy_ads_disable">Eliminar anuncios</string>
 
-    <string name="rd_title">Te ha gustado la aplicación?</string>
-    <string name="rd_positiveButtonText">Mas tarde</string>
+    <string name="rd_title">¿Te ha gustado la aplicación?</string>
+    <string name="rd_positiveButtonText">Más tarde</string>
     <string name="rd_negativeButtonText">Nunca</string>
     <string name="rd_formTitle">Enviar comentarios</string>
     <string name="rd_formHint">Díganos qué se puede mejorar.</string>
-    <string name="rd_formSubmitText">Para enviar</string>
+    <string name="rd_formSubmitText">Enviar</string>
     <string name="rd_formCancelText">Cancelar</string>
 
     <string name="unlock_text1">Tienes que adivinar</string>
     <string name="unlock_text2">animales en cualquier juego para desbloquear esta pestaña</string>
 
-    <string name="fromdottodot">Dibujamos por los puntos</string>
-    <string name="draw">El dibujo</string>
-    <string name="lullaby">De cuna</string>
-    <string name="recipe">Los modelos de escritura para los niños</string>
-    <string name="rebuses">Los rebuses</string>
-    <string name="recipeabc">Los modelos de escritura de la letra y la cifra</string>
-    <string name="phrasebook">El guía de conversación para los niños y los adultos</string>
+    <string name="fromdottodot">Dibujo por puntos</string>
+    <string name="draw">Dibujo</string>
+    <string name="lullaby">Canciones de cuna</string>
+    <string name="recipe">Caligrafía para niños</string>
+    <string name="rebuses">Jeroglíficos</string>
+    <string name="recipeabc">Caligrafía: letras y números</string>
+    <string name="phrasebook">Guía de conversación para niños y adultos</string>
 
 
 
@@ -63,7 +63,7 @@
     <string name="elephant">Elefante</string>
     <string name="elk">Alce#Alces alces</string>
     <string name="fish">Pez</string>
-    <string name="flamingo">Flamencos</string>
+    <string name="flamingo">Flamenco</string>
     <string name="flies">Mosca</string>
     <string name="fox">Zorro</string>
     <string name="frog">Rana</string>
@@ -98,7 +98,7 @@
     <string name="rat">Rata</string>
     <string name="rhino">Rinoceronte</string>
     <string name="seagull">Gaviota</string>
-    <string name="sealbark">Arctocephalus</string>
+    <string name="sealbark">Lobo marino#Arctocephalus</string>
     <string name="sealion">León marino</string>
     <string name="sheep">Oveja</string>
     <string name="snake">Serpiente</string>
@@ -111,12 +111,12 @@
     <string name="woodpecker">Pájaro carpintero</string>
     <string name="zebra"> Cebra</string>
     <string name="badger">Tejón#Meles meles</string>
-    <string name="beaver">Castores</string>
+    <string name="beaver">Castor</string>
     <string name="catbird">Zorzal</string>
     <string name="deer">Ciervo</string>
     <string name="giraffe">Jirafa</string>
     <string name="hedgehog">Erizo</string>
-    <string name="mole">Talpidae</string>
+    <string name="mole">Topo#Talpidae</string>
     <string name="otter">Nutria#Lutra lutra</string>
     <string name="rabbit">Conejo</string>
     <string name="robin">Petirrojo europeo</string>
@@ -128,12 +128,12 @@
     <string name="blackgrouse">Gallo lira</string>
     <string name="boar">Jabalí</string>
     <string name="hummingbird">Colibrí</string>
-    <string name="lobster">Cangrejo</string>
+    <string name="lobster">Cangrejo de río</string>
     <string name="cicada">Chicharra</string>
     <string name="bullfinch">Camachuelo común</string>
     <string name="stork">Cigüeña</string>
     <string name="heron">Garza</string>
-    <string name="canary">Сanario#Serinus canaria domestica</string>
+    <string name="canary">Canario#Serinus canaria domestica</string>
     <string name="magpie">Urraca#Pica pica</string>
     <string name="bat">Murciélago</string>
     <string name="jay">Arrendajo</string>

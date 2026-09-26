@@ -4,8 +4,8 @@
     <string name="action_settings">Pengaturan</string>
     <string name="tabs">Tab</string>
     <string name="click">Klik pada gambar</string>
-    <string name="longclick">Klik yang panjang</string>
-    <string name="bigimage">Gambaran besar</string>
+    <string name="longclick">Klik lama</string>
+    <string name="bigimage">Gambar besar</string>
     <string name="game">Permainan</string>
     <string name="category">Untuk mengubah suara, klik pada tab</string>
     <string name="clickdesc">Mengklik pada gambar memainkan suara binatang</string>
@@ -21,19 +21,19 @@
     <string name="rd_negativeButtonText">Tidak pernah</string>
     <string name="rd_formTitle">Kirim umpan balik</string>
     <string name="rd_formHint">Beri tahu kami apa yang bisa diperbaiki.</string>
-    <string name="rd_formSubmitText">Untuk mengirim</string>
+    <string name="rd_formSubmitText">Kirim</string>
     <string name="rd_formCancelText">Batalkan</string>
 
     <string name="unlock_text1">Anda perlu menebak</string>
     <string name="unlock_text2">hewan dalam permainan apapun untuk membuka tab ini</string>
 
 
-    <string name="fromdottodot">Gambar pada poin</string>
+    <string name="fromdottodot">Menggambar dengan titik</string>
     <string name="draw">Gambar</string>
-    <string name="lullaby">Lullaby</string>
-    <string name="recipe">Resep untuk anak-anak</string>
+    <string name="lullaby">Lagu pengantar tidur</string>
+    <string name="recipe">Latihan menulis untuk anak-anak</string>
     <string name="rebuses">Rebuses</string>
-    <string name="recipeabc">Huruf resep dan nomor</string>
+    <string name="recipeabc">Menulis huruf dan angka</string>
     <string name="phrasebook">Buku panduan anak-anak dan orang dewasa</string>
 
 
@@ -47,7 +47,7 @@
     <string name="cat">Kucing</string>
     <string name="cavy">Tikus belanda</string>
     <string name="chiken">Ayam</string>
-    <string name="cock">Ayam</string>
+    <string name="cock">Ayam jantan</string>
     <string name="cow">Sapi</string>
     <string name="cricket">Cengkerik</string>
     <string name="crocodile">Buaya</string>
@@ -71,8 +71,8 @@
     <string name="goat">Kambing</string>
     <string name="goose">Angsa</string>
     <string name="grasshopper">Belalang</string>
-    <string name="hare">Kelinci</string>
-    <string name="hawk">Elang</string>
+    <string name="hare">Terwelu</string>
+    <string name="hawk">Elang alap</string>
     <string name="hippopotamus">Kuda nil</string>
     <string name="horse">Kuda</string>
     <string name="jackal">Jakal</string>
@@ -82,15 +82,15 @@
     <string name="lemur">Lemur</string>
     <string name="leo">Singa</string>
     <string name="lynx">Lynx</string>
-    <string name="mantis">Belalang sentadu</string>
+    <string name="mantis">Belalang sembah</string>
     <string name="monkey">Monyet</string>
     <string name="mosquito">Nyamuk</string>
     <string name="mouse">Tikus</string>
-    <string name="nightingale">Kutilang</string>
+    <string name="nightingale">Bulbul</string>
     <string name="ostrich">Burung unta</string>
     <string name="owl">Burung hantu</string>
     <string name="panda">Panda</string>
-    <string name="parrot">Kakatua</string>
+    <string name="parrot">Nuri</string>
     <string name="peacock">Merak</string>
     <string name="pelican">Pelikan</string>
     <string name="penguin">Penguin</string>
@@ -111,16 +111,16 @@
     <string name="wolf">Serigala</string>
     <string name="woodpecker">Burung pelatuk</string>
     <string name="zebra">Zebra</string>
-    <string name="badger">Teledu</string>
+    <string name="badger">Luak</string>
     <string name="beaver">Beaver</string>
-    <string name="catbird">Kucica hutanh</string>
+    <string name="catbird">Kucica hutan</string>
     <string name="deer">Rusa</string>
     <string name="giraffe">Jerapah</string>
-    <string name="hedgehog">Landak susu</string>
+    <string name="hedgehog">Landak</string>
     <string name="mole">Tikus tanah</string>
     <string name="otter">Berang-berang</string>
     <string name="rabbit">Kelinci</string>
-    <string name="robin">Murai batu</string>
+    <string name="robin">Robin</string>
     <string name="skunk">Sigung</string>
     <string name="tit">Gelatik-batu kelabu</string>
     <string name="toucan">Tukan toco</string>
@@ -130,12 +130,12 @@
     <string name="boar">Babi celeng</string>
     <string name="hummingbird">Burung kolibri</string>
     <string name="lobster">Udang Karang</string>
-    <string name="cicada">Jangkrik</string>
-    <string name="bullfinch">Carpodacus</string>
-    <string name="stork">Cangak abu</string>
-    <string name="heron">Bangau</string>
+    <string name="cicada">Tonggeret</string>
+    <string name="bullfinch">Bullfinch</string>
+    <string name="stork">Bangau</string>
+    <string name="heron">Cangak</string>
     <string name="canary">Kenari kepala ayam</string>
-    <string name="magpie">Kucica kampung</string>
+    <string name="magpie">Magpie</string>
     <string name="bat">Kelelawar</string>
     <string name="jay">Murai batu</string>
     <string name="starling">Jalak</string>
@@ -154,17 +154,17 @@
 
     <string name="shark"> Hiu </string>
     <string name="sparrow">Burung gereja</string>
-    <string name="pony">Kuda sandel</string>
+    <string name="pony">Kuda poni</string>
     <string name="spider">Laba-laba</string>
     <string name="armadillo">Armadillo</string>
     <string name="wombat">Wombat</string>
     <string name="capybara">Kapibara</string>
     <string name="meerkat">Meerkat</string>
     <string name="quokka">quokka</string>
-    <string name="sloth">kukang</string>
+    <string name="sloth">Kungkang</string>
     <string name="monitorlizard">Biawak</string>
     <string name="anteater">Trenggiling</string>
-    <string name="ferret">Musang</string>
+    <string name="ferret">Ferret</string>
     <string name="lizard">Kadal</string>
     <string name="wolverine">Wolverine</string>
 
