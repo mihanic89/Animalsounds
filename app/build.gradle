@@ -69,7 +69,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.firebase:firebase-config'
 }
-configurations.all {
+configurations.configureEach {
     exclude group: 'com.google.android.gms', module: 'play-services-safetynet'
 }
 apply plugin: 'com.google.gms.google-services'
