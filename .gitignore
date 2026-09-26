@@ -14,3 +14,4 @@
 *.aab
 output-metadata.json
 baselineProfiles/
+/.idea/caches
