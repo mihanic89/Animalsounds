@@ -188,22 +188,40 @@ public class ImageGridFragmentGame4 extends Fragment {
 
         ArrayList<Integer> idleHoles = new ArrayList<>();
         int activeCount = 0;
+        boolean correctAlreadyShown = false;
         for (int i = 0; i < HOLE_COUNT; i++) {
             if (moleAnimalIndex[i] == -1) {
                 idleHoles.add(i);
             } else {
                 activeCount++;
+                if (moleAnimalIndex[i] == correctAnswerIndex) {
+                    correctAlreadyShown = true;
+                }
             }
         }
 
         if (!idleHoles.isEmpty() && activeCount < MAX_ACTIVE_HOLES) {
             int hole = idleHoles.get(random.nextInt(idleHoles.size()));
-            boolean showCorrect = random.nextInt(100) < CORRECT_SPAWN_CHANCE_PERCENT;
-            int animalIndex = showCorrect ? correctAnswerIndex : random.nextInt(animals.size());
+            // Верный ответ не должен появляться в двух норах одновременно: и когда мы
+            // намеренно показываем decoy, и когда решаем НЕ показывать верного зверя,
+            // индекс должен гарантированно не совпасть с correctAnswerIndex.
+            boolean showCorrect = !correctAlreadyShown && random.nextInt(100) < CORRECT_SPAWN_CHANCE_PERCENT;
+            int animalIndex = showCorrect ? correctAnswerIndex : randomDecoyIndex();
             showMole(hole, animalIndex);
         }
 
         scheduleNextSpawn();
+    }
+
+    private int randomDecoyIndex() {
+        if (animals.size() <= 1) {
+            return correctAnswerIndex;
+        }
+        int index = random.nextInt(animals.size());
+        while (index == correctAnswerIndex) {
+            index = random.nextInt(animals.size());
+        }
+        return index;
     }
 
     private void showMole(int hole, int animalIndex) {
