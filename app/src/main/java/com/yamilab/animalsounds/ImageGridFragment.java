@@ -59,10 +59,14 @@ public class ImageGridFragment extends Fragment {
             baseSpan = 1;
         }
 
-        int spanCount = isLandscape ? baseSpan + 1 : baseSpan;
+        if (isLandscape) {
+            // Высота в ландшафте мала, поэтому карточки должны быть узкими: подбираем число
+            // колонок по ширине экрана (~260dp на карточку), но не меньше 3 и не больше 4.
+            int byWidth = Math.round(getResources().getConfiguration().screenWidthDp / 260f);
+            return Math.max(3, Math.min(4, byWidth));
+        }
 
-        int maxAllowed = isLandscape ? 4 : 3;
-        return Math.min(spanCount, maxAllowed);
+        return Math.min(baseSpan, 3);
     }
 
     @Override
