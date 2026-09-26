@@ -1,0 +1,223 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp">
+
+    <!-- Ландшафт: слева картинка, справа одна колонка управления (счётчики, название,
+         ответы 2x2, проверить/далее). Id те же, что в портретной раскладке. -->
+
+    <ImageButton
+        android:id="@+id/imageFull"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/image_margin"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/controlPanel"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/controlPanel"
+        android:layout_width="@dimen/game_land_panel_width_wide"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!-- Счётчики -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/wrongCounter"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/game_land_counter_height"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/oval_shape_red"
+                android:clickable="false"
+                android:elevation="5dp"
+                android:focusable="false"
+                android:padding="1dp"
+                android:textColor="#ffffff"
+                android:textSize="25sp"
+                app:autoSizeTextType="uniform"
+                tools:text="10" />
+
+            <Button
+                android:id="@+id/correctCounter"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/game_land_counter_height"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/oval_shape"
+                android:clickable="false"
+                android:elevation="5dp"
+                android:focusable="false"
+                android:padding="1dp"
+                android:textColor="#ffffff"
+                android:textSize="25sp"
+                app:autoSizeTextType="uniform"
+                tools:text="10" />
+
+        </LinearLayout>
+
+        <!-- Название -->
+        <Button
+            android:id="@+id/buttonName"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/game_land_button_height_compact"
+            android:layout_margin="4dp"
+            android:background="@drawable/oval_shape"
+            android:clickable="true"
+            android:elevation="5dp"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:padding="8dp"
+            android:scaleType="fitCenter"
+            android:textColor="#ffffff"
+            android:textSize="25sp"
+            app:autoSizeTextType="uniform"
+            tools:text="Animal" />
+
+        <!-- Ответы 1-2 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/game_land_button_height_compact"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/oval_shape"
+                android:clickable="true"
+                android:elevation="5dp"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:padding="8dp"
+                android:scaleType="fitCenter"
+                android:text="1"
+                android:textColor="#ffffff"
+                android:textSize="25sp"
+                app:autoSizeTextType="uniform"
+                tools:text="1" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/game_land_button_height_compact"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/oval_shape"
+                android:clickable="true"
+                android:elevation="5dp"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:padding="8dp"
+                android:scaleType="fitCenter"
+                android:text="2"
+                android:textColor="#ffffff"
+                android:textSize="25sp"
+                app:autoSizeTextType="uniform"
+                tools:text="2" />
+
+        </LinearLayout>
+
+        <!-- Ответы 3-4 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/game_land_button_height_compact"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/oval_shape"
+                android:clickable="true"
+                android:elevation="5dp"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:padding="8dp"
+                android:scaleType="fitCenter"
+                android:text="3"
+                android:textColor="#ffffff"
+                android:textSize="25sp"
+                app:autoSizeTextType="uniform"
+                tools:text="3" />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/game_land_button_height_compact"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/oval_shape"
+                android:clickable="true"
+                android:elevation="5dp"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:padding="8dp"
+                android:scaleType="fitCenter"
+                android:text="4"
+                android:textColor="#ffffff"
+                android:textSize="25sp"
+                app:autoSizeTextType="uniform"
+                tools:text="4" />
+
+        </LinearLayout>
+
+        <!-- Проверить / далее -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/buttonCheck"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/game_land_button_height_compact"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/oval_shape"
+                android:clickable="true"
+                android:elevation="5dp"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/baseline_done_outline_white_48" />
+
+            <ImageButton
+                android:id="@+id/buttonNext"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/game_land_button_height_compact"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/oval_shape"
+                android:clickable="true"
+                android:elevation="5dp"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:scaleType="fitCenter"
+                app:srcCompat="@android:drawable/ic_media_next" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

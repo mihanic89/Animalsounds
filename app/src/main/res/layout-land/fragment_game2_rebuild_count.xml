@@ -1,0 +1,173 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp">
+
+    <!-- Ландшафт: слева поле с картинками, справа одна колонка управления. Id те же, что в
+         портретной раскладке. -->
+
+    <!-- Фоновая картинка целиком (перекрывается сеткой imageGame0-3) -->
+    <ImageButton
+        android:id="@+id/imageFull"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/controlPanel"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- Картинки для выбора в один ряд (4x1) -->
+    <LinearLayout
+        android:id="@+id/two"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/controlPanel"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageButton
+                android:id="@+id/imageGame0"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/image_margin"
+                android:background="@null"
+                android:elevation="4dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/a5hd" />
+
+            <ImageButton
+                android:id="@+id/imageGame1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/image_margin"
+                android:background="@null"
+                android:elevation="4dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/w8hd" />
+
+            <ImageButton
+                android:id="@+id/imageGame2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/image_margin"
+                android:background="@null"
+                android:elevation="4dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/a7hd" />
+
+            <ImageButton
+                android:id="@+id/imageGame3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/image_margin"
+                android:background="@null"
+                android:elevation="4dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/w8hd" />
+
+    </LinearLayout>
+
+    <!-- Колонка управления: счётчики, название, далее -->
+    <LinearLayout
+        android:id="@+id/controlPanel"
+        android:layout_width="@dimen/game_land_panel_width"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/wrongCounter"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/game_land_counter_height"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/oval_shape_red"
+                android:clickable="false"
+                android:elevation="5dp"
+                android:focusable="false"
+                android:padding="1dp"
+                android:textColor="#ffffff"
+                android:textSize="25sp"
+                app:autoSizeTextType="uniform"
+                tools:text="10" />
+
+            <Button
+                android:id="@+id/correctCounter"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/game_land_counter_height"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/oval_shape"
+                android:clickable="false"
+                android:elevation="5dp"
+                android:focusable="false"
+                android:padding="1dp"
+                android:textColor="#ffffff"
+                android:textSize="25sp"
+                app:autoSizeTextType="uniform"
+                tools:text="10" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonName"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/game_land_button_height"
+            android:layout_margin="4dp"
+            android:background="@drawable/oval_shape"
+            android:clickable="true"
+            android:elevation="5dp"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:padding="8dp"
+            android:scaleType="fitCenter"
+            android:textColor="#ffffff"
+            android:textSize="25sp"
+            app:autoSizeTextType="uniform"
+            tools:text="Animal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/buttonNext"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/game_land_button_height"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/oval_shape"
+                android:clickable="true"
+                android:elevation="5dp"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:scaleType="fitCenter"
+                app:srcCompat="@android:drawable/ic_media_next" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

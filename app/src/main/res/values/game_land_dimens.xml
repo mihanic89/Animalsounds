@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Размеры правой колонки управления в ландшафтных раскладках игр (Game/Game2/Game3).
+     Значения для телефона; для планшетов переопределены в values-sw600dp-land. -->
+<resources>
+    <dimen name="game_land_panel_width">168dp</dimen>
+    <dimen name="game_land_counter_height">40dp</dimen>
+    <dimen name="game_land_button_height">52dp</dimen>
+    <dimen name="game_land_button_height_compact">46dp</dimen>
+    <dimen name="game_land_panel_width_wide">260dp</dimen>
+</resources>
