@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ландшафт: счётчик и выбор размера уходят в правую колонку, а поле занимает всю высоту,
+     иначе карточки получаются крошечными. Id те же, что в портретной раскладке. -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp">
+
+    <Button
+        android:id="@+id/pairsCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/oval_shape"
+        android:clickable="false"
+        android:elevation="5dp"
+        android:focusable="false"
+        android:padding="1dp"
+        android:textColor="#ffffff"
+        android:textSize="25sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="10" />
+
+    <LinearLayout
+        android:id="@+id/sizeSelector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pairsCounter"
+        app:layout_constraintVertical_bias="0.5">
+
+        <TextView
+            android:id="@+id/sizeSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/memory_size_chip"
+            android:gravity="center"
+            android:minWidth="88dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:textColor="#263238"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="3×2" />
+
+        <TextView
+            android:id="@+id/sizeLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:background="@drawable/memory_size_chip"
+            android:gravity="center"
+            android:minWidth="88dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:textColor="#263238"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="4×3" />
+        <TextView
+            android:id="@+id/sizeExtra"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/memory_size_chip"
+            android:gravity="center"
+            android:minWidth="88dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:textColor="#263238"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            tools:text="5×6" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/memoryBoard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/sizeSelector"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

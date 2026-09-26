@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Рубашка карты: мягкий голубовато-серый фон и полупрозрачная лапка — не отвлекает от картинок. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="16dp" />
+            <solid android:color="#B8CADB" />
+            <stroke
+                android:width="2dp"
+                android:color="#9FB4C8" />
+        </shape>
+    </item>
+    <item
+        android:drawable="@drawable/ic_paw_card"
+        android:gravity="center"
+        android:width="44dp"
+        android:height="44dp" />
+</layer-list>
