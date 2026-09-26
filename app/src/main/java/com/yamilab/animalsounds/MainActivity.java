@@ -668,11 +668,11 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
             "ms", "nb", "nl", "pl", "pt", "ro", "ru", "sk", "sv", "th", "tr", "uk", "vi", "zh"));
 
     private void makeLanguageList(String locale) {
-        // Java отдаёт старые коды: in = id, iw = he, no/nn = norwegian
+        // Java отдаёт старые коды: in = id, iw = he, no = nb
         String lang = locale;
         if (lang.equals("in")) lang = "id";
         else if (lang.equals("iw")) lang = "he";
-        else if (lang.equals("no") || lang.equals("nn")) lang = "nb";
+        else if (lang.equals("no")) lang = "nb";
         if (!SUPPORTED_LANGUAGES.contains(lang)) return;
         language = lang;
         wikiHref = wikiBase(lang.equals("nb") ? "no" : lang);
