@@ -4,6 +4,7 @@ import android.content.Context;
 import android.media.AudioAttributes;
 import android.media.SoundPool;
 import android.util.Log;
+import android.util.SparseIntArray;
 
 /**
  * Created by Михаил on 31.03.2017.
@@ -11,16 +12,28 @@ import android.util.Log;
  * Проигрывает короткие звуки животных через лениво создаваемый общий {@link SoundPool}.
  * Слушатель загрузки регистрируется ровно один раз — при создании пула, поэтому повторные
  * вызовы {@link #playSP(Context, Integer)} не могут оставить пул без слушателя.
+ *
+ * Загруженные сэмплы кешируются по resource id: без этого каждый повторный тап по тому же
+ * животному заново декодировал звук и оставлял в нативной памяти ещё одну загруженную копию
+ * на всё время жизни пула (утечка + лишняя задержка перед воспроизведением).
  */
 public class SoundPlay {
 
     private static final String TAG = "SoundPlay";
 
     private static SoundPool sp;
+    private static final SparseIntArray loadedSoundIds = new SparseIntArray();
 
     public static void playSP(Context context, Integer sound) {
         try {
-            getsp().load(context, sound, 1);
+            SoundPool pool = getsp();
+            int cachedId = loadedSoundIds.get(sound, 0);
+            if (cachedId != 0) {
+                pool.play(cachedId, 1, 1, 0, 0, 1);
+            } else {
+                int soundId = pool.load(context, sound, 1);
+                loadedSoundIds.put(sound, soundId);
+            }
         } catch (Exception e) {
             Log.w(TAG, "Failed to load sound " + sound, e);
         }
@@ -53,6 +66,7 @@ public class SoundPlay {
                 Log.w(TAG, "Error releasing SoundPool", e);
             } finally {
                 sp = null;
+                loadedSoundIds.clear();
             }
         }
     }

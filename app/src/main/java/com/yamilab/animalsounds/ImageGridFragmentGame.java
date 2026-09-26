@@ -73,7 +73,7 @@ public class ImageGridFragmentGame extends Fragment {
     private ArrayList<LinkItem> mDataset;
     private ArrayList<Animal> animals;
 
-    private int size=0, correctAnswer=0;
+    private int correctAnswer=0;
     private int wrong1=0, wrong2=0, wrong3=0;
     private int correctCard=0;
 
@@ -121,13 +121,6 @@ public class ImageGridFragmentGame extends Fragment {
         animals = new ArrayList<Animal>();
 
         animals = BundleCompat.getSerializable(getArguments(), "key", ArrayList.class);
-
-        size = animals.size()-1;
-        if (size<0) size=0;
-
-        correctAnswer = new Random().nextInt(size);
-
-
 
         image0= rootView.findViewById(imageGame0);
         image1= rootView.findViewById(imageGame1);
@@ -257,34 +250,11 @@ public class ImageGridFragmentGame extends Fragment {
 
 
     private void generateWrong(){
-
-        correctAnswer = new Random().nextInt(size);
-
-        while (numbers.contains(correctAnswer)){
-            correctAnswer = new Random().nextInt(size);
-
-
-        }
-
-        numbers.add(correctAnswer);
-
-        if (numbers.size()>(size-5)){
-            numbers.clear();
-
-        }
-
-        wrong1=new Random().nextInt(size);
-        while (wrong1==correctAnswer){
-            wrong1=new Random().nextInt(size);
-        }
-        wrong2=new Random().nextInt(size);
-        while (wrong2==correctAnswer || wrong2==wrong1){
-            wrong2=new Random().nextInt(size);
-        }
-        wrong3=new Random().nextInt(size);
-        while (wrong3==correctAnswer || wrong3==wrong2 || wrong3==wrong1){
-            wrong3=new Random().nextInt(size);
-        }
+        int[] picked = AnimalGamePicker.pickNext(animals, numbers);
+        correctAnswer = picked[0];
+        wrong1 = picked[1];
+        wrong2 = picked[2];
+        wrong3 = picked[3];
     }
 
     private void setImages(){
@@ -437,16 +407,13 @@ public class ImageGridFragmentGame extends Fragment {
     private void newRound (){
 
         wrongHasTry=false;
-        //adCounter++;
-        ((MainActivity) getActivity()).incAdCounter();
+        MainActivity activity = MainActivity.from(this);
+        if (activity == null) return;
+        activity.incAdCounter();
 
-        //if (adCounter>13) {
-        getActivity();
-        if (((MainActivity) getActivity()).getAdCounter()> MainActivity.adShowInt)
+        if (activity.getAdCounter()> MainActivity.adShowInt)
         {
-            ((MainActivity) getActivity()).showInterstitial();
-            //adCounter=0;
-           // ((MainActivity) getActivity()).zeroAdCounter();
+            activity.showInterstitial();
             generateWrong();
             setImages();
 
@@ -502,7 +469,10 @@ public class ImageGridFragmentGame extends Fragment {
 
             correctCounter.setText(String.valueOf(correctInt));
             saveInt(KEY_CORRECT_COUNTER, correctInt);
-            ((MainActivity) getActivity()).incrementUnlockCounter();
+            MainActivity activity = MainActivity.from(this);
+            if (activity != null) {
+                activity.incrementUnlockCounter();
+            }
         }
     }
 

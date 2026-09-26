@@ -63,13 +63,13 @@ public class FragmentUnlockFairy extends Fragment {
         unlockTextDown.setText(getString(R.string.unlock_text2));
 
 
-        startGame.setOnClickListener(v -> ((MainActivity) getActivity()).setGameTab());
+        startGame.setOnClickListener(v -> openGameTab());
 
-        unlockTextUp.setOnClickListener(v -> ((MainActivity) getActivity()).setGameTab());
+        unlockTextUp.setOnClickListener(v -> openGameTab());
 
-        unlockTextCenter.setOnClickListener(v -> ((MainActivity) getActivity()).setGameTab());
+        unlockTextCenter.setOnClickListener(v -> openGameTab());
 
-        unlockTextDown.setOnClickListener(v -> ((MainActivity) getActivity()).setGameTab());
+        unlockTextDown.setOnClickListener(v -> openGameTab());
 
 
 
@@ -96,14 +96,18 @@ public class FragmentUnlockFairy extends Fragment {
                     .into(unlockImage);
         }
 
-        unlockImage.setOnClickListener(v -> ((MainActivity) getActivity()).setGameTab());
+        unlockImage.setOnClickListener(v -> openGameTab());
 
 
 
         return rootView;
     }
 
-
-
+    private void openGameTab() {
+        MainActivity activity = MainActivity.from(this);
+        if (activity != null) {
+            activity.setGameTab();
+        }
+    }
 
 }

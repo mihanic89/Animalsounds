@@ -857,6 +857,20 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
 
     private static final String TAG = "MainActivity";
 
+    /**
+     * Null-safe access to the hosting activity from a Fragment. getActivity() can return
+     * null (or, in theory, a foreign activity) if the fragment's view has already been
+     * detached — an unguarded cast crashed with an NPE in several game fragments.
+     */
+    @Nullable
+    public static MainActivity from(@Nullable Fragment fragment) {
+        if (fragment == null) {
+            return null;
+        }
+        androidx.fragment.app.FragmentActivity activity = fragment.getActivity();
+        return activity instanceof MainActivity ? (MainActivity) activity : null;
+    }
+
     public class SectionsPagerAdapter extends androidx.viewpager2.adapter.FragmentStateAdapter {
 
         public SectionsPagerAdapter(@NonNull Fragment fragment) {

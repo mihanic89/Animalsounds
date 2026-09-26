@@ -88,13 +88,9 @@ public class ImageGridFragment extends Fragment {
                 == Configuration.ORIENTATION_LANDSCAPE;
         int spanCount = calculateSpanCount(isLandscape);
 
-        try {
-            if (((MainActivity) getActivity()).getGrid()) {
-                spanCount = 1;
-            }
-        }
-        catch (Exception e){
-            // Ignore
+        MainActivity activity = MainActivity.from(this);
+        if (activity != null && activity.getGrid()) {
+            spanCount = 1;
         }
 
         recyclerView = rootView.findViewById(R.id.recyclerView);
