@@ -273,7 +273,7 @@ public class ImageGridFragmentGame2 extends Fragment {
 
 
         full.setVisibility(View.INVISIBLE);
-        correctCard = new Random().nextInt(3);
+        correctCard = new Random().nextInt(4);
 
         if (correctCard==0){
             /*

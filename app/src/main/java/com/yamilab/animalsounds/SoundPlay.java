@@ -23,13 +23,21 @@ public class SoundPlay {
 
     private static SoundPool sp;
     private static final SparseIntArray loadedSoundIds = new SparseIntArray();
+    // Сколько раз play() позвали на id, чья загрузка ещё не завершилась (play() в этот
+    // момент молча ничего не делает) — эти "потерянные" вызовы доигрываются в
+    // onLoadCompleteListener, когда сэмпл наконец готов, вместо того чтобы тап
+    // просто пропадал без звука.
+    private static final SparseIntArray pendingPlaysWhileLoading = new SparseIntArray();
 
     public static void playSP(Context context, Integer sound) {
         try {
             SoundPool pool = getsp();
             int cachedId = loadedSoundIds.get(sound, 0);
             if (cachedId != 0) {
-                pool.play(cachedId, 1, 1, 0, 0, 1);
+                int streamId = pool.play(cachedId, 1, 1, 0, 0, 1);
+                if (streamId == 0) {
+                    pendingPlaysWhileLoading.put(cachedId, pendingPlaysWhileLoading.get(cachedId, 0) + 1);
+                }
             } else {
                 int soundId = pool.load(context, sound, 1);
                 loadedSoundIds.put(sound, soundId);
@@ -52,7 +60,12 @@ public class SoundPlay {
             sp.setOnLoadCompleteListener((soundPool, sampleId, status) -> {
                 if (status == 0) {
                     soundPool.play(sampleId, 1, 1, 0, 0, 1);
+                    int missedPlays = pendingPlaysWhileLoading.get(sampleId, 0);
+                    for (int i = 0; i < missedPlays; i++) {
+                        soundPool.play(sampleId, 1, 1, 0, 0, 1);
+                    }
                 }
+                pendingPlaysWhileLoading.delete(sampleId);
             });
         }
         return sp;
@@ -67,6 +80,7 @@ public class SoundPlay {
             } finally {
                 sp = null;
                 loadedSoundIds.clear();
+                pendingPlaysWhileLoading.clear();
             }
         }
     }

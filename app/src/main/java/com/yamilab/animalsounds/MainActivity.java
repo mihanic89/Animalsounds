@@ -327,9 +327,14 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
                         .build();
                 MobileAds.setRequestConfiguration(configuration);
                 MobileAds.initialize(getApplicationContext(), initializationStatus -> {
-                    if (!ads_disabled && mAdView != null) {
+                    if (!ads_disabled) {
+                        // mAdView может обнулиться в onDestroy() этой Activity (например, при
+                        // пересоздании из-за поворота экрана) уже после того, как отсюда
+                        // отправился runOnUiThread, но до того, как он выполнится — isFinishing()
+                        // это не ловит (при пересоздании она остаётся false), поэтому mAdView
+                        // перепроверяем ещё раз уже внутри лямбды на UI-потоке.
                         runOnUiThread(() -> {
-                            if (!isFinishing()) {
+                            if (!isFinishing() && mAdView != null) {
                                 mAdView.loadAd(new AdRequest.Builder().build());
                             }
                         });
