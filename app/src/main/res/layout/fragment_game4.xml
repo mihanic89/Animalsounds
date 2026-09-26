@@ -64,14 +64,14 @@
         app:layout_constraintTop_toBottomOf="@id/correctCounter"
         app:srcCompat="@drawable/baseline_pets_black_18dp" />
 
-    <!-- Сетка 3x3 нор -->
+    <!-- Игровое поле 2x2 -->
     <LinearLayout
         android:id="@+id/moleGrid"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:orientation="vertical"
-        android:weightSum="3"
+        android:weightSum="2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/buttonSound"
@@ -82,123 +82,61 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="horizontal"
-            android:weightSum="3">
+            android:gravity="center"
+            android:weightSum="2">
 
             <ImageButton
                 android:id="@+id/mole0"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_margin="@dimen/image_margin"
-                android:background="@drawable/hole_shape"
+                android:adjustViewBounds="true"
+                android:background="@null"
                 android:elevation="4dp"
-                android:padding="6dp"
                 android:scaleType="fitCenter" />
 
             <ImageButton
                 android:id="@+id/mole1"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_margin="@dimen/image_margin"
-                android:background="@drawable/hole_shape"
+                android:adjustViewBounds="true"
+                android:background="@null"
                 android:elevation="4dp"
-                android:padding="6dp"
                 android:scaleType="fitCenter" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:weightSum="2">
 
             <ImageButton
                 android:id="@+id/mole2"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_margin="@dimen/image_margin"
-                android:background="@drawable/hole_shape"
+                android:adjustViewBounds="true"
+                android:background="@null"
                 android:elevation="4dp"
-                android:padding="6dp"
                 android:scaleType="fitCenter" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:weightSum="3">
 
             <ImageButton
                 android:id="@+id/mole3"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_margin="@dimen/image_margin"
-                android:background="@drawable/hole_shape"
+                android:adjustViewBounds="true"
+                android:background="@null"
                 android:elevation="4dp"
-                android:padding="6dp"
-                android:scaleType="fitCenter" />
-
-            <ImageButton
-                android:id="@+id/mole4"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="@dimen/image_margin"
-                android:background="@drawable/hole_shape"
-                android:elevation="4dp"
-                android:padding="6dp"
-                android:scaleType="fitCenter" />
-
-            <ImageButton
-                android:id="@+id/mole5"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="@dimen/image_margin"
-                android:background="@drawable/hole_shape"
-                android:elevation="4dp"
-                android:padding="6dp"
-                android:scaleType="fitCenter" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:weightSum="3">
-
-            <ImageButton
-                android:id="@+id/mole6"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="@dimen/image_margin"
-                android:background="@drawable/hole_shape"
-                android:elevation="4dp"
-                android:padding="6dp"
-                android:scaleType="fitCenter" />
-
-            <ImageButton
-                android:id="@+id/mole7"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="@dimen/image_margin"
-                android:background="@drawable/hole_shape"
-                android:elevation="4dp"
-                android:padding="6dp"
-                android:scaleType="fitCenter" />
-
-            <ImageButton
-                android:id="@+id/mole8"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="@dimen/image_margin"
-                android:background="@drawable/hole_shape"
-                android:elevation="4dp"
-                android:padding="6dp"
                 android:scaleType="fitCenter" />
 
         </LinearLayout>

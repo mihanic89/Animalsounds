@@ -18,6 +18,8 @@ import androidx.preference.PreferenceManager;
 
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
@@ -30,20 +32,22 @@ import java.util.Random;
  */
 public class ImageGridFragmentGame4 extends Fragment {
 
-    private static final int HOLE_COUNT = 9;
+    private static final int HOLE_COUNT = 4;
     private static final String KEY_CORRECT_COUNTER = "correctCounter4";
     private static final String KEY_WRONG_COUNTER = "wrongCounter4";
 
-    // Сколько мышей могут "сидеть" на экране одновременно.
+    // Сколько зверей могут показываться одновременно. Спавн проверяется по одному
+    // за тик (см. spawnMole), поэтому вторая картинка появляется с задержкой
+    // относительно первой, а не в тот же момент.
     private static final int MAX_ACTIVE_HOLES = 2;
-    // Пауза между попытками заспавнить нового крота. Рассчитано на маленьких детей —
-    // темп заметно медленнее, чем в первой версии игры.
-    private static final int SPAWN_MIN_DELAY_MS = 1500;
-    private static final int SPAWN_MAX_DELAY_MS = 3000;
-    // Как долго крот виден, прежде чем спрятаться; медленно уменьшается по ходу сессии.
-    private static final long POP_DURATION_START_MS = 9000;
-    private static final long POP_DURATION_FLOOR_MS = 4000;
-    private static final long POP_DURATION_STEP_MS = 150;
+    // Пауза между попытками заспавнить нового зверя. Рассчитано на маленьких детей,
+    // но чуть живее самой первой (слишком медленной) версии.
+    private static final int SPAWN_MIN_DELAY_MS = 800;
+    private static final int SPAWN_MAX_DELAY_MS = 1800;
+    // Как долго зверь виден, прежде чем спрятаться; медленно уменьшается по ходу сессии.
+    private static final long POP_DURATION_START_MS = 6000;
+    private static final long POP_DURATION_FLOOR_MS = 3000;
+    private static final long POP_DURATION_STEP_MS = 120;
     // Пауза перед стартом следующего раунда после правильного ответа.
     private static final long NEXT_ROUND_DELAY_MS = 2000;
     // Как часто (в среднем) среди спавнов должно попадаться именно целевое животное.
@@ -69,6 +73,7 @@ public class ImageGridFragmentGame4 extends Fragment {
     private boolean roundActive = false;
     private int correctAnswerIndex = 0;
     private int roundsThisSession = 0;
+    private int screenWidth = 0;
 
     public ImageGridFragmentGame4() {
     }
@@ -102,16 +107,12 @@ public class ImageGridFragmentGame4 extends Fragment {
         if (animals == null || animals.isEmpty()) {
             return rootView;
         }
+        screenWidth = getArguments() != null ? getArguments().getInt("width", 0) : 0;
 
         moleButtons[0] = rootView.findViewById(R.id.mole0);
         moleButtons[1] = rootView.findViewById(R.id.mole1);
         moleButtons[2] = rootView.findViewById(R.id.mole2);
         moleButtons[3] = rootView.findViewById(R.id.mole3);
-        moleButtons[4] = rootView.findViewById(R.id.mole4);
-        moleButtons[5] = rootView.findViewById(R.id.mole5);
-        moleButtons[6] = rootView.findViewById(R.id.mole6);
-        moleButtons[7] = rootView.findViewById(R.id.mole7);
-        moleButtons[8] = rootView.findViewById(R.id.mole8);
 
         correctCounterView = rootView.findViewById(R.id.correctCounter);
         wrongCounterView = rootView.findViewById(R.id.wrongCounter);
@@ -242,10 +243,27 @@ public class ImageGridFragmentGame4 extends Fragment {
 
         int animalIndex = moleAnimalIndex[hole];
 
+        // Пустая нора — мимо, а не ошибка: почти все норы пустуют в любой момент
+        // времени (одновременно видно максимум MAX_ACTIVE_HOLES зверей), и штрафовать
+        // за тычок в пустоту так же, как за тычок в неверного зверя, было бы слишком
+        // строго для этой игры.
+        if (animalIndex == -1) {
+            return;
+        }
+
         if (animalIndex == correctAnswerIndex) {
             roundActive = false;
             uiHandler.removeCallbacksAndMessages(null);
-            setCorrectInt();
+            // Верный ответ засчитывается всегда, даже если до этого в раунде уже был
+            // промах — в отличие от викторин, здесь промах по пустой норе или по
+            // decoy случается почти в каждом раунде, и это не должно "сжигать" очко.
+            correctInt++;
+            correctCounterView.setText(String.valueOf(correctInt));
+            saveInt(KEY_CORRECT_COUNTER, correctInt);
+            MainActivity activity = MainActivity.from(this);
+            if (activity != null) {
+                activity.incrementUnlockCounter();
+            }
 
             SoundPlay.playSP(getContext(), R.raw.correct);
             hideAllMoles();
@@ -258,32 +276,24 @@ public class ImageGridFragmentGame4 extends Fragment {
         } else {
             setWrongInt();
             SoundPlay.playSP(getContext(), R.raw.error);
-            if (animalIndex != -1) {
-                hideMole(hole);
-            }
+            hideMole(hole);
         }
     }
 
     private void setImageGlide(ImageView imageView, int image) {
+        int radius = (int) (16 * getResources().getDisplayMetrics().density);
+        // Уменьшаем картинку до размера ячейки ДО скругления — иначе Glide скругляет
+        // углы на полноразмерном оригинале, а fitCenter потом сжимает уже готовый
+        // (скруглённый) битмап вместе с рамкой, из-за чего радиус визуально пропадает.
+        int targetWidth = screenWidth > 0 ? screenWidth / 3 : 400;
         GlideApp.with(imageView.getContext())
                 .load(image)
                 .priority(Priority.LOW)
                 .skipMemoryCache(true)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .fitCenter()
+                .transform(new RoundedCorners(radius))
+                .apply(new RequestOptions().override(targetWidth))
                 .into(imageView);
-    }
-
-    private void setCorrectInt() {
-        if (!wrongHasTry) {
-            correctInt++;
-            correctCounterView.setText(String.valueOf(correctInt));
-            saveInt(KEY_CORRECT_COUNTER, correctInt);
-            MainActivity activity = MainActivity.from(this);
-            if (activity != null) {
-                activity.incrementUnlockCounter();
-            }
-        }
     }
 
     private void setWrongInt() {
