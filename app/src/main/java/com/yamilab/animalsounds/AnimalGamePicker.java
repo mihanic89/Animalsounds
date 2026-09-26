@@ -50,7 +50,7 @@ final class AnimalGamePicker {
         return candidate;
     }
 
-    private static int nextExcluding(int size, int... exclude) {
+    static int nextExcluding(int size, int... exclude) {
         if (exclude.length >= size) {
             return RANDOM.nextInt(size);
         }

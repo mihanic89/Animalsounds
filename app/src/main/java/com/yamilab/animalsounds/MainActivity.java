@@ -117,6 +117,12 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
 
     private ViewPager2 mViewPager;
     private AdView mAdView;
+    // MobileAds.initialize() — состояние процесса, а не Activity: без этого флага
+    // каждый поворот экрана (Activity пересоздаётся, configChanges не объявлены)
+    // заново гонял бы фоновый поток и initialize()/setRequestConfiguration(),
+    // хотя SDK уже готов с прошлого раза.
+    private static volatile boolean sAdsSdkInitialized = false;
+    private static final java.util.concurrent.atomic.AtomicBoolean sAdsInitStarted = new java.util.concurrent.atomic.AtomicBoolean(false);
     private InterstitialAd mInterstitialAd;
     private int adCount = 0;
     private FirebaseAnalytics mFirebaseAnalytics;
@@ -302,45 +308,61 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
         // Место под баннер раздвигаем ТОЛЬКО когда он реально успешно загрузился
         // (onAdLoaded) — так вкладки не резервируют пустую полосу, если реклама
         // выключена или не грузится/не заполняется, и не "падают" при неудаче.
-        ViewGroup.LayoutParams adViewLayoutParams = mAdView.getLayoutParams();
-        adViewLayoutParams.height = 0;
-        mAdView.setLayoutParams(adViewLayoutParams);
-        mAdView.setVisibility(View.INVISIBLE);
+        setAdViewExpanded(false);
 
         if (!ads_disabled) {
             mAdView.setAdListener(new AdListener() {
                 @Override
                 public void onAdLoaded() {
-                    ViewGroup.LayoutParams lp = mAdView.getLayoutParams();
-                    lp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-                    mAdView.setLayoutParams(lp);
-                    mAdView.setVisibility(View.VISIBLE);
+                    // Плавный переход вместо мгновенного «прыжка» вкладок/контента при
+                    // появлении баннера — сама привязка вкладок к adView (layout_above)
+                    // не убирается, но хотя бы не дёргает экран рывком.
+                    ViewGroup root = (ViewGroup) mAdView.getParent();
+                    if (root != null) {
+                        android.transition.TransitionManager.beginDelayedTransition(
+                                root, new android.transition.AutoTransition().setDuration(200));
+                    }
+                    setAdViewExpanded(true);
                 }
             });
-            // MobileAds.initialize() делает заметную синхронную работу (~250ms в замерах)
-            // прямо в вызывающем потоке, хотя AdMob официально разрешает вызывать его в
-            // фоновом потоке. loadAd() зовём из колбэка инициализации, возвращаясь на
-            // главный поток — AdView трогать можно только оттуда.
-            new Thread(() -> {
-                RequestConfiguration configuration = new RequestConfiguration.Builder()
-                        .setTestDeviceIds(Arrays.asList("01481448E8EC40257290F6C3754DA1E2", "84E317C211C4719630024A009A35FDCA"))
-                        .build();
-                MobileAds.setRequestConfiguration(configuration);
-                MobileAds.initialize(getApplicationContext(), initializationStatus -> {
-                    if (!ads_disabled) {
-                        // mAdView может обнулиться в onDestroy() этой Activity (например, при
-                        // пересоздании из-за поворота экрана) уже после того, как отсюда
-                        // отправился runOnUiThread, но до того, как он выполнится — isFinishing()
-                        // это не ловит (при пересоздании она остаётся false), поэтому mAdView
-                        // перепроверяем ещё раз уже внутри лямбды на UI-потоке.
-                        runOnUiThread(() -> {
-                            if (!isFinishing() && mAdView != null) {
-                                mAdView.loadAd(new AdRequest.Builder().build());
-                            }
-                        });
-                    }
-                });
-            }, "MobileAdsInit").start();
+
+            if (sAdsSdkInitialized) {
+                // SDK уже проинициализирован в этом процессе (например, предыдущим
+                // экземпляром Activity до поворота экрана) — грузим баннер сразу,
+                // без повторного initialize()/setRequestConfiguration() и без нового
+                // фонового потока.
+                mAdView.loadAd(new AdRequest.Builder().build());
+            } else if (sAdsInitStarted.compareAndSet(false, true)) {
+                // MobileAds.initialize() делает заметную синхронную работу (~250ms в замерах)
+                // прямо в вызывающем потоке, хотя AdMob официально разрешает вызывать его в
+                // фоновом потоке. loadAd() зовём из колбэка инициализации, возвращаясь на
+                // главный поток — AdView трогать можно только оттуда.
+                new Thread(() -> {
+                    RequestConfiguration configuration = new RequestConfiguration.Builder()
+                            .setTestDeviceIds(Arrays.asList("01481448E8EC40257290F6C3754DA1E2", "84E317C211C4719630024A009A35FDCA"))
+                            .build();
+                    MobileAds.setRequestConfiguration(configuration);
+                    MobileAds.initialize(getApplicationContext(), initializationStatus -> {
+                        sAdsSdkInitialized = true;
+                        if (!ads_disabled) {
+                            // mAdView может обнулиться в onDestroy() этой Activity (например, при
+                            // пересоздании из-за поворота экрана) уже после того, как отсюда
+                            // отправился runOnUiThread, но до того, как он выполнится — isFinishing()
+                            // это не ловит (при пересоздании она остаётся false), поэтому mAdView
+                            // перепроверяем ещё раз уже внутри лямбды на UI-потоке.
+                            runOnUiThread(() -> {
+                                if (!isFinishing() && mAdView != null) {
+                                    mAdView.loadAd(new AdRequest.Builder().build());
+                                }
+                            });
+                        }
+                    });
+                }, "MobileAdsInit").start();
+            }
+            // else: инициализация уже идёт в фоне из другого экземпляра Activity (редкий
+            // гоночный случай — поворот экрана в первые доли секунды после старта, пока
+            // ещё не пришёл колбэк initialize()) — в этом экземпляре баннер просто не
+            // покажется, следующий обычный запуск подхватит уже готовый SDK.
         }
 
         GlideApp.with(this)
@@ -477,6 +499,16 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
         e.putBoolean("ads_disabled_key", enabled);
         e.apply();
         ads_disabled = enabled;
+    }
+
+    // Общая точка для схлопывания/разворачивания баннера — раньше одна и та же
+    // последовательность (getLayoutParams/поменять height/setLayoutParams/setVisibility)
+    // была написана дважды (сборка + onAdLoaded) с противоположными значениями.
+    private void setAdViewExpanded(boolean expanded) {
+        ViewGroup.LayoutParams lp = mAdView.getLayoutParams();
+        lp.height = expanded ? ViewGroup.LayoutParams.WRAP_CONTENT : 0;
+        mAdView.setLayoutParams(lp);
+        mAdView.setVisibility(expanded ? View.VISIBLE : View.INVISIBLE);
     }
 
     public void loadInterstitial() {

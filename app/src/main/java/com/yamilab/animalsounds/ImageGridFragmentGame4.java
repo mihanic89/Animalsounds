@@ -62,6 +62,11 @@ public class ImageGridFragmentGame4 extends Fragment {
 
     private final ImageButton[] moleButtons = new ImageButton[HOLE_COUNT];
     private final int[] moleAnimalIndex = new int[HOLE_COUNT];
+    // Токен "поколения" показа для каждой норы: отложенный hideMole() из showMole()
+    // прячет нору только если с момента показа её никто больше не трогал (не было
+    // ни нового спавна, ни ручного скрытия) — иначе протухший колбэк мог бы погасить
+    // уже другое, свежее животное в той же норе (например, из следующего раунда).
+    private final int[] moleShowToken = new int[HOLE_COUNT];
 
     private Button correctCounterView;
     private Button wrongCounterView;
@@ -74,6 +79,9 @@ public class ImageGridFragmentGame4 extends Fragment {
     private int correctAnswerIndex = 0;
     private int roundsThisSession = 0;
     private int screenWidth = 0;
+    // Как в Game/Game2/Game3: чтобы одно и то же животное не выпадало верным
+    // ответом раунд за раундом подряд (см. AnimalGamePicker.pickNext).
+    private final ArrayList<Integer> recentlyUsed = new ArrayList<>();
 
     public ImageGridFragmentGame4() {
     }
@@ -149,6 +157,11 @@ public class ImageGridFragmentGame4 extends Fragment {
             return;
         }
 
+        // Отменяем всё, что осталось от предыдущего раунда (в первую очередь —
+        // отложенный hideMole() из showMole(), который иначе мог сработать уже после
+        // того, как эта нора получила новое животное, и погасить его раньше времени).
+        uiHandler.removeCallbacksAndMessages(null);
+
         wrongHasTry = false;
         roundActive = true;
         roundsThisSession++;
@@ -163,7 +176,7 @@ public class ImageGridFragmentGame4 extends Fragment {
             }
         }
 
-        correctAnswerIndex = random.nextInt(animals.size());
+        correctAnswerIndex = AnimalGamePicker.pickNext(animals, recentlyUsed)[0];
         SoundPlay.playSP(getContext(), animals.get(correctAnswerIndex).getSound());
 
         scheduleNextSpawn();
@@ -217,35 +230,36 @@ public class ImageGridFragmentGame4 extends Fragment {
         if (animals.size() <= 1) {
             return correctAnswerIndex;
         }
-        int index = random.nextInt(animals.size());
-        while (index == correctAnswerIndex) {
-            index = random.nextInt(animals.size());
-        }
-        return index;
+        return AnimalGamePicker.nextExcluding(animals.size(), correctAnswerIndex);
     }
 
     private void showMole(int hole, int animalIndex) {
         moleAnimalIndex[hole] = animalIndex;
         setImageGlide(moleButtons[hole], animals.get(animalIndex).getImageSmall());
 
+        int token = ++moleShowToken[hole];
         long duration = currentPopDurationMs();
-        uiHandler.postDelayed(() -> hideMole(hole), duration);
+        uiHandler.postDelayed(() -> hideMoleIfStillCurrent(hole, token), duration);
     }
 
-    private void hideMole(int hole) {
-        if (!isAdded()) {
+    private void hideMoleIfStillCurrent(int hole, int expectedToken) {
+        if (!isAdded() || moleShowToken[hole] != expectedToken) {
             return;
         }
+        hideMoleNow(hole);
+    }
+
+    private void hideMoleNow(int hole) {
+        moleShowToken[hole]++;
         moleAnimalIndex[hole] = -1;
-        moleButtons[hole].setImageDrawable(null);
+        if (moleButtons[hole] != null) {
+            moleButtons[hole].setImageDrawable(null);
+        }
     }
 
     private void hideAllMoles() {
         for (int i = 0; i < HOLE_COUNT; i++) {
-            moleAnimalIndex[i] = -1;
-            if (moleButtons[i] != null) {
-                moleButtons[i].setImageDrawable(null);
-            }
+            hideMoleNow(i);
         }
     }
 
@@ -294,7 +308,7 @@ public class ImageGridFragmentGame4 extends Fragment {
         } else {
             setWrongInt();
             SoundPlay.playSP(getContext(), R.raw.error);
-            hideMole(hole);
+            hideMoleNow(hole);
         }
     }
 
