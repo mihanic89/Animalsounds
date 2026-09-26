@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ландшафт: управление узкой колонкой справа, всё остальное — поле пазла (картинка слева,
+     лоток справа от неё). Id те же, что в портретной раскладке. -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp">
+
+    <LinearLayout
+        android:id="@+id/puzzleControls"
+        android:layout_width="72dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/puzzleCounter"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginBottom="6dp"
+            android:background="@drawable/oval_shape"
+            android:clickable="false"
+            android:elevation="5dp"
+            android:focusable="false"
+            android:padding="1dp"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            app:autoSizeTextType="uniform"
+            tools:text="10" />
+
+        <ImageButton
+            android:id="@+id/puzzleHint"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="6dp"
+            android:background="@drawable/oval_shape"
+            android:elevation="5dp"
+            android:padding="6dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_puzzle_outline" />
+
+        <ImageButton
+            android:id="@+id/puzzleNext"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="6dp"
+            android:background="@drawable/oval_shape"
+            android:elevation="5dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:scaleType="fitCenter"
+            app:srcCompat="@android:drawable/ic_media_next" />
+
+        <ImageView
+            android:id="@+id/sizeSmall"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_marginBottom="6dp"
+            android:background="@drawable/memory_size_chip"
+            android:padding="6dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_puzzle_size_large"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/sizeLarge"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_marginBottom="6dp"
+            android:background="@drawable/memory_size_chip"
+            android:padding="6dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_puzzle_size_medium"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/sizeExtra"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:background="@drawable/memory_size_chip"
+            android:padding="6dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_puzzle_size_small"
+            android:visibility="gone"
+            tools:ignore="ContentDescription" />
+    </LinearLayout>
+
+    <com.yamilab.animalsounds.PuzzleView
+        android:id="@+id/puzzleView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/puzzleControls"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
