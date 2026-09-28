@@ -54,8 +54,13 @@ public class ImageGridFragmentPuzzle extends Fragment implements PuzzleView.List
     private static final long ANIMAL_SOUND_DELAY_MS = 700;
     // Со салютом звучит дольше — звук животного начинается после него.
     private static final long ANIMAL_SOUND_DELAY_FIREWORKS_MS = 1900;
+    // Сколько ждать без действий пользователя после сборки картинки, прежде чем перейти
+    // к следующему заданию самостоятельно (тап по собранной картинке или по лотку откладывает
+    // этот переход/делает его немедленным — см. onSolvedTapped/onTrayTappedWhenSolved).
+    private static final long AUTO_NEXT_DELAY_MS = 5000;
 
     private final Handler uiHandler = new Handler(Looper.getMainLooper());
+    private final Runnable autoNextRunnable = this::autoNext;
 
     private ArrayList<Animal> animals;
     private FirebaseAnalytics mFirebaseAnalytics;
@@ -324,16 +329,41 @@ public class ImageGridFragmentPuzzle extends Fragment implements PuzzleView.List
                 playAnimalSound();
             }
         }, fireworks ? ANIMAL_SOUND_DELAY_FIREWORKS_MS : ANIMAL_SOUND_DELAY_MS);
+        scheduleAutoNext();
     }
 
     @Override
     public void onSolvedTapped() {
         playAnimalSound();
+        // Повтор звука — тоже действие пользователя: не переходим дальше, пока он ещё смотрит.
+        scheduleAutoNext();
+    }
+
+    @Override
+    public void onTrayTappedWhenSolved() {
+        // Тап по пустому месту в лотке на собранной картинке — понятный жест «дальше», не ждём таймер.
+        startRound();
     }
 
     private void playAnimalSound() {
         if (current != null && current.getSound() != null && isAdded()) {
             SoundPlay.playSP(requireContext(), current.getSound());
+        }
+    }
+
+    /** Через AUTO_NEXT_DELAY_MS без действий пользователя переходит к следующему заданию. */
+    private void scheduleAutoNext() {
+        if (!isAdded()) {
+            return;
+        }
+        uiHandler.removeCallbacks(autoNextRunnable);
+        uiHandler.postDelayed(autoNextRunnable, AUTO_NEXT_DELAY_MS);
+    }
+
+    private void autoNext() {
+        // isResumed: не листаем картинку самостоятельно, пока пользователь смотрит другую вкладку.
+        if (isAdded() && isResumed() && puzzleView != null && puzzleView.isSolved()) {
+            startRound();
         }
     }
 

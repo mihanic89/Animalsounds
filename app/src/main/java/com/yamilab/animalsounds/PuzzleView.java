@@ -42,8 +42,11 @@ public class PuzzleView extends View {
         /** Встал последний кусочек — картинка собрана. */
         void onSolved();
 
-        /** Тап по уже собранной картинке. */
+        /** Тап по уже собранной картинке (на поле): повторяет звук животного. */
         void onSolvedTapped();
+
+        /** Тап по лотку, когда картинка уже собрана: сразу следующее задание. */
+        void onTrayTappedWhenSolved();
     }
 
     // Форма выступа (кривые Безье в долях длины ребра): 3 сегмента по (c1, c2, конец),
@@ -738,11 +741,14 @@ public class PuzzleView extends View {
             case MotionEvent.ACTION_UP:
                 if (solved) {
                     float slop = 12 * density;
-                    if (Math.abs(x - downX) < slop && Math.abs(y - downY) < slop
-                            && boardRect.contains(x, y)) {
-                        playBounce();
-                        if (listener != null) {
-                            listener.onSolvedTapped();
+                    if (Math.abs(x - downX) < slop && Math.abs(y - downY) < slop) {
+                        if (boardRect.contains(x, y)) {
+                            playBounce();
+                            if (listener != null) {
+                                listener.onSolvedTapped();
+                            }
+                        } else if (trayRect.contains(x, y) && listener != null) {
+                            listener.onTrayTappedWhenSolved();
                         }
                     }
                     return true;
