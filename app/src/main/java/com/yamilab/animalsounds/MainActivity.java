@@ -248,7 +248,6 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
 
         // Один TextToSpeech на процесс: переживает поворот экрана, все вызовы идут в фоне.
         ttsManager = TtsManager.get(this);
-        ttsManager.init(language);
 
         mAdView = findViewById(R.id.adView);
         // appbarlayout (вкладки) позиционируется через layout_above="@+id/adView" в
@@ -579,6 +578,21 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
     @Override
     public void playSilence(int mseconds) {
         ttsManager.playSilence(mseconds);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Идемпотентно: привязывает TTS, если он ещё не создан или был освобождён в фоне.
+        ttsManager.init(language);
+    }
+
+    @Override
+    public void onTrimMemory(int level) {
+        super.onTrimMemory(level);
+        if (level >= TRIM_MEMORY_UI_HIDDEN) {
+            ttsManager.release();
+        }
     }
 
     @Override

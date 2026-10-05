@@ -43,6 +43,9 @@ final class TtsManager {
     private boolean languageReady;
     private String requestedLanguage = DEFAULT_LANGUAGE;
     private String appliedLanguage;
+    // Последняя фраза, запрошенная до готовности движка: проигрывается, как только он готов.
+    private String pendingText;
+    private boolean pendingFlush;
 
     private TtsManager(Context appContext) {
         this.appContext = appContext;
@@ -56,9 +59,13 @@ final class TtsManager {
             if (!initStarted) {
                 initStarted = true;
                 try {
-                    tts = new TextToSpeech(appContext, status -> post(() -> onEngineInit(status)));
+                    final TextToSpeech[] holder = new TextToSpeech[1];
+                    holder[0] = new TextToSpeech(appContext,
+                            status -> post(() -> onEngineInit(holder[0], status)));
+                    tts = holder[0];
                 } catch (Exception e) {
                     tts = null;
+                    initStarted = false; // повторим при следующем init()
                 }
             } else if (engineReady && !lang.equals(appliedLanguage)) {
                 applyLanguage();
@@ -67,17 +74,35 @@ final class TtsManager {
     }
 
     void speakNow(String text) {
-        post(() -> {
-            if (languageReady) {
-                tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "tts_speak");
-            }
-        });
+        post(() -> speakInternal(text, true));
     }
 
     void speak(String text) {
+        post(() -> speakInternal(text, false));
+    }
+
+    private void speakInternal(String text, boolean flush) {
+        if (languageReady) {
+            tts.speak(text, flush ? TextToSpeech.QUEUE_FLUSH : TextToSpeech.QUEUE_ADD, null, "tts_speak");
+        } else if (initStarted) {
+            pendingText = text;
+            pendingFlush = flush;
+        }
+    }
+
+    /** Освобождает движок (когда приложение скрыто); следующий init() привяжет его заново. */
+    void release() {
         post(() -> {
-            if (languageReady) {
-                tts.speak(text, TextToSpeech.QUEUE_ADD, null, "tts_speak");
+            TextToSpeech old = tts;
+            tts = null;
+            initStarted = false;
+            engineReady = false;
+            languageReady = false;
+            appliedLanguage = null;
+            pendingText = null;
+            if (old != null) {
+                old.stop();
+                old.shutdown();
             }
         });
     }
@@ -90,10 +115,18 @@ final class TtsManager {
         });
     }
 
-    private void onEngineInit(int status) {
-        if (status != TextToSpeech.SUCCESS || tts == null) {
+    private void onEngineInit(TextToSpeech engine, int status) {
+        if (engine != tts) {
+            // Колбэк устаревшего экземпляра (между тем был release()): не трогаем текущее состояние.
+            if (engine != null) engine.shutdown();
+            return;
+        }
+        if (status != TextToSpeech.SUCCESS) {
             engineReady = false;
             languageReady = false;
+            engine.shutdown();
+            tts = null;
+            initStarted = false; // повторим при следующем init()
             return;
         }
         engineReady = true;
@@ -119,6 +152,11 @@ final class TtsManager {
             if (result >= TextToSpeech.LANG_AVAILABLE) {
                 languageReady = true;
                 appliedLanguage = requestedLanguage;
+                if (pendingText != null) {
+                    String text = pendingText;
+                    pendingText = null;
+                    tts.speak(text, pendingFlush ? TextToSpeech.QUEUE_FLUSH : TextToSpeech.QUEUE_ADD, null, "tts_speak");
+                }
                 return;
             }
         }
