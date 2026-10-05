@@ -5,6 +5,13 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+    <!-- Android 11+: без этого TextToSpeech может не увидеть установленные движки озвучки -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.TTS_SERVICE" />
+        </intent>
+    </queries>
+
 
     <application
 

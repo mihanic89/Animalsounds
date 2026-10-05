@@ -417,7 +417,7 @@ public class ImageGridFragmentGame2 extends Fragment {
             generateWrong();
             setImages();
             buttonAnswer.setText(animals.get(correctAnswer).getName());
-            ttsListener.speak(animals.get(correctAnswer).getName(),animals.get(correctAnswer).getSound());
+            ttsListener.speakNow(animals.get(correctAnswer).getName());
         }
 
         Bundle params = new Bundle();

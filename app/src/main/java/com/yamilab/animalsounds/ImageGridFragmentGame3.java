@@ -573,7 +573,7 @@ public class ImageGridFragmentGame3 extends Fragment {
             generateWrong();
             setSounds();
             buttonName.setText(animals.get(correctAnswer).getName());
-            ttsListener.speak(animals.get(correctAnswer).getName(),animals.get(correctAnswer).getSound());
+            ttsListener.speakNow(animals.get(correctAnswer).getName());
         }
 
         setImageGlide(full, animals.get(correctAnswer).getImageSmall());

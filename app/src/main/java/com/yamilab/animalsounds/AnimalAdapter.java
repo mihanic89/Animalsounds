@@ -239,7 +239,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
         holder.getTextView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ttsListener.speak(animal.getName(),animal.getSound());
+                ttsListener.speakNow(animal.getName());
             }
         });
     }

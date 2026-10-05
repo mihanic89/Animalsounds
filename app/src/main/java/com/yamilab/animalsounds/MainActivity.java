@@ -12,7 +12,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,9 +58,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.RejectedExecutionException;
 import androidx.core.splashscreen.SplashScreen;
 
 public class MainActivity extends AppCompatActivity implements TTSListener {
@@ -105,8 +101,7 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
     private InterstitialAd mInterstitialAd;
     private int adCount = 0;
     private FirebaseAnalytics mFirebaseAnalytics;
-    private volatile TextToSpeech tts;
-    private final ExecutorService ttsExecutor = Executors.newSingleThreadExecutor();
+    private TtsManager ttsManager;
 
     private ArrayList<Animal> wild, home, aqua, birds, insects, fairy, animals;
     private int screenWidth = 800, screenHeight = 1280;
@@ -251,32 +246,9 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
 
         makeLanguageList(Locale.getDefault().getLanguage());
 
-                // Initialize TTS in main thread to avoid memory leaks
-        if (!isFinishing()) {
-            new android.os.Handler(getMainLooper()).post(() -> {
-                if (!isFinishing() && tts == null) {
-                    try {
-                        tts = new TextToSpeech(getApplicationContext(), status -> {
-                            if (status == TextToSpeech.SUCCESS && !isFinishing()) {
-                                tts.setLanguage(new Locale(language, ""));
-                            }
-                        });
-                    } catch (Exception e) {
-                        if (!isFinishing() && tts == null) {
-                            try {
-                                tts = new TextToSpeech(getApplicationContext(), status -> {
-                                    if (status == TextToSpeech.SUCCESS && !isFinishing()) {
-                                        tts.setLanguage(new Locale("en", ""));
-                                    }
-                                });
-                            } catch (Exception ex) {
-                                // ignore
-                            }
-                        }
-                    }
-                }
-            });
-        }
+        // Один TextToSpeech на процесс: переживает поворот экрана, все вызовы идут в фоне.
+        ttsManager = TtsManager.get(this);
+        ttsManager.init(language);
 
         mAdView = findViewById(R.id.adView);
         // appbarlayout (вкладки) позиционируется через layout_above="@+id/adView" в
@@ -596,27 +568,17 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
 
     @Override
     public void speak(String text, int sound) {
-        // Вызовы TTS могут надолго блокироваться (внутренняя блокировка на время
-        // привязки к сервису озвучки) — на главном потоке это ANR, поэтому в фон.
-        runTts(() -> tts.speak(text, TextToSpeech.QUEUE_ADD, null, "id1"));
+        ttsManager.speak(text);
     }
 
+    @Override
+    public void speakNow(String text) {
+        ttsManager.speakNow(text);
+    }
+
+    @Override
     public void playSilence(int mseconds) {
-        runTts(() -> tts.playSilentUtterance(mseconds, TextToSpeech.QUEUE_FLUSH, "id2"));
-    }
-
-    private void runTts(Runnable action) {
-        try {
-            ttsExecutor.execute(() -> {
-                try {
-                    if (tts != null) action.run();
-                } catch (Exception e) {
-                    // ignore
-                }
-            });
-        } catch (RejectedExecutionException e) {
-            // executor уже остановлен (activity уничтожается)
-        }
+        ttsManager.playSilence(mseconds);
     }
 
     @Override
@@ -661,22 +623,6 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
         if (mScaleAnimation2 != null) mScaleAnimation2.cancel();
         if (mScaleAnimation3 != null) mScaleAnimation3.cancel();
         if (mScaleAnimation4 != null) mScaleAnimation4.cancel();
-        final TextToSpeech ttsToClose = tts;
-        if (ttsToClose != null) {
-            try {
-                ttsExecutor.execute(() -> {
-                    try {
-                        ttsToClose.stop();
-                        ttsToClose.shutdown();
-                    } catch (Exception e) {
-                        // ignore
-                    }
-                });
-            } catch (RejectedExecutionException e) {
-                // ignore
-            }
-        }
-        ttsExecutor.shutdown();
         GlideApp.get(this).clearMemory();
         SoundPlay.clearSP(this);
         super.onDestroy();
