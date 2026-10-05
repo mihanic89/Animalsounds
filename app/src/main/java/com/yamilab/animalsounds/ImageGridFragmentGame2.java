@@ -19,6 +19,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -35,12 +36,6 @@ import static com.yamilab.animalsounds.R.id.imageGame3;
  * Created by Misha on 28.03.2017.
  */
 public class ImageGridFragmentGame2 extends Fragment {
-
-
-    private static final String TAG = "RecyclerViewFragment";
-    private static final String KEY_LAYOUT_MANAGER = "layoutManager";
-    private static final int SPAN_COUNT = 2;
-    private static final int DATASET_COUNT = 40;
     private static final String KEY_WRONG_COUNTER = "wrongCounter2";
     private static final String KEY_CORRECT_COUNTER = "correctCounter2";
     //private int adCounter=0;
@@ -65,11 +60,6 @@ public class ImageGridFragmentGame2 extends Fragment {
         fragmentGame.setArguments(args);
         return fragmentGame;
     }
-
-
-
-
-    private ArrayList<LinkItem> mDataset;
     private ArrayList<Animal> animals;
 
     private int correctAnswer=0;
@@ -77,8 +67,6 @@ public class ImageGridFragmentGame2 extends Fragment {
     private int correctCard=0;
     private int correctInt=0, wrongInt=0;
     private boolean wrongHasTry=false;
-
-    private int[] cardsNumbers;
     private final ArrayList<Integer> numbers = new ArrayList<>();
 
     ImageButton image0;
@@ -159,7 +147,7 @@ public class ImageGridFragmentGame2 extends Fragment {
            // adCounter=0;
         }
         catch (Exception e){
-
+            FirebaseCrashlytics.getInstance().recordException(e);
         }
 
         // BEGIN_INCLUDE(initializeRecyclerView)
@@ -340,7 +328,7 @@ public class ImageGridFragmentGame2 extends Fragment {
                 .priority(Priority.LOW)
                 .skipMemoryCache(true)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .apply(new RequestOptions().override(getArguments().getInt("width") /3))
+                .apply(new RequestOptions().override(getArguments().getInt("width") / (imageView == full ? 2 : 3)))
                 .into(imageView);
     }
 
@@ -477,7 +465,7 @@ public class ImageGridFragmentGame2 extends Fragment {
                 .getDefaultSharedPreferences(this.getActivity());
         SharedPreferences.Editor editor = getPrefs.edit();
         editor.putInt(key, value);
-        editor.commit();
+        editor.apply();
     }
 
 }

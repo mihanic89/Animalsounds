@@ -24,6 +24,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -35,12 +36,6 @@ import static com.yamilab.animalsounds.R.id.imageFull;
  * Created by Misha on 28.03.2017.
  */
 public class ImageGridFragmentGame3 extends Fragment {
-
-
-    private static final String TAG = "RecyclerViewFragment";
-    private static final String KEY_LAYOUT_MANAGER = "layoutManager";
-    private static final int SPAN_COUNT = 2;
-    private static final int DATASET_COUNT = 40;
     private static final String KEY_WRONG_COUNTER = "wrongCounter3";
     private static final String KEY_CORRECT_COUNTER = "correctCounter23";
     //private int adCounter=0;
@@ -65,11 +60,6 @@ public class ImageGridFragmentGame3 extends Fragment {
         fragmentGame.setArguments(args);
         return fragmentGame;
     }
-
-
-
-
-    private ArrayList<LinkItem> mDataset;
     private ArrayList<Animal> animals;
 
     private int correctAnswer=0;
@@ -78,8 +68,6 @@ public class ImageGridFragmentGame3 extends Fragment {
     private int correctInt=0, wrongInt=0, checkedAnswer=0, correctAnswer1from4=0;
     private boolean wrongHasTry=false;
     private int sound1, sound2, sound3, sound4;
-
-    private int[] cardsNumbers;
     private final ArrayList<Integer> numbers = new ArrayList<>();
 
     ImageButton full,buttonCheck,buttonNext;
@@ -180,7 +168,7 @@ public class ImageGridFragmentGame3 extends Fragment {
            // adCounter=0;
         }
         catch (Exception e){
-
+            FirebaseCrashlytics.getInstance().recordException(e);
         }
 
         // BEGIN_INCLUDE(initializeRecyclerView)
@@ -413,7 +401,7 @@ public class ImageGridFragmentGame3 extends Fragment {
                 .priority(Priority.LOW)
                 .skipMemoryCache(true)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .apply(new RequestOptions().override(getArguments().getInt("width") /3))
+                .apply(new RequestOptions().override(getArguments().getInt("width") / (imageView == full ? 2 : 3)))
                 .into(imageView);
     }
 
@@ -482,6 +470,7 @@ public class ImageGridFragmentGame3 extends Fragment {
                 if (checkedAnswer == 4) {
                     button4.setVisibility(View.INVISIBLE);
                 }
+                checkedAnswer = 0;
 
             }
         }
@@ -558,6 +547,7 @@ public class ImageGridFragmentGame3 extends Fragment {
 
     private void newRound (){
 
+        uiHandler.removeCallbacksAndMessages(null);
         wrongHasTry=false;
         checkedAnswer=0;
         button1.setBackgroundResource(R.drawable.oval_shape);
@@ -593,18 +583,6 @@ public class ImageGridFragmentGame3 extends Fragment {
         mFirebaseAnalytics.logEvent("new_round_3", params);
     }
 
-    private void setAllInvisible(){
-        button1.setVisibility(View.INVISIBLE);
-        button2.setVisibility(View.INVISIBLE);
-        button3.setVisibility(View.INVISIBLE);
-        button4.setVisibility(View.INVISIBLE);
-    }
-
-    private void setFull (int num){
-        full.setVisibility(View.VISIBLE);
-        setImageGlide(full, animals.get(num).getImageSmall());
-    }
-
     private void setCorrectInt(){
         if (!wrongHasTry) {
             correctInt++;
@@ -633,7 +611,7 @@ public class ImageGridFragmentGame3 extends Fragment {
                 .getDefaultSharedPreferences(this.getActivity());
         SharedPreferences.Editor editor = getPrefs.edit();
         editor.putInt(key, value);
-        editor.commit();
+        editor.apply();
     }
 
     @Override

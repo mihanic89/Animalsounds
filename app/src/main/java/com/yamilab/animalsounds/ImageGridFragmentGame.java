@@ -19,6 +19,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -36,14 +37,8 @@ import static com.yamilab.animalsounds.R.id.imageGame3;
  * Created by Misha on 28.03.2017.
  */
 public class ImageGridFragmentGame extends Fragment {
-
-
-    private static final String TAG = "RecyclerViewFragment";
-    private static final String KEY_LAYOUT_MANAGER = "layoutManager";
     private static final String KEY_WRONG_COUNTER = "wrongCounter";
     private static final String KEY_CORRECT_COUNTER = "correctCounter";
-    private static final int SPAN_COUNT = 2;
-    private static final int DATASET_COUNT = 40;
     private TTSListener ttsListener;
     private FirebaseAnalytics mFirebaseAnalytics;
 
@@ -66,18 +61,11 @@ public class ImageGridFragmentGame extends Fragment {
         fragmentGame.setArguments(args);
         return fragmentGame;
     }
-
-
-
-
-    private ArrayList<LinkItem> mDataset;
     private ArrayList<Animal> animals;
 
     private int correctAnswer=0;
     private int wrong1=0, wrong2=0, wrong3=0;
     private int correctCard=0;
-
-    private int[] cardsNumbers;
 
     private int correctInt=0, wrongInt=0;
     private boolean wrongHasTry=false;
@@ -159,7 +147,7 @@ public class ImageGridFragmentGame extends Fragment {
            // adCounter=0;
         }
         catch (Exception e){
-
+            FirebaseCrashlytics.getInstance().recordException(e);
         }
 
         // BEGIN_INCLUDE(initializeRecyclerView)
@@ -336,7 +324,7 @@ public class ImageGridFragmentGame extends Fragment {
                     .priority(Priority.LOW)
                     .skipMemoryCache(true)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .apply(new RequestOptions().override(getArguments().getInt("width") /3))
+                    .apply(new RequestOptions().override(getArguments().getInt("width") / (imageView == full ? 2 : 3)))
                     .into(imageView);
         }
 
@@ -441,23 +429,6 @@ public class ImageGridFragmentGame extends Fragment {
         full.setVisibility(View.VISIBLE);
         setImageGlide(full, animals.get(num).getImageSmall());
     }
-
-    private void delay (int seconds){
-        try {
-            // Using Thread.sleep() we can add delay in our
-            // application in a millisecond time. For the example
-            // below the program will take a deep breath for one
-            // second before continue to print the next value of
-            // the loop.
-            Thread.sleep(seconds);
-
-            // The Thread.sleep() need to be executed inside a
-            // try-catch block and we need to catch the
-            // InterruptedException.
-        } catch (InterruptedException ie) {
-            ie.printStackTrace();
-        }
-    }
     /**
      * Generates Strings for RecyclerView's adapter. This data would usually come
      * from a local content provider or remote server.
@@ -491,6 +462,6 @@ public class ImageGridFragmentGame extends Fragment {
                 .getDefaultSharedPreferences(this.getActivity());
         SharedPreferences.Editor editor = getPrefs.edit();
         editor.putInt(key, value);
-        editor.commit();
+        editor.apply();
     }
 }
