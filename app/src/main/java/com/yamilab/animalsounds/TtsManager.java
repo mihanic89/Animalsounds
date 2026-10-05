@@ -66,6 +66,7 @@ final class TtsManager {
                 } catch (Exception e) {
                     tts = null;
                     initStarted = false; // повторим при следующем init()
+                    pendingText = null;
                 }
             } else if (engineReady && !lang.equals(appliedLanguage)) {
                 applyLanguage();
@@ -127,6 +128,7 @@ final class TtsManager {
             engine.shutdown();
             tts = null;
             initStarted = false; // повторим при следующем init()
+            pendingText = null;
             return;
         }
         engineReady = true;
