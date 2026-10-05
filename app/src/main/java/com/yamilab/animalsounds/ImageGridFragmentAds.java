@@ -78,6 +78,7 @@ public class ImageGridFragmentAds extends Fragment {
         int screenSize = getResources().getConfiguration().screenLayout &
                 Configuration.SCREENLAYOUT_SIZE_MASK;
         if (screenSize>=Configuration.SCREENLAYOUT_SIZE_LARGE) gridCount=3;
+        else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) gridCount=4;
         gaggeredGridLayoutManager = new SafeStaggeredGridLayoutManager(gridCount, StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(gaggeredGridLayoutManager);
         int screenWidth = getResources().getDisplayMetrics().widthPixels;
