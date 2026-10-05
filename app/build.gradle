@@ -15,7 +15,7 @@ android {
         minSdk 24
         targetSdk 37
         versionCode 98
-        versionName "3.9.7"
+        versionName "3.9.8"
         multiDexEnabled true
         lintOptions {
             checkReleaseBuilds true
