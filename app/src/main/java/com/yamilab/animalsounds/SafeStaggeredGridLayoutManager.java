@@ -45,9 +45,10 @@ public class SafeStaggeredGridLayoutManager extends StaggeredGridLayoutManager {
     public void onScrollStateChanged(int state) {
         try {
             super.onScrollStateChanged(state);
-        } catch (IndexOutOfBoundsException e) {
-            // A span ended up with an empty mViews list while the gap check was running.
-            // Nothing sensible can be done here, so just skip the gap check this frame.
+        } catch (IndexOutOfBoundsException | NullPointerException e) {
+            // A span ended up with an empty or null mViews list while the gap check was running
+            // (hasGapsToFix -> NPE on a fling's final state change). Nothing sensible can be
+            // done here, so just skip the gap check this frame.
         }
     }
 
