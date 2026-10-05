@@ -5,4 +5,5 @@
     <dimen name="game_land_button_height">64dp</dimen>
     <dimen name="game_land_button_height_compact">64dp</dimen>
     <dimen name="game_land_panel_width_wide">400dp</dimen>
+    <dimen name="ad_image_max_height">2000dp</dimen>
 </resources>

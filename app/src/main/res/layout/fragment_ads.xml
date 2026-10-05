@@ -13,7 +13,8 @@
         android:id="@+id/recyclerView"
         android:saveEnabled="false"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/textViewPolicy"
         android:scrollbars="vertical" />
 
     <TextView

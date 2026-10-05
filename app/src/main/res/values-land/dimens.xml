@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- В ландшафте карточка рекламы должна помещаться в высоту экрана -->
+    <dimen name="ad_image_max_height">200dp</dimen>
+</resources>

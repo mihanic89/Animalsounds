@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     card_view:cardUseCompatPadding="true"
     card_view:cardCornerRadius="10dp"
+    card_view:cardBackgroundColor="@color/colorBackground"
     android:layout_marginBottom="16dp"
     android:elevation="5dp">
 
@@ -20,8 +21,9 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scaleType="centerCrop"
+            android:scaleType="fitCenter"
             android:adjustViewBounds="true"
+            android:maxHeight="@dimen/ad_image_max_height"
             android:layout_below="@+id/textView"
 
             />
