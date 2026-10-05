@@ -59,6 +59,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.RejectedExecutionException;
 import androidx.core.splashscreen.SplashScreen;
 
 public class MainActivity extends AppCompatActivity implements TTSListener {
@@ -102,7 +105,8 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
     private InterstitialAd mInterstitialAd;
     private int adCount = 0;
     private FirebaseAnalytics mFirebaseAnalytics;
-    private TextToSpeech tts;
+    private volatile TextToSpeech tts;
+    private final ExecutorService ttsExecutor = Executors.newSingleThreadExecutor();
 
     private ArrayList<Animal> wild, home, aqua, birds, insects, fairy, animals;
     private int screenWidth = 800, screenHeight = 1280;
@@ -592,18 +596,26 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
 
     @Override
     public void speak(String text, int sound) {
-        try {
-            tts.speak(text, TextToSpeech.QUEUE_ADD, null, "id1");
-        } catch (Exception e) {
-            // ignore
-        }
+        // Вызовы TTS могут надолго блокироваться (внутренняя блокировка на время
+        // привязки к сервису озвучки) — на главном потоке это ANR, поэтому в фон.
+        runTts(() -> tts.speak(text, TextToSpeech.QUEUE_ADD, null, "id1"));
     }
 
     public void playSilence(int mseconds) {
+        runTts(() -> tts.playSilentUtterance(mseconds, TextToSpeech.QUEUE_FLUSH, "id2"));
+    }
+
+    private void runTts(Runnable action) {
         try {
-            tts.playSilentUtterance(mseconds, TextToSpeech.QUEUE_FLUSH, "id2");
-        } catch (Exception e) {
-            // ignore
+            ttsExecutor.execute(() -> {
+                try {
+                    if (tts != null) action.run();
+                } catch (Exception e) {
+                    // ignore
+                }
+            });
+        } catch (RejectedExecutionException e) {
+            // executor уже остановлен (activity уничтожается)
         }
     }
 
@@ -649,10 +661,22 @@ public class MainActivity extends AppCompatActivity implements TTSListener {
         if (mScaleAnimation2 != null) mScaleAnimation2.cancel();
         if (mScaleAnimation3 != null) mScaleAnimation3.cancel();
         if (mScaleAnimation4 != null) mScaleAnimation4.cancel();
-        if (tts != null) {
-            tts.stop();
-            tts.shutdown();
+        final TextToSpeech ttsToClose = tts;
+        if (ttsToClose != null) {
+            try {
+                ttsExecutor.execute(() -> {
+                    try {
+                        ttsToClose.stop();
+                        ttsToClose.shutdown();
+                    } catch (Exception e) {
+                        // ignore
+                    }
+                });
+            } catch (RejectedExecutionException e) {
+                // ignore
+            }
         }
+        ttsExecutor.shutdown();
         GlideApp.get(this).clearMemory();
         SoundPlay.clearSP(this);
         super.onDestroy();
