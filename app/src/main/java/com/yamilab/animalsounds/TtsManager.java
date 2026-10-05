@@ -153,7 +153,9 @@ final class TtsManager {
             }
             if (result >= TextToSpeech.LANG_AVAILABLE) {
                 languageReady = true;
-                appliedLanguage = requestedLanguage;
+                // Запасной английский не запоминаем как применённый: следующий init() из
+                // onStart снова попробует нужный язык (например, когда голос докачается).
+                appliedLanguage = candidate.equals(requestedLanguage) ? requestedLanguage : null;
                 if (pendingText != null) {
                     String text = pendingText;
                     pendingText = null;
