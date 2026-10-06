@@ -314,6 +314,12 @@ public class ImageGridFragmentPuzzle extends Fragment implements PuzzleView.List
         if (activity != null) {
             activity.incrementUnlockCounter();
         }
+        if (mFirebaseAnalytics != null) {
+            Bundle params = new Bundle();
+            params.putLong("size_level", sizeLevel);
+            params.putLong("hint_used", hintUsed ? 1 : 0);
+            mFirebaseAnalytics.logEvent("puzzle_solved", params);
+        }
         boolean fireworks = !hintUsed;
         if (fireworks) {
             SoundPlay.playSP(requireContext(), R.raw.puzzle_fireworks);

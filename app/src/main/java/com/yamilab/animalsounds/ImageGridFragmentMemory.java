@@ -494,6 +494,11 @@ public class ImageGridFragmentMemory extends Fragment {
             if (activity != null) {
                 activity.incrementUnlockCounter();
             }
+            if (mFirebaseAnalytics != null) {
+                Bundle params = new Bundle();
+                params.putLong("size_level", sizeLevel);
+                mFirebaseAnalytics.logEvent("memory_pair", params);
+            }
             SoundPlay.playSP(requireContext(), R.raw.correct);
             pulse(a);
             pulse(b);
